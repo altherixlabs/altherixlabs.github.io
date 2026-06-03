@@ -1,756 +1,1102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Altherix - Expert software consulting for application enhancement and modernization">
-    <title>Altherix | Software Consulting & Enhancement</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Altherix – Expert software consulting for application enhancement and modernization. Bangalore, India.">
+<title>Altherix | Software Consulting & Enhancement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,0,500;9..144,1,300;9..144,1,400&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --p1: #667eea; --p2: #764ba2;
+  --s1: #f093fb; --s2: #f5576c;
+  --gp: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  --gs: linear-gradient(135deg,#f093fb 0%,#f5576c 100%);
+  --gt: linear-gradient(135deg,rgba(102,126,234,.07) 0%,rgba(118,75,162,.07) 100%);
+  --bg:#fafafa; --bg2:#f3f2f8; --w:#fff;
+  --ink:#0f0d14; --ink2:#2a2535; --ink3:#4a4560; --mu:#8b879e;
+  --bd:rgba(102,126,234,.12); --bd2:rgba(102,126,234,.22);
+  --sh0:0 1px 3px rgba(15,13,20,.06); 
+  --sh1:0 4px 16px rgba(15,13,20,.07);
+  --sh2:0 16px 48px rgba(102,126,234,.16),0 4px 12px rgba(15,13,20,.06);
+  --r:6px; --rl:12px; --rxl:20px;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Geist',system-ui,sans-serif;
+  --mono:'Geist Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ──────────────────────────────────────────
+   LOADER — number count-up reveal
+   ────────────────────────────────────────── */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  transition:clip-path .8s cubic-bezier(.77,0,.18,1);
+  clip-path:inset(0 0 0 0);
+}
+#loader.done{clip-path:inset(0 0 100% 0)}
+.loader-pct{
+  font-family:var(--serif);font-size:clamp(4rem,10vw,8rem);font-weight:300;
+  color:#fff;letter-spacing:-.04em;line-height:1;
+  background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.loader-word{
+  font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,.4);
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.loader-line{
+  position:absolute;bottom:0;left:0;height:2px;width:0;
+  background:var(--gp);
+  transition:width linear;
+}
+
+/* ──────────────────────────────────────────
+   PROGRESS BAR
+   ────────────────────────────────────────── */
+#progress-bar{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:200;
+  background:transparent;
+}
+#progress-fill{
+  height:100%;width:0%;
+  background:var(--gp);
+  transition:width .05s linear;
+}
+
+/* ──────────────────────────────────────────
+   CURSOR
+   ────────────────────────────────────────── */
+#cur-dot{
+  position:fixed;z-index:10001;pointer-events:none;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--p1);
+  transform:translate(-50%,-50%);
+  transition:width .25s,height .25s,background .3s;
+}
+#cur-ring{
+  position:fixed;z-index:10000;pointer-events:none;
+  width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(102,126,234,.5);
+  transform:translate(-50%,-50%);
+  transition:width .5s cubic-bezier(.25,.46,.45,.94),
+             height .5s cubic-bezier(.25,.46,.45,.94),
+             opacity .3s,border-color .3s;
+}
+#cur-dot.h{width:10px;height:10px;background:var(--p2)}
+#cur-ring.h{width:52px;height:52px;border-color:rgba(102,126,234,.25)}
+#cur-ring.link{width:48px;height:48px;background:rgba(102,126,234,.06);border-color:var(--p1)}
+@media(hover:none){#cur-dot,#cur-ring{display:none}}
+
+/* ──────────────────────────────────────────
+   NAV
+   ────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:68px;
+  display:flex;align-items:center;
+  border-bottom:1px solid transparent;
+  transition:background .5s,backdrop-filter .5s,border-color .5s;
+}
+nav.s{
+  background:rgba(250,250,250,.88);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-bottom-color:var(--bd);
+}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 2rem;width:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{
+  font-family:var(--sans);font-weight:600;font-size:.9375rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:.8125rem;color:var(--ink3);letter-spacing:.01em;position:relative;
+  transition:color .2s;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;right:0;height:1.5px;
+  background:var(--gp);transform:scaleX(0);transform-origin:right;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  border-radius:2px;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--p1)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{
+  font-size:.8125rem;font-weight:500;
+  background:var(--gp);color:#fff;
+  padding:.5rem 1.375rem;border-radius:var(--r);
+  box-shadow:0 2px 10px rgba(102,126,234,.3);
+  transition:opacity .2s,box-shadow .2s,transform .2s;
+}
+.nav-cta:hover{opacity:.88;transform:translateY(-1px);box-shadow:0 4px 20px rgba(102,126,234,.45)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--ink2);transition:.3s;border-radius:2px}
+/* Nav always has subtle background so it's visible over white hero */
+nav{background:rgba(250,250,250,.75);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom-color:var(--bd)!important}
+@keyframes fd{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* ──────────────────────────────────────────
+   HERO
+   ────────────────────────────────────────── */
+#home{
+  min-height:100vh;display:flex;align-items:center;
+  padding:120px 2rem 6rem;
+  background:var(--w);
+  position:relative;overflow:hidden;
+}
+
+/* Mouse-tracking gradient orb */
+.hero-orb{
+  position:absolute;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(102,126,234,.09) 0%,rgba(118,75,162,.05) 40%,transparent 70%);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:left .8s cubic-bezier(.25,.46,.45,.94),top .8s cubic-bezier(.25,.46,.45,.94);
+  will-change:left,top;
+}
+.hero-orb2{
+  position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(240,147,251,.07) 0%,transparent 70%);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:left 1.2s cubic-bezier(.25,.46,.45,.94),top 1.2s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* Floating particles */
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.particle{
+  position:absolute;border-radius:50%;
+  background:var(--gp);opacity:0;
+  animation:particleFloat linear infinite;
+}
+@keyframes particleFloat{
+  0%{opacity:0;transform:translateY(0) scale(0)}
+  10%{opacity:.6}
+  90%{opacity:.2}
+  100%{opacity:0;transform:translateY(-80vh) scale(1)}
+}
+
+/* Subtle grid */
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(102,126,234,.035) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(102,126,234,.035) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 65% 55% at 65% 40%,black 10%,transparent 85%);
+  animation:gridSlide 25s linear infinite;
+}
+@keyframes gridSlide{from{background-position:0 0}to{background-position:80px 80px}}
+
+.hero-inner{
+  max-width:1160px;margin:0 auto;width:100%;position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center;
+}
+
+/* Char-split headline */
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:.72rem;color:var(--p1);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.75rem;
+  opacity:0;animation:fd .6s 1.6s forwards;
+}
+.hero-kicker::before{content:'';width:28px;height:1px;background:var(--p1)}
+
+.hero-h1{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(2.75rem,5.5vw,4.5rem);
+  line-height:1.05;letter-spacing:-.025em;
+  color:var(--ink);margin-bottom:1.5rem;
+}
+.h1-line{display:block;overflow:hidden}
+.h1-chars{display:inline-block}
+.h1-char{
+  display:inline-block;
+  transform:translateY(110%) rotate(4deg);opacity:0;
+  transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .4s ease;
+  will-change:transform,opacity;
+}
+.h1-char.space{width:.25em}
+.h1-char.in{transform:none;opacity:1}
+.h1-strong{
+  background:var(--gp);-webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;background-clip:text;
+  font-weight:500;
+}
+
+.hero-p{
+  font-size:1.0625rem;color:var(--ink3);line-height:1.75;max-width:500px;margin-bottom:2.5rem;
+  opacity:0;transform:translateY(16px);
+  animation:slideUp .7s cubic-bezier(.16,1,.3,1) 2.3s forwards;
+}
+.hero-btns{
+  display:flex;gap:.875rem;flex-wrap:wrap;
+  opacity:0;transform:translateY(16px);
+  animation:slideUp .7s cubic-bezier(.16,1,.3,1) 2.5s forwards;
+}
+@keyframes slideUp{to{opacity:1;transform:none}}
+
+.btn-p{
+  background:var(--gp);color:#fff;
+  font-size:.875rem;font-weight:500;padding:.8125rem 1.875rem;border-radius:var(--r);
+  box-shadow:0 4px 20px rgba(102,126,234,.35);
+  display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden;
+  transition:box-shadow .3s,transform .2s;
+}
+.btn-p::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.18),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.btn-p:hover{box-shadow:0 8px 32px rgba(102,126,234,.55);transform:translateY(-2px)}
+.btn-p:hover::before{opacity:1}
+.btn-o{
+  background:transparent;color:var(--ink2);
+  font-size:.875rem;padding:.8125rem 1.875rem;border-radius:var(--r);
+  border:1px solid var(--bd2);
+  display:inline-flex;align-items:center;gap:8px;
+  transition:border-color .25s,color .25s,transform .2s,box-shadow .25s;
+}
+.btn-o:hover{border-color:var(--p1);color:var(--p1);transform:translateY(-2px);box-shadow:0 4px 20px rgba(102,126,234,.1)}
+
+/* Hero card */
+.hero-card{
+  background:var(--w);border:1px solid var(--bd);border-radius:var(--rxl);padding:2rem;
+  box-shadow:var(--sh2);
+  opacity:0;transform:translateX(40px) translateY(20px);
+  animation:cardIn .9s cubic-bezier(.16,1,.3,1) 1.8s forwards;
+}
+@keyframes cardIn{to{opacity:1;transform:none}}
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--bd);border-radius:var(--rl);overflow:hidden;margin-bottom:1.5rem;
+}
+.hstat{background:var(--w);padding:1.375rem 1.25rem;transition:background .2s}
+.hstat:hover{background:var(--bg)}
+.hnum{
+  font-family:var(--serif);font-size:2.125rem;font-weight:500;
+  background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:4px;
+}
+.hlbl{font-size:.78125rem;color:var(--mu)}
+.hero-pts{display:flex;flex-direction:column;gap:.75rem}
+.hero-pt{
+  display:flex;align-items:center;gap:10px;
+  font-size:.875rem;color:var(--ink3);
+  transition:color .2s,transform .2s;cursor:default;
+}
+.hero-pt:hover{color:var(--ink);transform:translateX(5px)}
+.hero-pt-dot{width:5px;height:5px;border-radius:50%;background:var(--gp);flex-shrink:0}
+
+/* ──────────────────────────────────────────
+   MARQUEE STRIP
+   ────────────────────────────────────────── */
+.marquee-wrap{
+  border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);
+  background:var(--w);overflow:hidden;padding:.875rem 0;position:relative;
+}
+.marquee-wrap::before,.marquee-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:120px;z-index:1;pointer-events:none;
+}
+.marquee-wrap::before{left:0;background:linear-gradient(90deg,var(--w),transparent)}
+.marquee-wrap::after{right:0;background:linear-gradient(-90deg,var(--w),transparent)}
+.marquee-track{display:flex;gap:3rem;width:max-content;animation:marquee 28s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.m-item{
+  display:flex;align-items:center;gap:.875rem;
+  font-family:var(--mono);font-size:.75rem;color:var(--mu);letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.m-dot{width:3px;height:3px;border-radius:50%;background:var(--gp);flex-shrink:0}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ──────────────────────────────────────────
+   SECTION COMMONS
+   ────────────────────────────────────────── */
+.sec{padding:7rem 0;position:relative}
+.sec-alt{background:var(--bg2)}
+.ct{max-width:1160px;margin:0 auto;padding:0 2rem}
+.sec-kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:.72rem;color:var(--p1);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;
+}
+.sec-kicker::before{content:'';width:28px;height:1px;background:var(--p1)}
+.sec-h2{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(2rem,3.5vw,2.875rem);
+  letter-spacing:-.025em;line-height:1.1;margin-bottom:1rem;color:var(--ink);
+}
+.sec-h2 em{font-style:italic}
+.sec-div{width:32px;height:1.5px;background:var(--gp);border-radius:2px;margin:1.25rem 0 2rem}
+.sec-sub{font-size:1rem;color:var(--ink3);line-height:1.75;max-width:520px}
+.sec-hd{margin-bottom:3.5rem}
+
+/* Generic scroll reveal */
+.rv{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1)}
+.rv.on{opacity:1;transform:none}
+.rvl{opacity:0;transform:translateX(-32px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1)}
+.rvl.on{opacity:1;transform:none}
+.rvr{opacity:0;transform:translateX(32px);transition:opacity .75s ease,transform .75s cubic-bezier(.16,1,.3,1)}
+.rvr.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+.d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+/* ──────────────────────────────────────────
+   SERVICES  — numbered grid with animated left bar
+   ────────────────────────────────────────── */
+.svc-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--bd);border:1px solid var(--bd);
+  border-radius:var(--rxl);overflow:hidden;
+}
+.svc{
+  background:var(--w);padding:2.75rem 2.25rem;
+  position:relative;overflow:hidden;
+  transition:background .3s;
+}
+.svc::before{/* shimmer */
+  content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(102,126,234,.05),transparent);
+  transition:left .7s ease;
+}
+.svc:hover::before{left:130%}
+.svc::after{/* left accent bar */
+  content:'';position:absolute;left:0;top:15%;bottom:15%;width:2px;
+  background:var(--gp);transform:scaleY(0);transform-origin:bottom;
+  transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
+.svc:hover::after{transform:scaleY(1)}
+.svc:hover{background:rgba(248,247,255,.9)}
+.svc-num{font-family:var(--mono);font-size:.72rem;color:var(--mu);letter-spacing:.06em;margin-bottom:1.25rem}
+.svc-title{
+  font-family:var(--serif);font-size:1.3125rem;font-weight:400;
+  color:var(--ink);margin-bottom:.875rem;letter-spacing:-.01em;
+  transition:color .25s;
+}
+.svc:hover .svc-title{color:var(--p1)}
+.svc-desc{font-size:.9rem;color:var(--ink3);line-height:1.75;margin-bottom:1.5rem}
+.svc-list{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.svc-list li{
+  font-size:.8125rem;color:var(--mu);display:flex;align-items:center;gap:8px;
+  transition:color .25s,transform .25s;
+}
+.svc:hover .svc-list li{color:var(--ink3)}
+.svc-list li::before{
+  content:'';width:14px;height:1px;flex-shrink:0;
+  background:var(--gp);transition:width .35s cubic-bezier(.16,1,.3,1);
+}
+.svc:hover .svc-list li::before{width:22px}
+
+/* ──────────────────────────────────────────
+   PROJECTS — horizontal scroll strip
+   ────────────────────────────────────────── */
+#projects{overflow:hidden}
+.proj-scroll-hint{
+  font-family:var(--mono);font-size:.72rem;color:var(--mu);
+  letter-spacing:.08em;display:flex;align-items:center;gap:8px;
+  animation:hintBounce 2s ease-in-out infinite;
+  margin-left:auto;
+}
+@keyframes hintBounce{0%,100%{transform:translateX(0)}50%{transform:translateX(8px)}}
+.proj-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:3rem}
+.proj-track-wrap{
+  overflow-x:auto;overflow-y:visible;
+  padding:1rem 2rem 2rem;
+  margin:0 -2rem;
+  scrollbar-width:none;
+  cursor:grab;
+  -webkit-overflow-scrolling:touch;
+}
+.proj-track-wrap:active{cursor:grabbing}
+.proj-track-wrap::-webkit-scrollbar{display:none}
+.proj-track{
+  display:flex;gap:1.5rem;
+  width:max-content;
+  padding-right:4rem;
+}
+.pcard{
+  width:340px;flex-shrink:0;
+  background:var(--w);border:1px solid var(--bd);border-radius:var(--rxl);
+  overflow:hidden;box-shadow:var(--sh0);
+  transition:box-shadow .4s cubic-bezier(.16,1,.3,1),
+             transform .4s cubic-bezier(.16,1,.3,1),
+             border-color .3s;
+  transform-style:preserve-3d;
+}
+.pcard:hover{box-shadow:var(--sh2);border-color:var(--bd2)}
+.pbar{height:3px;background:var(--gp);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.pbar.alt{background:var(--gs)}
+.pcard.vis .pbar{transform:scaleX(1)}
+.pbody{padding:1.75rem}
+.psec{
+  font-family:var(--mono);font-size:.68rem;color:var(--p1);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:.875rem;
+}
+.ptitle{
+  font-family:var(--serif);font-size:1.125rem;font-weight:400;
+  color:var(--ink);margin-bottom:.75rem;letter-spacing:-.01em;line-height:1.35;
+}
+.pdesc{font-size:.84375rem;color:var(--ink3);line-height:1.7;margin-bottom:1.5rem}
+.ptags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.25rem}
+.ptag{
+  font-family:var(--mono);font-size:.68rem;padding:3px 9px;border-radius:4px;
+  background:var(--gt);color:var(--p1);border:1px solid rgba(102,126,234,.15);
+  transition:background .2s,border-color .2s;
+}
+.pcard:hover .ptag{background:rgba(102,126,234,.1);border-color:rgba(102,126,234,.28)}
+.pmets{display:flex;gap:1.5rem;padding-top:1.25rem;border-top:1px solid var(--bd)}
+.pmv{
+  font-family:var(--serif);font-size:1.5rem;font-weight:500;
+  background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1;margin-bottom:3px;
+}
+.pml{font-size:.6875rem;color:var(--mu);letter-spacing:.04em;text-transform:uppercase}
+
+/* ──────────────────────────────────────────
+   TEAM
+   ────────────────────────────────────────── */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.tcard{
+  background:var(--w);border:1px solid var(--bd);border-radius:var(--rxl);padding:1.875rem;
+  box-shadow:var(--sh0);position:relative;overflow:hidden;
+  transition:box-shadow .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1),border-color .3s;
+}
+/* Gradient aurora sweep on hover */
+.tcard::before{
+  content:'';position:absolute;inset:-50%;
+  background:conic-gradient(from 0deg,rgba(102,126,234,.06),rgba(118,75,162,.05),rgba(240,147,251,.04),rgba(102,126,234,.06));
+  opacity:0;transition:opacity .5s,transform .8s cubic-bezier(.16,1,.3,1);
+  transform:rotate(-45deg) scale(.8);
+}
+.tcard:hover::before{opacity:1;transform:rotate(0deg) scale(1)}
+.tcard:hover{box-shadow:var(--sh2);transform:translateY(-5px);border-color:var(--bd2)}
+.tavatar{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--gp);display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:.875rem;font-weight:600;
+  color:#fff;margin-bottom:1.125rem;
+  transition:border-radius .4s cubic-bezier(.16,1,.3,1),transform .3s,box-shadow .3s;
+}
+.tcard:hover .tavatar{border-radius:50%;transform:scale(1.08) rotate(-3deg);box-shadow:0 4px 16px rgba(102,126,234,.3)}
+.tname{
+  font-family:var(--serif);font-size:1.125rem;font-weight:400;
+  color:var(--ink);margin-bottom:.25rem;letter-spacing:-.01em;
+  transition:color .25s;position:relative;z-index:1;
+}
+.tcard:hover .tname{color:var(--p1)}
+.trole{font-family:var(--mono);font-size:.72rem;color:var(--mu);letter-spacing:.05em;text-transform:uppercase;margin-bottom:1rem;position:relative;z-index:1}
+.tbio{font-size:.84375rem;color:var(--ink3);line-height:1.7;margin-bottom:1.125rem;position:relative;z-index:1}
+.tchips{display:flex;flex-wrap:wrap;gap:5px;position:relative;z-index:1}
+.chip{
+  font-family:var(--mono);font-size:.68rem;padding:3px 9px;border-radius:4px;
+  border:1px solid var(--bd2);color:var(--ink3);background:var(--bg);
+  transition:border-color .25s,color .25s,background .25s;
+}
+.tcard:hover .chip{border-color:rgba(102,126,234,.3);color:var(--p1);background:var(--gt)}
+
+/* ──────────────────────────────────────────
+   ABOUT BAND
+   ────────────────────────────────────────── */
+.about-band{
+  background:var(--gp);padding:6rem 0;overflow:hidden;position:relative;
+}
+/* Animated particle dots */
+.about-band::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.09) 1px,transparent 0);
+  background-size:28px 28px;
+  animation:dotDrift 25s linear infinite;
+}
+/* Light sweep */
+.about-band::after{
+  content:'';position:absolute;top:-50%;left:-30%;
+  width:60%;height:200%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.04),transparent);
+  animation:lightSweep 8s ease-in-out infinite;
+}
+@keyframes dotDrift{to{background-position:280px 280px}}
+@keyframes lightSweep{0%,100%{transform:translateX(-20%)}50%{transform:translateX(250%)}}
+.about-inner{
+  display:grid;grid-template-columns:5fr 4fr;gap:5rem;align-items:center;
+  position:relative;z-index:1;
+}
+.about-h2{
+  font-family:var(--serif);font-weight:300;
+  font-size:clamp(1.875rem,3vw,2.625rem);
+  color:#fff;line-height:1.15;letter-spacing:-.025em;margin-bottom:1.25rem;
+}
+.about-p{font-size:.9375rem;color:rgba(255,255,255,.72);line-height:1.8;margin-bottom:.875rem}
+.about-cta{
+  display:inline-flex;align-items:center;gap:8px;margin-top:1.5rem;
+  font-size:.875rem;font-weight:500;color:#fff;
+  border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:2px;
+  transition:border-color .25s,gap .3s cubic-bezier(.16,1,.3,1);
+}
+.about-cta:hover{border-color:#fff;gap:14px}
+.about-vals{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:rgba(255,255,255,.15);border-radius:var(--rl);overflow:hidden;
+}
+.aval{
+  background:rgba(255,255,255,.08);padding:1.375rem 1.25rem;
+  transition:background .25s,transform .25s;
+}
+.aval:hover{background:rgba(255,255,255,.15)}
+.aval-t{font-weight:500;font-size:.9rem;color:#fff;margin-bottom:.375rem}
+.aval-d{font-size:.8125rem;color:rgba(255,255,255,.58);line-height:1.55}
+
+/* ──────────────────────────────────────────
+   CONTACT
+   ────────────────────────────────────────── */
+.contact-inner{display:grid;grid-template-columns:5fr 6fr;gap:5rem;align-items:start}
+.contact-intro{font-size:1rem;color:var(--ink3);line-height:1.75;margin-bottom:2.5rem}
+.cdetail{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.125rem 0;border-bottom:1px solid var(--bd);
+  transition:transform .25s cubic-bezier(.16,1,.3,1);
+}
+.cdetail:hover{transform:translateX(6px)}
+.cicon{
+  width:36px;height:36px;border-radius:8px;background:var(--gt);border:1px solid var(--bd);
+  display:flex;align-items:center;justify-content:center;font-size:.875rem;flex-shrink:0;
+  transition:background .25s,border-color .25s,transform .25s;
+}
+.cdetail:hover .cicon{background:rgba(102,126,234,.12);border-color:var(--bd2);transform:scale(1.1)}
+.clbl{font-family:var(--mono);font-size:.69rem;color:var(--mu);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.cval{font-size:.9rem;color:var(--ink2)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fg{margin-bottom:1rem}
+.fg.full{grid-column:1/-1}
+.flbl{display:block;font-family:var(--mono);font-size:.69rem;color:var(--mu);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.fi,.fsel,.fta{
+  width:100%;background:var(--w);border:1px solid var(--bd2);border-radius:var(--r);
+  padding:.75rem 1rem;font-family:var(--sans);font-size:.9rem;color:var(--ink);
+  transition:border-color .25s,box-shadow .25s,transform .2s;outline:none;
+  appearance:none;-webkit-appearance:none;
+}
+.fi:focus,.fsel:focus,.fta:focus{
+  border-color:var(--p1);box-shadow:0 0 0 3px rgba(102,126,234,.1);
+  transform:translateY(-1px);
+}
+.fi::placeholder,.fta::placeholder{color:var(--mu)}
+.fta{resize:vertical;min-height:120px}
+.fbtn{
+  width:100%;background:var(--gp);color:#fff;
+  font-family:var(--sans);font-size:.9rem;font-weight:500;
+  padding:.9375rem;border-radius:var(--r);border:none;cursor:pointer;
+  box-shadow:0 4px 20px rgba(102,126,234,.3);
+  transition:opacity .2s,box-shadow .25s,transform .2s;margin-top:.5rem;
+  position:relative;overflow:hidden;
+}
+.fbtn::before{
+  content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  transition:left .5s ease;
+}
+.fbtn:hover{opacity:.92;box-shadow:0 8px 32px rgba(102,126,234,.45);transform:translateY(-1px)}
+.fbtn:hover::before{left:100%}
+.fok{
+  display:none;padding:1rem 1.25rem;
+  background:rgba(102,126,234,.06);border:1px solid rgba(102,126,234,.2);
+  border-radius:var(--r);color:var(--p1);font-size:.875rem;
+  margin-top:1rem;text-align:center;
+  animation:popIn .5s cubic-bezier(.16,1,.3,1);
+}
+@keyframes popIn{from{opacity:0;transform:scale(.95) translateY(8px)}to{opacity:1;transform:none}}
+
+/* ──────────────────────────────────────────
+   FOOTER
+   ────────────────────────────────────────── */
+footer{background:var(--ink);padding:3.5rem 0 2rem}
+.ftop{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:3rem;flex-wrap:wrap;
+  padding-bottom:2.5rem;margin-bottom:2rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.fbrand .flogo{
+  font-family:var(--sans);font-weight:600;font-size:.9375rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--gp);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  margin-bottom:.75rem;
+}
+.fbrand p{font-size:.84375rem;color:rgba(255,255,255,.35);max-width:220px;line-height:1.65}
+.fcol h5{font-family:var(--mono);font-size:.69rem;color:rgba(255,255,255,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.fcol a{display:block;font-size:.84375rem;color:rgba(255,255,255,.52);margin-bottom:.5625rem;transition:color .2s,transform .2s;transform-origin:left}
+.fcol a:hover{color:rgba(255,255,255,.9);transform:translateX(5px)}
+.fbot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.fcopy{font-family:var(--mono);font-size:.71875rem;color:rgba(255,255,255,.25)}
+
+/* ──────────────────────────────────────────
+   RESPONSIVE
+   ────────────────────────────────────────── */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-card{display:none}
+  .svc-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .about-inner{grid-template-columns:1fr;gap:2.5rem}
+  .contact-inner{grid-template-columns:1fr;gap:2.5rem}
+}
+@media(max-width:640px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .team-grid{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr}
+  .fg.full{grid-column:1}
+  .ftop{flex-direction:column;gap:2rem}
+  .fbot{flex-direction:column;align-items:flex-start}
+  .about-vals{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <span class="logo">ALTHERIX</span>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-pct" id="lpct">0</div>
+  <div class="loader-word">Loading</div>
+  <div class="loader-line" id="lline"></div>
+</div>
+
+<!-- PROGRESS -->
+<div id="progress-bar"><div id="progress-fill"></div></div>
+
+<!-- CURSOR -->
+<div id="cur-dot"></div>
+<div id="cur-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#home" class="logo">Altherix</a>
+    <ul class="nav-links" id="navlinks">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+    <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-orb" id="orb1"></div>
+  <div class="hero-orb2" id="orb2"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-kicker">Software Consulting · Bangalore, India</div>
+      <h1 class="hero-h1" id="hero-h1">
+        <span class="h1-line" data-text="Transforming Software,"></span>
+        <span class="h1-line" data-text="Amplifying Value" data-strong="true"></span>
+      </h1>
+      <p class="hero-p">We breathe new life into existing applications with strategic enhancements, seamless integrations, and innovative features that drive measurable business growth.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-p">View our work <span>→</span></a>
+        <a href="#contact" class="btn-o">Start a conversation</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-stats">
+        <div class="hstat"><div class="hnum" data-count="45" data-sfx="+">0+</div><div class="hlbl">Projects delivered</div></div>
+        <div class="hstat"><div class="hnum" data-count="95" data-sfx="%">0%</div><div class="hlbl">Client retention</div></div>
+        <div class="hstat"><div class="hnum" data-count="5" data-sfx="+">0+</div><div class="hlbl">Years in business</div></div>
+        <div class="hstat"><div class="hnum" data-count="6" data-sfx="">0</div><div class="hlbl">Core engineers</div></div>
+      </div>
+      <div class="hero-pts">
+        <div class="hero-pt"><div class="hero-pt-dot"></div>Legacy system modernization & cloud migration</div>
+        <div class="hero-pt"><div class="hero-pt-dot"></div>Custom feature development & full-stack builds</div>
+        <div class="hero-pt"><div class="hero-pt-dot"></div>API integration & microservices architecture</div>
+        <div class="hero-pt"><div class="hero-pt-dot"></div>Performance optimization & database tuning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="mtrack">
+    <span class="m-item"><span class="m-dot"></span>Legacy Modernization</span>
+    <span class="m-item"><span class="m-dot"></span>API Integration</span>
+    <span class="m-item"><span class="m-dot"></span>Performance Optimization</span>
+    <span class="m-item"><span class="m-dot"></span>Custom Feature Development</span>
+    <span class="m-item"><span class="m-dot"></span>Cloud Migration</span>
+    <span class="m-item"><span class="m-dot"></span>SAP Consulting</span>
+    <span class="m-item"><span class="m-dot"></span>Microservices</span>
+    <span class="m-item"><span class="m-dot"></span>React · Node.js · Java · Python</span>
+    <span class="m-item"><span class="m-dot"></span>Legacy Modernization</span>
+    <span class="m-item"><span class="m-dot"></span>API Integration</span>
+    <span class="m-item"><span class="m-dot"></span>Performance Optimization</span>
+    <span class="m-item"><span class="m-dot"></span>Custom Feature Development</span>
+    <span class="m-item"><span class="m-dot"></span>Cloud Migration</span>
+    <span class="m-item"><span class="m-dot"></span>SAP Consulting</span>
+    <span class="m-item"><span class="m-dot"></span>Microservices</span>
+    <span class="m-item"><span class="m-dot"></span>React · Node.js · Java · Python</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="sec sec-alt">
+  <div class="ct">
+    <div class="sec-hd">
+      <div class="sec-kicker rv">What we do</div>
+      <h2 class="sec-h2 rv d1">Services built for<br><em>real-world complexity</em></h2>
+      <div class="sec-div rv d2"></div>
+      <p class="sec-sub rv d2">We specialize in extending and enhancing existing software — not replacing it. Every engagement is led by senior engineers with deep domain expertise.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc rv"><div class="svc-num">01</div><div class="svc-title">Legacy System Modernization</div><p class="svc-desc">Transform outdated applications into modern, scalable solutions without disrupting operations or losing institutional knowledge.</p><ul class="svc-list"><li>Technology stack upgrades</li><li>Architecture refactoring</li><li>Cloud migration strategy</li></ul></div>
+      <div class="svc rv d1"><div class="svc-num">02</div><div class="svc-title">Custom Feature Development</div><p class="svc-desc">Build powerful new modules that extend your application's capabilities — from ideation through design, development, testing, and deployment.</p><ul class="svc-list"><li>Feature design & planning</li><li>Full-stack implementation</li><li>QA & production deployment</li></ul></div>
+      <div class="svc rv d2"><div class="svc-num">03</div><div class="svc-title">Integration & API Development</div><p class="svc-desc">Connect disparate systems with robust APIs that eliminate data silos, reduce manual effort, and streamline workflows end-to-end.</p><ul class="svc-list"><li>RESTful & GraphQL APIs</li><li>Third-party integrations</li><li>Microservices architecture</li></ul></div>
+      <div class="svc rv d3"><div class="svc-num">04</div><div class="svc-title">Performance Optimization</div><p class="svc-desc">Dramatically improve speed, scalability, and reliability through systematic profiling, database tuning, and caching strategy.</p><ul class="svc-list"><li>Database query optimization</li><li>Caching & CDN strategies</li><li>Load balancing & scaling</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="sec">
+  <div class="ct">
+    <div class="proj-header">
+      <div>
+        <div class="sec-kicker rv">Case studies</div>
+        <h2 class="sec-h2 rv d1">Real results from<br><em>real engagements</em></h2>
+        <div class="sec-div rv d2"></div>
+      </div>
+      <div class="proj-scroll-hint rv d2">Drag to explore →</div>
+    </div>
+  </div>
+  <div class="proj-track-wrap" id="projWrap">
+    <div class="proj-track" id="projTrack">
+      <div class="pcard">
+        <div class="pbar"></div>
+        <div class="pbody"><div class="psec">Enterprise Software</div><div class="ptitle">ERP Custom Module Development</div><p class="pdesc">Inventory management module with barcode scanning, real-time stock updates, and automated reorder alerts for a mid-sized manufacturer.</p><div class="ptags"><span class="ptag">Java Spring Boot</span><span class="ptag">MySQL</span><span class="ptag">REST API</span></div><div class="pmets"><div><div class="pmv" data-count="85" data-sfx="%">85%</div><div class="pml">Less manual work</div></div><div><div class="pmv" data-count="5" data-sfx="K+">5K+</div><div class="pml">SKUs managed</div></div></div></div>
+      </div>
+      <div class="pcard">
+        <div class="pbar alt"></div>
+        <div class="pbody"><div class="psec">E-Commerce</div><div class="ptitle">Payment Gateway Integration</div><p class="pdesc">Multi-gateway integration (Razorpay, PayU, Paytm) with UPI, wallets, EMI, admin dashboard, and automated reconciliation reports.</p><div class="ptags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">MongoDB</span></div><div class="pmets"><div><div class="pmv" data-count="35" data-sfx="%">35%</div><div class="pml">Higher conversions</div></div><div><div class="pmv" data-count="2" data-sfx="K+">2K+</div><div class="pml">Daily orders</div></div></div></div>
+      </div>
+      <div class="pcard">
+        <div class="pbar"></div>
+        <div class="pbody"><div class="psec">Financial Services</div><div class="ptitle">Accounting Software Integration</div><p class="pdesc">REST API bridge between billing and Tally/Zoho Books with automated invoice generation, GST preparation, and payment reconciliation.</p><div class="ptags"><span class="ptag">Python Django</span><span class="ptag">PostgreSQL</span><span class="ptag">REST API</span></div><div class="pmets"><div><div class="pmv" data-count="90" data-sfx="%">90%</div><div class="pml">Time saved</div></div><div><div class="pmv" data-count="100" data-sfx="%">100%</div><div class="pml">Accuracy</div></div></div></div>
+      </div>
+      <div class="pcard">
+        <div class="pbar alt"></div>
+        <div class="pbody"><div class="psec">Healthcare</div><div class="ptitle">Clinic Management Enhancement</div><p class="pdesc">Appointment booking, prescription management, SMS/email reminders, and telemedicine features across 4 clinics and 3,000+ monthly patients.</p><div class="ptags"><span class="ptag">Angular</span><span class="ptag">Node.js</span><span class="ptag">Twilio</span></div><div class="pmets"><div><div class="pmv" data-count="3" data-sfx="K+">3K+</div><div class="pml">Patients/month</div></div><div><div class="pmv" data-count="70" data-sfx="%">70%</div><div class="pml">Fewer no-shows</div></div></div></div>
+      </div>
+      <div class="pcard">
+        <div class="pbar"></div>
+        <div class="pbody"><div class="psec">Education Technology</div><div class="ptitle">Learning Platform Features</div><p class="pdesc">Video delivery, quizzes, progress tracking, certificate generation, Zoom integration, and Razorpay payments for an ed-tech startup.</p><div class="ptags"><span class="ptag">React</span><span class="ptag">Python Django</span><span class="ptag">AWS S3</span></div><div class="pmets"><div><div class="pmv" data-count="8" data-sfx="K+">8K+</div><div class="pml">Active students</div></div><div><div class="pmv" data-count="92" data-sfx="%">92%</div><div class="pml">Completion rate</div></div></div></div>
+      </div>
+      <div class="pcard">
+        <div class="pbar alt"></div>
+        <div class="pbody"><div class="psec">Logistics</div><div class="ptitle">Delivery Management System</div><p class="pdesc">Real-time tracking, delivery agent mobile app, route optimization, and customer SMS notifications integrated with Google Maps.</p><div class="ptags"><span class="ptag">React Native</span><span class="ptag">Node.js</span><span class="ptag">Google Maps</span></div><div class="pmets"><div><div class="pmv" data-count="40" data-sfx="%">40%</div><div class="pml">Faster deliveries</div></div><div><div class="pmv" data-count="200" data-sfx="+">200+</div><div class="pml">Daily deliveries</div></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="sec sec-alt">
+  <div class="ct">
+    <div class="sec-hd">
+      <div class="sec-kicker rv">The team</div>
+      <h2 class="sec-h2 rv d1">People who<br><em>build and advise</em></h2>
+      <div class="sec-div rv d2"></div>
+    </div>
+    <div class="team-grid">
+      <div class="tcard rv"><div class="tavatar">GS</div><div class="tname">Ganesh S</div><div class="trole">Director & Founder</div><p class="tbio">Visionary leader with 15+ years in enterprise software consulting, specializing in digital transformation, SAP, Oracle, and cloud architecture strategy.</p><div class="tchips"><span class="chip">Enterprise Architecture</span><span class="chip">SAP</span><span class="chip">Digital Strategy</span></div></div>
+      <div class="tcard rv d1"><div class="tavatar">PM</div><div class="tname">Priscilla Mathews</div><div class="trole">Chief Financial Officer</div><p class="tbio">Strategic financial leader combining financial acumen with deep technology understanding, overseeing project economics, contracts, and operational efficiency.</p><div class="tchips"><span class="chip">Financial Strategy</span><span class="chip">Risk Management</span></div></div>
+      <div class="tcard rv d2"><div class="tavatar">MR</div><div class="tname">Muralidharan R</div><div class="trole">Senior Software Engineer</div><p class="tbio">Full-stack expert with deep expertise in modern web technologies and legacy system integration. Strength in Java, React, and microservices architectures.</p><div class="tchips"><span class="chip">Java/Spring Boot</span><span class="chip">React/Angular</span><span class="chip">Microservices</span></div></div>
+      <div class="tcard rv d1"><div class="tavatar">JV</div><div class="tname">Jessy Varghese</div><div class="trole">Software Engineer</div><p class="tbio">Cloud-native development and DevOps specialist excelling in scalable solutions, API development, and database optimization with clean, maintainable code.</p><div class="tchips"><span class="chip">Node.js/Python</span><span class="chip">AWS/Azure</span><span class="chip">Database Design</span></div></div>
+      <div class="tcard rv d2"><div class="tavatar">CJ</div><div class="tname">Cyril Johnson</div><div class="trole">Technical Advisor</div><p class="tbio">Strategic technology advisor guiding complex technical challenges, providing insights on emerging technologies, architecture decisions, and industry best practices.</p><div class="tchips"><span class="chip">Technology Strategy</span><span class="chip">Architecture</span><span class="chip">Innovation</span></div></div>
+      <div class="tcard rv d3"><div class="tavatar">RR</div><div class="tname">Rohan Raj</div><div class="trole">Software Engineer</div><p class="tbio">Backend systems specialist with expertise in RESTful APIs, security best practices, and performance optimization delivering high-quality, maintainable code.</p><div class="tchips"><span class="chip">Java/Python</span><span class="chip">REST APIs</span><span class="chip">PostgreSQL/MySQL</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-band">
+  <div class="ct">
+    <div class="about-inner">
+      <div class="rvl">
+        <h2 class="about-h2">Built in Bangalore.<br>Trusted across India.</h2>
+        <p class="about-p">Founded in Bangalore — India's technology capital — Altherix has been at the forefront of software enhancement since inception. We understand that your existing applications are the backbone of your business.</p>
+        <p class="about-p">Rather than costly replacements, we specialize in strategic enhancements that maximize your current technology investments while preparing you for the future.</p>
+        <a href="#contact" class="about-cta">Start a conversation →</a>
+      </div>
+      <div class="about-vals rvr">
+        <div class="aval"><div class="aval-t">Zero Disruption</div><div class="aval-d">Enhancements delivered without downtime or business interruption</div></div>
+        <div class="aval"><div class="aval-t">Rapid Delivery</div><div class="aval-d">Agile methodology ensures fast, measurable time-to-value</div></div>
+        <div class="aval"><div class="aval-t">Future-Proof</div><div class="aval-d">Solutions built to scale and adapt with your business</div></div>
+        <div class="aval"><div class="aval-t">Expert Team</div><div class="aval-d">Senior engineers with deep, diverse industry expertise</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="sec">
+  <div class="ct">
+    <div class="sec-hd">
+      <div class="sec-kicker rv">Get in touch</div>
+      <h2 class="sec-h2 rv d1">Ready to transform<br><em>your application?</em></h2>
+      <div class="sec-div rv d2"></div>
+    </div>
+    <div class="contact-inner">
+      <div class="rvl">
+        <p class="contact-intro">Let's discuss how Altherix can enhance your existing software to drive innovation, improve performance, and deliver exceptional value.</p>
+        <div class="cdetail"><div class="cicon">✉</div><div><div class="clbl">Email</div><div class="cval">contact@altherix.in</div></div></div>
+        <div class="cdetail"><div class="cicon">✆</div><div><div class="clbl">Phone</div><div class="cval">+91 98214 28880</div></div></div>
+        <div class="cdetail"><div class="cicon">◎</div><div><div class="clbl">Location</div><div class="cval">A318, Channasandra, Hope Farm<br>Whitefield, Bangalore, Karnataka</div></div></div>
+      </div>
+      <div class="rvr">
+        <form id="cform">
+          <div class="fgrid">
+            <div class="fg"><label class="flbl" for="fn">First name</label><input class="fi" id="fn" type="text" placeholder="Arjun"></div>
+            <div class="fg"><label class="flbl" for="ln">Last name</label><input class="fi" id="ln" type="text" placeholder="Sharma"></div>
+            <div class="fg full"><label class="flbl" for="fe">Email address</label><input class="fi" id="fe" type="email" placeholder="arjun@company.in"></div>
+            <div class="fg full"><label class="flbl" for="fs">Service of interest</label>
+              <select class="fsel" id="fs"><option value="" disabled selected>Select a service…</option><option>Legacy System Modernization</option><option>Custom Feature Development</option><option>Integration & API Development</option><option>Performance Optimization</option><option>Other / Not sure yet</option></select>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#customers" class="nav-link">Customers</a></li>
-                <li><a href="#team" class="nav-link">Team</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#contact" class="nav-link btn-contact">Contact Us</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+            <div class="fg full"><label class="flbl" for="fm">Tell us about your project</label><textarea class="fta" id="fm" placeholder="What application are you working with? What challenges are you facing?"></textarea></div>
+          </div>
+          <button type="submit" class="fbtn">Send message</button>
+          <div class="fok" id="fok">Your message has been sent. We'll be in touch within 24 hours.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Transforming Software,
-                    <span class="gradient-text">Amplifying Value</span>
-                </h1>
-                <p class="hero-subtitle">
-                    We breathe new life into your existing applications with cutting-edge enhancements,
-                    seamless integrations, and innovative features that drive business growth.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Our Work</a>
-                    <a href="#contact" class="btn btn-secondary">Let's Talk</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="floating-card card-1">
-                    <div class="card-icon">🚀</div>
-                    <div class="card-text">Legacy Modernization</div>
-                </div>
-                <div class="floating-card card-2">
-                    <div class="card-icon">⚡</div>
-                    <div class="card-text">Performance Boost</div>
-                </div>
-                <div class="floating-card card-3">
-                    <div class="card-icon">🔗</div>
-                    <div class="card-text">Seamless Integration</div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-background"></div>
-    </section>
+<!-- FOOTER -->
+<footer>
+  <div class="ct">
+    <div class="ftop">
+      <div class="fbrand"><div class="flogo">Altherix</div><p>Transforming software, amplifying value. Bangalore, India.</p></div>
+      <div class="fcol"><h5>Services</h5><a href="#services">Legacy Modernization</a><a href="#services">Feature Development</a><a href="#services">Integration & APIs</a><a href="#services">Performance Optimization</a></div>
+      <div class="fcol"><h5>Company</h5><a href="#about">About Us</a><a href="#team">Our Team</a><a href="#projects">Case Studies</a><a href="#contact">Contact</a></div>
+    </div>
+    <div class="fbot">
+      <div class="fcopy">© 2026 Altherix Solutions Ltd. All rights reserved.</div>
+      <div class="fcopy">altherix.in</div>
+    </div>
+  </div>
+</footer>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">What We Do Best</h2>
-                <p class="section-subtitle">Comprehensive software enhancement services tailored to your needs</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon gradient-bg-1">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3>Legacy System Modernization</h3>
-                    <p>Transform outdated applications into modern, scalable solutions without disrupting your business operations.</p>
-                    <ul class="service-features">
-                        <li>Technology stack upgrades</li>
-                        <li>Architecture refactoring</li>
-                        <li>Cloud migration</li>
-                    </ul>
-                </div>
+<script>
+/* ── LOADER ── */
+(function(){
+  const pct = document.getElementById('lpct');
+  const line = document.getElementById('lline');
+  const loader = document.getElementById('loader');
+  let p = 0;
+  const iv = setInterval(()=>{
+    p = Math.min(p + Math.random()*18, 100);
+    pct.textContent = Math.round(p);
+    line.style.width = p+'%';
+    if(p>=100){
+      clearInterval(iv);
+      setTimeout(()=>{ loader.classList.add('done'); }, 300);
+    }
+  }, 60);
+})();
 
-                <div class="service-card">
-                    <div class="service-icon gradient-bg-2">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                            <line x1="9" y1="9" x2="15" y2="9"/>
-                            <line x1="9" y1="15" x2="15" y2="15"/>
-                        </svg>
-                    </div>
-                    <h3>Custom Feature Development</h3>
-                    <p>Build powerful new features and modules that extend your application's capabilities and enhance user experience.</p>
-                    <ul class="service-features">
-                        <li>Feature design & planning</li>
-                        <li>Full-stack development</li>
-                        <li>Testing & deployment</li>
-                    </ul>
-                </div>
+/* ── PROGRESS BAR ── */
+const pfill = document.getElementById('progress-fill');
+window.addEventListener('scroll',()=>{
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  pfill.style.width = (window.scrollY/h*100)+'%';
+},{passive:true});
 
-                <div class="service-card">
-                    <div class="service-icon gradient-bg-3">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="18" cy="5" r="3"/>
-                            <circle cx="6" cy="12" r="3"/>
-                            <circle cx="18" cy="19" r="3"/>
-                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
-                        </svg>
-                    </div>
-                    <h3>Integration & API Development</h3>
-                    <p>Connect disparate systems seamlessly with robust APIs and integration layers that streamline workflows.</p>
-                    <ul class="service-features">
-                        <li>RESTful & GraphQL APIs</li>
-                        <li>Third-party integrations</li>
-                        <li>Microservices architecture</li>
-                    </ul>
-                </div>
+/* ── CURSOR ── */
+const dot = document.getElementById('cur-dot');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  dot.style.left=mx+'px'; dot.style.top=my+'px';
+});
+(function lerpRing(){
+  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.left=Math.round(rx)+'px'; ring.style.top=Math.round(ry)+'px';
+  requestAnimationFrame(lerpRing);
+})();
+document.querySelectorAll('a,button,.svc,.tcard,.pcard').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ dot.classList.add('h'); ring.classList.add('h'); });
+  el.addEventListener('mouseleave',()=>{ dot.classList.remove('h'); ring.classList.remove('h'); });
+});
 
-                <div class="service-card">
-                    <div class="service-icon gradient-bg-4">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                        </svg>
-                    </div>
-                    <h3>Performance Optimization</h3>
-                    <p>Dramatically improve application speed, scalability, and reliability through expert optimization techniques.</p>
-                    <ul class="service-features">
-                        <li>Database optimization</li>
-                        <li>Caching strategies</li>
-                        <li>Load balancing</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+/* ── NAV SCROLL + ACTIVE SECTION ── */
+const nav = document.getElementById('nav');
+const navAnchors = document.querySelectorAll('#navlinks a[href^="#"]');
+const sections = [...navAnchors].map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+function updateNav(){
+  nav.classList.toggle('s', window.scrollY > 40);
+  let current = sections[0];
+  sections.forEach(sec=>{ if(window.scrollY >= sec.offsetTop - 120) current = sec; });
+  navAnchors.forEach(a=>{ a.classList.toggle('active', a.getAttribute('href')==='#'+current.id); });
+}
+window.addEventListener('scroll', updateNav, {passive:true});
+updateNav();
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Real results from real challenges</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-tag">Enterprise Software</div>
-                    <h3>ERP System Custom Module Development</h3>
-                    <p class="project-description">
-                        Built custom inventory management module for a mid-sized manufacturing company's ERP system.
-                        Integrated barcode scanning, real-time stock updates, and automated reorder alerts. Improved
-                        inventory accuracy and reduced manual data entry work significantly.
-                    </p>
-                    <div class="project-stats">
-                        <div class="stat">
-                            <div class="stat-value">85%</div>
-                            <div class="stat-label">Less Manual Work</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">Warehouses</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">5K+</div>
-                            <div class="stat-label">SKUs Managed</div>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">REST API</span>
-                    </div>
-                </div>
+/* ── MOUSE-TRACKING GRADIENT ORBS ── */
+const orb1 = document.getElementById('orb1');
+const orb2 = document.getElementById('orb2');
+const home = document.getElementById('home');
+home.addEventListener('mousemove',e=>{
+  const r=home.getBoundingClientRect();
+  const x=e.clientX-r.left, y=e.clientY-r.top;
+  orb1.style.left=x+'px'; orb1.style.top=y+'px';
+  orb2.style.left=(x*0.6+r.width*0.3)+'px'; orb2.style.top=(y*0.5+r.height*0.2)+'px';
+});
 
-                <div class="project-card">
-                    <div class="project-tag">E-Commerce</div>
-                    <h3>Online Store Payment Gateway Integration</h3>
-                    <p class="project-description">
-                        Integrated multiple payment gateways (Razorpay, PayU, Paytm) for a growing e-commerce startup.
-                        Added support for UPI, wallets, and EMI options. Built admin dashboard for transaction monitoring
-                        and automated reconciliation reports. Improved checkout conversion significantly.
-                    </p>
-                    <div class="project-stats">
-                        <div class="stat">
-                            <div class="stat-value">35%</div>
-                            <div class="stat-label">Higher Conversions</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">8</div>
-                            <div class="stat-label">Payment Methods</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">2K+</div>
-                            <div class="stat-label">Daily Orders</div>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Payment APIs</span>
-                    </div>
-                </div>
+/* ── PARTICLES ── */
+(function spawnParticles(){
+  const container=document.getElementById('particles');
+  function spawn(){
+    const p=document.createElement('div');
+    p.className='particle';
+    const s=Math.random()*4+2;
+    p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;bottom:0;animation-duration:${Math.random()*8+6}s;animation-delay:${Math.random()*4}s`;
+    container.appendChild(p);
+    setTimeout(()=>p.remove(),(14000));
+  }
+  setInterval(spawn,600);
+  for(let i=0;i<8;i++) setTimeout(spawn,i*300);
+})();
 
-                <div class="project-card">
-                    <div class="project-tag">Financial Services</div>
-                    <h3>Accounting Software API Integration</h3>
-                    <p class="project-description">
-                        Developed REST API integration between a startup's billing system and popular accounting software
-                        (Tally, Zoho Books). Automated invoice generation, expense tracking, and GST filing preparation.
-                        Built reconciliation module to match payments with invoices automatically.
-                    </p>
-                    <div class="project-stats">
-                        <div class="stat">
-                            <div class="stat-value">90%</div>
-                            <div class="stat-label">Time Saved</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">450+</div>
-                            <div class="stat-label">Monthly Invoices</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">100%</div>
-                            <div class="stat-label">Accuracy</div>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">REST API</span>
-                    </div>
-                </div>
+/* ── CHAR SPLIT HEADLINE ── */
+function buildH1(){
+  const el=document.getElementById('hero-h1');
+  const lines=el.querySelectorAll('.h1-line');
+  let baseDelay=1.7;
+  lines.forEach((line,li)=>{
+    const text=line.dataset.text;
+    const strong=line.dataset.strong==='true';
+    const wrap=document.createElement('span');
+    wrap.className='h1-chars';
+    [...text].forEach((ch,ci)=>{
+      const span=document.createElement('span');
+      span.className='h1-char'+(ch===' '?' space':'');
+      span.textContent=ch===' '?'\u00a0':ch;
+      const delay=baseDelay + li*0.15 + ci*0.035;
+      span.style.transitionDelay=delay+'s';
+      wrap.appendChild(span);
+    });
+    if(strong){ const s=document.createElement('span'); s.className='h1-strong'; s.appendChild(wrap); line.appendChild(s); }
+    else line.appendChild(wrap);
+    baseDelay+=0.05;
+  });
+  // trigger after short delay
+  setTimeout(()=>{
+    el.querySelectorAll('.h1-char').forEach(c=>c.classList.add('in'));
+  },100);
+}
+buildH1();
 
-                <div class="project-card">
-                    <div class="project-tag">Healthcare</div>
-                    <h3>Clinic Management System Enhancement</h3>
-                    <p class="project-description">
-                        Enhanced a cloud-based clinic management system with patient appointment booking, prescription
-                        management, and SMS/email reminders. Added digital prescription templates and basic telemedicine
-                        features. Helped 4 clinics streamline operations and improve patient experience.
-                    </p>
-                    <div class="project-stats">
-                        <div class="stat">
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">Clinics</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">3K+</div>
-                            <div class="stat-label">Patients/Month</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">70%</div>
-                            <div class="stat-label">Less No-Shows</div>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">Angular</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Twilio</span>
-                    </div>
-                </div>
+/* ── INTERSECTION OBSERVER ── */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      if(e.target.classList.contains('pcard')){
+        setTimeout(()=>e.target.querySelector('.pbar').style.transform='scaleX(1)',200);
+        e.target.classList.add('vis');
+      }
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.rv,.rvl,.rvr,.pcard').forEach(el=>io.observe(el));
 
-                <div class="project-card">
-                    <div class="project-tag">Education Technology</div>
-                    <h3>Online Learning Platform Features</h3>
-                    <p class="project-description">
-                        Added new features to an ed-tech startup's platform including video course delivery, quiz system,
-                        progress tracking, and certificate generation. Built student dashboard and instructor analytics.
-                        Integrated Zoom for live classes and Razorpay for course payments.
-                    </p>
-                    <div class="project-stats">
-                        <div class="stat">
-                            <div class="stat-value">8K+</div>
-                            <div class="stat-label">Active Students</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">120+</div>
-                            <div class="stat-label">Courses</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">92%</div>
-                            <div class="stat-label">Completion Rate</div>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">AWS S3</span>
-                    </div>
-                </div>
+/* ── COUNTER ANIMATE ── */
+function countUp(el){
+  const target=parseInt(el.dataset.count);
+  const sfx=el.dataset.sfx||'';
+  const dur=1400;
+  const start=performance.now();
+  const ease=t=>1-Math.pow(1-t,4);
+  (function frame(now){
+    const p=Math.min((now-start)/dur,1);
+    el.textContent=Math.round(ease(p)*target)+sfx;
+    if(p<1) requestAnimationFrame(frame);
+  })(performance.now());
+}
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('[data-count]').forEach(countUp);
+      cio.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.hero-card,.pcard,.hstat').forEach(el=>cio.observe(el));
 
-                <div class="project-card">
-                    <div class="project-tag">Logistics</div>
-                    <h3>Delivery Management System</h3>
-                    <p class="project-description">
-                        Built delivery tracking and management system for a local courier service. Features include real-time
-                        order tracking, delivery agent mobile app, route optimization suggestions, and customer SMS notifications.
-                        Integrated with Google Maps API for location services.
-                    </p>
-                    <div class="project-stats">
-                        <div class="stat">
-                            <div class="stat-value">25</div>
-                            <div class="stat-label">Delivery Agents</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">40%</div>
-                            <div class="stat-label">Faster Deliveries</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">200+</div>
-                            <div class="stat-label">Daily Deliveries</div>
-                        </div>
-                    </div>
-                    <div class="project-tech">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Google Maps</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+/* ── DRAG-SCROLL PROJECT TRACK ── */
+(function(){
+  const wrap=document.getElementById('projWrap');
+  let isDown=false, startX, scrollLeft;
+  wrap.addEventListener('mousedown',e=>{ isDown=true; wrap.style.cursor='grabbing'; startX=e.pageX-wrap.offsetLeft; scrollLeft=wrap.scrollLeft; });
+  wrap.addEventListener('mouseleave',()=>{ isDown=false; wrap.style.cursor='grab'; });
+  wrap.addEventListener('mouseup',()=>{ isDown=false; wrap.style.cursor='grab'; });
+  wrap.addEventListener('mousemove',e=>{
+    if(!isDown) return; e.preventDefault();
+    const x=e.pageX-wrap.offsetLeft;
+    wrap.scrollLeft=scrollLeft-(x-startX)*1.5;
+  });
+})();
 
-    <section id="customers" class="customers">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Trusted by Innovative Companies</h2>
-                <p class="section-subtitle">Partnering with forward-thinking startups and enterprises across India</p>
-            </div>
-            <div class="customers-grid">
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <rect x="10" y="10" width="20" height="20" rx="4" fill="url(#grad1)"/>
-                            <text x="35" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">TechFlow</text>
-                            <defs>
-                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
+/* ── 3D TILT on project cards ── */
+document.querySelectorAll('.pcard').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transition='box-shadow .35s,border-color .3s';
+    card.style.transform=`perspective(700px) rotateY(${x*7}deg) rotateX(${-y*5}deg) translateY(-4px) scale(1.01)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transition='transform .6s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .3s';
+    card.style.transform='';
+  });
+});
 
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <circle cx="20" cy="20" r="10" fill="url(#grad2)"/>
-                            <text x="35" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">DataSync</text>
-                            <defs>
-                                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
+/* ── PARALLAX on hero grid & orbs ── */
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  const grid=document.querySelector('.hero-grid');
+  if(grid) grid.style.transform=`translateY(${y*.25}px)`;
+},{passive:true});
 
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <path d="M15 10 L25 20 L15 30 L10 25 L15 20 L10 15 Z" fill="url(#grad3)"/>
-                            <text x="30" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">PayMatrix</text>
-                            <defs>
-                                <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
+/* ── FORM ── */
+document.getElementById('cform').addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=this.querySelector('.fbtn');
+  btn.textContent='Sending…'; btn.disabled=true;
+  setTimeout(()=>{
+    btn.style.display='none';
+    document.getElementById('fok').style.display='block';
+  },900);
+});
 
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <rect x="10" y="12" width="18" height="16" rx="2" fill="url(#grad4)"/>
-                            <text x="33" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">CloudNest</text>
-                            <defs>
-                                <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <polygon points="20,10 30,20 20,30 10,20" fill="url(#grad5)"/>
-                            <text x="35" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">RetailHub</text>
-                            <defs>
-                                <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <circle cx="15" cy="20" r="5" fill="url(#grad6)"/>
-                            <circle cx="25" cy="20" r="5" fill="url(#grad6)" opacity="0.7"/>
-                            <text x="35" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">EduLearn</text>
-                            <defs>
-                                <linearGradient id="grad6" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#30cfd0;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#330867;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <path d="M10 20 L20 10 L30 20 L20 30 Z" fill="url(#grad7)"/>
-                            <text x="35" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">HealthPlus</text>
-                            <defs>
-                                <linearGradient id="grad7" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="customer-logo">
-                    <div class="logo-box">
-                        <svg viewBox="0 0 120 40" fill="none">
-                            <rect x="10" y="10" width="10" height="20" rx="2" fill="url(#grad8)"/>
-                            <rect x="22" y="15" width="8" height="15" rx="2" fill="url(#grad8)" opacity="0.7"/>
-                            <text x="35" y="25" font-family="Inter, sans-serif" font-weight="700" font-size="16" fill="currentColor">LogiTrack</text>
-                            <defs>
-                                <linearGradient id="grad8" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ff6e7f;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#bfe9ff;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="team" class="team">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Meet Our Team</h2>
-                <p class="section-subtitle">Expert professionals driving innovation and excellence</p>
-            </div>
-            <div class="team-grid">
-                <div class="team-card">
-                    <div class="team-image">
-                        <div class="team-avatar gradient-bg-1">GS</div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Ganesh S</h3>
-                        <p class="team-role">Director & Founder</p>
-                        <p class="team-bio">
-                            Visionary leader with 15+ years in enterprise software consulting. Ganesh specializes in
-                            digital transformation strategies and has led over 200 successful modernization projects
-                            across industries. His expertise in SAP, Oracle, and cloud architectures drives Altherix's
-                            strategic direction.
-                        </p>
-                        <div class="team-skills">
-                            <span class="skill-badge">Enterprise Architecture</span>
-                            <span class="skill-badge">SAP Consulting</span>
-                            <span class="skill-badge">Digital Strategy</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="team-image">
-                        <div class="team-avatar gradient-bg-2">PM</div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Priscilla Mathews</h3>
-                        <p class="team-role">Chief Financial Officer</p>
-                        <p class="team-bio">
-                            Strategic financial leader with strong technology background. Priscilla combines financial
-                            acumen with deep understanding of software economics, ensuring project profitability while
-                            maintaining exceptional quality. She oversees financial planning, client contracts, and
-                            operational efficiency.
-                        </p>
-                        <div class="team-skills">
-                            <span class="skill-badge">Financial Strategy</span>
-                            <span class="skill-badge">Project Economics</span>
-                            <span class="skill-badge">Risk Management</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="team-image">
-                        <div class="team-avatar gradient-bg-3">MR</div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Muralidharan R</h3>
-                        <p class="team-role">Senior Software Engineer</p>
-                        <p class="team-bio">
-                            Full-stack development expert with deep expertise in modern web technologies and legacy
-                            system integration. Muralidharan has architected and implemented critical enhancements for
-                            enterprise applications, with particular strength in Java, React, and microservices
-                            architectures.
-                        </p>
-                        <div class="team-skills">
-                            <span class="skill-badge">Java/Spring Boot</span>
-                            <span class="skill-badge">React/Angular</span>
-                            <span class="skill-badge">Microservices</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="team-image">
-                        <div class="team-avatar gradient-bg-4">JV</div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Jessy Varghese</h3>
-                        <p class="team-role">Software Engineer</p>
-                        <p class="team-bio">
-                            Talented engineer specializing in cloud-native development and DevOps practices. Jessy
-                            excels in building scalable solutions, API development, and database optimization. Known
-                            for writing clean, maintainable code and driving continuous improvement in development
-                            workflows.
-                        </p>
-                        <div class="team-skills">
-                            <span class="skill-badge">Node.js/Python</span>
-                            <span class="skill-badge">AWS/Azure</span>
-                            <span class="skill-badge">Database Design</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="team-image">
-                        <div class="team-avatar gradient-bg-1">CJ</div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Cyril Johnson</h3>
-                        <p class="team-role">Technical Advisor</p>
-                        <p class="team-bio">
-                            Strategic technology advisor with extensive experience in guiding software companies through
-                            complex technical challenges. Cyril provides valuable insights on emerging technologies,
-                            architecture decisions, and best practices. His advisory role helps Altherix stay ahead of
-                            industry trends and deliver cutting-edge solutions to clients.
-                        </p>
-                        <div class="team-skills">
-                            <span class="skill-badge">Technology Strategy</span>
-                            <span class="skill-badge">Architecture Advisory</span>
-                            <span class="skill-badge">Innovation</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-card">
-                    <div class="team-image">
-                        <div class="team-avatar gradient-bg-2">RR</div>
-                    </div>
-                    <div class="team-info">
-                        <h3>Rohan Raj</h3>
-                        <p class="team-role">Software Engineer</p>
-                        <p class="team-bio">
-                            Skilled software engineer with expertise in building robust backend systems and data-driven
-                            applications. Rohan specializes in developing RESTful APIs, implementing security best practices,
-                            and optimizing application performance. His attention to detail and problem-solving abilities
-                            ensure high-quality, maintainable code delivery.
-                        </p>
-                        <div class="team-skills">
-                            <span class="skill-badge">Java/Python</span>
-                            <span class="skill-badge">REST APIs</span>
-                            <span class="skill-badge">PostgreSQL/MySQL</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2 class="section-title">Why Choose Altherix</h2>
-                    <p>
-                        Founded in Bangalore, India's technology hub, Altherix has been at the forefront of software
-                        enhancement and modernization since our inception. We understand that your existing applications
-                        are the backbone of your business. Rather than costly replacements, we specialize in strategic
-                        enhancements that maximize your current technology investments while preparing you for the future.
-                    </p>
-                    <p>
-                        Our team of expert engineers combines deep technical knowledge with business acumen to deliver
-                        solutions that not only work flawlessly but also drive measurable ROI. From enterprise systems
-                        to modern cloud-native applications, we bring proven expertise across diverse technology stacks.
-                    </p>
-                    <div class="about-stats-row">
-                        <div class="about-stat">
-                            <div class="about-stat-value">45+</div>
-                            <div class="about-stat-label">Projects Delivered</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="about-stat-value">95%</div>
-                            <div class="about-stat-label">Client Retention</div>
-                        </div>
-                        <div class="about-stat">
-                            <div class="about-stat-value">5+</div>
-                            <div class="about-stat-label">Years in Business</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-content">
-                            <h4>Zero Disruption</h4>
-                            <p>Seamless enhancements without downtime or business interruption</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-content">
-                            <h4>Rapid Delivery</h4>
-                            <p>Agile methodology ensures fast time-to-value</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-content">
-                            <h4>Future-Proof</h4>
-                            <p>Solutions built to scale and adapt with your business</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">✓</div>
-                        <div class="feature-content">
-                            <h4>Expert Team</h4>
-                            <p>Senior engineers with diverse industry expertise</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>Ready to Transform Your Application?</h2>
-                    <p class="contact-description">
-                        Let's discuss how Altherix can enhance your existing software to drive
-                        innovation, improve performance, and deliver exceptional value.
-                    </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                                <polyline points="22,6 12,13 2,6"/>
-                            </svg>
-                            <span>contact@altherix.in</span>
-                        </div>
-                        <div class="contact-item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            <span>+91 98214 28880</span>
-                        </div>
-                        <div class="contact-item">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            <span>A318, Channasandra, Hope Farm, Whitefield, Bangalore</span>
-                        </div>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" placeholder="Company">
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Tell us about your project..." rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo">ALTHERIX</span>
-                    <p>Transforming software, amplifying value.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#services">Legacy Modernization</a></li>
-                            <li><a href="#services">Feature Development</a></li>
-                            <li><a href="#services">Integration & APIs</a></li>
-                            <li><a href="#services">Performance Optimization</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#team">Our Team</a></li>
-                            <li><a href="#projects">Case Studies</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Altherix. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+/* ── MOBILE NAV ── */
+document.getElementById('ham').addEventListener('click',()=>{
+  const links=document.getElementById('navlinks');
+  const open=links.style.display==='flex';
+  links.style.cssText=open?'display:none':
+    'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(250,250,250,.97);padding:1.5rem 2rem;gap:1.5rem;border-bottom:1px solid rgba(102,126,234,.12);z-index:99;backdrop-filter:blur(24px)';
+});
+document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>{ document.getElementById('navlinks').style.display='none'; }));
+</script>
 </body>
 </html>
