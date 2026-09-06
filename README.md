@@ -1,10 +1,10 @@
 # Altherix - Software Consulting Website
 
-A professional and innovative static website for Altherix, a software consulting company based in Bangalore, India, specializing in application enhancements and modernization.
+A professional and innovative static website for Altherix, a software consulting company based in Ooty, India, specializing in application enhancements and modernization.
 
 ## About Altherix
 
-Altherix is a leading software consulting firm headquartered in Koramangala, Bangalore. Founded by Ganesh S, the company specializes in breathing new life into existing applications through strategic enhancements, seamless integrations, and innovative features.
+Altherix is a leading software consulting firm headquartered in Ooty, in the Nilgiris. Founded by Ganesh S, the company specializes in breathing new life into existing applications through strategic enhancements, seamless integrations, and innovative features.
 
 ### Our Team
 
@@ -40,7 +40,7 @@ Altherix is a leading software consulting firm headquartered in Koramangala, Ban
    - Fleet Management & Route Optimization
 4. **Team**: Professional profiles of all team members
 5. **About**: Company highlights and value propositions
-6. **Contact**: Interactive contact form with Bangalore location
+6. **Contact**: Interactive contact form with Nilgiris location
 7. **Footer**: Navigation and company information
 
 ## Deployment to GitHub Pages
@@ -75,8 +75,8 @@ Then enable GitHub Pages in repository settings as described above.
 
 Edit `index.html` in the contact section:
 - Email: Line with `contact@altherix.in`
-- Phone: Line with `+91 80 4567 8900`
-- Location: Line with `Koramangala, Bangalore, Karnataka, India`
+- Phone: Line with `+91 98214 28880`
+- Location: Line with `Ottupattarai, Coonoor, Tamil Nadu — 643105`
 
 ### Change Colors
 
