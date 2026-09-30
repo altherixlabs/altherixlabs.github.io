@@ -1,646 +1,410 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN" class="no-js">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Altherix | Software Consulting &amp; Enhancement</title>
-<meta name="description" content="Altherix is an Ooty-based software consultancy that modernises, extends and integrates existing business applications — legacy modernisation, custom features, APIs and performance engineering.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Altherix | Software Engineering, AI &amp; Enterprise Modernization</title>
+<meta name="description" content="Altherix engineers modern software, enterprise integrations and production-ready AI systems for businesses that depend on their technology.">
 <link rel="canonical" href="https://altherix.in/">
-<meta name="theme-color" content="#667eea">
-
-<!-- Open Graph / social -->
+<meta name="theme-color" content="#020D34">
+<meta name="color-scheme" content="dark">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://altherix.in/">
 <meta property="og:site_name" content="Altherix">
-<meta property="og:title" content="Altherix | Software Consulting &amp; Enhancement">
-<meta property="og:description" content="We breathe new life into existing applications with strategic enhancements, seamless integrations, and innovative features.">
-<meta property="og:image" content="https://altherix.in/logo.png">
+<meta property="og:title" content="Altherix | Software Engineering, AI &amp; Enterprise Modernization">
+<meta property="og:description" content="Altherix engineers modern software, enterprise integrations and production-ready AI systems for businesses that depend on their technology.">
+<meta property="og:image" content="https://altherix.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Altherix | Software Consulting &amp; Enhancement">
-<meta name="twitter:description" content="We breathe new life into existing applications with strategic enhancements, seamless integrations, and innovative features.">
-<meta name="twitter:image" content="https://altherix.in/logo.png">
-
-<link rel="icon" href="logo.png" type="image/png">
-<link rel="apple-touch-icon" href="logo.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Altherix Solutions Ltd",
-  "url": "https://altherix.in",
-  "logo": "https://altherix.in/logo.png",
-  "description": "Software consulting firm specialising in application enhancement, legacy modernisation and systems integration.",
-  "email": "contact@altherix.in",
-  "telephone": "+91-8152923515",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai",
-    "addressLocality": "Coonoor",
-    "addressRegion": "Tamil Nadu",
-    "postalCode": "643105",
-    "addressCountry": "IN"
-  },
-  "sameAs": ["https://www.linkedin.com/company/altherix"]
-}
-</script>
+<meta name="twitter:title" content="Altherix | Software Engineering, AI &amp; Enterprise Modernization">
+<meta name="twitter:description" content="Altherix engineers modern software, enterprise integrations and production-ready AI systems for businesses that depend on their technology.">
+<meta name="twitter:image" content="https://altherix.in/assets/og.png">
+<link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/site.css?v=3">
+<script src="/assets/site.js?v=3" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Altherix Solutions", "alternateName": "Altherix", "url": "https://altherix.in/", "logo": "https://altherix.in/assets/icon-512.png", "slogan": "Transforming Software, Amplifying Value.", "email": "contact@altherix.in", "telephone": "+91-8152923515", "sameAs": ["https://www.linkedin.com/company/altherix"], "address": {"@type": "PostalAddress", "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai", "addressLocality": "Coonoor", "addressRegion": "Tamil Nadu", "postalCode": "643105", "addressCountry": "IN"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "Altherix", "url": "https://altherix.in/"}</script>
 </head>
 <body>
-
-<a class="skip-link" href="#main">Skip to content</a>
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-pct" id="lpct">0</div>
-  <div class="loader-word">Loading</div>
-  <div class="loader-line" id="lline"></div>
-</div>
-
-<!-- PROGRESS -->
-<div id="progress-bar"><div id="progress-fill"></div></div>
-
-<!-- CURSOR -->
-<div id="cur-dot"></div>
-<div id="cur-ring"></div>
-
-<!-- NAV -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#home" class="logo">Altherix</a>
-    <ul class="nav-links" id="navlinks">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="careers.html">Careers</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Get in touch</a>
-    <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="ct">
+    <a class="brand" href="/" aria-label="Altherix home"><img src="/assets/icon-96.webp" width="34" height="34" alt="">ALTHERIX</a>
+    <nav aria-label="Main"><ul class="nav-links"><li><a href="/#services">Services</a></li><li><a href="/#solutions">Solutions</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/#industries">Industries</a></li><li><a href="/#about">About</a></li><li><a href="/careers.html">Careers</a></li></ul></nav>
+    <a class="btn btn-p nav-cta" href="/#contact">Talk to an Engineer</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span></button>
   </div>
-</nav>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#services">Services</a><a href="/#solutions">Solutions</a><a href="/case-studies/">Case Studies</a><a href="/#industries">Industries</a><a href="/#about">About</a><a href="/careers.html">Careers</a>
+  <a class="btn btn-p" href="/#contact">Talk to an Engineer <span class="arr">→</span></a>
+  <div class="mm-meta"><a href="mailto:contact@altherix.in">contact@altherix.in</a><br><a href="tel:+918152923515">+91 81529 23515</a><br><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></div>
+</div>
 
 <main id="main">
 
-<!-- HERO -->
-<section id="home">
-  <div class="particles" id="particles"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-inner">
+<section class="hero" id="home" aria-labelledby="hero-h">
+  <div class="ct">
     <div>
-      <div class="hero-kicker">Software Consulting · Ooty, India</div>
-      <h1 class="hero-h1" id="hero-h1">
-        <span class="h1-line" data-text="Transforming Software,"></span>
-        <span class="h1-line" data-text="Amplifying Value" data-strong="true"></span>
-      </h1>
-      <p class="hero-p">We breathe new life into existing applications with strategic enhancements, seamless integrations, and innovative features that drive measurable business growth.</p>
-      <div class="hero-btns">
-        <a href="#projects" class="btn-p">View our work <span>→</span></a>
-        <a href="#contact" class="btn-o">Start a conversation</a>
+      <div class="kicker rv">Altherix · Engineering from the Nilgiris</div>
+      <h1 class="h1 rv" id="hero-h" style="margin-top:1.3rem"><span>Modern Software.</span><span>Intelligent Systems.</span><span><em>Real Business Value.</em></span></h1>
+      <p class="lede rv">Altherix engineers, modernizes and intelligently automates the software systems businesses depend on.</p>
+      <div class="caps rv"><span>Software Engineering</span><span>Modernization</span><span>AI &amp; Automation</span><span>Enterprise Integration</span></div>
+      <div class="hero-btns rv">
+        <a class="btn btn-p" href="#contact">Talk to an Engineer <span class="arr">→</span></a>
+        <a class="btn btn-o" href="#work">Explore Our Work</a>
       </div>
     </div>
-    <div class="hero-card">
-      <div class="hero-stats">
-        <div class="hstat"><div class="hnum" data-count="45" data-sfx="+">0+</div><div class="hlbl">Projects delivered</div></div>
-        <div class="hstat"><div class="hnum" data-count="95" data-sfx="%">0%</div><div class="hlbl">Client retention</div></div>
-        <div class="hstat"><div class="hnum" data-count="5" data-sfx="+">0+</div><div class="hlbl">Years in business</div></div>
-        <div class="hstat"><div class="hnum" data-count="6" data-sfx="">0</div><div class="hlbl">Core engineers</div></div>
+    <div class="hero-viz rv"><svg viewBox="0 0 600 552" role="img" aria-labelledby="viz-t"><title id="viz-t">Layered system diagram: experience, applications, APIs and AI, data and enterprise systems, and cloud infrastructure, connected by flowing data.</title>
+<defs><linearGradient id="flowGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9A22B9"/><stop offset=".5" stop-color="#DF3AD2"/><stop offset="1" stop-color="#FA70A5"/></linearGradient><radialGradient id="coreGrad"><stop offset="0" stop-color="#FA70A5"/><stop offset=".55" stop-color="#DF3AD2"/><stop offset="1" stop-color="#5D1EA6"/></radialGradient></defs>
+<rect class="viz-tier" x="120" y="34" width="470" height="52" rx="12"/>
+<text class="viz-label" x="0" y="64">Experience</text>
+<rect class="viz-tier" x="120" y="144" width="470" height="52" rx="12"/>
+<text class="viz-label" x="0" y="174">Apps</text>
+<rect class="viz-tier" x="120" y="254" width="470" height="52" rx="12"/>
+<text class="viz-label" x="0" y="284">APIs · AI</text>
+<rect class="viz-tier" x="120" y="364" width="470" height="52" rx="12"/>
+<text class="viz-label" x="0" y="394">Data</text>
+<rect class="viz-tier" x="120" y="464" width="470" height="52" rx="12"/>
+<text class="viz-label" x="0" y="494">Cloud</text>
+<path class="viz-line" d="M170 69 C170 115.0 215 115.0 215 161"/>
+<path class="viz-line" d="M283 69 C283 115.0 215 115.0 215 161"/>
+<path class="viz-line" d="M283 69 C283 115.0 340 115.0 340 161"/>
+<path class="viz-line" d="M396 69 C396 115.0 340 115.0 340 161"/>
+<path class="viz-line" d="M396 69 C396 115.0 465 115.0 465 161"/>
+<path class="viz-line" d="M510 69 C510 115.0 465 115.0 465 161"/>
+<path class="viz-line" d="M215 179 C215 225.0 160 225.0 160 271"/>
+<path class="viz-line" d="M215 179 C215 225.0 260 225.0 260 271"/>
+<path class="viz-line" d="M340 179 C340 225.0 260 225.0 260 271"/>
+<path class="viz-line" d="M340 179 C340 225.0 360 225.0 360 271"/>
+<path class="viz-line" d="M340 179 C340 225.0 460 225.0 460 271"/>
+<path class="viz-line" d="M465 179 C465 225.0 460 225.0 460 271"/>
+<path class="viz-line" d="M465 179 C465 225.0 560 225.0 560 271"/>
+<path class="viz-line" d="M160 289 C160 335.0 215 335.0 215 381"/>
+<path class="viz-line" d="M260 289 C260 335.0 215 335.0 215 381"/>
+<path class="viz-line" d="M260 289 C260 335.0 340 335.0 340 381"/>
+<path class="viz-line" d="M360 289 C360 335.0 340 335.0 340 381"/>
+<path class="viz-line" d="M460 289 C460 335.0 340 335.0 340 381"/>
+<path class="viz-line" d="M460 289 C460 335.0 465 335.0 465 381"/>
+<path class="viz-line" d="M560 289 C560 335.0 465 335.0 465 381"/>
+<path class="viz-line" d="M215 399 C215 440.0 280 440.0 280 481"/>
+<path class="viz-line" d="M465 399 C465 440.0 400 440.0 400 481"/>
+<path class="viz-flow" d="M170 69 C170 115.0 215 115.0 215 161" style="animation-delay:-0.00s"/>
+<path class="viz-flow" d="M283 69 C283 115.0 340 115.0 340 161" style="animation-delay:-0.74s"/>
+<path class="viz-flow" d="M396 69 C396 115.0 465 115.0 465 161" style="animation-delay:-1.48s"/>
+<path class="viz-flow" d="M215 179 C215 225.0 160 225.0 160 271" style="animation-delay:-2.22s"/>
+<path class="viz-flow" d="M340 179 C340 225.0 260 225.0 260 271" style="animation-delay:-2.96s"/>
+<path class="viz-flow" d="M340 179 C340 225.0 460 225.0 460 271" style="animation-delay:-3.70s"/>
+<path class="viz-flow" d="M465 179 C465 225.0 560 225.0 560 271" style="animation-delay:-4.44s"/>
+<path class="viz-flow" d="M260 289 C260 335.0 215 335.0 215 381" style="animation-delay:-5.18s"/>
+<path class="viz-flow" d="M360 289 C360 335.0 340 335.0 340 381" style="animation-delay:-0.42s"/>
+<path class="viz-flow" d="M460 289 C460 335.0 465 335.0 465 381" style="animation-delay:-1.16s"/>
+<path class="viz-flow" d="M215 399 C215 440.0 280 440.0 280 481" style="animation-delay:-1.90s"/>
+<circle class="viz-node" cx="170" cy="60" r="8"/>
+<circle cx="170" cy="60" r="2.5" fill="#FA70A5"/>
+<circle class="viz-node" cx="283" cy="60" r="8"/>
+<circle cx="283" cy="60" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="396" cy="60" r="8"/>
+<circle cx="396" cy="60" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="510" cy="60" r="8"/>
+<circle cx="510" cy="60" r="2.5" fill="#FA70A5"/>
+<circle class="viz-node" cx="215" cy="170" r="8"/>
+<circle cx="215" cy="170" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="340" cy="170" r="8"/>
+<circle cx="340" cy="170" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="465" cy="170" r="8"/>
+<circle cx="465" cy="170" r="2.5" fill="#FA70A5"/>
+<circle class="viz-node" cx="160" cy="280" r="8"/>
+<circle cx="160" cy="280" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="260" cy="280" r="8"/>
+<circle cx="260" cy="280" r="2.5" fill="#FA70A5"/>
+<circle class="viz-ring" cx="360" cy="280" r="14"/>
+<circle class="viz-node core" cx="360" cy="280" r="11"/>
+<circle class="viz-node" cx="460" cy="280" r="8"/>
+<circle cx="460" cy="280" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="560" cy="280" r="8"/>
+<circle cx="560" cy="280" r="2.5" fill="#FA70A5"/>
+<circle class="viz-node" cx="215" cy="390" r="8"/>
+<circle cx="215" cy="390" r="2.5" fill="#FA70A5"/>
+<circle class="viz-node" cx="340" cy="390" r="8"/>
+<circle cx="340" cy="390" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="465" cy="390" r="8"/>
+<circle cx="465" cy="390" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="280" cy="490" r="8"/>
+<circle cx="280" cy="490" r="2.5" fill="#9A22B9"/>
+<circle class="viz-node" cx="400" cy="490" r="8"/>
+<circle cx="400" cy="490" r="2.5" fill="#9A22B9"/>
+</svg></div>
+  </div>
+</section>
+
+<section class="proof" aria-label="What we deliver">
+  <div class="ct">
+    <div class="proof-caps rv"><div>Production systems</div><div>Enterprise engineering</div><div>Cloud &amp; integration</div><div>AI &amp; automation</div></div>
+    <div class="outcomes rv"><a class="outcome" href="/case-studies/erp-inventory-module/"><span class="n">85%</span><span class="l">Less manual work</span><span class="s">ERP inventory module</span></a><a class="outcome" href="/case-studies/accounting-software-integration/"><span class="n">90%</span><span class="l">Time saved</span><span class="s">Accounting integration</span></a><a class="outcome" href="/case-studies/clinic-management-enhancement/"><span class="n">70%</span><span class="l">Fewer no-shows</span><span class="s">Clinic management</span></a><a class="outcome" href="/case-studies/payment-gateway-integration/"><span class="n">35%</span><span class="l">Higher conversions</span><span class="s">Payment integration</span></a><a class="outcome" href="/case-studies/delivery-management-system/"><span class="n">40%</span><span class="l">Faster deliveries</span><span class="s">Delivery management</span></a><a class="outcome" href="/case-studies/learning-platform-features/"><span class="n">8K+</span><span class="l">Active students</span><span class="s">Learning platform</span></a><a class="outcome" href="/case-studies/clinic-management-enhancement/"><span class="n">3K+</span><span class="l">Patients / month</span><span class="s">Across four clinics</span></a><a class="outcome" href="/case-studies/missions-office-enterprise-system/"><span class="n">7</span><span class="l">Hierarchy levels</span><span class="s">Global reporting system</span></a></div>
+    <p class="proof-note">Outcomes reported on client engagements. Select a figure to read the case study.</p>
+  </div>
+</section>
+
+<section class="sec" id="services" aria-labelledby="svc-h">
+  <div class="ct">
+    <div class="sec-hd split">
+      <div><div class="kicker rv">What we do</div><h2 class="h2 rv" id="svc-h">Engineering for <em>real&#8209;world complexity.</em></h2></div>
+      <p class="lede rv">Four capabilities, one team. The engineers who scope your system are the ones who build it, deploy it and keep it running.</p>
+    </div>
+    <div class="caps-grid"><article class="cap rv">
+  <div class="cap-top"><span class="cap-n">01</span><svg class="cap-glyph" viewBox="0 0 64 64" fill="none" stroke="url(#g1)" stroke-width="1.5" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9A22B9"/><stop offset="1" stop-color="#FA70A5"/></linearGradient></defs><rect x="6" y="10" width="52" height="36" rx="5"/><path d="M6 18h52"/><path d="M22 28l-6 5 6 5M42 28l6 5-6 5M34 25l-4 16"/><path d="M24 54h16M32 46v8"/></svg></div>
+  <h3>Software Engineering</h3>
+  <p>Full-stack applications and enterprise platforms, designed, built and taken into production by the engineers who scoped them.</p>
+  <ul class="cap-list"><li>Full-stack applications</li><li>Enterprise platforms</li><li>APIs &amp; microservices</li><li>Product engineering</li></ul>
+  <div class="chips"><span class="chip">.NET</span><span class="chip">Java / Spring Boot</span><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">Python / Django</span><span class="chip">React</span></div>
+  <a class="link" href="/services/software-engineering/">Learn more <span aria-hidden="true">→</span></a>
+</article><article class="cap rv">
+  <div class="cap-top"><span class="cap-n">02</span><svg class="cap-glyph" viewBox="0 0 64 64" fill="none" stroke="url(#g2)" stroke-width="1.5" aria-hidden="true"><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9A22B9"/><stop offset="1" stop-color="#FA70A5"/></linearGradient></defs><rect x="6" y="34" width="20" height="20" rx="3" stroke-dasharray="3 3"/><rect x="38" y="10" width="20" height="20" rx="3"/><path d="M26 44c10 0 12-24 12-24"/><path d="M33 22l5-4 3 6"/><circle cx="16" cy="44" r="3"/><circle cx="48" cy="20" r="3"/></svg></div>
+  <h3>Modernization</h3>
+  <p>Improve before you replace. Upgrade stacks, refactor architecture and move to the cloud without losing the knowledge built into your systems.</p>
+  <ul class="cap-list"><li>Legacy modernization</li><li>Architecture refactoring</li><li>Cloud migration</li><li>Performance engineering</li></ul>
+  <div class="chips"><span class="chip">Azure</span><span class="chip">AWS</span><span class="chip">.NET</span><span class="chip">Spring Boot</span><span class="chip">Laravel</span><span class="chip">SQL Server</span></div>
+  <a class="link" href="/services/modernization/">Learn more <span aria-hidden="true">→</span></a>
+</article><article class="cap rv">
+  <div class="cap-top"><span class="cap-n">03</span><svg class="cap-glyph" viewBox="0 0 64 64" fill="none" stroke="url(#g3)" stroke-width="1.5" aria-hidden="true"><defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9A22B9"/><stop offset="1" stop-color="#FA70A5"/></linearGradient></defs><circle cx="12" cy="32" r="5"/><circle cx="32" cy="14" r="5"/><circle cx="32" cy="50" r="5"/><circle cx="52" cy="32" r="5"/><path d="M16 29l12-11M16 35l12 11M36 18l12 11M36 46l12-11M32 19v26"/><circle cx="32" cy="32" r="2"/></svg></div>
+  <h3>AI & Automation</h3>
+  <p>Automation that removes real manual work — and AI where it genuinely helps, built with the same engineering discipline as everything else.</p>
+  <ul class="cap-list"><li>AI integrations</li><li>AI agents</li><li>Intelligent workflows</li><li>Process automation</li></ul>
+  <div class="chips"><span class="chip">Python</span><span class="chip">LLM APIs</span><span class="chip">Workflow orchestration</span><span class="chip">REST integrations</span><span class="chip">Background jobs</span><span class="chip">Human review steps</span></div>
+  <a class="link" href="/services/ai-automation/">Learn more <span aria-hidden="true">→</span></a>
+</article><article class="cap rv">
+  <div class="cap-top"><span class="cap-n">04</span><svg class="cap-glyph" viewBox="0 0 64 64" fill="none" stroke="url(#g4)" stroke-width="1.5" aria-hidden="true"><defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9A22B9"/><stop offset="1" stop-color="#FA70A5"/></linearGradient></defs><rect x="4" y="8" width="18" height="14" rx="3"/><rect x="4" y="42" width="18" height="14" rx="3"/><rect x="42" y="25" width="18" height="14" rx="3"/><path d="M22 15h8v34h-8M30 32h12"/><circle cx="30" cy="32" r="2.5"/></svg></div>
+  <h3>Enterprise Integration</h3>
+  <p>Connect business systems so data moves once, correctly — SAP and ERP, accounting, payments and third-party APIs.</p>
+  <ul class="cap-list"><li>SAP and enterprise integrations</li><li>Business systems</li><li>Data integration</li><li>Third-party APIs</li></ul>
+  <div class="chips"><span class="chip">REST</span><span class="chip">SAP</span><span class="chip">Tally</span><span class="chip">Zoho Books</span><span class="chip">Razorpay</span><span class="chip">PayU</span></div>
+  <a class="link" href="/services/enterprise-integration/">Learn more <span aria-hidden="true">→</span></a>
+</article><div class="cap-extra rv"><div><strong>Cloud &amp; DevOps</strong><p>CI/CD on Azure DevOps and GitHub Actions, hardened Azure infrastructure, and monitoring that catches problems before users do — part of every engagement, and available on its own.</p></div><a class="link" href="/services/enterprise-integration/#cloud">Cloud &amp; DevOps <span aria-hidden="true">→</span></a></div></div>
+  </div>
+</section>
+
+<section class="sec sec-tint" id="work" aria-labelledby="work-h">
+  <div class="ct">
+    <div class="sec-hd split">
+      <div><div class="kicker rv">Featured case studies</div><h2 class="h2 rv" id="work-h">What we've built, and <em>what it changed.</em></h2></div>
+      <p class="lede rv">From two production platforms for a global organisation to focused modules that removed most of a team's manual work.</p>
+    </div>
+    <div class="cs-list"><article class="cs rv cs-feature">
+  <div class="cs-metric">
+    <div><div class="cs-big">80+</div><div class="cs-big-l">API modules in production</div></div>
+    <div class="cs-sub"><div><b>2</b>Connected apps</div></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-cat">Non-profit · Enterprise platform</div>
+    <h3>Church Management System</h3><p class="cs-client">The Church of Pentecost</p>
+    <div class="cs-ps"><div><h4>Problem</h4><p>Member records, groups, events and attendance lived in spreadsheets and paper registers spread across assemblies.</p></div><div><h4>Solution</h4><p>One platform for the member lifecycle, recurring events, real-time check-in, inter-assembly transfers and leadership analytics.</p></div></div>
+    <div class="chips"><span class="chip">.NET 9</span><span class="chip">ASP.NET Core</span><span class="chip">EF Core</span><span class="chip">SQL Server</span><span class="chip">SignalR</span><span class="chip">Hangfire</span><span class="chip">React 18</span></div>
+    <div class="cs-foot"><span class="cs-live">Live in production</span><a class="link" href="/case-studies/church-management-system/">Read case study <span aria-hidden="true">→</span></a></div>
+  </div>
+</article>
+<article class="cs rv cs-feature">
+  <div class="cs-metric">
+    <div><div class="cs-big">7</div><div class="cs-big-l">Organisational levels, one reporting system</div></div>
+    <div class="cs-sub"><div><b>6</b>Dashboard modules</div></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-cat">Non-profit · Enterprise reporting</div>
+    <h3>Missions Office Enterprise System</h3><p class="cs-client">The Church of Pentecost</p>
+    <div class="cs-ps"><div><h4>Problem</h4><p>Half-year and end-year statistical returns had to be consolidated across seven organisational levels, with each administrator seeing only their own branch.</p></div><div><h4>Solution</h4><p>Drill-down statistics dashboards, access scoped at query level, a Vision 2028 scorecard and exports stamped with their provenance.</p></div></div>
+    <div class="chips"><span class="chip">Laravel 12</span><span class="chip">PHP 8.2</span><span class="chip">MySQL</span><span class="chip">Alpine.js</span><span class="chip">Chart.js</span><span class="chip">dompdf</span><span class="chip">Azure App Service</span></div>
+    <div class="cs-foot"><span class="cs-live">Live in production</span><a class="link" href="/case-studies/missions-office-enterprise-system/">Read case study <span aria-hidden="true">→</span></a></div>
+  </div>
+</article>
+<article class="cs rv">
+  <div class="cs-metric">
+    <div><div class="cs-big">85%</div><div class="cs-big-l">Less manual work</div></div>
+    <div class="cs-sub"><div><b>5K+</b>SKUs managed</div></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-cat">Manufacturing · ERP</div>
+    <h3>ERP Inventory Management Module</h3>
+    <div class="cs-ps"><div><h4>Problem</h4><p>Stock movements for a mid-sized manufacturer were handled with a large amount of manual work.</p></div><div><h4>Solution</h4><p>An ERP inventory module with barcode scanning, real-time stock updates and automated reorder alerts.</p></div></div>
+    <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">MySQL</span><span class="chip">REST API</span></div>
+    <div class="cs-foot"><a class="link" href="/case-studies/erp-inventory-module/">Read case study <span aria-hidden="true">→</span></a></div>
+  </div>
+</article>
+<article class="cs rv">
+  <div class="cs-metric">
+    <div><div class="cs-big">90%</div><div class="cs-big-l">Time saved</div></div>
+    <div class="cs-sub"><div><b>100%</b>Accuracy</div></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-cat">Financial services · Integration</div>
+    <h3>Accounting Software Integration</h3>
+    <div class="cs-ps"><div><h4>Problem</h4><p>Invoices, GST preparation and payment reconciliation were being carried between billing and accounting by hand.</p></div><div><h4>Solution</h4><p>A REST API bridge to Tally and Zoho Books that generates invoices, prepares GST data and reconciles payments automatically.</p></div></div>
+    <div class="chips"><span class="chip">Python</span><span class="chip">Django</span><span class="chip">PostgreSQL</span><span class="chip">REST API</span><span class="chip">Tally</span><span class="chip">Zoho Books</span></div>
+    <div class="cs-foot"><a class="link" href="/case-studies/accounting-software-integration/">Read case study <span aria-hidden="true">→</span></a></div>
+  </div>
+</article>
+<article class="cs rv">
+  <div class="cs-metric">
+    <div><div class="cs-big">70%</div><div class="cs-big-l">Fewer no-shows</div></div>
+    <div class="cs-sub"><div><b>3K+</b>Patients per month</div><div><b>4</b>Clinics</div></div>
+  </div>
+  <div class="cs-body">
+    <div class="cs-cat">Healthcare · Platform enhancement</div>
+    <h3>Clinic Management Enhancement</h3>
+    <div class="cs-ps"><div><h4>Problem</h4><p>Four clinics serving more than 3,000 patients a month needed better booking, prescriptions and a way to reduce missed appointments.</p></div><div><h4>Solution</h4><p>Appointment booking, prescription management, SMS and email reminders and telemedicine added to the existing system.</p></div></div>
+    <div class="chips"><span class="chip">Angular</span><span class="chip">Node.js</span><span class="chip">Twilio</span></div>
+    <div class="cs-foot"><a class="link" href="/case-studies/clinic-management-enhancement/">Read case study <span aria-hidden="true">→</span></a></div>
+  </div>
+</article></div>
+    <div class="more-row"><a class="btn btn-o" href="/case-studies/">All 8 case studies <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<section class="sec ai" id="solutions" aria-labelledby="ai-h">
+  <div class="ct ai-grid">
+    <div>
+      <div class="kicker rv">AI &amp; Automation</div>
+      <h2 class="h2 rv" id="ai-h">AI that works <em>in production.</em></h2>
+      <p class="ai-quote rv">AI doesn't replace good engineering. It depends on it.</p>
+      <div class="ai-when rv">
+        <div><b>Use AI</b><span>when the input is unstructured, the judgement is fuzzy, and a person can review what matters.</span></div>
+        <div><b>Use software</b><span>when the rules are known. Invoicing, reconciliation and reminders don't need a model — they need solid automation.</span></div>
+        <div><b>Either way</b><span>it runs with access control, logging and an owner, like everything else we ship.</span></div>
       </div>
-      <div class="hero-pts">
-        <div class="hero-pt"><div class="hero-pt-dot"></div>Legacy system modernization & cloud migration</div>
-        <div class="hero-pt"><div class="hero-pt-dot"></div>Custom feature development & full-stack builds</div>
-        <div class="hero-pt"><div class="hero-pt-dot"></div>API integration & microservices architecture</div>
-        <div class="hero-pt"><div class="hero-pt-dot"></div>Performance optimization & database tuning</div>
+      <a class="link rv" style="margin-top:2rem" href="/services/ai-automation/">How we approach AI &amp; automation <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="ai-areas"><div class="ai-area rv"><span class="i">01</span><h3>AI Integration</h3><p>Connect AI capabilities to existing business applications.</p></div><div class="ai-area rv"><span class="i">02</span><h3>AI Agents</h3><p>Automate multi-step workflows with appropriate human oversight.</p></div><div class="ai-area rv"><span class="i">03</span><h3>Intelligent Automation</h3><p>Turn repetitive operational processes into adaptive workflows.</p></div><div class="ai-area rv"><span class="i">04</span><h3>Enterprise AI</h3><p>Build secure, governed AI experiences around business data.</p></div></div>
+  </div>
+</section>
+
+<section class="sec" id="architecture" aria-labelledby="arch-h">
+  <div class="ct arch">
+    <div>
+      <div class="kicker rv">Architecture</div>
+      <h2 class="h2 rv" id="arch-h">Built for <em>production.</em></h2>
+      <p class="lede rv">Every system we deliver is designed as a whole — from the screen a user touches down to the pipeline that releases it.</p>
+      <div class="arch-notes rv">
+        <div><b>Real-time where it matters</b>Live attendance check-in over WebSockets with SignalR.</div>
+        <div><b>Work outside the request</b>Scheduled background jobs with Hangfire expand recurring events and keep data current.</div>
+        <div><b>Access at the data layer</b>Hierarchy-scoped queries, so users only ever retrieve what they're responsible for.</div>
       </div>
+    </div>
+    <div class="stack" role="list" aria-label="Architecture layers"><div class="layer rv"><div class="layer-n"><span class="idx">L1</span><div><b>Experience</b><div style="font-size:.8rem;color:var(--ink-3)">Web, mobile and dashboards</div></div></div><div class="chips"><span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">Angular</span><span class="chip">React Native</span><span class="chip">Alpine.js</span><span class="chip">Chart.js</span></div></div><div class="link-v" aria-hidden="true"><i></i><i></i><i></i></div><div class="layer rv"><div class="layer-n"><span class="idx">L2</span><div><b>Applications</b><div style="font-size:.8rem;color:var(--ink-3)">Domain logic and workflows</div></div></div><div class="chips"><span class="chip">.NET 9</span><span class="chip">ASP.NET Core</span><span class="chip">Spring Boot</span><span class="chip">Laravel</span><span class="chip">Django</span><span class="chip">Node.js</span></div></div><div class="link-v" aria-hidden="true"><i></i><i></i><i></i></div><div class="layer rv"><div class="layer-n"><span class="idx">L3</span><div><b>APIs · Services · AI</b><div style="font-size:.8rem;color:var(--ink-3)">Contracts between systems</div></div></div><div class="chips"><span class="chip">REST</span><span class="chip">SignalR</span><span class="chip">Hangfire</span><span class="chip">LLM integration</span><span class="chip">Payment &amp; messaging APIs</span></div></div><div class="link-v" aria-hidden="true"><i></i><i></i><i></i></div><div class="layer rv"><div class="layer-n"><span class="idx">L4</span><div><b>Data & Enterprise</b><div style="font-size:.8rem;color:var(--ink-3)">Records, reporting and ERP</div></div></div><div class="chips"><span class="chip">SQL Server</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">SAP</span><span class="chip">Tally · Zoho Books</span></div></div><div class="link-v" aria-hidden="true"><i></i><i></i><i></i></div><div class="layer rv"><div class="layer-n"><span class="idx">L5</span><div><b>Cloud · DevOps</b><div style="font-size:.8rem;color:var(--ink-3)">Infrastructure, release, observability</div></div></div><div class="chips"><span class="chip">Azure App Service</span><span class="chip">Azure SQL</span><span class="chip">Blob Storage</span><span class="chip">AWS S3</span><span class="chip">Azure DevOps</span><span class="chip">GitHub Actions</span></div></div></div>
+  </div>
+</section>
+
+<section class="sec sec-tint" id="industries" aria-labelledby="ind-h">
+  <div class="ct">
+    <div class="sec-hd split">
+      <div><div class="kicker rv">Industries</div><h2 class="h2 rv" id="ind-h">Engineering across <em>complex domains.</em></h2></div>
+      <p class="lede rv">Each of these comes from delivered work, not a target list.</p>
+    </div>
+    <div class="ind-grid"><div class="ind rv"><h3>Manufacturing<small>1 case study</small></h3><p>Inventory inside the ERP: barcode scanning, real-time stock and automated reorder alerts across 5,000+ SKUs.</p><a href="/case-studies/erp-inventory-module/">ERP Inventory Management Module →</a></div><div class="ind rv"><h3>Financial Services<small>2 case studies</small></h3><p>Billing-to-accounting bridges for Tally and Zoho Books with GST preparation, and multi-gateway payments with automated reconciliation.</p><a href="/case-studies/accounting-software-integration/">Accounting Software Integration →</a></div><div class="ind rv"><h3>Healthcare<small>1 case study</small></h3><p>Booking, prescriptions, reminders and telemedicine across four clinics and 3,000+ patients a month.</p><a href="/case-studies/clinic-management-enhancement/">Clinic Management Enhancement →</a></div><div class="ind rv"><h3>Education<small>1 case study</small></h3><p>Video learning, assessment, certification, live classes and payments for 8,000+ active students.</p><a href="/case-studies/learning-platform-features/">Learning Platform Features →</a></div><div class="ind rv"><h3>Logistics<small>1 case study</small></h3><p>Real-time tracking, an agent mobile app, route optimisation and customer SMS for 200+ daily deliveries.</p><a href="/case-studies/delivery-management-system/">Delivery Management System →</a></div><div class="ind rv"><h3>Enterprise / Nonprofit<small>2 case studies</small></h3><p>Two production platforms for a global organisation — congregation management and statistical reporting across seven levels.</p><a href="/case-studies/church-management-system/">Church Management System →</a></div></div>
+  </div>
+</section>
+
+<section class="sec" id="why" aria-labelledby="why-h">
+  <div class="ct">
+    <div class="sec-hd"><div class="kicker rv">Why Altherix</div><h2 class="h2 rv" id="why-h">Why teams work <em>with Altherix.</em></h2></div>
+    <div class="principles"><div class="pr rv"><span class="num">01</span><h3>We improve before we replace.</h3><p>Existing systems often contain years of business knowledge. We modernize intelligently instead of rewriting everything unnecessarily.</p></div><div class="pr rv"><span class="num">02</span><h3>Engineers stay close to the problem.</h3><p>Architecture, development and delivery remain connected. The people who scope your system are the people who build and support it.</p></div><div class="pr rv"><span class="num">03</span><h3>Production is the finish line.</h3><p>We care about deployment, reliability, observability and real-world operation — not just prototypes.</p></div><div class="pr rv"><span class="num">04</span><h3>Technology follows the problem.</h3><p>We use the right architecture and technology for the problem rather than forcing every project into the same solution — .NET one quarter, Laravel the next.</p></div></div>
+  </div>
+</section>
+
+<section class="sec sec-tint" id="practices" aria-labelledby="prac-h">
+  <div class="ct">
+    <div class="sec-hd split">
+      <div><div class="kicker rv">Engineering practices</div><h2 class="h2 rv" id="prac-h">The unglamorous parts, <em>done properly.</em></h2></div>
+      <p class="lede rv">What we build into production systems as a matter of course.</p>
+    </div>
+    <div class="prac"><div class="rv"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>Security</h3><ul><li><b>Role-based access</b> — throughout our production platforms</li><li><b>Scoped queries</b> — users only retrieve data they are responsible for</li><li><b>Secrets management</b> — credentials kept out of code and in order</li></ul></div><div class="rv"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>Reliability</h3><ul><li><b>Logging & alerting</b> — for production workloads</li><li><b>Backups</b> — kept in good order</li><li><b>Background jobs</b> — scheduled work handled outside the request path</li></ul></div><div class="rv"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.3 7l7.5 4M8.3 17l7.5-4"/></svg>Delivery</h3><ul><li><b>CI/CD</b> — Azure DevOps and GitHub Actions</li><li><b>Gated releases</b> — production changes go through approval</li><li><b>Code review & tests</b> — thorough reviews; tests written alongside code</li></ul></div><div class="rv"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Governance</h3><ul><li><b>Audit trails</b> — recorded across our enterprise platforms</li><li><b>Export provenance</b> — reports stamped with scope, period and origin</li><li><b>Access control</b> — enforced at data level, not just in the UI</li></ul></div></div>
+  </div>
+</section>
+
+<section class="sec" id="team" aria-labelledby="team-h">
+  <div class="ct">
+    <div class="sec-hd split">
+      <div><div class="kicker rv">Team</div><h2 class="h2 rv" id="team-h">People behind <em>the systems.</em></h2></div>
+      <p class="team-statement rv">Built by engineers who have spent years solving real software problems.</p>
+    </div>
+    <div class="team"><div class="member rv"><div class="member-top"><div class="avatar" aria-hidden="true">GS</div><div><h3>Ganesh S</h3><div class="member-role">Director & Founder</div></div></div><div class="chips"><span class="chip">Enterprise architecture</span><span class="chip">SAP</span><span class="chip">Cloud architecture</span></div></div><div class="member rv"><div class="member-top"><div class="avatar" aria-hidden="true">PM</div><div><h3>Priscilla Mathews</h3><div class="member-role">Chief Financial Officer</div></div></div><div class="chips"><span class="chip">Project economics</span><span class="chip">Contracts</span><span class="chip">Risk management</span></div></div><div class="member rv"><div class="member-top"><div class="avatar" aria-hidden="true">MR</div><div><h3>Muralidharan R</h3><div class="member-role">Senior Software Engineer</div></div></div><div class="chips"><span class="chip">Java / Spring Boot</span><span class="chip">React / Angular</span><span class="chip">Microservices</span></div></div><div class="member rv"><div class="member-top"><div class="avatar" aria-hidden="true">JV</div><div><h3>Jessy Varghese</h3><div class="member-role">Software Engineer</div></div></div><div class="chips"><span class="chip">Node.js / Python</span><span class="chip">AWS / Azure</span><span class="chip">Database design</span></div></div><div class="member rv"><div class="member-top"><div class="avatar" aria-hidden="true">CJ</div><div><h3>Cyril Johnson</h3><div class="member-role">Technical Advisor</div></div></div><div class="chips"><span class="chip">Architecture</span><span class="chip">Technology strategy</span><span class="chip">Emerging technologies</span></div></div><div class="member rv"><div class="member-top"><div class="avatar" aria-hidden="true">RR</div><div><h3>Rohan Raj</h3><div class="member-role">Software Engineer</div></div></div><div class="chips"><span class="chip">REST APIs</span><span class="chip">Java / Python</span><span class="chip">PostgreSQL / MySQL</span></div></div></div>
+  </div>
+</section>
+
+<section class="sec sec-tint" id="about" aria-labelledby="about-h">
+  <div class="ct story">
+    <div>
+      <div class="kicker rv">Our story</div>
+      <h2 class="h2 rv" id="about-h">Global engineering. <em>Rooted in the Nilgiris.</em></h2>
+      <p class="rv">Altherix was founded in Ooty, high in the Nilgiris. It is an unusual place to build an engineering company — and a deliberate one. A small, senior team, away from the churn of a large delivery centre, with the focus to do careful work.</p>
+      <p class="rv">Our work isn't bound by our postcode. Platforms we've built run in production on Azure in the UK for a global organisation, alongside systems for manufacturers, clinics, ed-tech, logistics and finance teams in India.</p>
+      <p class="rv">What hasn't changed since the start: the conviction that your existing software is the backbone of your business, and that it usually deserves improving before it deserves replacing.</p>
+    </div>
+    <div class="story-geo rv" aria-hidden="true">
+      <svg viewBox="0 0 520 300"><defs><linearGradient id="arc" x1="0" x2="1"><stop offset="0" stop-color="#FA70A5"/><stop offset="1" stop-color="#9A22B9"/></linearGradient></defs>
+        <g fill="rgba(246,244,244,.14)"><circle cx="20" cy="20" r="1.4"/><circle cx="20" cy="68" r="1.4"/><circle cx="20" cy="100" r="1.4"/><circle cx="20" cy="116" r="1.4"/><circle cx="20" cy="148" r="1.4"/><circle cx="20" cy="164" r="1.4"/><circle cx="20" cy="196" r="1.4"/><circle cx="20" cy="244" r="1.4"/><circle cx="20" cy="276" r="1.4"/><circle cx="20" cy="292" r="1.4"/><circle cx="36" cy="20" r="1.4"/><circle cx="36" cy="52" r="1.4"/><circle cx="36" cy="68" r="1.4"/><circle cx="36" cy="100" r="1.4"/><circle cx="36" cy="148" r="1.4"/><circle cx="36" cy="180" r="1.4"/><circle cx="36" cy="196" r="1.4"/><circle cx="36" cy="228" r="1.4"/><circle cx="36" cy="244" r="1.4"/><circle cx="36" cy="276" r="1.4"/><circle cx="52" cy="52" r="1.4"/><circle cx="52" cy="84" r="1.4"/><circle cx="52" cy="100" r="1.4"/><circle cx="52" cy="132" r="1.4"/><circle cx="52" cy="148" r="1.4"/><circle cx="52" cy="180" r="1.4"/><circle cx="52" cy="228" r="1.4"/><circle cx="52" cy="260" r="1.4"/><circle cx="52" cy="276" r="1.4"/><circle cx="68" cy="36" r="1.4"/><circle cx="68" cy="52" r="1.4"/><circle cx="68" cy="84" r="1.4"/><circle cx="68" cy="132" r="1.4"/><circle cx="68" cy="164" r="1.4"/><circle cx="68" cy="180" r="1.4"/><circle cx="68" cy="212" r="1.4"/><circle cx="68" cy="228" r="1.4"/><circle cx="68" cy="260" r="1.4"/><circle cx="84" cy="36" r="1.4"/><circle cx="84" cy="68" r="1.4"/><circle cx="84" cy="84" r="1.4"/><circle cx="84" cy="116" r="1.4"/><circle cx="84" cy="132" r="1.4"/><circle cx="84" cy="164" r="1.4"/><circle cx="84" cy="212" r="1.4"/><circle cx="84" cy="244" r="1.4"/><circle cx="84" cy="260" r="1.4"/><circle cx="84" cy="292" r="1.4"/><circle cx="100" cy="20" r="1.4"/><circle cx="100" cy="36" r="1.4"/><circle cx="100" cy="68" r="1.4"/><circle cx="100" cy="116" r="1.4"/><circle cx="100" cy="148" r="1.4"/><circle cx="100" cy="164" r="1.4"/><circle cx="100" cy="196" r="1.4"/><circle cx="100" cy="212" r="1.4"/><circle cx="100" cy="244" r="1.4"/><circle cx="100" cy="292" r="1.4"/><circle cx="116" cy="20" r="1.4"/><circle cx="116" cy="52" r="1.4"/><circle cx="116" cy="68" r="1.4"/><circle cx="116" cy="100" r="1.4"/><circle cx="116" cy="116" r="1.4"/><circle cx="116" cy="148" r="1.4"/><circle cx="116" cy="196" r="1.4"/><circle cx="116" cy="228" r="1.4"/><circle cx="116" cy="244" r="1.4"/><circle cx="116" cy="276" r="1.4"/><circle cx="116" cy="292" r="1.4"/><circle cx="132" cy="20" r="1.4"/><circle cx="132" cy="52" r="1.4"/><circle cx="132" cy="100" r="1.4"/><circle cx="132" cy="132" r="1.4"/><circle cx="132" cy="148" r="1.4"/><circle cx="132" cy="180" r="1.4"/><circle cx="132" cy="196" r="1.4"/><circle cx="132" cy="228" r="1.4"/><circle cx="132" cy="276" r="1.4"/><circle cx="148" cy="36" r="1.4"/><circle cx="148" cy="52" r="1.4"/><circle cx="148" cy="84" r="1.4"/><circle cx="148" cy="100" r="1.4"/><circle cx="148" cy="132" r="1.4"/><circle cx="148" cy="180" r="1.4"/><circle cx="148" cy="212" r="1.4"/><circle cx="148" cy="228" r="1.4"/><circle cx="148" cy="260" r="1.4"/><circle cx="148" cy="276" r="1.4"/><circle cx="164" cy="36" r="1.4"/><circle cx="164" cy="84" r="1.4"/><circle cx="164" cy="116" r="1.4"/><circle cx="164" cy="132" r="1.4"/><circle cx="164" cy="164" r="1.4"/><circle cx="164" cy="180" r="1.4"/><circle cx="164" cy="212" r="1.4"/><circle cx="164" cy="260" r="1.4"/><circle cx="164" cy="292" r="1.4"/><circle cx="180" cy="20" r="1.4"/><circle cx="180" cy="36" r="1.4"/><circle cx="180" cy="68" r="1.4"/><circle cx="180" cy="84" r="1.4"/><circle cx="180" cy="116" r="1.4"/><circle cx="180" cy="164" r="1.4"/><circle cx="180" cy="196" r="1.4"/><circle cx="180" cy="212" r="1.4"/><circle cx="180" cy="244" r="1.4"/><circle cx="180" cy="260" r="1.4"/><circle cx="180" cy="292" r="1.4"/><circle cx="196" cy="20" r="1.4"/><circle cx="196" cy="68" r="1.4"/><circle cx="196" cy="100" r="1.4"/><circle cx="196" cy="116" r="1.4"/><circle cx="196" cy="148" r="1.4"/><circle cx="196" cy="164" r="1.4"/><circle cx="196" cy="196" r="1.4"/><circle cx="196" cy="244" r="1.4"/><circle cx="196" cy="276" r="1.4"/><circle cx="196" cy="292" r="1.4"/><circle cx="212" cy="20" r="1.4"/><circle cx="212" cy="52" r="1.4"/><circle cx="212" cy="68" r="1.4"/><circle cx="212" cy="100" r="1.4"/><circle cx="212" cy="148" r="1.4"/><circle cx="212" cy="180" r="1.4"/><circle cx="212" cy="196" r="1.4"/><circle cx="212" cy="228" r="1.4"/><circle cx="212" cy="244" r="1.4"/><circle cx="212" cy="276" r="1.4"/><circle cx="228" cy="52" r="1.4"/><circle cx="228" cy="84" r="1.4"/><circle cx="228" cy="100" r="1.4"/><circle cx="228" cy="132" r="1.4"/><circle cx="228" cy="148" r="1.4"/><circle cx="228" cy="180" r="1.4"/><circle cx="228" cy="228" r="1.4"/><circle cx="228" cy="260" r="1.4"/><circle cx="228" cy="276" r="1.4"/><circle cx="244" cy="36" r="1.4"/><circle cx="244" cy="52" r="1.4"/><circle cx="244" cy="84" r="1.4"/><circle cx="244" cy="132" r="1.4"/><circle cx="244" cy="164" r="1.4"/><circle cx="244" cy="180" r="1.4"/><circle cx="244" cy="212" r="1.4"/><circle cx="244" cy="228" r="1.4"/><circle cx="244" cy="260" r="1.4"/><circle cx="260" cy="36" r="1.4"/><circle cx="260" cy="68" r="1.4"/><circle cx="260" cy="84" r="1.4"/><circle cx="260" cy="116" r="1.4"/><circle cx="260" cy="132" r="1.4"/><circle cx="260" cy="164" r="1.4"/><circle cx="260" cy="212" r="1.4"/><circle cx="260" cy="244" r="1.4"/><circle cx="260" cy="260" r="1.4"/><circle cx="260" cy="292" r="1.4"/><circle cx="276" cy="20" r="1.4"/><circle cx="276" cy="36" r="1.4"/><circle cx="276" cy="68" r="1.4"/><circle cx="276" cy="116" r="1.4"/><circle cx="276" cy="148" r="1.4"/><circle cx="276" cy="164" r="1.4"/><circle cx="276" cy="196" r="1.4"/><circle cx="276" cy="212" r="1.4"/><circle cx="276" cy="244" r="1.4"/><circle cx="276" cy="292" r="1.4"/><circle cx="292" cy="20" r="1.4"/><circle cx="292" cy="52" r="1.4"/><circle cx="292" cy="68" r="1.4"/><circle cx="292" cy="100" r="1.4"/><circle cx="292" cy="116" r="1.4"/><circle cx="292" cy="148" r="1.4"/><circle cx="292" cy="196" r="1.4"/><circle cx="292" cy="228" r="1.4"/><circle cx="292" cy="244" r="1.4"/><circle cx="292" cy="276" r="1.4"/><circle cx="292" cy="292" r="1.4"/><circle cx="308" cy="20" r="1.4"/><circle cx="308" cy="52" r="1.4"/><circle cx="308" cy="100" r="1.4"/><circle cx="308" cy="132" r="1.4"/><circle cx="308" cy="148" r="1.4"/><circle cx="308" cy="180" r="1.4"/><circle cx="308" cy="196" r="1.4"/><circle cx="308" cy="228" r="1.4"/><circle cx="308" cy="276" r="1.4"/><circle cx="324" cy="36" r="1.4"/><circle cx="324" cy="52" r="1.4"/><circle cx="324" cy="84" r="1.4"/><circle cx="324" cy="100" r="1.4"/><circle cx="324" cy="132" r="1.4"/><circle cx="324" cy="180" r="1.4"/><circle cx="324" cy="212" r="1.4"/><circle cx="324" cy="228" r="1.4"/><circle cx="324" cy="260" r="1.4"/><circle cx="324" cy="276" r="1.4"/><circle cx="340" cy="36" r="1.4"/><circle cx="340" cy="84" r="1.4"/><circle cx="340" cy="116" r="1.4"/><circle cx="340" cy="132" r="1.4"/><circle cx="340" cy="164" r="1.4"/><circle cx="340" cy="180" r="1.4"/><circle cx="340" cy="212" r="1.4"/><circle cx="340" cy="260" r="1.4"/><circle cx="340" cy="292" r="1.4"/><circle cx="356" cy="20" r="1.4"/><circle cx="356" cy="36" r="1.4"/><circle cx="356" cy="68" r="1.4"/><circle cx="356" cy="84" r="1.4"/><circle cx="356" cy="116" r="1.4"/><circle cx="356" cy="164" r="1.4"/><circle cx="356" cy="196" r="1.4"/><circle cx="356" cy="212" r="1.4"/><circle cx="356" cy="244" r="1.4"/><circle cx="356" cy="260" r="1.4"/><circle cx="356" cy="292" r="1.4"/><circle cx="372" cy="20" r="1.4"/><circle cx="372" cy="68" r="1.4"/><circle cx="372" cy="100" r="1.4"/><circle cx="372" cy="116" r="1.4"/><circle cx="372" cy="148" r="1.4"/><circle cx="372" cy="164" r="1.4"/><circle cx="372" cy="196" r="1.4"/><circle cx="372" cy="244" r="1.4"/><circle cx="372" cy="276" r="1.4"/><circle cx="372" cy="292" r="1.4"/><circle cx="388" cy="20" r="1.4"/><circle cx="388" cy="52" r="1.4"/><circle cx="388" cy="68" r="1.4"/><circle cx="388" cy="100" r="1.4"/><circle cx="388" cy="148" r="1.4"/><circle cx="388" cy="180" r="1.4"/><circle cx="388" cy="196" r="1.4"/><circle cx="388" cy="228" r="1.4"/><circle cx="388" cy="244" r="1.4"/><circle cx="388" cy="276" r="1.4"/><circle cx="404" cy="52" r="1.4"/><circle cx="404" cy="84" r="1.4"/><circle cx="404" cy="100" r="1.4"/><circle cx="404" cy="132" r="1.4"/><circle cx="404" cy="148" r="1.4"/><circle cx="404" cy="180" r="1.4"/><circle cx="404" cy="228" r="1.4"/><circle cx="404" cy="260" r="1.4"/><circle cx="404" cy="276" r="1.4"/><circle cx="420" cy="36" r="1.4"/><circle cx="420" cy="52" r="1.4"/><circle cx="420" cy="84" r="1.4"/><circle cx="420" cy="132" r="1.4"/><circle cx="420" cy="164" r="1.4"/><circle cx="420" cy="180" r="1.4"/><circle cx="420" cy="212" r="1.4"/><circle cx="420" cy="228" r="1.4"/><circle cx="420" cy="260" r="1.4"/><circle cx="436" cy="36" r="1.4"/><circle cx="436" cy="68" r="1.4"/><circle cx="436" cy="84" r="1.4"/><circle cx="436" cy="116" r="1.4"/><circle cx="436" cy="132" r="1.4"/><circle cx="436" cy="164" r="1.4"/><circle cx="436" cy="212" r="1.4"/><circle cx="436" cy="244" r="1.4"/><circle cx="436" cy="260" r="1.4"/><circle cx="436" cy="292" r="1.4"/><circle cx="452" cy="20" r="1.4"/><circle cx="452" cy="36" r="1.4"/><circle cx="452" cy="68" r="1.4"/><circle cx="452" cy="116" r="1.4"/><circle cx="452" cy="148" r="1.4"/><circle cx="452" cy="164" r="1.4"/><circle cx="452" cy="196" r="1.4"/><circle cx="452" cy="212" r="1.4"/><circle cx="452" cy="244" r="1.4"/><circle cx="452" cy="292" r="1.4"/><circle cx="468" cy="20" r="1.4"/><circle cx="468" cy="52" r="1.4"/><circle cx="468" cy="68" r="1.4"/><circle cx="468" cy="100" r="1.4"/><circle cx="468" cy="116" r="1.4"/><circle cx="468" cy="148" r="1.4"/><circle cx="468" cy="196" r="1.4"/><circle cx="468" cy="228" r="1.4"/><circle cx="468" cy="244" r="1.4"/><circle cx="468" cy="276" r="1.4"/><circle cx="468" cy="292" r="1.4"/><circle cx="484" cy="20" r="1.4"/><circle cx="484" cy="52" r="1.4"/><circle cx="484" cy="100" r="1.4"/><circle cx="484" cy="132" r="1.4"/><circle cx="484" cy="148" r="1.4"/><circle cx="484" cy="180" r="1.4"/><circle cx="484" cy="196" r="1.4"/><circle cx="484" cy="228" r="1.4"/><circle cx="484" cy="276" r="1.4"/><circle cx="500" cy="36" r="1.4"/><circle cx="500" cy="52" r="1.4"/><circle cx="500" cy="84" r="1.4"/><circle cx="500" cy="100" r="1.4"/><circle cx="500" cy="132" r="1.4"/><circle cx="500" cy="180" r="1.4"/><circle cx="500" cy="212" r="1.4"/><circle cx="500" cy="228" r="1.4"/><circle cx="500" cy="260" r="1.4"/><circle cx="500" cy="276" r="1.4"/><circle cx="516" cy="36" r="1.4"/><circle cx="516" cy="84" r="1.4"/><circle cx="516" cy="116" r="1.4"/><circle cx="516" cy="132" r="1.4"/><circle cx="516" cy="164" r="1.4"/><circle cx="516" cy="180" r="1.4"/><circle cx="516" cy="212" r="1.4"/><circle cx="516" cy="260" r="1.4"/><circle cx="516" cy="292" r="1.4"/></g>
+        <path d="M380 210 C 320 40, 200 30, 150 90" fill="none" stroke="url(#arc)" stroke-width="1.6" class="viz-flow" style="stroke-dasharray:4 8;animation-duration:12s"/>
+        <path d="M380 210 C 360 160, 330 150, 300 180" fill="none" stroke="url(#arc)" stroke-width="1.2" opacity=".7"/>
+        <circle cx="380" cy="210" r="6" fill="#DF3AD2"/><circle class="viz-ring" cx="380" cy="210" r="8"/>
+        <circle cx="150" cy="90" r="4.5" fill="#F6F4F4"/><circle cx="300" cy="180" r="3.5" fill="#F6F4F4" opacity=".8"/>
+        <text class="viz-label" x="392" y="232">Ooty · Nilgiris</text><text class="viz-label" x="96" y="76">UK · Azure UK South</text><text class="viz-label" x="232" y="202">India</text>
+      </svg>
+      <div class="geo-legend"><div><b>Founded in Ooty</b>Office in Coonoor, Nilgiris</div><div><b>Delivering beyond</b>Production platforms in India and the UK</div></div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track" id="mtrack">
-    <span class="m-item"><span class="m-dot"></span>Legacy Modernization</span>
-    <span class="m-item"><span class="m-dot"></span>API Integration</span>
-    <span class="m-item"><span class="m-dot"></span>Performance Optimization</span>
-    <span class="m-item"><span class="m-dot"></span>Custom Feature Development</span>
-    <span class="m-item"><span class="m-dot"></span>Cloud Migration</span>
-    <span class="m-item"><span class="m-dot"></span>SAP Consulting</span>
-    <span class="m-item"><span class="m-dot"></span>Microservices</span>
-    <span class="m-item"><span class="m-dot"></span>React · Node.js · Java · Python</span>
-    <span class="m-item"><span class="m-dot"></span>Legacy Modernization</span>
-    <span class="m-item"><span class="m-dot"></span>API Integration</span>
-    <span class="m-item"><span class="m-dot"></span>Performance Optimization</span>
-    <span class="m-item"><span class="m-dot"></span>Custom Feature Development</span>
-    <span class="m-item"><span class="m-dot"></span>Cloud Migration</span>
-    <span class="m-item"><span class="m-dot"></span>SAP Consulting</span>
-    <span class="m-item"><span class="m-dot"></span>Microservices</span>
-    <span class="m-item"><span class="m-dot"></span>React · Node.js · Java · Python</span>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section id="services" class="sec sec-alt">
-  <div class="ct">
-    <div class="sec-hd">
-      <div class="sec-kicker rv">What we do</div>
-      <h2 class="sec-h2 rv d1">Services built for<br><em>real-world complexity</em></h2>
-      <div class="sec-div rv d2"></div>
-      <p class="sec-sub rv d2">We specialize in extending and enhancing existing software — not replacing it. Every engagement is led by senior engineers with deep domain expertise.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="svc rv"><div class="svc-num">01</div><div class="svc-title">Legacy System Modernization</div><p class="svc-desc">Transform outdated applications into modern, scalable solutions without disrupting operations or losing institutional knowledge.</p><ul class="svc-list"><li>Technology stack upgrades</li><li>Architecture refactoring</li><li>Cloud migration strategy</li></ul></div>
-      <div class="svc rv d1"><div class="svc-num">02</div><div class="svc-title">Custom Feature Development</div><p class="svc-desc">Build powerful new modules that extend your application's capabilities — from ideation through design, development, testing, and deployment.</p><ul class="svc-list"><li>Feature design & planning</li><li>Full-stack implementation</li><li>QA & production deployment</li></ul></div>
-      <div class="svc rv d2"><div class="svc-num">03</div><div class="svc-title">Integration & API Development</div><p class="svc-desc">Connect disparate systems with robust APIs that eliminate data silos, reduce manual effort, and streamline workflows end-to-end.</p><ul class="svc-list"><li>RESTful & GraphQL APIs</li><li>Third-party integrations</li><li>Microservices architecture</li></ul></div>
-      <div class="svc rv d3"><div class="svc-num">04</div><div class="svc-title">Performance Optimization</div><p class="svc-desc">Dramatically improve speed, scalability, and reliability through systematic profiling, database tuning, and caching strategy.</p><ul class="svc-list"><li>Database query optimization</li><li>Caching & CDN strategies</li><li>Load balancing & scaling</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="sec">
-  <div class="ct">
-    <div class="proj-header">
-      <div>
-        <div class="sec-kicker rv">Case studies</div>
-        <h2 class="sec-h2 rv d1">Real results from<br><em>real engagements</em></h2>
-        <p class="sec-sub rv d2" style="margin-top:1.2rem">From enterprise platforms serving a global organisation to focused modules that unblock a single team.</p>
-        <div class="sec-div rv d2"></div>
-      </div>
-      <div class="proj-ctrls rv d2">
-        <span class="proj-scroll-hint">Drag, scroll or use the arrows</span>
-        <button class="pnav" id="pprev" type="button" aria-label="Previous case studies" aria-controls="projWrap">&#8592;</button>
-        <button class="pnav" id="pnext" type="button" aria-label="Next case studies" aria-controls="projWrap">&#8594;</button>
+<section class="sec cta" id="contact" aria-labelledby="contact-h">
+  <div class="ct cta-grid">
+    <div class="rv">
+      <div class="kicker">Talk to an engineer</div>
+      <h2 class="h2" id="contact-h">Have a difficult software problem?</h2>
+      <p class="lede">Whether you're modernizing a legacy platform, integrating enterprise systems, or figuring out where AI actually fits, start with a conversation with our engineering team.</p>
+      <div class="contact-list">
+        <a href="mailto:contact@altherix.in"><span>Email</span><b>contact@altherix.in</b></a>
+        <a href="tel:+918152923515"><span>Phone</span><b>+91 81529 23515</b></a>
+        <a href="https://www.linkedin.com/company/altherix" target="_blank" rel="noopener"><span>LinkedIn</span><b>linkedin.com/company/altherix</b></a>
+        <div><span>Office</span><b>1247 N1, LN Gardens, Stanley Park<br>Ottupattarai, Coonoor<br>Nilgiris, Tamil Nadu 643105</b></div>
       </div>
     </div>
-  </div>
-  <div class="ct">
-    <!-- FEATURED ENGAGEMENT — The Church of Pentecost -->
-    <article class="feat rv" aria-labelledby="feat-client">
-      <div class="feat-head">
-        <div class="feat-eyebrow">Featured engagement</div>
-        <h3 class="feat-client" id="feat-client">The Church of Pentecost —<br><em>two platforms, one connected estate</em></h3>
-        <p class="feat-lede">A multi-year engagement building the digital backbone for a global denomination: a congregation management platform for day-to-day assembly operations, and a missions reporting system that consolidates statistical returns across every tier of the organisation.</p>
-        <div class="feat-meta">
-          <div><span class="feat-mk">Client</span><span class="feat-mv">The Church of Pentecost</span></div>
-          <div><span class="feat-mk">Sector</span><span class="feat-mv">Non-profit · Faith organisation</span></div>
-          <div><span class="feat-mk">Engagement</span><span class="feat-mv">Design, build, deploy &amp; support</span></div>
-          <div><span class="feat-mk">Platforms</span><span class="feat-mv">2 production systems</span></div>
-        </div>
+    <form class="form rv" id="contact-form" novalidate>
+      <div class="row">
+        <div><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
       </div>
-
-      <div class="feat-split">
-        <!-- CMS -->
-        <div class="feat-half">
-          <span class="feat-tag">Platform 01</span>
-          <h4 class="feat-h3">Church Management System</h4>
-          <div class="feat-role">Membership · Events · Attendance · Analytics</div>
-          <p class="feat-p">A full congregation management platform replacing spreadsheets and paper registers with a single record of every member, group, event and attendance across the organisation's assemblies.</p>
-          <ul class="feat-list">
-            <li><strong>Member lifecycle</strong> — records, education and career history, salvation and baptism status, household and home-cell membership</li>
-            <li><strong>Inter-assembly transfers</strong> — request workflow with automatically generated transfer letters</li>
-            <li><strong>Events &amp; recurrence</strong> — recurring services expanded into occurrences by a scheduled background job, with per-occurrence exceptions</li>
-            <li><strong>Live check-in</strong> — real-time attendance capture over WebSockets, plus visitor and anonymous-attendee handling</li>
-            <li><strong>Bulk data</strong> — Excel import and export for migrating existing registers</li>
-            <li><strong>Analytics</strong> — dashboards and generated PDF reports for leadership</li>
-          </ul>
-          <div class="feat-stack">
-            <span class="feat-chip">.NET 9</span>
-            <span class="feat-chip">EF Core</span>
-            <span class="feat-chip">SQL Server</span>
-            <span class="feat-chip">SignalR</span>
-            <span class="feat-chip">Hangfire</span>
-            <span class="feat-chip">React 18 · TypeScript</span>
-            <span class="feat-chip">MUI</span>
-            <span class="feat-chip">Redux Toolkit</span>
-            <span class="feat-chip">Azure</span>
-          </div>
-        </div>
-
-        <!-- MISSIONS -->
-        <div class="feat-half">
-          <span class="feat-tag">Platform 02</span>
-          <h4 class="feat-h3">Missions Office Enterprise System</h4>
-          <div class="feat-role">Statutory reporting · Statistics · Governance</div>
-          <p class="feat-p">A reporting and analytics system for the global Missions Office, consolidating half-year and end-year statistical returns submitted from every level of a seven-tier organisational hierarchy.</p>
-          <ul class="feat-list">
-            <li><strong>Seven-level hierarchy</strong> — Global Office → Regional Missions Office → Regional Committee → Nation → Area → District → Local Assembly</li>
-            <li><strong>Statistics dashboards</strong> — membership, evangelism, attendance, ministry and estates, each with drill-down from global down to a single assembly</li>
-            <li><strong>Scoped access</strong> — enforced at query level, so an administrator only ever sees the branch of the hierarchy they are responsible for</li>
-            <li><strong>Vision 2028 scorecard</strong> — configurable indicators and targets with pace-adjusted progress tracking</li>
-            <li><strong>Exports &amp; provenance</strong> — CSV and PDF exports stamped with scope, period and generation trail</li>
-            <li><strong>Data completeness</strong> — tracks which assemblies have submitted for a reporting period and lists those outstanding</li>
-          </ul>
-          <div class="feat-stack">
-            <span class="feat-chip">Laravel 12</span>
-            <span class="feat-chip">PHP 8.2</span>
-            <span class="feat-chip">MySQL</span>
-            <span class="feat-chip">Alpine.js</span>
-            <span class="feat-chip">Chart.js</span>
-            <span class="feat-chip">dompdf</span>
-            <span class="feat-chip">Azure App Service</span>
-            <span class="feat-chip">Azure DevOps</span>
-          </div>
-        </div>
+      <div class="row">
+        <div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
+        <div><label for="f-topic">Area</label><select id="f-topic" name="topic"><option value="">Choose one…</option><option>Software Engineering</option><option>Modernization</option><option>AI & Automation</option><option>Enterprise Integration</option><option>Cloud &amp; DevOps</option><option>Not sure yet</option></select></div>
       </div>
-
-      <div class="feat-foot">
-        <span class="feat-live">Live in production</span>
-        <span>Deployed on <strong>Azure (UK South)</strong> through a gated release pipeline, with audit logging and role-based access throughout.</span>
-      </div>
-    </article>
-
-  </div>
-  <div class="proj-track-wrap" id="projWrap" tabindex="0" role="region" aria-label="Case study carousel — use arrow keys to scroll">
-    <div class="proj-track" id="projTrack">
-      <div class="pcard">
-        <div class="pbar"></div>
-        <div class="pbody"><div class="psec">Non-profit · Faith</div><div class="ptitle">Church Management System</div><p class="pdesc">Congregation platform for The Church of Pentecost — member lifecycle, groups and home cells, recurring events, real-time check-in, inter-assembly transfers and leadership analytics.</p><div class="ptags"><span class="ptag">.NET 9</span><span class="ptag">React · TypeScript</span><span class="ptag">SQL Server</span><span class="ptag">Azure</span></div><div class="pmets"><div><div class="pmv" data-count="80" data-sfx="+">80+</div><div class="pml">API modules</div></div><div><div class="pmv" data-count="2" data-sfx="">2</div><div class="pml">Connected apps</div></div></div></div>
-      </div>
-      <div class="pcard">
-        <div class="pbar alt"></div>
-        <div class="pbody"><div class="psec">Non-profit · Faith</div><div class="ptitle">Missions Office Enterprise System</div><p class="pdesc">Global statistical reporting for the COP Missions Office — half-year and end-year returns consolidated across a seven-tier hierarchy, with drill-down dashboards, a Vision 2028 scorecard and audited exports.</p><div class="ptags"><span class="ptag">Laravel 12</span><span class="ptag">MySQL</span><span class="ptag">Chart.js</span><span class="ptag">Azure DevOps</span></div><div class="pmets"><div><div class="pmv" data-count="7" data-sfx="">7</div><div class="pml">Hierarchy levels</div></div><div><div class="pmv" data-count="6" data-sfx="">6</div><div class="pml">Dashboard modules</div></div></div></div>
-      </div>
-      <div class="pcard">
-        <div class="pbar"></div>
-        <div class="pbody"><div class="psec">Enterprise Software</div><div class="ptitle">ERP Custom Module Development</div><p class="pdesc">Inventory management module with barcode scanning, real-time stock updates, and automated reorder alerts for a mid-sized manufacturer.</p><div class="ptags"><span class="ptag">Java Spring Boot</span><span class="ptag">MySQL</span><span class="ptag">REST API</span></div><div class="pmets"><div><div class="pmv" data-count="85" data-sfx="%">85%</div><div class="pml">Less manual work</div></div><div><div class="pmv" data-count="5" data-sfx="K+">5K+</div><div class="pml">SKUs managed</div></div></div></div>
-      </div>
-      <div class="pcard">
-        <div class="pbar alt"></div>
-        <div class="pbody"><div class="psec">E-Commerce</div><div class="ptitle">Payment Gateway Integration</div><p class="pdesc">Multi-gateway integration (Razorpay, PayU, Paytm) with UPI, wallets, EMI, admin dashboard, and automated reconciliation reports.</p><div class="ptags"><span class="ptag">Node.js</span><span class="ptag">React</span><span class="ptag">MongoDB</span></div><div class="pmets"><div><div class="pmv" data-count="35" data-sfx="%">35%</div><div class="pml">Higher conversions</div></div><div><div class="pmv" data-count="2" data-sfx="K+">2K+</div><div class="pml">Daily orders</div></div></div></div>
-      </div>
-      <div class="pcard">
-        <div class="pbar"></div>
-        <div class="pbody"><div class="psec">Financial Services</div><div class="ptitle">Accounting Software Integration</div><p class="pdesc">REST API bridge between billing and Tally/Zoho Books with automated invoice generation, GST preparation, and payment reconciliation.</p><div class="ptags"><span class="ptag">Python Django</span><span class="ptag">PostgreSQL</span><span class="ptag">REST API</span></div><div class="pmets"><div><div class="pmv" data-count="90" data-sfx="%">90%</div><div class="pml">Time saved</div></div><div><div class="pmv" data-count="100" data-sfx="%">100%</div><div class="pml">Accuracy</div></div></div></div>
-      </div>
-      <div class="pcard">
-        <div class="pbar alt"></div>
-        <div class="pbody"><div class="psec">Healthcare</div><div class="ptitle">Clinic Management Enhancement</div><p class="pdesc">Appointment booking, prescription management, SMS/email reminders, and telemedicine features across 4 clinics and 3,000+ monthly patients.</p><div class="ptags"><span class="ptag">Angular</span><span class="ptag">Node.js</span><span class="ptag">Twilio</span></div><div class="pmets"><div><div class="pmv" data-count="3" data-sfx="K+">3K+</div><div class="pml">Patients/month</div></div><div><div class="pmv" data-count="70" data-sfx="%">70%</div><div class="pml">Fewer no-shows</div></div></div></div>
-      </div>
-      <div class="pcard">
-        <div class="pbar"></div>
-        <div class="pbody"><div class="psec">Education Technology</div><div class="ptitle">Learning Platform Features</div><p class="pdesc">Video delivery, quizzes, progress tracking, certificate generation, Zoom integration, and Razorpay payments for an ed-tech startup.</p><div class="ptags"><span class="ptag">React</span><span class="ptag">Python Django</span><span class="ptag">AWS S3</span></div><div class="pmets"><div><div class="pmv" data-count="8" data-sfx="K+">8K+</div><div class="pml">Active students</div></div><div><div class="pmv" data-count="92" data-sfx="%">92%</div><div class="pml">Completion rate</div></div></div></div>
-      </div>
-      <div class="pcard">
-        <div class="pbar alt"></div>
-        <div class="pbody"><div class="psec">Logistics</div><div class="ptitle">Delivery Management System</div><p class="pdesc">Real-time tracking, delivery agent mobile app, route optimization, and customer SMS notifications integrated with Google Maps.</p><div class="ptags"><span class="ptag">React Native</span><span class="ptag">Node.js</span><span class="ptag">Google Maps</span></div><div class="pmets"><div><div class="pmv" data-count="40" data-sfx="%">40%</div><div class="pml">Faster deliveries</div></div><div><div class="pmv" data-count="200" data-sfx="+">200+</div><div class="pml">Daily deliveries</div></div></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="team" class="sec sec-alt">
-  <div class="ct">
-    <div class="sec-hd">
-      <div class="sec-kicker rv">The team</div>
-      <h2 class="sec-h2 rv d1">People who<br><em>build and advise</em></h2>
-      <div class="sec-div rv d2"></div>
-    </div>
-    <div class="team-grid">
-      <div class="tcard rv"><div class="tavatar">GS</div><div class="tname">Ganesh S</div><div class="trole">Director & Founder</div><p class="tbio">Visionary leader with 15+ years in enterprise software consulting, specializing in digital transformation, SAP, Oracle, and cloud architecture strategy.</p><div class="tchips"><span class="chip">Enterprise Architecture</span><span class="chip">SAP</span><span class="chip">Digital Strategy</span></div></div>
-      <div class="tcard rv d1"><div class="tavatar">PM</div><div class="tname">Priscilla Mathews</div><div class="trole">Chief Financial Officer</div><p class="tbio">Strategic financial leader combining financial acumen with deep technology understanding, overseeing project economics, contracts, and operational efficiency.</p><div class="tchips"><span class="chip">Financial Strategy</span><span class="chip">Risk Management</span></div></div>
-      <div class="tcard rv d2"><div class="tavatar">MR</div><div class="tname">Muralidharan R</div><div class="trole">Senior Software Engineer</div><p class="tbio">Full-stack expert with deep expertise in modern web technologies and legacy system integration. Strength in Java, React, and microservices architectures.</p><div class="tchips"><span class="chip">Java/Spring Boot</span><span class="chip">React/Angular</span><span class="chip">Microservices</span></div></div>
-      <div class="tcard rv d1"><div class="tavatar">JV</div><div class="tname">Jessy Varghese</div><div class="trole">Software Engineer</div><p class="tbio">Cloud-native development and DevOps specialist excelling in scalable solutions, API development, and database optimization with clean, maintainable code.</p><div class="tchips"><span class="chip">Node.js/Python</span><span class="chip">AWS/Azure</span><span class="chip">Database Design</span></div></div>
-      <div class="tcard rv d2"><div class="tavatar">CJ</div><div class="tname">Cyril Johnson</div><div class="trole">Technical Advisor</div><p class="tbio">Strategic technology advisor guiding complex technical challenges, providing insights on emerging technologies, architecture decisions, and industry best practices.</p><div class="tchips"><span class="chip">Technology Strategy</span><span class="chip">Architecture</span><span class="chip">Innovation</span></div></div>
-      <div class="tcard rv d3"><div class="tavatar">RR</div><div class="tname">Rohan Raj</div><div class="trole">Software Engineer</div><p class="tbio">Backend systems specialist with expertise in RESTful APIs, security best practices, and performance optimization delivering high-quality, maintainable code.</p><div class="tchips"><span class="chip">Java/Python</span><span class="chip">REST APIs</span><span class="chip">PostgreSQL/MySQL</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="about-band">
-  <div class="ct">
-    <div class="about-inner">
-      <div class="rvl">
-        <h2 class="about-h2">Built in Ooty.<br>Trusted across India.</h2>
-        <p class="about-p">Founded in Ooty, high in the Nilgiris — the Queen of Hills — Altherix has been at the forefront of software enhancement since inception. We understand that your existing applications are the backbone of your business.</p>
-        <p class="about-p">Rather than costly replacements, we specialize in strategic enhancements that maximize your current technology investments while preparing you for the future.</p>
-        <a href="#contact" class="about-cta">Start a conversation →</a>
-      </div>
-      <div class="about-vals rvr">
-        <div class="aval"><div class="aval-t">Zero Disruption</div><div class="aval-d">Enhancements delivered without downtime or business interruption</div></div>
-        <div class="aval"><div class="aval-t">Rapid Delivery</div><div class="aval-d">Agile methodology ensures fast, measurable time-to-value</div></div>
-        <div class="aval"><div class="aval-t">Future-Proof</div><div class="aval-d">Solutions built to scale and adapt with your business</div></div>
-        <div class="aval"><div class="aval-t">Expert Team</div><div class="aval-d">Senior engineers with deep, diverse industry expertise</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="sec">
-  <div class="ct">
-    <div class="sec-hd">
-      <div class="sec-kicker rv">Get in touch</div>
-      <h2 class="sec-h2 rv d1">Ready to transform<br><em>your application?</em></h2>
-      <div class="sec-div rv d2"></div>
-    </div>
-    <div class="contact-inner">
-      <div class="rvl">
-        <p class="contact-intro">Let's discuss how Altherix can enhance your existing software to drive innovation, improve performance, and deliver exceptional value.</p>
-        <div class="cdetail"><div class="cicon">✉</div><div><div class="clbl">Email</div><div class="cval"><a href="mailto:contact@altherix.in">contact@altherix.in</a></div></div></div>
-        <div class="cdetail"><div class="cicon">✆</div><div><div class="clbl">Phone</div><div class="cval"><a href="tel:+918152923515">+91 81529 23515</a></div></div></div>
-        <div class="cdetail"><div class="cicon">in</div><div><div class="clbl">LinkedIn</div><div class="cval"><a href="https://www.linkedin.com/company/altherix" target="_blank" rel="noopener">linkedin.com/company/altherix</a></div></div></div>
-        <div class="cdetail"><div class="cicon">◎</div><div><div class="clbl">Location</div><div class="cval">1247 N1, LN Gardens, Stanley Park<br>Ottupattarai, Coonoor, Tamil Nadu — 643105</div></div></div>
-      </div>
-      <div class="rvr">
-        <form id="cform" novalidate>
-          <div class="fgrid">
-            <div class="fg"><label class="flbl" for="fn">First name</label><input class="fi" id="fn" name="fn" type="text" autocomplete="given-name" required placeholder="Arjun"></div>
-            <div class="fg"><label class="flbl" for="ln">Last name</label><input class="fi" id="ln" name="ln" type="text" autocomplete="family-name" required placeholder="Sharma"></div>
-            <div class="fg full"><label class="flbl" for="fe">Email address</label><input class="fi" id="fe" name="fe" type="email" autocomplete="email" required placeholder="arjun@company.in"></div>
-            <div class="fg full"><label class="flbl" for="fs">Service of interest</label>
-              <select class="fsel" id="fs"><option value="" disabled selected>Select a service…</option><option>Legacy System Modernization</option><option>Custom Feature Development</option><option>Integration & API Development</option><option>Performance Optimization</option><option>Other / Not sure yet</option></select>
-            </div>
-            <div class="fg full"><label class="flbl" for="fm">Tell us about your project</label><textarea class="fta" id="fm" name="fm" required placeholder="What application are you working with? What challenges are you facing?"></textarea></div>
-          </div>
-          <button type="submit" class="fbtn">Send message</button>
-          <div class="fok" id="fok" role="status" aria-live="polite"></div>
-        </form>
-      </div>
-    </div>
+      <div><label for="f-msg">What are you working on?</label><textarea id="f-msg" name="message" required placeholder="The system, the problem, and what a good outcome looks like."></textarea></div>
+      <button class="btn btn-p" type="submit">Talk to an Engineer <span class="arr">→</span></button>
+      <p class="form-note">Opens your email app with the message addressed to contact@altherix.in.</p>
+      <p class="form-ok" id="form-ok" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
 </main>
-
-<!-- FOOTER -->
-<footer>
+<footer class="foot">
   <div class="ct">
-    <div class="ftop">
-      <div class="fbrand"><div class="flogo">Altherix</div><p>Transforming software, amplifying value. Ooty, India.</p></div>
-      <div class="fcol"><h5>Services</h5><a href="#services">Legacy Modernization</a><a href="#services">Feature Development</a><a href="#services">Integration & APIs</a><a href="#services">Performance Optimization</a></div>
-      <div class="fcol"><h5>Company</h5><a href="#about">About Us</a><a href="#team">Our Team</a><a href="#projects">Case Studies</a><a href="careers.html">Careers</a><a href="#contact">Contact</a></div>
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a class="brand" href="/"><img src="/assets/icon-96.webp" width="34" height="34" alt="" loading="lazy">ALTHERIX</a>
+        <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
+        <p class="foot-sub">Transforming Software, Amplifying Value.</p>
+      </div>
+      <div><h2>Services</h2><ul><li><a href="/services/software-engineering/">Software Engineering</a></li><li><a href="/services/modernization/">Modernization</a></li><li><a href="/services/ai-automation/">AI & Automation</a></li><li><a href="/services/enterprise-integration/">Enterprise Integration</a></li><li><a href="/services/enterprise-integration/#cloud">Cloud &amp; DevOps</a></li></ul></div>
+      <div><h2>Industries</h2><ul><li><a href="/#industries">Manufacturing</a></li><li><a href="/#industries">Financial Services</a></li><li><a href="/#industries">Healthcare</a></li><li><a href="/#industries">Education</a></li><li><a href="/#industries">Logistics</a></li><li><a href="/#industries">Enterprise</a></li></ul></div>
+      <div><h2>Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/#team">Team</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div><h2>Contact</h2><ul><li><a href="mailto:contact@altherix.in">contact@altherix.in</a></li><li><a href="tel:+918152923515">+91 81529 23515</a></li><li><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="/#contact">Ooty · India</a></li></ul></div>
     </div>
-    <div class="fbot">
-      <div class="fcopy">© <span data-year>2026</span> Altherix Solutions Ltd. All rights reserved.</div>
-      <div class="fcopy"><a href="https://www.linkedin.com/company/altherix" target="_blank" rel="noopener">LinkedIn</a> · <a href="tel:+918152923515">+91 81529 23515</a> · <a href="mailto:contact@altherix.in">contact@altherix.in</a></div>
+    <div class="foot-bot">
+      <span>© <span data-year>2026</span> Altherix Solutions</span>
+      <span>Ooty · India &nbsp;·&nbsp; <a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></span>
     </div>
   </div>
 </footer>
-<script src="script.js" defer></script>
-<script>
-/* ═══════════════════════════════════════════════════════════
-   Home page only. Shared behaviour lives in script.js.
-   ═══════════════════════════════════════════════════════════ */
-(function () {
-  'use strict';
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var finePointer  = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-
-  /* ── HERO: particles (paused when tab hidden) ── */
-  (function () {
-    var container = document.getElementById('particles');
-    if (!container || reduceMotion) return;
-    function spawn() {
-      if (document.hidden) return;
-      var p = document.createElement('div');
-      p.className = 'particle';
-      var s = Math.random() * 4 + 2;
-      p.style.cssText = 'width:' + s + 'px;height:' + s + 'px;left:' + (Math.random() * 100) +
-                        '%;bottom:0;animation-duration:' + (Math.random() * 8 + 6) +
-                        's;animation-delay:' + (Math.random() * 4) + 's';
-      container.appendChild(p);
-      setTimeout(function () { p.remove(); }, 14000);
-    }
-    setInterval(spawn, 600);
-    for (var i = 0; i < 8; i++) setTimeout(spawn, i * 300);
-  })();
-
-  /* ── HERO: character-split headline ──────────────────────
-     Words are wrapped as unbreakable inline-blocks so a line can
-     only break at a space. Characters inside carry the gradient
-     individually, because a transformed inline-block paints in its
-     own stacking context and an ancestor's background-clip:text
-     cannot reach it — which previously left the line invisible. */
-  (function () {
-    var el = document.getElementById('hero-h1');
-    if (!el) return;
-    var lines = el.querySelectorAll('.h1-line');
-    var seen = false;
-    try { seen = sessionStorage.getItem('ax_loaded') === '1'; } catch (e) {}
-    var baseDelay = (reduceMotion || seen) ? 0 : 1.7;
-    var gradients = [];
-    var idx = 0;
-
-    lines.forEach(function (line, li) {
-      var text = line.dataset.text || '';
-      var strong = line.dataset.strong === 'true';
-
-      var wrap = document.createElement('span');
-      wrap.className = 'h1-chars';
-
-      text.split(' ').forEach(function (word, wi) {
-        if (wi > 0) wrap.appendChild(document.createTextNode(' '));
-        var wordEl = document.createElement('span');
-        wordEl.className = 'h1-word';
-        [].forEach.call(word, function (ch) {
-          var span = document.createElement('span');
-          span.className = 'h1-char';
-          span.textContent = ch;
-          span.style.transitionDelay = reduceMotion ? '0s' : (baseDelay + li * 0.15 + idx * 0.035) + 's';
-          idx++;
-          wordEl.appendChild(span);
-        });
-        wrap.appendChild(wordEl);
-      });
-
-      if (strong) {
-        var s = document.createElement('span');
-        s.className = 'h1-strong';
-        s.appendChild(wrap);
-        line.appendChild(s);
-        gradients.push(s);
-      } else {
-        line.appendChild(wrap);
-      }
-      idx = 0;
-    });
-
-    // The characters are decorative fragments; expose the real text once.
-    el.setAttribute('aria-label', [].map.call(lines, function (l) { return l.dataset.text; }).join(' '));
-
-    /* Paint one continuous gradient across each strong line by giving every
-       character the full-phrase gradient, offset by its own position. */
-    function paintGradient() {
-      gradients.forEach(function (host) {
-        // Measure with the reveal transform neutralised: getBoundingClientRect
-        // reports post-transform geometry, and mid-animation characters would
-        // otherwise be given a background offset that lands outside the glyph.
-        host.classList.add('measuring');
-        var hb = host.getBoundingClientRect();
-        var boxes = [];
-        var chars = host.querySelectorAll('.h1-char');
-        chars.forEach(function (c) { boxes.push(c.getBoundingClientRect()); });
-        host.classList.remove('measuring');
-
-        if (!hb.width || !hb.height) return;
-        host.classList.add('grad');
-        chars.forEach(function (c, i) {
-          c.style.backgroundSize = hb.width + 'px ' + hb.height + 'px';
-          c.style.backgroundPosition =
-            -(boxes[i].left - hb.left) + 'px ' + -(boxes[i].top - hb.top) + 'px';
-        });
-      });
-    }
-
-    // Measure after fonts settle, otherwise offsets are computed against a fallback face.
-    function repaint() { requestAnimationFrame(paintGradient); }
-    repaint();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(repaint);
-    window.addEventListener('load', repaint);
-
-    var rt;
-    window.addEventListener('resize', function () {
-      clearTimeout(rt);
-      rt = setTimeout(repaint, 150);
-    });
-
-    setTimeout(function () {
-      el.querySelectorAll('.h1-char').forEach(function (c) { c.classList.add('in'); });
-      setTimeout(repaint, 900);
-    }, 100);
-  })();
-
-  /* ── CASE STUDIES: drag, arrows, keyboard ── */
-  (function () {
-    var wrap = document.getElementById('projWrap');
-    if (!wrap) return;
-
-    /* drag to scroll */
-    var isDown = false, startX = 0, scrollLeft = 0, moved = false;
-    wrap.addEventListener('mousedown', function (e) {
-      isDown = true; moved = false;
-      wrap.style.cursor = 'grabbing';
-      startX = e.pageX - wrap.offsetLeft;
-      scrollLeft = wrap.scrollLeft;
-    });
-    ['mouseleave', 'mouseup'].forEach(function (evt) {
-      wrap.addEventListener(evt, function () { isDown = false; wrap.style.cursor = 'grab'; });
-    });
-    wrap.addEventListener('mousemove', function (e) {
-      if (!isDown) return;
-      e.preventDefault();
-      moved = true;
-      var x = e.pageX - wrap.offsetLeft;
-      wrap.scrollLeft = scrollLeft - (x - startX) * 1.5;
-    });
-
-    /* arrows + keyboard */
-    var prev = document.getElementById('pprev');
-    var next = document.getElementById('pnext');
-    function step() {
-      var card = wrap.querySelector('.pcard');
-      return card ? card.getBoundingClientRect().width + 24 : wrap.clientWidth * 0.8;
-    }
-    function syncButtons() {
-      if (!prev || !next) return;
-      var max = wrap.scrollWidth - wrap.clientWidth;
-      prev.disabled = wrap.scrollLeft <= 2;
-      next.disabled = wrap.scrollLeft >= max - 2;
-    }
-    if (prev) prev.addEventListener('click', function () { wrap.scrollLeft -= step(); });
-    if (next) next.addEventListener('click', function () { wrap.scrollLeft += step(); });
-    wrap.addEventListener('scroll', syncButtons, { passive: true });
-    wrap.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); wrap.scrollLeft += step(); }
-      if (e.key === 'ArrowLeft')  { e.preventDefault(); wrap.scrollLeft -= step(); }
-    });
-    window.addEventListener('resize', syncButtons);
-    syncButtons();
-
-    /* 3D tilt — mouse only */
-    if (!reduceMotion && finePointer) {
-      document.querySelectorAll('.pcard').forEach(function (card) {
-        card.addEventListener('mousemove', function (e) {
-          if (isDown) return;
-          var r = card.getBoundingClientRect();
-          var x = (e.clientX - r.left) / r.width - 0.5;
-          var y = (e.clientY - r.top) / r.height - 0.5;
-          card.style.transition = 'box-shadow .35s,border-color .3s';
-          card.style.transform = 'perspective(700px) rotateY(' + (x * 7) + 'deg) rotateX(' +
-                                 (-y * 5) + 'deg) translateY(-4px) scale(1.01)';
-        });
-        card.addEventListener('mouseleave', function () {
-          card.style.transition = 'transform .6s cubic-bezier(.16,1,.3,1),box-shadow .35s,border-color .3s';
-          card.style.transform = '';
-        });
-      });
-    }
-  })();
-
-  /* ── HERO grid parallax ── */
-  (function () {
-    var grid = document.querySelector('.hero-grid');
-    if (!grid || reduceMotion) return;
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(function () {
-        grid.style.transform = 'translateY(' + (window.scrollY * 0.25) + 'px)';
-        ticking = false;
-      });
-    }, { passive: true });
-  })();
-
-  /* ── CONTACT FORM ────────────────────────────────────────
-     No back end on GitHub Pages, so the form composes a
-     pre-filled email rather than pretending to have sent one. */
-  (function () {
-    var form = document.getElementById('cform');
-    if (!form) return;
-    var ok = document.getElementById('fok');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-
-      var v = function (id) {
-        var el = document.getElementById(id);
-        return el ? el.value.trim() : '';
-      };
-      var name    = (v('fn') + ' ' + v('ln')).trim();
-      var email   = v('fe');
-      var service = v('fs') || 'Not specified';
-      var message = v('fm');
-
-      var subject = 'Project enquiry — ' + (name || 'Website contact form');
-      var lines = [
-        'Name: '    + name,
-        'Email: '   + email,
-        'Service: ' + service,
-        '',
-        message
-      ].join('\n');
-
-      var btn = form.querySelector('.fbtn');
-      if (btn) { btn.textContent = 'Opening your email app…'; btn.disabled = true; }
-
-      window.location.href = 'mailto:contact@altherix.in' +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body='    + encodeURIComponent(lines);
-
-      setTimeout(function () {
-        if (ok) {
-          ok.textContent = 'Your email app should now be open with the message ready to send. ' +
-                           'If nothing happened, write to us directly at contact@altherix.in.';
-          ok.style.display = 'block';
-        }
-        if (btn) { btn.textContent = 'Send message'; btn.disabled = false; }
-      }, 1200);
-    });
-  })();
-})();
-</script>
 </body>
 </html>
