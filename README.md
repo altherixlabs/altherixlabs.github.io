@@ -75,7 +75,7 @@ Then enable GitHub Pages in repository settings as described above.
 
 Edit `index.html` in the contact section:
 - Email: Line with `contact@altherix.in`
-- Phone: Line with `+91 98214 28880`
+- Phone: Line with `+91 81529 23515`
 - Location: Line with `Ottupattarai, Coonoor, Tamil Nadu — 643105`
 
 ### Change Colors
