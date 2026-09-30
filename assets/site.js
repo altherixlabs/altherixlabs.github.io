@@ -45,12 +45,11 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
-  /* Pause SVG animation when hero is off-screen (saves battery on phones) */
-  var viz = d.querySelector('.hero-viz svg');
-  if (viz && 'IntersectionObserver' in window && viz.pauseAnimations) {
-    new IntersectionObserver(function (e) {
-      e[0].isIntersecting ? viz.unpauseAnimations() : viz.pauseAnimations();
-    }).observe(viz);
+  /* Pause looping animations while they are off-screen */
+  if ('IntersectionObserver' in window) {
+    d.querySelectorAll('.hero-viz, .layers').forEach(function (el) {
+      new IntersectionObserver(function (e) { el.classList.toggle('paused', !e[0].isIntersecting); }).observe(el);
+    });
   }
 
   /* Contact form → opens the visitor's mail client, addressed to contact@altherix.in */

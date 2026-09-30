@@ -22,10 +22,11 @@
 <meta name="twitter:description" content="Full-stack applications and enterprise platforms, designed, built and taken into production by the engineers who scoped them.">
 <meta name="twitter:image" content="https://altherix.in/assets/og.png">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=3">
-<script src="/assets/site.js?v=3" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=4">
+<script src="/assets/site.js?v=4" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Altherix Solutions", "alternateName": "Altherix", "url": "https://altherix.in/", "logo": "https://altherix.in/assets/icon-512.png", "slogan": "Transforming Software, Amplifying Value.", "email": "contact@altherix.in", "telephone": "+91-8152923515", "sameAs": ["https://www.linkedin.com/company/altherix"], "address": {"@type": "PostalAddress", "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai", "addressLocality": "Coonoor", "addressRegion": "Tamil Nadu", "postalCode": "643105", "addressCountry": "IN"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://altherix.in/"}, {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://altherix.in/#services"}, {"@type": "ListItem", "position": 3, "name": "Software Engineering", "item": "https://altherix.in/services/software-engineering/"}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Software Engineering", "description": "Full-stack applications and enterprise platforms, designed, built and taken into production by the engineers who scoped them.", "provider": {"@type": "Organization", "name": "Altherix Solutions", "url": "https://altherix.in/"}, "areaServed": "Worldwide"}</script>
@@ -34,63 +35,92 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav">
   <div class="ct">
-    <a class="brand" href="/" aria-label="Altherix home"><img src="/assets/icon-96.webp" width="34" height="34" alt="">ALTHERIX</a>
+    <a class="brand" href="/" aria-label="Altherix, home"><img src="/assets/mark-96.webp" width="28" height="28" alt="">ALTHERIX</a>
     <nav aria-label="Main"><ul class="nav-links"><li><a href="/#services" aria-current="page">Services</a></li><li><a href="/#solutions">Solutions</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/#industries">Industries</a></li><li><a href="/#about">About</a></li><li><a href="/careers.html">Careers</a></li></ul></nav>
     <a class="btn btn-p nav-cta" href="/#contact">Talk to an Engineer</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span></button>
   </div>
 </header>
 <div class="mobile-menu" id="mobile-menu">
-  <a href="/#services">Services</a><a href="/#solutions">Solutions</a><a href="/case-studies/">Case Studies</a><a href="/#industries">Industries</a><a href="/#about">About</a><a href="/careers.html">Careers</a>
-  <a class="btn btn-p" href="/#contact">Talk to an Engineer <span class="arr">→</span></a>
-  <div class="mm-meta"><a href="mailto:contact@altherix.in">contact@altherix.in</a><br><a href="tel:+918152923515">+91 81529 23515</a><br><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></div>
+  <nav aria-label="Mobile"><a href="/#services">Services</a><a href="/#solutions">Solutions</a><a href="/case-studies/">Case Studies</a><a href="/#industries">Industries</a><a href="/#about">About</a><a href="/careers.html">Careers</a></nav>
+  <a class="btn btn-p" href="/#contact">Talk to an Engineer</a>
+  <div class="mm-meta"><a href="mailto:contact@altherix.in">contact@altherix.in</a><a href="tel:+918152923515">+91 81529 23515</a><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></div>
 </div>
 
 <main id="main">
 <header class="page-hero"><div class="ct">
-  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/#services">Services</a> / Software Engineering</nav>
-  <div class="kicker">01 · Software Engineering</div>
-  <h1>Software that goes into production and <em class="grad-text" style="font-style:normal">stays there.</em></h1>
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span><a href="/#services">Services</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Software Engineering</span></nav>
+  <span class="label">Software Engineering</span>
+  <h1 class="h1">Software that goes into production and <span class="mute">stays there.</span></h1>
   <p class="lede">We design and build full-stack applications and enterprise platforms — the data model, the API, the front end and the deployment — and we stay with them after launch.</p>
-  <div class="hero-btns"><a class="btn btn-p" href="#contact">Talk to an Engineer <span class="arr">→</span></a><a class="btn btn-o" href="#work">Relevant work</a></div>
+  <div class="btns"><a class="btn btn-p" href="#contact">Talk to an Engineer</a><a class="btn btn-s" href="#work">Relevant work</a></div>
 </div></header>
-<section class="sec"><div class="ct article" style="grid-template-columns:1fr">
-  <div class="block"><div class="kicker">The problem</div><h2 style="margin-top:1rem">Why this is harder than it looks</h2><p>Most software projects don&#x27;t fail at the code. They fail at the edges: requirements that were never pinned down, a data model that can&#x27;t carry the real domain, a front end nobody was consulted on, and a deployment treated as someone else&#x27;s job.</p><p>We keep those edges inside one team. The engineers who talk to you are the engineers who build it.</p></div>
-  <div class="block"><div class="kicker">How we approach it</div><h2 style="margin-top:1rem">Our approach</h2><ol class="steps"><li><span><b>Scope with the people who build</b>Ambiguous requirements are turned into a shippable scope by the engineers who will deliver it.</span></li><li><span><b>Model the domain properly</b>Relational schemas designed around how your organisation actually works, so the data stays trustworthy as it grows.</span></li><li><span><b>Build across the stack</b>APIs, background processing, real-time features and front ends designed as one system.</span></li><li><span><b>Own the release</b>CI/CD, cloud hosting and production support are part of the work, not an afterthought.</span></li></ol></div>
-  <div class="block"><div class="kicker">Capabilities</div><h2 style="margin-top:1rem">What we do</h2><div class="svc-cap"><div><h3>Full-stack applications</h3><p>Web applications with a considered component architecture, from API to interface.</p></div><div><h3>Enterprise platforms</h3><p>Multi-module systems with role-based access, audit trails and reporting — built for organisations that depend on them daily.</p></div><div><h3>APIs &amp; microservices</h3><p>REST APIs and service boundaries that other systems and teams can rely on.</p></div><div><h3>Product engineering</h3><p>New features and modules for existing products — design, build, test and deploy.</p></div><div><h3>Real-time &amp; background work</h3><p>WebSocket features (SignalR) and scheduled jobs (Hangfire) where the problem needs them.</p></div><div><h3>Mobile</h3><p>React Native apps for field teams, integrated with the platform behind them.</p></div></div></div>
-  <div class="block"><div class="kicker">Technology</div><h2 style="margin-top:1rem">What we work with</h2><div class="chips"><span class="chip">.NET</span><span class="chip">Java / Spring Boot</span><span class="chip">Laravel</span><span class="chip">Node.js</span><span class="chip">Python / Django</span><span class="chip">React</span><span class="chip">Angular</span><span class="chip">React Native</span></div></div>
+<section class="sec"><div class="ct two">
+  <div class="rv"><span class="label">The problem</span><h2 class="h2" style="margin-top:1.25rem">Why this is harder than it looks.</h2></div>
+  <div class="prose rv"><p>Most software projects don&#x27;t fail at the code. They fail at the edges: requirements that were never pinned down, a data model that can&#x27;t carry the real domain, a front end nobody was consulted on, and a deployment treated as someone else&#x27;s job.</p><p>We keep those edges inside one team. The engineers who talk to you are the engineers who build it.</p></div>
+</div></section>
+<section class="sec"><div class="ct two">
+  <div class="rv"><span class="label">Approach</span><h2 class="h2" style="margin-top:1.25rem">How we work.</h2></div>
+  <ol class="steps rv"><li><span class="idx">01</span><span><b>Scope with the people who build</b>Ambiguous requirements are turned into a shippable scope by the engineers who will deliver it.</span></li><li><span class="idx">02</span><span><b>Model the domain properly</b>Relational schemas designed around how your organisation actually works, so the data stays trustworthy as it grows.</span></li><li><span class="idx">03</span><span><b>Build across the stack</b>APIs, background processing, real-time features and front ends designed as one system.</span></li><li><span class="idx">04</span><span><b>Own the release</b>CI/CD, cloud hosting and production support are part of the work, not an afterthought.</span></li></ol>
+</div></section>
+<section class="sec"><div class="ct two">
+  <div class="rv"><span class="label">Capabilities</span><h2 class="h2" style="margin-top:1.25rem">What we do.</h2><p class="stack-line" style="margin-top:1.5rem">.NET · Java / Spring Boot · Laravel · Node.js · Python / Django · React · Angular · React Native</p></div>
+  <dl class="kv rv"><div><dt>Full-stack applications</dt><dd>Web applications with a considered component architecture, from API to interface.</dd></div><div><dt>Enterprise platforms</dt><dd>Multi-module systems with role-based access, audit trails and reporting — built for organisations that depend on them daily.</dd></div><div><dt>APIs &amp; microservices</dt><dd>REST APIs and service boundaries that other systems and teams can rely on.</dd></div><div><dt>Product engineering</dt><dd>New features and modules for existing products — design, build, test and deploy.</dd></div><div><dt>Real-time &amp; background work</dt><dd>WebSocket features (SignalR) and scheduled jobs (Hangfire) where the problem needs them.</dd></div><div><dt>Mobile</dt><dd>React Native apps for field teams, integrated with the platform behind them.</dd></div></dl>
 </div></section>
 
-<section class="sec sec-tint" id="work"><div class="ct">
-  <div class="sec-hd split"><div><div class="kicker">Relevant case studies</div><h2 class="h2" style="font-size:clamp(1.8rem,3.4vw,2.6rem)">Where we have done this</h2></div></div>
-  <div class="cards"><a class="card" href="/case-studies/church-management-system/"><span class="cs-cat">Non-profit · Enterprise platform</span><span class="n">80+<small>API modules in production</small></span><h3>Church Management System</h3><p>A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.</p></a><a class="card" href="/case-studies/learning-platform-features/"><span class="cs-cat">Education · Product engineering</span><span class="n">8K+<small>Active students</small></span><h3>Learning Platform Features</h3><p>Video delivery, quizzes, progress tracking, certificates, Zoom and Razorpay for an ed-tech startup.</p></a><a class="card" href="/case-studies/delivery-management-system/"><span class="cs-cat">Logistics · Mobile &amp; platform</span><span class="n">40%<small>Faster deliveries</small></span><h3>Delivery Management System</h3><p>Real-time tracking, a delivery agent app, route optimisation and customer SMS, integrated with Google Maps.</p></a><a class="card" href="/case-studies/clinic-management-enhancement/"><span class="cs-cat">Healthcare · Platform enhancement</span><span class="n">70%<small>Fewer no-shows</small></span><h3>Clinic Management Enhancement</h3><p>Appointment booking, prescriptions, SMS and email reminders and telemedicine across four clinics.</p></a></div>
+<section class="sec" id="work"><div class="ct">
+  <div class="sec-hd rv"><div><span class="label">Relevant case studies</span><h2 class="h2" id="work-h" style="margin-top:1.25rem">Where we have done this.</h2></div></div>
+  <div class="rows"><a class="row cs-row" href="/case-studies/church-management-system/">
+  <span class="n">80+<small>API modules in production</small></span>
+  <span><span class="label">Non-profit · Enterprise platform</span><span class="h3" style="display:block">Church Management System</span></span>
+  <span class="body">A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.</span>
+  <span class="arr" aria-hidden="true">→</span>
+</a><a class="row cs-row" href="/case-studies/learning-platform-features/">
+  <span class="n">8K+<small>Active students</small></span>
+  <span><span class="label">Education · Product engineering</span><span class="h3" style="display:block">Learning Platform Features</span></span>
+  <span class="body">Video delivery, quizzes, progress tracking, certificates, Zoom and Razorpay for an ed-tech startup.</span>
+  <span class="arr" aria-hidden="true">→</span>
+</a><a class="row cs-row" href="/case-studies/delivery-management-system/">
+  <span class="n">40%<small>Faster deliveries</small></span>
+  <span><span class="label">Logistics · Mobile &amp; platform</span><span class="h3" style="display:block">Delivery Management System</span></span>
+  <span class="body">Real-time tracking, a delivery agent app, route optimisation and customer SMS, integrated with Google Maps.</span>
+  <span class="arr" aria-hidden="true">→</span>
+</a><a class="row cs-row" href="/case-studies/clinic-management-enhancement/">
+  <span class="n">70%<small>Fewer no-shows</small></span>
+  <span><span class="label">Healthcare · Platform enhancement</span><span class="h3" style="display:block">Clinic Management Enhancement</span></span>
+  <span class="body">Appointment booking, prescriptions, SMS and email reminders and telemedicine across four clinics.</span>
+  <span class="arr" aria-hidden="true">→</span>
+</a></div>
 </div></section>
-<section class="sec"><div class="ct"><div class="sec-hd"><div class="kicker">Other capabilities</div></div><div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))"><a class="card" href="/services/modernization/"><span class="cs-cat">02</span><h3>Modernization</h3><p>Improve before you replace. Upgrade stacks, refactor architecture and move to the cloud without losing the knowledge built into your systems.</p></a><a class="card" href="/services/ai-automation/"><span class="cs-cat">03</span><h3>AI & Automation</h3><p>Automation that removes real manual work — and AI where it genuinely helps, built with the same engineering discipline as everything else.</p></a><a class="card" href="/services/enterprise-integration/"><span class="cs-cat">04</span><h3>Enterprise Integration</h3><p>Connect business systems so data moves once, correctly — SAP and ERP, accounting, payments and third-party APIs.</p></a></div></div></section>
-<section class="sec cta" id="contact" aria-labelledby="contact-h">
-  <div class="ct cta-grid">
+<section class="sec"><div class="ct">
+  <div class="sec-hd rv"><div><span class="label">Other services</span><h2 class="h2" id="oth-h" style="margin-top:1.25rem">Related capabilities</h2></div></div>
+  <div class="rows"><a class="row cs-row" href="/services/modernization/"><span class="idx">02</span><span class="h3" style="display:block">Modernization</span><span class="body">Improve before you replace. Upgrade stacks, refactor architecture and move to the cloud without losing the knowledge built into your systems.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/services/ai-automation/"><span class="idx">03</span><span class="h3" style="display:block">AI & Automation</span><span class="body">Automation that removes real manual work — and AI where it genuinely helps, built with the same engineering discipline as everything else.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/services/enterprise-integration/"><span class="idx">04</span><span class="h3" style="display:block">Enterprise Integration</span><span class="body">Connect business systems so data moves once, correctly — SAP and ERP, accounting, payments and third-party APIs.</span><span class="arr" aria-hidden="true">→</span></a></div>
+</div></section>
+<section class="sec" id="contact" aria-labelledby="contact-h">
+  <div class="ct two even">
     <div class="rv">
-      <div class="kicker">Talk to an engineer</div>
-      <h2 class="h2" id="contact-h">Have a difficult software problem?</h2>
-      <p class="lede">Whether you're modernizing a legacy platform, integrating enterprise systems, or figuring out where AI actually fits, start with a conversation with our engineering team.</p>
-      <div class="contact-list">
-        <a href="mailto:contact@altherix.in"><span>Email</span><b>contact@altherix.in</b></a>
-        <a href="tel:+918152923515"><span>Phone</span><b>+91 81529 23515</b></a>
-        <a href="https://www.linkedin.com/company/altherix" target="_blank" rel="noopener"><span>LinkedIn</span><b>linkedin.com/company/altherix</b></a>
-        <div><span>Office</span><b>1247 N1, LN Gardens, Stanley Park<br>Ottupattarai, Coonoor<br>Nilgiris, Tamil Nadu 643105</b></div>
-      </div>
+      <span class="label">Contact</span>
+      <h2 class="h2" id="contact-h" style="margin-top:1.25rem">Have a difficult software problem?</h2>
+      <p class="lede" style="margin-top:1.25rem">Whether you're modernizing a legacy platform, integrating enterprise systems, or figuring out where AI actually fits, start with a conversation with our engineering team.</p>
+      <dl class="contact-dl">
+        <div><dt>Email</dt><dd><a href="mailto:contact@altherix.in">contact@altherix.in</a></dd></div>
+        <div><dt>Phone</dt><dd><a href="tel:+918152923515">+91 81529 23515</a></dd></div>
+        <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/company/altherix" target="_blank" rel="noopener">linkedin.com/company/altherix</a></dd></div>
+        <div><dt>Office</dt><dd>1247 N1, LN Gardens, Stanley Park<br>Ottupattarai, Coonoor<br>Nilgiris, Tamil Nadu 643105</dd></div>
+      </dl>
     </div>
-    <form class="form rv" id="contact-form" novalidate>
-      <div class="row">
+    <form class="form rv" id="contact-form" novalidate aria-label="Contact form">
+      <div class="row2">
         <div><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
         <div><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
       </div>
-      <div class="row">
-        <div><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization"></div>
-        <div><label for="f-topic">Area</label><select id="f-topic" name="topic"><option value="">Choose one…</option><option>Software Engineering</option><option>Modernization</option><option>AI & Automation</option><option>Enterprise Integration</option><option>Cloud &amp; DevOps</option><option>Not sure yet</option></select></div>
+      <div class="row2">
+        <div><label for="f-company">Company <span class="opt">(optional)</span></label><input id="f-company" name="company" autocomplete="organization"></div>
+        <div><label for="f-topic">Area <span class="opt">(optional)</span></label><select id="f-topic" name="topic"><option value="">Choose one</option><option>Software Engineering</option><option>Modernization</option><option>AI & Automation</option><option>Enterprise Integration</option><option>Cloud &amp; DevOps</option><option>Not sure yet</option></select></div>
       </div>
-      <div><label for="f-msg">What are you working on?</label><textarea id="f-msg" name="message" required placeholder="The system, the problem, and what a good outcome looks like."></textarea></div>
-      <button class="btn btn-p" type="submit">Talk to an Engineer <span class="arr">→</span></button>
-      <p class="form-note">Opens your email app with the message addressed to contact@altherix.in.</p>
+      <div><label for="f-msg">What are you working on?</label><textarea id="f-msg" name="message" required aria-describedby="f-hint"></textarea><p class="meta" id="f-hint" style="margin-top:.4rem">The system, the problem, and what a good outcome looks like.</p></div>
+      <button class="btn btn-p" type="submit">Talk to an Engineer</button>
+      <p class="meta">This opens your email app with the message addressed to contact@altherix.in.</p>
       <p class="form-ok" id="form-ok" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -100,18 +130,18 @@
   <div class="ct">
     <div class="foot-top">
       <div class="foot-brand">
-        <a class="brand" href="/"><img src="/assets/icon-96.webp" width="34" height="34" alt="" loading="lazy">ALTHERIX</a>
+        <a class="brand" href="/"><img src="/assets/mark-96.webp" width="28" height="28" alt="" loading="lazy">ALTHERIX</a>
         <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
-        <p class="foot-sub">Transforming Software, Amplifying Value.</p>
+        <p class="foot-sub meta">Transforming Software, Amplifying Value.</p>
       </div>
-      <div><h2>Services</h2><ul><li><a href="/services/software-engineering/">Software Engineering</a></li><li><a href="/services/modernization/">Modernization</a></li><li><a href="/services/ai-automation/">AI & Automation</a></li><li><a href="/services/enterprise-integration/">Enterprise Integration</a></li><li><a href="/services/enterprise-integration/#cloud">Cloud &amp; DevOps</a></li></ul></div>
-      <div><h2>Industries</h2><ul><li><a href="/#industries">Manufacturing</a></li><li><a href="/#industries">Financial Services</a></li><li><a href="/#industries">Healthcare</a></li><li><a href="/#industries">Education</a></li><li><a href="/#industries">Logistics</a></li><li><a href="/#industries">Enterprise</a></li></ul></div>
-      <div><h2>Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/#team">Team</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
-      <div><h2>Contact</h2><ul><li><a href="mailto:contact@altherix.in">contact@altherix.in</a></li><li><a href="tel:+918152923515">+91 81529 23515</a></li><li><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></li><li><a href="/#contact">Ooty · India</a></li></ul></div>
+      <div><h2 class="label">Services</h2><ul><li><a href="/services/software-engineering/">Software Engineering</a></li><li><a href="/services/modernization/">Modernization</a></li><li><a href="/services/ai-automation/">AI & Automation</a></li><li><a href="/services/enterprise-integration/">Enterprise Integration</a></li><li><a href="/services/enterprise-integration/#cloud">Cloud &amp; DevOps</a></li></ul></div>
+      <div><h2 class="label">Industries</h2><ul><li><a href="/#industries">Manufacturing</a></li><li><a href="/#industries">Financial Services</a></li><li><a href="/#industries">Healthcare</a></li><li><a href="/#industries">Education</a></li><li><a href="/#industries">Logistics</a></li><li><a href="/#industries">Enterprise</a></li></ul></div>
+      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/#team">Team</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div><h2 class="label">Contact</h2><ul><li><a href="mailto:contact@altherix.in">contact@altherix.in</a></li><li><a href="tel:+918152923515">+91 81529 23515</a></li><li><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
-    <div class="foot-bot">
+    <div class="foot-bot meta">
       <span>© <span data-year>2026</span> Altherix Solutions</span>
-      <span>Ooty · India &nbsp;·&nbsp; <a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></span>
+      <span>Ooty · India</span>
     </div>
   </div>
 </footer>
