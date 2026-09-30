@@ -410,10 +410,10 @@ INDUSTRIES = [
 # TEAM
 # ────────────────────────────────────────────────────────────────────────────
 TEAM = [
-  ("Ganesh S", "Director & Founder", "GS", ["Enterprise architecture", "SAP", "Cloud architecture"]),
+  ("Ganesh S", "Founder, Director & Chief Executive Officer", "GS", ["Enterprise architecture", "SAP", "Cloud architecture"]),
+  ("Cyril Johnson", "Director & Chief Technology Officer", "CJ", ["Architecture", "Technology strategy", "Emerging technologies"]),
   ("Priscilla Mathews", "Chief Financial Officer", "PM", ["Project economics", "Contracts", "Risk management"]),
   ("Muralidharan R", "Senior Software Engineer", "MR", ["Java / Spring Boot", "React / Angular", "Microservices"]),
   ("Jessy Varghese", "Software Engineer", "JV", ["Node.js / Python", "AWS / Azure", "Database design"]),
-  ("Cyril Johnson", "Technical Advisor", "CJ", ["Architecture", "Technology strategy", "Emerging technologies"]),
   ("Rohan Raj", "Software Engineer", "RR", ["REST APIs", "Java / Python", "PostgreSQL / MySQL"]),
 ]
