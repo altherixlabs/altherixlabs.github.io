@@ -318,6 +318,10 @@ a.cs-row .body{font-size:.9375rem}
 @media (min-width:900px){.cta-end{grid-template-columns:1fr auto;align-items:end}}
 .cta-end .lede{margin-top:1rem}
 
+/* products */
+.product-fig{margin:0 0 clamp(48px,6vw,80px);border:1px solid var(--line-strong);border-radius:var(--r);overflow:hidden;background:var(--bg-raise)}
+.product-fig img{width:100%;height:auto}
+
 /* careers */
 .roles{display:grid;gap:12px}
 .role{border:1px solid var(--line-strong);border-radius:var(--r);background:var(--bg-raise)}

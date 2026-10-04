@@ -30,7 +30,7 @@ NAV = [("Services", "/#services", "services"), ("Solutions", "/#solutions", "sol
        ("Case Studies", "/case-studies/", "case-studies"), ("Products", "/products/", "products"), ("Industries", "/#industries", "industries"),
        ("About", "/#about", "about"), ("Careers", "/careers.html", "careers")]
 
-def head(title, desc, path, jsonld=None, og_type="website", noindex=False):
+def head(title, desc, path, jsonld=None, og_type="website", noindex=False, og_image="/assets/og.png", og_w=1200, og_h=630):
     u = url_for(path)
     ld = "".join(f'\n<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
     robots = '\n<meta name="robots" content="noindex">' if noindex else ""
@@ -49,14 +49,14 @@ def head(title, desc, path, jsonld=None, og_type="website", noindex=False):
 <meta property="og:site_name" content="Altherix">
 <meta property="og:title" content="{E(title)}">
 <meta property="og:description" content="{E(desc)}">
-<meta property="og:image" content="{SITE}/assets/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image" content="{SITE}{og_image}">
+<meta property="og:image:width" content="{og_w}">
+<meta property="og:image:height" content="{og_h}">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{E(title)}">
 <meta name="twitter:description" content="{E(desc)}">
-<meta name="twitter:image" content="{SITE}/assets/og.png">
+<meta name="twitter:image" content="{SITE}{og_image}">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
@@ -646,7 +646,7 @@ def products():
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix",
                "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.",
                "publisher": {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}}]
-    html = head("Products | Altherix", "Mandate by Altherix: a safe way to connect AI agents to the systems your business already runs on. Early access opening soon.", path, jsonld) + nav("products") + f"""
+    html = head("Products | Altherix", "Mandate by Altherix: a safe way to connect AI agents to the systems your business already runs on. Early access opening soon.", path, jsonld, og_image="/assets/og-mandate.jpg", og_w=1200, og_h=1200) + nav("products") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Products", "")])}
@@ -656,6 +656,12 @@ def products():
 </div></header>
 
 <section class="sec" id="mandate" aria-labelledby="mandate-h"><div class="ct">
+  <figure class="product-fig rv">
+    <picture>
+      <source type="image/webp" srcset="/assets/mandate-hero-720.webp 720w, /assets/mandate-hero.webp 1200w" sizes="(min-width:1240px) 1160px, 100vw">
+      <img src="/assets/mandate-hero.jpg" width="1200" height="674" alt="Illustration: business systems on one side and an AI agent on the other, connected through a gate where some requests pass and one is held for approval." decoding="async">
+    </picture>
+  </figure>
   <div class="two">
     <div class="rv">
       <span class="label">In development · Early access soon</span>
