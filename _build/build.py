@@ -27,7 +27,7 @@ def dot(items):
 
 # ── chrome ───────────────────────────────────────────────────────────────────
 NAV = [("Services", "/#services", "services"), ("Solutions", "/#solutions", "solutions"),
-       ("Case Studies", "/case-studies/", "case-studies"), ("Industries", "/#industries", "industries"),
+       ("Case Studies", "/case-studies/", "case-studies"), ("Products", "/products/", "products"), ("Industries", "/#industries", "industries"),
        ("About", "/#about", "about"), ("Careers", "/careers.html", "careers")]
 
 def head(title, desc, path, jsonld=None, og_type="website", noindex=False):
@@ -101,7 +101,7 @@ def footer():
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">Industries</h2><ul>{ind}</ul></div>
-      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/#team">Team</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/#team">Team</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
     <div class="foot-bot meta">
@@ -631,6 +631,57 @@ def careers():
 """ + footer()
     write(path, html); PAGES.append((path, "0.7"))
 
+# ── PRODUCTS ─────────────────────────────────────────────────────────────────
+def products():
+    path = "products/index.html"
+    mailto = f"mailto:{EMAIL}?subject=Mandate&amp;body=" + quote("Hello Altherix team,\n\nI'd like early access to Mandate.\n\nCompany:\nSystems we'd like AI agents to work with:\n\nThank you,")
+    feats = [("Works with what you run", "ERP, SQL databases and in-house applications, made usable by AI agents."),
+             ("Your permissions, not new ones", "Agents see only what their user is allowed to see."),
+             ("A person approves risky actions", "Writing data, sending documents or moving money waits for approval."),
+             ("Every action on record", "Each request and change is logged and can be replayed.")]
+    flow = [("An AI agent asks", "An assistant wants to read a record or take an action in one of your systems."),
+            ("Mandate checks", "Is this user allowed? Does this action need approval? The request is logged either way."),
+            ("Your system responds", "Only permitted, approved actions reach the system. Everything else stops at Mandate.")]
+    jsonld = [ORG, crumbs_ld([("Home", "/"), ("Products", "/products/")]),
+              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix",
+               "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.",
+               "publisher": {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}}]
+    html = head("Products | Altherix", "Mandate by Altherix: a safe way to connect AI agents to the systems your business already runs on. Early access opening soon.", path, jsonld) + nav("products") + f"""
+<main id="main">
+<header class="page-hero"><div class="ct">
+  {crumbs([("Home", "/"), ("Products", "")])}
+  <span class="label">Products</span>
+  <h1 class="h1">What we're building.</h1>
+  <p class="lede">Products that come out of the problems we solve for clients, built with the same engineering discipline.</p>
+</div></header>
+
+<section class="sec" id="mandate" aria-labelledby="mandate-h"><div class="ct">
+  <div class="two">
+    <div class="rv">
+      <span class="label">In development · Early access soon</span>
+      <h2 class="h2" id="mandate-h" style="margin-top:1.25rem">Mandate <span class="mute">by Altherix</span></h2>
+      <p class="statement">Your ERP is about to get an AI colleague. Who decides what it can do?</p>
+      <p class="lede" style="margin-top:1.25rem">Mandate is a safe way to connect AI agents to the systems your business already runs on.</p>
+      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="{mailto}">Request early access</a></div>
+      <p class="meta" style="margin-top:.9rem">Or email {EMAIL} with the subject &ldquo;Mandate&rdquo;.</p>
+    </div>
+    <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in feats)}</div>
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="how-h"><div class="ct two">
+  <div class="rv"><span class="label">How it works</span><h2 class="h2" id="how-h" style="margin-top:1.25rem">AI that works inside your systems, <span class="mute">only within its mandate.</span></h2></div>
+  <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(flow))}</ol>
+</div></section>
+
+<section class="sec"><div class="ct cta-end rv">
+  <div><h2 class="h2">Want to shape Mandate early?</h2><p class="lede">We're opening early access to a small group of companies ready to put AI to work on real systems.</p></div>
+  <div class="btns"><a class="btn btn-p" href="{mailto}">Request early access</a></div>
+</div></section>
+</main>
+""" + footer()
+    write(path, html); PAGES.append((path, "0.8"))
+
 def notfound():
     html = head("Page not found | Altherix", "This page doesn't exist.", "404.html", noindex=True) + nav() + """
 <main id="main"><section class="nf page-hero"><div class="ct">
@@ -651,5 +702,5 @@ if __name__ == "__main__":
     home(); cases_index()
     for c in CASES: case_page(c)
     for s in SERVICES: service_page(s)
-    careers(); notfound(); seo_files()
+    products(); careers(); notfound(); seo_files()
     print(f"Built {len(PAGES)} pages + 404, sitemap.xml, robots.txt")
