@@ -11,7 +11,7 @@ ADDRESS = ["1247 N1, LN Gardens, Stanley Park", "Ottupattarai, Coonoor", "Nilgir
 
 # Search Console / Bing Webmaster verification codes. Paste the content value only; leave empty to omit the tag.
 GOOGLE_SITE_VERIFICATION = ""
-BING_SITE_VERIFICATION = ""
+BING_SITE_VERIFICATION = "3094D6A701575725433D5DD1A488F48D"
 
 # Page titles and meta descriptions for pages that aren't a case study or service.
 # Titles 50–60 characters, descriptions 140–160. Visible headings are set in build.py.
