@@ -1,0 +1,34 @@
+# Altherix
+
+> Altherix Solutions is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). It builds custom software, modernizes legacy applications, adds AI and process automation, and integrates ERP, accounting and payment systems for businesses in India and the UK.
+
+Contact: contact@altherix.in · +91 81529 23515 · https://www.linkedin.com/company/altherix
+
+## Services
+
+- [Software Engineering](https://altherix.in/services/software-engineering/): Full-stack applications and enterprise platforms, designed, built and taken into production by the engineers who scoped them.
+- [Modernization](https://altherix.in/services/modernization/): Improve before you replace. Upgrade stacks, refactor architecture and move to the cloud without losing the knowledge built into your systems.
+- [AI & Automation](https://altherix.in/services/ai-automation/): Automation that removes real manual work — and AI where it genuinely helps, built with the same engineering discipline as everything else.
+- [Enterprise Integration](https://altherix.in/services/enterprise-integration/): Connect business systems so data moves once, correctly — SAP and ERP, accounting, payments and third-party APIs.
+
+## Products
+
+- [CodeGate](https://altherix.in/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.
+- [Mandate](https://altherix.in/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.
+
+## Case studies
+
+- [Church Management System](https://altherix.in/case-studies/church-management-system/): A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance. (80+ api modules in production)
+- [Missions Office Enterprise System](https://altherix.in/case-studies/missions-office-enterprise-system/): Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports. (7 organisational levels, one reporting system)
+- [ERP Inventory Management Module](https://altherix.in/case-studies/erp-inventory-module/): Inventory management inside the ERP — barcode scanning, real-time stock updates and automated reorder alerts. (85% less manual work)
+- [Multi-Gateway Payment Integration](https://altherix.in/case-studies/payment-gateway-integration/): Razorpay, PayU and Paytm behind one integration, with UPI, wallets, EMI, an admin dashboard and automated reconciliation. (35% higher conversions)
+- [Accounting Software Integration](https://altherix.in/case-studies/accounting-software-integration/): A REST API bridge between billing and Tally / Zoho Books, with automated invoicing, GST preparation and payment reconciliation. (90% time saved)
+- [Clinic Management Enhancement](https://altherix.in/case-studies/clinic-management-enhancement/): Appointment booking, prescriptions, SMS and email reminders and telemedicine across four clinics. (70% fewer no-shows)
+- [Learning Platform Features](https://altherix.in/case-studies/learning-platform-features/): Video delivery, quizzes, progress tracking, certificates, Zoom and Razorpay for an ed-tech startup. (8K+ active students)
+- [Delivery Management System](https://altherix.in/case-studies/delivery-management-system/): Real-time tracking, a delivery agent app, route optimisation and customer SMS, integrated with Google Maps. (40% faster deliveries)
+
+## Company
+
+- [About and contact](https://altherix.in/#about)
+- [Careers](https://altherix.in/careers.html): Remote Full Stack Development internship and full-time engineering roles.
+- [All case studies](https://altherix.in/case-studies/)

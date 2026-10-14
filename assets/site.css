@@ -124,6 +124,11 @@ body.menu-open{overflow:hidden}
 .paused .viz-flow,.paused .layers::before{animation-play-state:paused}
 @keyframes flow{to{stroke-dashoffset:-224}}
 
+.kw-sub{margin-top:1.25rem;font-size:1.0625rem;font-weight:500;color:var(--ink-2);max-width:60ch}
+.hero .kw-sub{margin-top:1.5rem}
+.page-hero .kw-sub+.lede{margin-top:1rem}
+.hero .kw-sub+.lede{margin-top:1rem}
+
 /* outcomes */
 .outcomes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
 @media (min-width:860px){.outcomes{grid-template-columns:repeat(3,minmax(0,1fr))}}

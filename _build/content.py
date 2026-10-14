@@ -1,5 +1,5 @@
 """Site content. Everything here comes from material already published on altherix.in
-(case studies, team, services, careers). Do not add clients, figures or certifications
+(case studies, services, products, careers). Do not add clients, figures or certifications
 that are not supported by real work."""
 
 SITE = "https://altherix.in"
@@ -9,12 +9,45 @@ PHONE_TEL = "+918152923515"
 LINKEDIN = "https://www.linkedin.com/company/altherix"
 ADDRESS = ["1247 N1, LN Gardens, Stanley Park", "Ottupattarai, Coonoor", "Nilgiris, Tamil Nadu 643105"]
 
+# Search Console / Bing Webmaster verification codes. Paste the content value only; leave empty to omit the tag.
+GOOGLE_SITE_VERIFICATION = ""
+BING_SITE_VERIFICATION = ""
+
+# Page titles and meta descriptions for pages that aren't a case study or service.
+# Titles 50–60 characters, descriptions 140–160. Visible headings are set in build.py.
+SEO = {
+  "home": dict(seo_title="Software Development & Modernization in India | Altherix",
+               seo_desc="Custom software development, legacy modernization, AI automation and ERP integration for businesses in India and the UK. Engineers in Coonoor, Tamil Nadu.",
+               kw_sub="Software development, modernization and AI automation for businesses in India and the UK."),
+  "case-studies": dict(seo_title="Software Development & Integration Case Studies | Altherix",
+                       seo_desc="Software development case studies: .NET, Laravel, Spring Boot and Django systems in production, with results like 85% less manual work and 90% time saved."),
+  "products": dict(seo_title="Products: CodeGate & Mandate | Altherix",
+                   seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. Mandate is a safe gateway between AI agents and your ERP, SQL and in-house systems."),
+  "careers": dict(seo_title="Careers: Remote Full Stack Development Internship | Altherix",
+                  seo_desc="Remote full stack internship (2 or 3 months, stipend, paid 3-day onsite in Ooty), plus full-time .NET, Laravel and DevOps roles in Coonoor, Tamil Nadu."),
+}
+
+# Home page FAQ — shown on the page and as FAQPage structured data. Keep answers factual.
+FAQ = [
+  ("What does Altherix do?",
+   "Altherix is a software engineering company. We build custom software and enterprise applications, modernize legacy systems, add AI and process automation, and integrate ERP, accounting and payment systems. We also run the CI/CD pipelines and cloud infrastructure behind them."),
+  ("Which technologies do you work with?",
+   "Mainly .NET and ASP.NET Core, Java with Spring Boot, PHP with Laravel, Python with Django, and Node.js; React, Angular and React Native on the front end; SQL Server, MySQL, PostgreSQL and MongoDB; and Azure and AWS, with Azure DevOps and GitHub Actions for delivery."),
+  ("Do you work with clients in the UK and outside India?",
+   "Yes. Platforms we built run in production on Azure in the UK for a global organisation, alongside systems for clients in India."),
+  ("How does an engagement start?",
+   "With a conversation with an engineer. Email contact@altherix.in or use the contact form to describe your system and the outcome you need. We agree a scope together before any build work begins."),
+  ("Where is Altherix based?",
+   "Our office is in Coonoor, in the Nilgiris district of Tamil Nadu, India. Altherix was founded in nearby Ooty."),
+]
+
 # ────────────────────────────────────────────────────────────────────────────
 # CASE STUDIES
 # ────────────────────────────────────────────────────────────────────────────
 CASES = [
   dict(
     slug="church-management-system",
+    seo_desc=".NET 9, React and SQL Server church management platform on Azure, with live check-in over SignalR and Hangfire jobs: 80+ API modules in production.",
     featured=True,
     category="Non-profit · Enterprise platform",
     industry="Enterprise / Nonprofit",
@@ -56,6 +89,7 @@ CASES = [
   ),
   dict(
     slug="missions-office-enterprise-system",
+    seo_desc="Laravel 12 and MySQL reporting system on Azure App Service: statistical returns across a seven-level hierarchy, six dashboard modules and audited exports.",
     featured=True,
     category="Non-profit · Enterprise reporting",
     industry="Enterprise / Nonprofit",
@@ -98,6 +132,7 @@ CASES = [
   ),
   dict(
     slug="erp-inventory-module",
+    seo_desc="Java Spring Boot and MySQL ERP inventory module with barcode scanning, real-time stock and automated reorder alerts: 85% less manual work across 5K+ SKUs.",
     category="Manufacturing · ERP",
     industry="Manufacturing",
     title="ERP Inventory Management Module",
@@ -126,6 +161,7 @@ CASES = [
   ),
   dict(
     slug="payment-gateway-integration",
+    seo_desc="Razorpay, PayU and Paytm payment gateway integration in Node.js, React and MongoDB with UPI, EMI and auto reconciliation: 35% higher conversions.",
     category="E-commerce · Payments",
     industry="Financial Services",
     title="Multi-Gateway Payment Integration",
@@ -154,6 +190,7 @@ CASES = [
   ),
   dict(
     slug="accounting-software-integration",
+    seo_desc="Django and PostgreSQL REST bridge from billing to Tally and Zoho Books, automating invoices, GST preparation and reconciliation: 90% time saved, 100% accuracy.",
     category="Financial services · Integration",
     industry="Financial Services",
     title="Accounting Software Integration",
@@ -183,6 +220,7 @@ CASES = [
   ),
   dict(
     slug="clinic-management-enhancement",
+    seo_desc="Angular, Node.js and Twilio clinic management enhancement across four clinics: booking, prescriptions, SMS reminders, telemedicine. 70% fewer no-shows.",
     category="Healthcare · Platform enhancement",
     industry="Healthcare",
     title="Clinic Management Enhancement",
@@ -211,6 +249,7 @@ CASES = [
   ),
   dict(
     slug="learning-platform-features",
+    seo_desc="React and Django learning platform with AWS S3 video, quizzes, certificates, Zoom and Razorpay payments: 8K+ active students and a 92% completion rate.",
     category="Education · Product engineering",
     industry="Education",
     title="Learning Platform Features",
@@ -241,6 +280,7 @@ CASES = [
   ),
   dict(
     slug="delivery-management-system",
+    seo_desc="React Native, Node.js and Google Maps delivery management system with real-time tracking, route optimisation and SMS: 40% faster deliveries, 200+ a day.",
     category="Logistics · Mobile & platform",
     industry="Logistics",
     title="Delivery Management System",
@@ -278,6 +318,9 @@ CASE = {c["slug"]: c for c in CASES}
 SERVICES = [
   dict(
     slug="software-engineering", n="01", name="Software Engineering",
+    seo_title="Custom Software & Enterprise App Development | Altherix",
+    seo_desc="Custom software development and enterprise application development: .NET, Java, Laravel, React and Node.js platforms built, deployed and supported by one team.",
+    kw_sub="Custom software development and enterprise application development services.",
     short="Full-stack applications and enterprise platforms, designed, built and taken into production by the engineers who scoped them.",
     list=["Full-stack applications", "Enterprise platforms", "APIs & microservices", "Product engineering"],
     tech=[".NET", "Java / Spring Boot", "Laravel", "Node.js", "Python / Django", "React", "Angular", "React Native"],
@@ -305,6 +348,9 @@ SERVICES = [
   ),
   dict(
     slug="modernization", n="02", name="Modernization",
+    seo_title="Legacy Application Modernization, Cloud Migration | Altherix",
+    seo_desc="Legacy application modernization without a rewrite: .NET and Java upgrades, architecture refactoring, cloud migration to Azure and performance engineering.",
+    kw_sub="Legacy application modernization, .NET and Java upgrades, and cloud migration services.",
     short="Improve before you replace. Upgrade stacks, refactor architecture and move to the cloud without losing the knowledge built into your systems.",
     list=["Legacy modernization", "Architecture refactoring", "Cloud migration", "Performance engineering"],
     tech=["Azure", "AWS", ".NET", "Spring Boot", "Laravel", "SQL Server", "MySQL", "PostgreSQL"],
@@ -332,6 +378,9 @@ SERVICES = [
   ),
   dict(
     slug="ai-automation", n="03", name="AI & Automation",
+    seo_title="AI Automation Services & AI Agents for Business | Altherix",
+    seo_desc="AI automation services: AI agents for business, intelligent workflows and process automation connected to your systems, with access control, logging and review.",
+    kw_sub="AI automation services, AI agents for business and process automation.",
     short="Automation that removes real manual work — and AI where it genuinely helps, built with the same engineering discipline as everything else.",
     list=["AI integrations", "AI agents", "Intelligent workflows", "Process automation"],
     tech=["Python", "LLM APIs", "Workflow orchestration", "REST integrations", "Background jobs", "Human review steps"],
@@ -361,6 +410,9 @@ SERVICES = [
   ),
   dict(
     slug="enterprise-integration", n="04", name="Enterprise Integration",
+    seo_title="ERP, SAP, Tally & Payment Gateway Integration | Altherix",
+    seo_desc="ERP and SAP integration, Tally and Zoho Books integration, and payment gateway integration with Razorpay, PayU and Paytm, plus CI/CD and Azure cloud operations.",
+    kw_sub="ERP and SAP integration, Tally and Zoho Books integration, and payment gateway integration services.",
     short="Connect business systems so data moves once, correctly — SAP and ERP, accounting, payments and third-party APIs.",
     list=["SAP and enterprise integrations", "Business systems", "Data integration", "Third-party APIs"],
     tech=["REST", "SAP", "Tally", "Zoho Books", "Razorpay", "PayU", "Paytm", "Twilio", "Google Maps", "Zoom"],

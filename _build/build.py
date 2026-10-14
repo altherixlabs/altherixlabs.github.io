@@ -2,7 +2,7 @@
 """Static site generator for altherix.in.
 Run from the repo root:  python3 _build/build.py
 Writes plain HTML files; GitHub Pages serves them as-is (Jekyll ignores _build/)."""
-import json, os, sys, datetime
+import json, os, re, subprocess, sys, datetime
 from html import escape as E
 from urllib.parse import quote
 sys.path.insert(0, os.path.dirname(__file__))
@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "4"  # asset cache-buster
+V = "5"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -20,6 +20,35 @@ def write(path, html):
 
 def url_for(path):
     return SITE + "/" + path.replace("index.html", "")
+
+TODAY = datetime.date.today().isoformat()
+
+def _git(*args):
+    try:
+        return subprocess.run(["git", "-C", ROOT, *args], capture_output=True, text=True, check=False)
+    except FileNotFoundError:
+        return None
+
+def git_dates(rel):
+    """(first, last) commit dates of a generated file, or (None, None) if it isn't committed yet."""
+    r = _git("log", "--follow", "--format=%cs", "--", rel)
+    dates = r.stdout.split() if r and r.returncode == 0 else []
+    return (dates[-1], dates[0]) if dates else (None, None)
+
+def committed_text(rel):
+    r = _git("show", f"HEAD:{rel}")
+    return r.stdout if r and r.returncode == 0 else None
+
+def changed_since_commit(rel):
+    """True if the file on disk differs from the last commit (or was never committed)."""
+    old = committed_text(rel)
+    if old is None:
+        return True
+    with open(os.path.join(ROOT, rel), encoding="utf-8") as f:
+        return f.read() != old
+
+def last_modified(rel):
+    return TODAY if changed_since_commit(rel) else (git_dates(rel)[1] or TODAY)
 
 def dot(items):
     # keep each separator attached to the item before it, so wrapped lines never start with "·"
@@ -34,14 +63,19 @@ def head(title, desc, path, jsonld=None, og_type="website", noindex=False, og_im
     u = url_for(path)
     ld = "".join(f'\n<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
     robots = '\n<meta name="robots" content="noindex">' if noindex else ""
+    canonical = "" if noindex else f'\n<link rel="canonical" href="{u}">'
+    verify = ""
+    if GOOGLE_SITE_VERIFICATION:
+        verify += f'\n<meta name="google-site-verification" content="{E(GOOGLE_SITE_VERIFICATION)}">'
+    if BING_SITE_VERIFICATION:
+        verify += f'\n<meta name="msvalidate.01" content="{E(BING_SITE_VERIFICATION)}">'
     return f"""<!DOCTYPE html>
 <html lang="en-IN" class="no-js">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{E(title)}</title>
-<meta name="description" content="{E(desc)}">{robots}
-<link rel="canonical" href="{u}">
+<meta name="description" content="{E(desc)}">{robots}{canonical}{verify}
 <meta name="theme-color" content="#020D34">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="{og_type}">
@@ -98,6 +132,7 @@ def footer():
         <a class="brand" href="/"><img src="/assets/mark-96.webp" width="28" height="28" alt="" loading="lazy">ALTHERIX</a>
         <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
         <p class="foot-sub meta">Transforming Software, Amplifying Value.</p>
+        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Systems in production in India and the UK.</p>
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">Industries</h2><ul>{ind}</ul></div>
@@ -106,7 +141,7 @@ def footer():
     </div>
     <div class="foot-bot meta">
       <span>© <span data-year>2026</span> Altherix Solutions</span>
-      <span>Ooty · India</span>
+      <span>Coonoor, Tamil Nadu, India</span>
     </div>
   </div>
 </footer>
@@ -115,10 +150,10 @@ def footer():
 """
 
 ORG = {
-  "@context": "https://schema.org", "@type": "Organization", "name": "Altherix Solutions",
+  "@context": "https://schema.org", "@type": ["Organization", "ProfessionalService"], "name": "Altherix Solutions",
   "alternateName": "Altherix", "url": SITE + "/", "logo": SITE + "/assets/icon-512.png",
   "slogan": "Transforming Software, Amplifying Value.",
-  "email": EMAIL, "telephone": "+91-8152923515", "sameAs": [LINKEDIN],
+  "email": EMAIL, "telephone": "+91-8152923515", "sameAs": [LINKEDIN], "areaServed": ["IN", "GB"],
   "address": {"@type": "PostalAddress", "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai",
               "addressLocality": "Coonoor", "addressRegion": "Tamil Nadu", "postalCode": "643105", "addressCountry": "IN"},
 }
@@ -282,10 +317,11 @@ def home():
     prac_html = "".join(f'<div class="rv"><h3 class="h3">{t}</h3><ul>{"".join(f"<li>{i}</li>" for i in items)}</ul></div>' for t, items in practices)
 
 
-    jsonld = [ORG, {"@context": "https://schema.org", "@type": "WebSite", "name": "Altherix", "url": SITE + "/"}]
-    html = head("Altherix | Software Engineering, AI & Enterprise Modernization",
-                "Altherix engineers modern software, enterprise integrations and production-ready AI systems for businesses that depend on their technology.",
-                path, jsonld) + nav() + f"""
+    faq_ld = {"@context": "https://schema.org", "@type": "FAQPage",
+              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}
+    faq_html = "".join(f'<div class="row pr-row"><span class="idx">0{i+1}</span><h3 class="h3">{E(q)}</h3><p class="body">{E(a)}</p></div>' for i, (q, a) in enumerate(FAQ))
+    jsonld = [ORG, {"@context": "https://schema.org", "@type": "WebSite", "name": "Altherix", "url": SITE + "/"}, faq_ld]
+    html = head(SEO["home"]["seo_title"], SEO["home"]["seo_desc"], path, jsonld) + nav() + f"""
 <main id="main">
 
 <section class="hero" aria-labelledby="hero-h">
@@ -293,8 +329,8 @@ def home():
     <div>
       <span class="label">Software engineering company · Ooty, India</span>
       <h1 class="h1" id="hero-h"><span>Modern Software.</span><span>Intelligent Systems.</span><span class="sig">Real Business Value.</span></h1>
+      <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
       <p class="lede">Altherix engineers, modernizes and intelligently automates the software systems businesses depend on.</p>
-      <p class="hero-caps">Software Engineering · Modernization · AI &amp; Automation · Enterprise Integration</p>
       <div class="btns">
         <a class="btn btn-p" href="#contact">Talk to an Engineer</a>
         <a class="btn btn-s" href="#work">Explore Our Work</a>
@@ -381,7 +417,7 @@ def home():
     <div class="prose rv">
       <span class="label">About</span>
       <h2 class="h2" id="about-h" style="margin-top:1.25rem">Global engineering. <span class="mute">Rooted in the Nilgiris.</span></h2>
-      <p>Altherix was founded in Ooty, high in the Nilgiris. It's an unusual place for an engineering company, and a deliberate one: a small, senior team with room to do careful work, away from the churn of a large delivery centre.</p>
+      <p>Altherix was founded in Ooty, high in the Nilgiris, and works from Coonoor in Tamil Nadu, India. It's an unusual place for an engineering company, and a deliberate one: a small, senior team with room to do careful work, away from the churn of a large delivery centre.</p>
       <p>The work reaches well beyond the hills. Platforms we built run in production on Azure in the UK for a global organisation, alongside systems for manufacturers, clinics, education, logistics and finance teams in India.</p>
       <p>One conviction hasn't changed: your existing software is the backbone of your business, and it usually deserves improving before it deserves replacing.</p>
     </div>
@@ -392,6 +428,13 @@ def home():
       <div><dt>Sectors</dt><dd>Nonprofit, manufacturing, finance, healthcare, education, logistics</dd></div>
       <div><dt>Company</dt><dd>Altherix Solutions</dd></div>
     </dl>
+  </div>
+</section>
+
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="ct">
+    {sec_head("FAQ", "Common questions.", None, "faq-h")}
+    <div class="rows">{faq_html}</div>
   </div>
 </section>
 
@@ -406,7 +449,7 @@ def cases_index():
     path = "case-studies/index.html"
     feat = [c for c in CASES if c.get("featured")]
     rest = [c for c in CASES if not c.get("featured")]
-    html = head("Case Studies | Altherix", "Production systems Altherix has designed, built and integrated, with the problem, the engineering and the measurable outcome for each.", path,
+    html = head(SEO["case-studies"]["seo_title"], SEO["case-studies"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Case Studies", "/case-studies/")])]) + nav("case-studies") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
@@ -434,7 +477,11 @@ def case_page(c):
     svc = SERVICE[c["related_service"]]
     toc = [("summary", "Summary"), ("challenge", "The challenge"), ("approach", "The approach"), ("architecture", "Architecture"),
            ("engineering", "Engineering"), ("technology", "Technology"), ("results", "Results"), ("impact", "Impact")]
-    related = [x for x in CASES if x["slug"] != c["slug"] and (x["industry"] == c["industry"] or x["related_service"] == c["related_service"])][:3]
+    others = [x for x in CASES if x["slug"] != c["slug"]]
+    close = [x for x in others if x["industry"] == c["industry"] or x["related_service"] == c["related_service"]]
+    related = (close + [x for x in others if x not in close])[:2]
+    published, modified = git_dates(path)
+    published = published or TODAY
     facts = [("Category", c["category"]), ("Industry", c["industry"])]
     if c.get("client"): facts.insert(0, ("Client", c["client"]))
     if c.get("featured"): facts.append(("Status", "Live in production"))
@@ -442,9 +489,10 @@ def case_page(c):
               {"@context": "https://schema.org", "@type": "Article", "headline": c["title"], "description": c["oneliner"],
                "author": {"@type": "Organization", "name": "Altherix Solutions"},
                "publisher": {"@type": "Organization", "name": "Altherix Solutions", "logo": {"@type": "ImageObject", "url": SITE + "/assets/icon-512.png"}},
-               "image": SITE + "/assets/og.png", "mainEntityOfPage": url_for(path)}]
+               "image": SITE + "/assets/og.png", "mainEntityOfPage": url_for(path),
+               "datePublished": published, "dateModified": "__MODIFIED__"}]
     rel = f'<section class="sec"><div class="ct">{sec_head("More work", "Related case studies", None, "rel-h")}<div class="rows">{"".join(cs_row(r) for r in related)}</div></div></section>' if related else ""
-    html = head(f"{c['title']}: Case Study | Altherix", c["oneliner"], path, jsonld, "article") + nav("case-studies") + f"""
+    html = head(f"{c['title']}: Case Study | Altherix", c["seo_desc"], path, jsonld, "article") + nav("case-studies") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Case Studies", "/case-studies/"), (c['title'], "")])}
@@ -470,6 +518,11 @@ def case_page(c):
 {contact_section("Discuss a similar problem.", "If this looks like something you're dealing with, tell us about your system. An engineer will reply.")}
 </main>
 """ + footer()
+    # dateModified: last commit date, or today if this build changes the page.
+    old = committed_text(path)
+    norm = lambda t: re.sub(r'"date(Published|Modified)": "[^"]*"', '', t or "")
+    unchanged = old is not None and norm(old) == norm(html.replace('"__MODIFIED__"', '"x"'))
+    html = html.replace("__MODIFIED__", (modified or TODAY) if unchanged else TODAY)
     write(path, html); PAGES.append((path, "0.8"))
 
 # ── SERVICE PAGE ─────────────────────────────────────────────────────────────
@@ -481,14 +534,15 @@ def service_page(s):
         cl = s["cloud"]
         cloud = f'<section class="sec" id="cloud"><div class="ct two"><div class="rv"><span class="label">Also</span><h2 class="h2" style="margin-top:1.25rem">{cl["title"]}</h2><p class="lede" style="margin-top:1.25rem">{E(cl["text"])}</p></div><ul class="plist rv" style="align-self:start">{"".join(f"<li>{E(x)}</li>" for x in cl["list"])}</ul></div></section>'
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Services", "/#services"), (s["name"], f"/services/{s['slug']}/")]),
-              {"@context": "https://schema.org", "@type": "Service", "name": s["name"], "description": s["short"], "provider": {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}, "areaServed": "Worldwide"}]
+              {"@context": "https://schema.org", "@type": "Service", "name": s["name"], "description": s["short"], "provider": {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}, "areaServed": ["IN", "GB"]}]
     h1 = s["h1"].replace("<em>", '<span class="mute">').replace("</em>", "</span>")
-    html = head(f"{s['name']} | Altherix", s["short"], path, jsonld) + nav("services") + f"""
+    html = head(s["seo_title"], s["seo_desc"], path, jsonld) + nav("services") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Services", "/#services"), (s['name'], "")])}
   <span class="label">{s['name']}</span>
   <h1 class="h1">{h1}</h1>
+  <p class="kw-sub">{E(s['kw_sub'])}</p>
   <p class="lede">{E(s['lede'])}</p>
   <div class="btns"><a class="btn btn-p" href="#contact">Talk to an Engineer</a><a class="btn btn-s" href="#work">Relevant work</a></div>
 </div></header>
@@ -583,7 +637,7 @@ def careers():
              "hiringOrganization": {"@type": "Organization", "name": "Altherix Solutions", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
              "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
              "educationRequirements": "BSc / BCA with a Computer Science major preferred"}]
-    html = head("Careers | Altherix", "Join Altherix, a senior engineering team in the Nilgiris building production systems. Open roles include a fully remote Full Stack Development internship.", path,
+    html = head(SEO["careers"]["seo_title"], SEO["careers"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Careers", "/careers.html")])] + jobs) + nav("careers") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
@@ -648,15 +702,15 @@ def products():
             ("Your system responds", "Only permitted, approved actions reach the system. Everything else stops at Mandate.")]
     pub = {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Products", "/products/")]),
-              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CodeGate by Altherix",
+              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CodeGate by Altherix", "url": SITE + "/products/#codegate",
                "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                "description": "An online coding assessment that ranks candidates on the code they write, using hidden tests and AI grading.", "publisher": pub},
-              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix",
+              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix", "url": SITE + "/products/#mandate",
                "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.", "publisher": pub}]
     index = [("codegate", "CodeGate", "In use · Early access", "Rank candidates on the code they write, using hidden tests and AI grading."),
              ("mandate", "Mandate", "In development", "A safe way to connect AI agents to the systems your business already runs on.")]
     index_html = "".join(f'<a class="row cs-row" href="#{a}"><span class="label">{st}</span><span class="h3" style="display:block">{n} <span class="mute">by Altherix</span></span><span class="body">{d}</span><span class="arr" aria-hidden="true">↓</span></a>' for a, n, st, d in index)
-    html = head("Products | Altherix", "Products from Altherix: CodeGate, a coding assessment that ranks candidates with hidden tests and AI grading, and Mandate, a safe way to connect AI agents to business systems.", path, jsonld) + nav("products") + f"""
+    html = head(SEO["products"]["seo_title"], SEO["products"]["seo_desc"], path, jsonld) + nav("products") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Products", "")])}
@@ -734,14 +788,31 @@ def notfound():
     write("404.html", html)
 
 def seo_files():
-    today = datetime.date.today().isoformat()
-    urls = "".join(f"<url><loc>{url_for(p)}</loc><lastmod>{today}</lastmod><priority>{pr}</priority></url>" for p, pr in PAGES)
+    # lastmod = date of the last commit that changed the page, or today if this build changed it.
+    urls = "".join(f"<url><loc>{url_for(p)}</loc><lastmod>{last_modified(p)}</lastmod><priority>{pr}</priority></url>" for p, pr in PAGES)
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+    llms = [f"# Altherix", "",
+            "> Altherix Solutions is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). "
+            "It builds custom software, modernizes legacy applications, adds AI and process automation, and integrates ERP, accounting and payment systems "
+            "for businesses in India and the UK.", "",
+            f"Contact: {EMAIL} · {PHONE_DISPLAY} · {LINKEDIN}", "",
+            "## Services", ""]
+    llms += [f"- [{x['name']}]({SITE}/services/{x['slug']}/): {x['short']}" for x in SERVICES]
+    llms += ["", "## Products", "",
+             f"- [CodeGate]({SITE}/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.",
+             f"- [Mandate]({SITE}/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.",
+             "", "## Case studies", ""]
+    llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
+    llms += ["", "## Company", "",
+             f"- [About and contact]({SITE}/#about)",
+             f"- [Careers]({SITE}/careers.html): Remote Full Stack Development internship and full-time engineering roles.",
+             f"- [All case studies]({SITE}/case-studies/)", ""]
+    write("llms.txt", "\n".join(llms))
 
 if __name__ == "__main__":
     home(); cases_index()
     for c in CASES: case_page(c)
     for s in SERVICES: service_page(s)
     products(); careers(); notfound(); seo_files()
-    print(f"Built {len(PAGES)} pages + 404, sitemap.xml, robots.txt")
+    print(f"Built {len(PAGES)} pages + 404, sitemap.xml, robots.txt, llms.txt")

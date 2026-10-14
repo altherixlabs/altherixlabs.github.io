@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Church Management System: Case Study | Altherix</title>
-<meta name="description" content="A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.">
+<meta name="description" content=".NET 9, React and SQL Server church management platform on Azure, with live check-in over SignalR and Hangfire jobs: 80+ API modules in production.">
 <link rel="canonical" href="https://altherix.in/case-studies/church-management-system/">
 <meta name="theme-color" content="#020D34">
 <meta name="color-scheme" content="dark">
@@ -12,24 +12,24 @@
 <meta property="og:url" content="https://altherix.in/case-studies/church-management-system/">
 <meta property="og:site_name" content="Altherix">
 <meta property="og:title" content="Church Management System: Case Study | Altherix">
-<meta property="og:description" content="A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.">
+<meta property="og:description" content=".NET 9, React and SQL Server church management platform on Azure, with live check-in over SignalR and Hangfire jobs: 80+ API modules in production.">
 <meta property="og:image" content="https://altherix.in/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Church Management System: Case Study | Altherix">
-<meta name="twitter:description" content="A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.">
+<meta name="twitter:description" content=".NET 9, React and SQL Server church management platform on Azure, with live check-in over SignalR and Hangfire jobs: 80+ API modules in production.">
 <meta name="twitter:image" content="https://altherix.in/assets/og.png">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=4">
-<script src="/assets/site.js?v=4" defer></script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Altherix Solutions", "alternateName": "Altherix", "url": "https://altherix.in/", "logo": "https://altherix.in/assets/icon-512.png", "slogan": "Transforming Software, Amplifying Value.", "email": "contact@altherix.in", "telephone": "+91-8152923515", "sameAs": ["https://www.linkedin.com/company/altherix"], "address": {"@type": "PostalAddress", "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai", "addressLocality": "Coonoor", "addressRegion": "Tamil Nadu", "postalCode": "643105", "addressCountry": "IN"}}</script>
+<link rel="stylesheet" href="/assets/site.css?v=5">
+<script src="/assets/site.js?v=5" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Organization", "ProfessionalService"], "name": "Altherix Solutions", "alternateName": "Altherix", "url": "https://altherix.in/", "logo": "https://altherix.in/assets/icon-512.png", "slogan": "Transforming Software, Amplifying Value.", "email": "contact@altherix.in", "telephone": "+91-8152923515", "sameAs": ["https://www.linkedin.com/company/altherix"], "areaServed": ["IN", "GB"], "address": {"@type": "PostalAddress", "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai", "addressLocality": "Coonoor", "addressRegion": "Tamil Nadu", "postalCode": "643105", "addressCountry": "IN"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://altherix.in/"}, {"@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://altherix.in/case-studies/"}, {"@type": "ListItem", "position": 3, "name": "Church Management System", "item": "https://altherix.in/case-studies/church-management-system/"}]}</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Church Management System", "description": "A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.", "author": {"@type": "Organization", "name": "Altherix Solutions"}, "publisher": {"@type": "Organization", "name": "Altherix Solutions", "logo": {"@type": "ImageObject", "url": "https://altherix.in/assets/icon-512.png"}}, "image": "https://altherix.in/assets/og.png", "mainEntityOfPage": "https://altherix.in/case-studies/church-management-system/"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Church Management System", "description": "A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.", "author": {"@type": "Organization", "name": "Altherix Solutions"}, "publisher": {"@type": "Organization", "name": "Altherix Solutions", "logo": {"@type": "ImageObject", "url": "https://altherix.in/assets/icon-512.png"}}, "image": "https://altherix.in/assets/og.png", "mainEntityOfPage": "https://altherix.in/case-studies/church-management-system/", "datePublished": "2026-09-30", "dateModified": "2026-10-14"}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -78,11 +78,6 @@
   <span><span class="label">Education · Product engineering</span><span class="h3" style="display:block">Learning Platform Features</span></span>
   <span class="body">Video delivery, quizzes, progress tracking, certificates, Zoom and Razorpay for an ed-tech startup.</span>
   <span class="arr" aria-hidden="true">→</span>
-</a><a class="row cs-row" href="/case-studies/delivery-management-system/">
-  <span class="n">40%<small>Faster deliveries</small></span>
-  <span><span class="label">Logistics · Mobile &amp; platform</span><span class="h3" style="display:block">Delivery Management System</span></span>
-  <span class="body">Real-time tracking, a delivery agent app, route optimisation and customer SMS, integrated with Google Maps.</span>
-  <span class="arr" aria-hidden="true">→</span>
 </a></div></div></section>
 <section class="sec" id="contact" aria-labelledby="contact-h">
   <div class="ct two even">
@@ -121,6 +116,7 @@
         <a class="brand" href="/"><img src="/assets/mark-96.webp" width="28" height="28" alt="" loading="lazy">ALTHERIX</a>
         <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
         <p class="foot-sub meta">Transforming Software, Amplifying Value.</p>
+        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Systems in production in India and the UK.</p>
       </div>
       <div><h2 class="label">Services</h2><ul><li><a href="/services/software-engineering/">Software Engineering</a></li><li><a href="/services/modernization/">Modernization</a></li><li><a href="/services/ai-automation/">AI & Automation</a></li><li><a href="/services/enterprise-integration/">Enterprise Integration</a></li><li><a href="/services/enterprise-integration/#cloud">Cloud &amp; DevOps</a></li></ul></div>
       <div><h2 class="label">Industries</h2><ul><li><a href="/#industries">Manufacturing</a></li><li><a href="/#industries">Financial Services</a></li><li><a href="/#industries">Healthcare</a></li><li><a href="/#industries">Education</a></li><li><a href="/#industries">Logistics</a></li><li><a href="/#industries">Enterprise</a></li></ul></div>
@@ -129,7 +125,7 @@
     </div>
     <div class="foot-bot meta">
       <span>© <span data-year>2026</span> Altherix Solutions</span>
-      <span>Ooty · India</span>
+      <span>Coonoor, Tamil Nadu, India</span>
     </div>
   </div>
 </footer>
