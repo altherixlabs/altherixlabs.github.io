@@ -101,7 +101,7 @@ def footer():
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">Industries</h2><ul>{ind}</ul></div>
-      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/#team">Team</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
     <div class="foot-bot meta">
@@ -281,7 +281,6 @@ def home():
                  ("Governance", ["Audit trails on enterprise platforms", "Exports stamped with scope, period and origin", "Access enforced at the data layer, not only the UI"])]
     prac_html = "".join(f'<div class="rv"><h3 class="h3">{t}</h3><ul>{"".join(f"<li>{i}</li>" for i in items)}</ul></div>' for t, items in practices)
 
-    team = "".join(f'<div class="row team-row"><h3 class="h3">{n}</h3><p class="body">{r}</p><p class="meta">{dot(ex)}</p></div>' for n, r, ini, ex in TEAM)
 
     jsonld = [ORG, {"@context": "https://schema.org", "@type": "WebSite", "name": "Altherix", "url": SITE + "/"}]
     html = head("Altherix | Software Engineering, AI & Enterprise Modernization",
@@ -374,13 +373,6 @@ def home():
   <div class="ct">
     {sec_head("Engineering practices", "The unglamorous parts, <span class='mute'>done properly.</span>", "What goes into the production systems we run, as standard.", "prac-h")}
     <div class="cols4">{prac_html}</div>
-  </div>
-</section>
-
-<section class="sec" id="team" aria-labelledby="team-h">
-  <div class="ct">
-    <div class="sec-hd split rv"><div><span class="label">Team</span><h2 class="h2" id="team-h" style="margin-top:1.25rem">People behind the systems.</h2></div><p class="team-note">Built by engineers who have spent years solving real software problems.</p></div>
-    <div class="rows rv">{team}</div>
   </div>
 </section>
 

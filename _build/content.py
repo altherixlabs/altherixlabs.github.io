@@ -406,14 +406,3 @@ INDUSTRIES = [
   ("Enterprise / Nonprofit", "Two production platforms for a global organisation — congregation management and statistical reporting across seven levels.", ["church-management-system", "missions-office-enterprise-system"]),
 ]
 
-# ────────────────────────────────────────────────────────────────────────────
-# TEAM
-# ────────────────────────────────────────────────────────────────────────────
-TEAM = [
-  ("Ganesh S", "Founder, Director & Chief Executive Officer", "GS", ["Enterprise architecture", "SAP", "Cloud architecture"]),
-  ("Cyril Johnson", "Director & Chief Technology Officer", "CJ", ["Architecture", "Technology strategy", "Emerging technologies"]),
-  ("Priscilla Mathews", "Talent Acquisition Manager, HR", "PM", ["Talent acquisition", "Hiring", "HR operations"]),
-  ("Muralidharan R", "Senior Software Engineer", "MR", ["Java / Spring Boot", "React / Angular", "Microservices"]),
-  ("Jessy Varghese", "Software Engineer", "JV", ["Node.js / Python", "AWS / Azure", "Database design"]),
-  ("Rohan Raj", "Software Engineer", "RR", ["REST APIs", "Java / Python", "PostgreSQL / MySQL"]),
-]
