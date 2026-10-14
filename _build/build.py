@@ -634,7 +634,19 @@ def careers():
 # ── PRODUCTS ─────────────────────────────────────────────────────────────────
 def products():
     path = "products/index.html"
-    mailto = f"mailto:{EMAIL}?subject=Mandate&amp;body=" + quote("Hello Altherix team,\n\nI'd like early access to Mandate.\n\nCompany:\nSystems we'd like AI agents to work with:\n\nThank you,")
+    def mail(subject, body):
+        return f"mailto:{EMAIL}?subject={quote(subject)}&amp;body=" + quote(body)
+    mailto = mail("Mandate", "Hello Altherix team,\n\nI'd like early access to Mandate.\n\nCompany:\nSystems we'd like AI agents to work with:\n\nThank you,")
+    cg_mail = mail("CodeGate", "Hello Altherix team,\n\nI'd like to try CodeGate for our hiring.\n\nCompany:\nRoles we're hiring for:\nCandidates per round (approx.):\n\nThank you,")
+    cg_feats = [("Private, timed tests", "Each candidate gets a single-use link by email. The timer runs on the server, work autosaves, and answers submit at time-up."),
+                ("Tests decide correctness", "Hidden test cases score whether the code works. The AI can't change that part of the score."),
+                ("AI grades the rest", "Edge cases, code quality and efficiency are scored against a written rubric, with a short summary of each answer."),
+                ("Signals, not guesswork", "Tab switches, pastes and copies are logged, and follow-up questions are generated about each candidate's own code.")]
+    cg_score = [("4", "Correctness, from hidden tests"), ("2", "Edge cases"), ("2", "Code quality"), ("2", "Efficiency")]
+    cg_flow = [("Invite", "Add candidates. Each one gets a private test link by email."),
+               ("Test", "Candidates solve real-world problems in a browser code editor, with sample tests they can run."),
+               ("Grade", "One click runs the hidden tests and AI-grades every answer."),
+               ("Shortlist", "Rank candidates by score, review the flags, and use the generated questions on a short follow-up call.")]
     feats = [("Works with what you run", "ERP, SQL databases and in-house applications, made usable by AI agents."),
              ("Your permissions, not new ones", "Agents see only what their user is allowed to see."),
              ("A person approves risky actions", "Writing data, sending documents or moving money waits for approval."),
@@ -642,24 +654,55 @@ def products():
     flow = [("An AI agent asks", "An assistant wants to read a record or take an action in one of your systems."),
             ("Mandate checks", "Is this user allowed? Does this action need approval? The request is logged either way."),
             ("Your system responds", "Only permitted, approved actions reach the system. Everything else stops at Mandate.")]
+    pub = {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Products", "/products/")]),
+              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CodeGate by Altherix",
+               "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
+               "description": "An online coding assessment that ranks candidates on the code they write, using hidden tests and AI grading.", "publisher": pub},
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix",
-               "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.",
-               "publisher": {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}}]
-    html = head("Products | Altherix", "Mandate by Altherix: a safe way to connect AI agents to the systems your business already runs on. Early access opening soon.", path, jsonld, og_image="/assets/og-mandate.jpg", og_w=1200, og_h=1200) + nav("products") + f"""
+               "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.", "publisher": pub}]
+    index = [("codegate", "CodeGate", "In use · Early access", "Rank candidates on the code they write, using hidden tests and AI grading."),
+             ("mandate", "Mandate", "In development", "A safe way to connect AI agents to the systems your business already runs on.")]
+    index_html = "".join(f'<a class="row cs-row" href="#{a}"><span class="label">{st}</span><span class="h3" style="display:block">{n} <span class="mute">by Altherix</span></span><span class="body">{d}</span><span class="arr" aria-hidden="true">↓</span></a>' for a, n, st, d in index)
+    html = head("Products | Altherix", "Products from Altherix: CodeGate, a coding assessment that ranks candidates with hidden tests and AI grading, and Mandate, a safe way to connect AI agents to business systems.", path, jsonld) + nav("products") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Products", "")])}
   <span class="label">Products</span>
   <h1 class="h1">What we're building.</h1>
-  <p class="lede">Products that come out of the problems we solve for clients, built with the same engineering discipline.</p>
+  <p class="lede">Products that come out of the problems we solve, for clients and for ourselves, built with the same engineering discipline.</p>
+  <div class="rows" style="margin-top:2.5rem">{index_html}</div>
 </div></header>
+
+<section class="sec" id="codegate" aria-labelledby="codegate-h"><div class="ct">
+  <div class="two">
+    <div class="rv">
+      <span class="label">In use · Early access</span>
+      <h2 class="h2" id="codegate-h" style="margin-top:1.25rem">CodeGate <span class="mute">by Altherix</span></h2>
+      <p class="statement">Rank candidates on the code they write, not the CV they send.</p>
+      <p class="lede" style="margin-top:1.25rem">CodeGate is an online coding assessment. Candidates solve real-world problems in a timed browser editor, and hidden tests plus AI grading turn every answer into a score you can rank.</p>
+      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="{cg_mail}">Try CodeGate</a></div>
+      <p class="meta" style="margin-top:.9rem">Built for our own hiring rounds. JavaScript today, more languages planned.</p>
+    </div>
+    <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in cg_feats)}</div>
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="cg-how-h"><div class="ct two">
+  <div class="rv">
+    <span class="label">How CodeGate scores</span>
+    <h2 class="h2" id="cg-how-h" style="margin-top:1.25rem">Ten points per question. <span class="mute">The tests decide what works.</span></h2>
+    <div class="metrics" style="margin-top:2rem">{''.join(f'<div><b>{v}</b><span>{l}</span></div>' for v, l in cg_score)}</div>
+    <p class="meta" style="margin-top:1rem">Correctness comes only from hidden tests. AI scores the other six points against a written rubric.</p>
+  </div>
+  <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(cg_flow))}</ol>
+</div></section>
 
 <section class="sec" id="mandate" aria-labelledby="mandate-h"><div class="ct">
   <figure class="product-fig rv">
     <picture>
       <source type="image/webp" srcset="/assets/mandate-hero-720.webp 720w, /assets/mandate-hero.webp 1200w" sizes="(min-width:1240px) 1160px, 100vw">
-      <img src="/assets/mandate-hero.jpg" width="1200" height="674" alt="Illustration: business systems on one side and an AI agent on the other, connected through a gate where some requests pass and one is held for approval." decoding="async">
+      <img src="/assets/mandate-hero.jpg" width="1200" height="674" alt="Illustration: business systems on one side and an AI agent on the other, connected through a gate where some requests pass and one is held for approval." loading="lazy" decoding="async">
     </picture>
   </figure>
   <div class="two">
@@ -676,13 +719,13 @@ def products():
 </div></section>
 
 <section class="sec" aria-labelledby="how-h"><div class="ct two">
-  <div class="rv"><span class="label">How it works</span><h2 class="h2" id="how-h" style="margin-top:1.25rem">AI that works inside your systems, <span class="mute">only within its mandate.</span></h2></div>
+  <div class="rv"><span class="label">How Mandate works</span><h2 class="h2" id="how-h" style="margin-top:1.25rem">AI that works inside your systems, <span class="mute">only within its mandate.</span></h2></div>
   <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(flow))}</ol>
 </div></section>
 
 <section class="sec"><div class="ct cta-end rv">
-  <div><h2 class="h2">Want to shape Mandate early?</h2><p class="lede">We're opening early access to a small group of companies ready to put AI to work on real systems.</p></div>
-  <div class="btns"><a class="btn btn-p" href="{mailto}">Request early access</a></div>
+  <div><h2 class="h2">Want to use one of these early?</h2><p class="lede">Tell us which product you're interested in and what you'd use it for. An engineer will reply.</p></div>
+  <div class="btns"><a class="btn btn-p" href="{cg_mail}">Try CodeGate</a><a class="btn btn-s" href="{mailto}">Mandate early access</a></div>
 </div></section>
 </main>
 """ + footer()
