@@ -17,10 +17,10 @@ BING_SITE_VERIFICATION = "3094D6A701575725433D5DD1A488F48D"
 # Titles 50–60 characters, descriptions 140–160. Visible headings are set in build.py.
 SEO = {
   "home": dict(seo_title="Software Development & Modernization in India | Altherix",
-               seo_desc="Small software engineering team in Coonoor, India. Custom software, modernization, AI automation and integration, with platforms live on Azure in the UK.",
+               seo_desc="Software engineering company in Coonoor, India. Custom software, modernization, AI automation and integration, with platforms live on Azure in the UK.",
                kw_sub="Software development, modernization and AI automation for businesses in India and the UK."),
   "case-studies": dict(seo_title="Software Development & Integration Case Studies | Altherix",
-                       seo_desc="Two production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure."),
+                       seo_desc="Production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure."),
   "products": dict(seo_title="Products: CodeGate & Mandate | Altherix",
                    seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. Mandate is a safe gateway between AI agents and your ERP, SQL and in-house systems."),
   "careers": dict(seo_title="Careers: Remote Full Stack Development Internship | Altherix",
@@ -31,8 +31,8 @@ SEO = {
 FAQ = [
   ("What does Altherix do?",
    "Altherix is a small software engineering company. We build custom web applications and enterprise platforms, modernize existing systems, add automation and AI where it helps, and connect business systems to each other. We also deploy and run what we build."),
-  ("You're a young company. Why should we trust you with our system?",
-   "Because our work is live. We designed, built and still run two production platforms for The Church of Pentecost on Azure in the UK: a church management system with 80+ API modules and a statistical reporting system across seven organisational levels. On a call we'll walk you through how they're built, and you'll work directly with the engineers who built them."),
+  ("Why choose a focused team over a large agency?",
+   "You work directly with the engineers who design, build and run your system, with no account managers or hand-offs. Our platforms run in production on Azure in the UK, including a church management system with 80+ API modules and statistical reporting across seven organisational levels, and we'll walk you through how they're built."),
   ("Which technologies do you work with?",
    "Our production work is in .NET 9 and ASP.NET Core, React and TypeScript, Laravel and PHP, SQL Server and MySQL, on Azure with Azure DevOps pipelines. We choose the stack that suits your system rather than forcing one."),
   ("How does an engagement start?",
@@ -277,7 +277,7 @@ SERVICE = {s["slug"]: s for s in SERVICES}
 # WHAT WE CAN BUILD. Capabilities, not track record: only "membership" is past work.
 # ────────────────────────────────────────────────────────────────────────────
 BUILDS = [
-  ("Membership & multi-level reporting", "global", "Member records, events, live check-in and statistics across a seven-level hierarchy. We've built and run this.", "/case-studies/missions-office-enterprise-system/", "See the work"),
+  ("Membership & multi-level reporting", "global", "Member records, events, live check-in and statistics across a seven-level hierarchy, in production today.", "/case-studies/missions-office-enterprise-system/", "See the work"),
   ("Inventory & operations", "manufacturing", "Stock records, barcode capture, reorder rules and the reports your operations and finance teams need.", None, None),
   ("Billing, accounting & payments", "finance", "Invoices posted to Tally or Zoho Books, payment gateways, and reconciliation that runs on a schedule.", None, None),
   ("Bookings & scheduling", "healthcare", "Appointments, reminders and records for clinics, studios and service businesses.", None, None),

@@ -292,9 +292,9 @@ def sec_head(label, title, lede=None, hid=None, split=True):
 # ── HOME ─────────────────────────────────────────────────────────────────────
 def home():
     path = "index.html"
-    outcomes = [("2", "Production platforms", "Built and run for The Church of Pentecost", "/case-studies/"),
+    outcomes = [("80+", "API modules", "Church Management System on .NET 9 and Azure", "/case-studies/church-management-system/"),
                 ("7", "Organisational levels", "One reporting system, Global Office to local assembly", "/case-studies/missions-office-enterprise-system/"),
-                ("80+", "API modules", "Church Management System on .NET 9 and Azure", "/case-studies/church-management-system/")]
+                ("6", "Dashboard modules", "Statistics, Vision 2028 scorecard and data completeness", "/case-studies/missions-office-enterprise-system/")]
     out_html = "".join(f'<a class="outcome" href="{s}"><span class="n">{n}</span><span class="l">{l}</span><span class="s">{d}</span></a>' for n, l, d, s in outcomes)
 
     svc_rows = ""
@@ -336,10 +336,10 @@ def home():
     fit_html = "".join(f'<div class="fit rv"><h3 class="h3">{a}</h3><p class="body">{b}</p><a class="more" href="{s}">{n} <span class="arr" aria-hidden="true">→</span></a></div>' for a, b, s, n in fits)
     whys = [("You work with the builders.", "No account managers or hand-offs. The engineers on your first call design, build and deploy your system."),
             ("You get our full attention.", "We take on a small number of clients at a time, so your project is never one of fifty."),
-            ("Our work is live.", "Two platforms we built are in production on Azure and we still run them. We'll walk you through how they're built."),
+            ("Our work is live.", "The platforms we build run in production on Azure, and we keep running them. We'll walk you through how they're built."),
             ("Start small, decide later.", "Begin with a written assessment or a single module. If it works, we carry on. If not, you haven't committed much.")]
     why_html = "".join(f'<div class="rv"><h3 class="h3">{a}</h3><p class="body">{b}</p></div>' for a, b in whys)
-    founding_mail = f"mailto:{EMAIL}?subject=" + "Founding%20client%20rates"
+    assess_mail = f"mailto:{EMAIL}?subject=" + "System%20assessment"
     eng = [("A call with an engineer", "30 minutes, free. You describe the system and what a good outcome looks like. You talk to someone who builds, not a salesperson."),
            ("A written assessment", "We look at the existing system, code and data, and send back what we found: what's there, the risks and two or three options."),
            ("A scoped proposal", "Fixed scope, milestones and price for defined work, or a monthly team for ongoing work. You choose."),
@@ -373,7 +373,7 @@ def home():
       <span class="label">Software engineering company · Ooty, India</span>
       <h1 class="h1" id="hero-h"><span>We extend, connect</span> <span>and modernize</span> <span class="sig">the systems you run.</span></h1>
       <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
-      <p class="lede">We designed, built and still run two production platforms for The Church of Pentecost on Azure in the UK. Now we're taking on a small number of new clients.</p>
+      <p class="lede">From membership platforms to reporting across seven organisational levels, we design, build and run software that organisations depend on every day, in production on Azure in the UK.</p>
       <div class="btns">
         <a class="btn btn-p" href="#contact">Talk to an Engineer</a>
         <a class="btn btn-s" href="#work">Explore Our Work</a>
@@ -401,10 +401,10 @@ def home():
 
 <section class="sec" id="why" aria-labelledby="why-h">
   <div class="ct">
-    {sec_head("Why Altherix", "A small team, <span class='mute'>on purpose.</span>", "We're an early-stage company. Here's what that means for you.", "why-h")}
+    {sec_head("Why Altherix", "Senior attention. <span class='mute'>No hand&#8209;offs.</span>", "What working with a focused engineering team means for you.", "why-h")}
     <div class="grid2 why-grid">{why_html}</div>
     <div class="offer-grid">
-      <div class="offer rv"><span class="label">Founding clients</span><h3 class="h3-lg">Be one of our next five clients.</h3><p class="body">We're building our client list. Our next five clients get founding-client rates, in return for a case study and a reference once the work is live.</p><a class="btn btn-p" href="{founding_mail}">Ask about founding-client rates</a></div>
+      <div class="offer rv"><span class="label">Start here</span><h3 class="h3-lg">Get a written assessment of your system.</h3><p class="body">We review your existing software, data and process, and send back what we found: the risks, the options and what each would take. A clear starting point before you commit to a build.</p><a class="btn btn-p" href="{assess_mail}">Ask for an assessment</a></div>
       <div class="offer rv"><span class="label">Referrals</span><h3 class="h3-lg">Know someone who needs software built?</h3><p class="body">When someone you refer becomes a client, you both get 5 to 10% off.</p><a class="btn btn-s" href="#contact">Refer someone</a></div>
     </div>
   </div>
@@ -419,7 +419,7 @@ def home():
 
 <section class="sec" id="work" aria-labelledby="work-h">
   <div class="ct">
-    {sec_head("Our work", "What we've built, <span class='mute'>and still run.</span>", "Two production platforms for The Church of Pentecost, an international church organisation.", "work-h")}
+    {sec_head("Our work", "What we've built, <span class='mute'>and still run.</span>", "Platforms in production for The Church of Pentecost, an international church organisation.", "work-h")}
     <div class="shots-2">
       {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Church Management System, overview (names blurred)", "(min-width:1000px) 570px, 100vw")}
       {shot("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, Vision 2028 and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
@@ -459,7 +459,7 @@ def home():
 
 <section class="sec" id="build" aria-labelledby="ind-h">
   <div class="ct">
-    {sec_head("What we can build", "Systems for the work <span class='mute'>your business actually does.</span>", "The first we've built and run in production. The others use the same building blocks: records, workflows, integrations and reporting.", "ind-h")}
+    {sec_head("What we can build", "Systems for the work <span class='mute'>your business actually does.</span>", "Records, workflows, integrations and reporting, shaped around how your organisation actually works.", "ind-h")}
     <div class="ind-grid">{inds}</div>
   </div>
 </section>
@@ -484,7 +484,7 @@ def home():
       <span class="label">About</span>
       <h2 class="h2" id="about-h" style="margin-top:1.25rem">Global engineering. <span class="mute">Rooted in the Nilgiris.</span></h2>
       <p>Altherix was founded in Ooty, high in the Nilgiris, and works from Coonoor in Tamil Nadu, India. It's an unusual place for an engineering company, and a deliberate one: a small team with room to do careful work, away from the churn of a large delivery centre.</p>
-      <p>The work reaches well beyond the hills. The two platforms we've built so far run in production on Azure in the UK for The Church of Pentecost, an international church organisation. We're now taking on our next clients, in India, the UK and elsewhere.</p>
+      <p>The work reaches well beyond the hills. Platforms we built run in production on Azure in the UK for The Church of Pentecost, an international church organisation, and we take on work from India, the UK and beyond.</p>
       <p>One conviction hasn't changed: your existing software is the backbone of your business, and it usually deserves improving before it deserves replacing.</p>
     </div>
     <div style="align-self:end">
@@ -535,8 +535,8 @@ def cases_index():
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Case Studies", "/case-studies/")])}
   <span class="label">Case studies</span>
-  <h1 class="h1">Our work so far.</h1>
-  <p class="lede">Two production platforms for The Church of Pentecost. We designed, built and deployed both, and we still support them.</p>
+  <h1 class="h1">Selected work.</h1>
+  <p class="lede">Production platforms we designed, built and deployed for The Church of Pentecost, and continue to support.</p>
 </div></header>
 <section class="sec"><div class="ct">
   <h2 class="label" style="margin-bottom:1.25rem">Client work</h2>
@@ -883,7 +883,7 @@ def seo_files():
     llms = [f"# Altherix", "",
             "> Altherix Solutions is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). "
             "It builds custom software, modernizes existing applications, adds automation and AI, and integrates business systems. "
-            "Its production work so far is two platforms for The Church of Pentecost, running on Azure in the UK.", "",
+            "Its production platforms include a church management system and a statistical reporting system for The Church of Pentecost, running on Azure in the UK.", "",
             f"Contact: {EMAIL} · {PHONE_DISPLAY} · {LINKEDIN}", "",
             "## Services", ""]
     llms += [f"- [{x['name']}]({SITE}/services/{x['slug']}/): {x['short']}" for x in SERVICES]
