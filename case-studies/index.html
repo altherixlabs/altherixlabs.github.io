@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Software Development &amp; Integration Case Studies | Altherix</title>
-<meta name="description" content="Software development case studies: .NET, Laravel, Spring Boot and Django systems in production, with results like 85% less manual work and 90% time saved.">
+<meta name="description" content="Two production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure.">
 <link rel="canonical" href="https://altherix.in/case-studies/">
 <meta name="msvalidate.01" content="3094D6A701575725433D5DD1A488F48D">
 <meta name="theme-color" content="#020D34">
@@ -13,21 +13,21 @@
 <meta property="og:url" content="https://altherix.in/case-studies/">
 <meta property="og:site_name" content="Altherix">
 <meta property="og:title" content="Software Development &amp; Integration Case Studies | Altherix">
-<meta property="og:description" content="Software development case studies: .NET, Laravel, Spring Boot and Django systems in production, with results like 85% less manual work and 90% time saved.">
+<meta property="og:description" content="Two production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure.">
 <meta property="og:image" content="https://altherix.in/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Software Development &amp; Integration Case Studies | Altherix">
-<meta name="twitter:description" content="Software development case studies: .NET, Laravel, Spring Boot and Django systems in production, with results like 85% less manual work and 90% time saved.">
+<meta name="twitter:description" content="Two production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure.">
 <meta name="twitter:image" content="https://altherix.in/assets/og.png">
 <link rel="icon" href="/assets/icon-32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/assets/icon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/assets/icon-180.png">
 <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/site.css?v=12">
-<script src="/assets/site.js?v=12" defer></script>
+<link rel="stylesheet" href="/assets/site.css?v=13">
+<script src="/assets/site.js?v=13" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Organization", "ProfessionalService"], "name": "Altherix Solutions", "alternateName": "Altherix", "url": "https://altherix.in/", "logo": "https://altherix.in/assets/icon-512.png", "slogan": "Transforming Software, Amplifying Value.", "email": "contact@altherix.in", "telephone": "+91-8152923515", "sameAs": ["https://www.linkedin.com/company/altherix"], "areaServed": ["IN", "GB"], "address": {"@type": "PostalAddress", "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai", "addressLocality": "Coonoor", "addressRegion": "Tamil Nadu", "postalCode": "643105", "addressCountry": "IN"}}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://altherix.in/"}, {"@type": "ListItem", "position": 2, "name": "Case Studies", "item": "https://altherix.in/case-studies/"}]}</script>
 </head>
@@ -36,13 +36,13 @@
 <header class="nav">
   <div class="ct">
     <a class="brand" href="/" aria-label="Altherix, home"><img src="/assets/mark-96.webp" width="28" height="28" alt="">ALTHERIX</a>
-    <nav aria-label="Main"><ul class="nav-links"><li><a href="/#services">Services</a></li><li><a href="/#solutions">Solutions</a></li><li><a href="/case-studies/" aria-current="page">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/#industries">Industries</a></li><li><a href="/#about">About</a></li><li><a href="/careers.html">Careers</a></li></ul></nav>
+    <nav aria-label="Main"><ul class="nav-links"><li><a href="/#services">Services</a></li><li><a href="/#solutions">Solutions</a></li><li><a href="/case-studies/" aria-current="page">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/#build">What we build</a></li><li><a href="/#about">About</a></li><li><a href="/careers.html">Careers</a></li></ul></nav>
     <a class="btn btn-p nav-cta" href="/#contact">Talk to an Engineer</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span></button>
   </div>
 </header>
 <div class="mobile-menu" id="mobile-menu">
-  <nav aria-label="Mobile"><a href="/#services">Services</a><a href="/#solutions">Solutions</a><a href="/case-studies/">Case Studies</a><a href="/products/">Products</a><a href="/#industries">Industries</a><a href="/#about">About</a><a href="/careers.html">Careers</a></nav>
+  <nav aria-label="Mobile"><a href="/#services">Services</a><a href="/#solutions">Solutions</a><a href="/case-studies/">Case Studies</a><a href="/products/">Products</a><a href="/#build">What we build</a><a href="/#about">About</a><a href="/careers.html">Careers</a></nav>
   <a class="btn btn-p" href="/#contact">Talk to an Engineer</a>
   <div class="mm-meta"><a href="mailto:contact@altherix.in">contact@altherix.in</a><a href="tel:+918152923515">+91 81529 23515</a><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></div>
 </div>
@@ -51,24 +51,12 @@
 <header class="page-hero"><div class="ct">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">Case Studies</span></nav>
   <span class="label">Case studies</span>
-  <h1 class="h1">Production systems and what they changed.</h1>
-  <p class="lede">8 engagements across nonprofit, manufacturing, finance, healthcare, education and logistics.</p>
-  <figure class="hero-art wide" aria-hidden="true"><picture><source type="image/webp" srcset="/assets/img/art-cases-800.webp 800w, /assets/img/art-cases-1600.webp 1600w" sizes="(min-width:1240px) 1160px, 100vw"><img src="/assets/img/art-cases-1600.jpg" width="1600" height="682" alt="" decoding="async"></picture></figure>
+  <h1 class="h1">Our work so far.</h1>
+  <p class="lede">Two production platforms for The Church of Pentecost. We designed, built and deployed both, and we still support them.</p>
 </div></header>
 <section class="sec"><div class="ct">
-  <h2 class="label" style="margin-bottom:1.25rem">Featured engagements</h2>
+  <h2 class="label" style="margin-bottom:1.25rem">Client work</h2>
   <div class="cs-list"><article class="cs rv">
-  <div class="cs-metric">
-    <div><div class="cs-big">85%</div><div class="cs-big-l">Less manual work</div></div>
-    <div class="cs-sub"><div><b>5K+</b>SKUs managed</div></div>
-  </div>
-  <div class="cs-body">
-    <div><span class="label">Manufacturing · ERP</span><h3 class="h3-lg" style="margin-top:.6rem">ERP Inventory Management Module</h3></div>
-    <div class="cs-ps"><div><span class="label">Problem</span><p>Stock movements for a mid-sized manufacturer were handled with a large amount of manual work.</p></div><div><span class="label">Solution</span><p>An ERP inventory module with barcode scanning, real-time stock updates and automated reorder alerts.</p></div></div>
-    <p class="stack-line">Java · Spring Boot · MySQL · REST API</p>
-    <div class="cs-foot"><span></span><a class="more" href="/case-studies/erp-inventory-module/">Read the case study <span class="arr" aria-hidden="true">→</span></a></div>
-  </div>
-</article><article class="cs rv">
   <div class="cs-metric">
     <div><div class="cs-big">80+</div><div class="cs-big-l">API modules in production</div></div>
     <div class="cs-sub"><div><b>2</b>Connected apps</div></div>
@@ -81,45 +69,20 @@
   </div>
 </article><article class="cs rv">
   <div class="cs-metric">
-    <div><div class="cs-big">70%</div><div class="cs-big-l">Fewer no-shows</div></div>
-    <div class="cs-sub"><div><b>3K+</b>Patients per month</div><div><b>4</b>Clinics</div></div>
+    <div><div class="cs-big">7</div><div class="cs-big-l">Organisational levels, one reporting system</div></div>
+    <div class="cs-sub"><div><b>6</b>Dashboard modules</div></div>
   </div>
   <div class="cs-body">
-    <div><span class="label">Healthcare · Platform enhancement</span><h3 class="h3-lg" style="margin-top:.6rem">Clinic Management Enhancement</h3></div>
-    <div class="cs-ps"><div><span class="label">Problem</span><p>Four clinics serving more than 3,000 patients a month needed better booking, prescriptions and a way to reduce missed appointments.</p></div><div><span class="label">Solution</span><p>Appointment booking, prescription management, SMS and email reminders and telemedicine added to the existing system.</p></div></div>
-    <p class="stack-line">Angular · Node.js · Twilio</p>
-    <div class="cs-foot"><span></span><a class="more" href="/case-studies/clinic-management-enhancement/">Read the case study <span class="arr" aria-hidden="true">→</span></a></div>
+    <div><span class="label">Non-profit · Enterprise reporting</span><h3 class="h3-lg" style="margin-top:.6rem">Missions Office Enterprise System</h3><p class="meta">The Church of Pentecost</p></div>
+    <div class="cs-ps"><div><span class="label">Problem</span><p>Half-year and end-year statistical returns had to be consolidated across seven organisational levels, with each administrator seeing only their own branch.</p></div><div><span class="label">Solution</span><p>Drill-down statistics dashboards, access scoped at query level, a Vision 2028 scorecard and exports stamped with their provenance.</p></div></div>
+    <p class="stack-line">Laravel 12 · PHP 8.2 · MySQL · Alpine.js · Chart.js · dompdf · Azure App Service · Azure DevOps</p>
+    <div class="cs-foot"><span class="status">Live in production</span><a class="more" href="/case-studies/missions-office-enterprise-system/">Read the case study <span class="arr" aria-hidden="true">→</span></a></div>
   </div>
 </article></div>
 </div></section>
 <section class="sec"><div class="ct">
-  <div class="sec-hd rv"><div><span class="label">More work</span><h2 class="h2" id="more-h" style="margin-top:1.25rem">Focused systems, <span class='mute'>measurable results.</span></h2></div></div>
-  <div class="rows"><a class="row cs-row" href="/case-studies/payment-gateway-integration/">
-  <span class="n">35%<small>Higher conversions</small></span>
-  <span><span class="label">E-commerce · Payments</span><span class="h3" style="display:block">Multi-Gateway Payment Integration</span></span>
-  <span class="body">Razorpay, PayU and Paytm behind one integration, with UPI, wallets, EMI, an admin dashboard and automated reconciliation.</span>
-  <span class="arr" aria-hidden="true">→</span>
-</a><a class="row cs-row" href="/case-studies/accounting-software-integration/">
-  <span class="n">90%<small>Time saved</small></span>
-  <span><span class="label">Financial services · Integration</span><span class="h3" style="display:block">Accounting Software Integration</span></span>
-  <span class="body">A REST API bridge between billing and Tally / Zoho Books, with automated invoicing, GST preparation and payment reconciliation.</span>
-  <span class="arr" aria-hidden="true">→</span>
-</a><a class="row cs-row" href="/case-studies/learning-platform-features/">
-  <span class="n">8K+<small>Active students</small></span>
-  <span><span class="label">Education · Product engineering</span><span class="h3" style="display:block">Learning Platform Features</span></span>
-  <span class="body">Video delivery, quizzes, progress tracking, certificates, Zoom and Razorpay for an ed-tech startup.</span>
-  <span class="arr" aria-hidden="true">→</span>
-</a><a class="row cs-row" href="/case-studies/delivery-management-system/">
-  <span class="n">40%<small>Faster deliveries</small></span>
-  <span><span class="label">Logistics · Mobile &amp; platform</span><span class="h3" style="display:block">Delivery Management System</span></span>
-  <span class="body">Real-time tracking, a delivery agent app, route optimisation and customer SMS, integrated with Google Maps.</span>
-  <span class="arr" aria-hidden="true">→</span>
-</a><a class="row cs-row" href="/case-studies/missions-office-enterprise-system/">
-  <span class="n">7<small>Organisational levels, one reporting system</small></span>
-  <span><span class="label">Non-profit · Enterprise reporting</span><span class="h3" style="display:block">Missions Office Enterprise System</span></span>
-  <span class="body">Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports.</span>
-  <span class="arr" aria-hidden="true">→</span>
-</a></div>
+  <div class="sec-hd rv"><div><span class="label">Our own products</span><h2 class="h2" id="more-h" style="margin-top:1.25rem">Built for problems <span class='mute'>we had ourselves.</span></h2></div></div>
+  <div class="rows"><a class="row cs-row" href="/products/#codegate"><span class="n">In use<small>Early access</small></span><span><span class="label">Hiring</span><span class="h3" style="display:block">CodeGate</span></span><span class="body">Online coding assessment: hidden tests decide correctness and AI grades quality.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#mandate"><span class="n">Building<small>Early access soon</small></span><span><span class="label">AI governance</span><span class="h3" style="display:block">Mandate</span></span><span class="body">A safe gateway between AI agents and your ERP, databases and in-house systems.</span><span class="arr" aria-hidden="true">→</span></a></div>
 </div></section>
 <section class="sec contact-sec" id="contact" aria-labelledby="contact-h">
   <div class="ct two even">
@@ -158,10 +121,10 @@
         <a class="brand" href="/"><img src="/assets/mark-96.webp" width="28" height="28" alt="" loading="lazy">ALTHERIX</a>
         <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
         <p class="foot-sub meta">Transforming Software, Amplifying Value.</p>
-        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Systems in production in India and the UK.</p>
+        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Platforms in production on Azure in the UK.</p>
       </div>
       <div><h2 class="label">Services</h2><ul><li><a href="/services/software-engineering/">Software Engineering</a></li><li><a href="/services/modernization/">Modernization</a></li><li><a href="/services/ai-automation/">AI & Automation</a></li><li><a href="/services/enterprise-integration/">Enterprise Integration</a></li><li><a href="/services/enterprise-integration/#cloud">Cloud &amp; DevOps</a></li></ul></div>
-      <div><h2 class="label">Industries</h2><ul><li><a href="/#industries">Manufacturing</a></li><li><a href="/#industries">Financial Services</a></li><li><a href="/#industries">Healthcare</a></li><li><a href="/#industries">Education</a></li><li><a href="/#industries">Logistics</a></li><li><a href="/#industries">Enterprise</a></li></ul></div>
+      <div><h2 class="label">What we build</h2><ul><li><a href="/#build">Membership & multi-level reporting</a></li><li><a href="/#build">Inventory & operations</a></li><li><a href="/#build">Billing, accounting & payments</a></li><li><a href="/#build">Bookings & scheduling</a></li><li><a href="/#build">Learning & assessment</a></li><li><a href="/#build">Field work & delivery</a></li></ul></div>
       <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:contact@altherix.in">contact@altherix.in</a></li><li><a href="tel:+918152923515">+91 81529 23515</a></li><li><a href="https://www.linkedin.com/company/altherix" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>

@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "12"  # asset cache-buster
+V = "13"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -56,7 +56,7 @@ def dot(items):
 
 # ── chrome ───────────────────────────────────────────────────────────────────
 NAV = [("Services", "/#services", "services"), ("Solutions", "/#solutions", "solutions"),
-       ("Case Studies", "/case-studies/", "case-studies"), ("Products", "/products/", "products"), ("Industries", "/#industries", "industries"),
+       ("Case Studies", "/case-studies/", "case-studies"), ("Products", "/products/", "products"), ("What we build", "/#build", "industries"),
        ("About", "/#about", "about"), ("Careers", "/careers.html", "careers")]
 
 def head(title, desc, path, jsonld=None, og_type="website", noindex=False, og_image="/assets/og.png", og_w=1200, og_h=630):
@@ -124,7 +124,7 @@ def nav(active=""):
 def footer():
     svc = "".join(f'<li><a href="/services/{s["slug"]}/">{s["name"]}</a></li>' for s in SERVICES)
     svc += '<li><a href="/services/enterprise-integration/#cloud">Cloud &amp; DevOps</a></li>'
-    ind = "".join(f'<li><a href="/#industries">{n}</a></li>' for n in ["Manufacturing", "Financial Services", "Healthcare", "Education", "Logistics", "Enterprise"])
+    ind = "".join(f'<li><a href="/#build">{n}</a></li>' for n, *_ in BUILDS)
     return f"""<footer class="foot">
   <div class="ct">
     <div class="foot-top">
@@ -132,10 +132,10 @@ def footer():
         <a class="brand" href="/"><img src="/assets/mark-96.webp" width="28" height="28" alt="" loading="lazy">ALTHERIX</a>
         <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
         <p class="foot-sub meta">Transforming Software, Amplifying Value.</p>
-        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Systems in production in India and the UK.</p>
+        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Platforms in production on Azure in the UK.</p>
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
-      <div><h2 class="label">Industries</h2><ul>{ind}</ul></div>
+      <div><h2 class="label">What we build</h2><ul>{ind}</ul></div>
       <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
@@ -203,9 +203,8 @@ IMG = {  # name: (width, height) of the 1600px version
     "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
     "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cases": (1600, 682), "art-cloud": (972, 881), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    "art-cloud": (972, 881), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
-    **{n: (1600, 800) for n in ["erp-inventory", "payments-console", "accounting-bridge", "clinic-schedule", "learning-course", "delivery-dispatch"]},
 }
 
 def pic(name, alt, sizes="(min-width:1240px) 1160px, 100vw", lazy=True, cls=""):
@@ -220,7 +219,7 @@ def art(name, sizes="(min-width:1000px) 560px, 100vw", lazy=False):
     return f'<figure class="hero-art" aria-hidden="true">{pic(name, "", sizes, lazy)}</figure>'
 
 SERVICE_ART = {"software-engineering": "art-software", "modernization": "art-modernization", "ai-automation": "art-ai", "enterprise-integration": "art-integration"}
-IND_ART = {"Manufacturing": "manufacturing", "Healthcare": "healthcare", "Financial Services": "finance", "Education": "education", "Logistics": "logistics", "Enterprise / Nonprofit": "global"}
+
 
 def shot(name, alt, caption=None, sizes="(min-width:1240px) 1160px, 100vw"):
     """A product screenshot in a quiet browser frame."""
@@ -293,13 +292,10 @@ def sec_head(label, title, lede=None, hid=None, split=True):
 # ── HOME ─────────────────────────────────────────────────────────────────────
 def home():
     path = "index.html"
-    outcomes = [("85%", "Less manual work", "ERP inventory module", "erp-inventory-module"),
-                ("90%", "Time saved", "Accounting integration", "accounting-software-integration"),
-                ("70%", "Fewer no-shows", "Clinic management, 4 clinics", "clinic-management-enhancement"),
-                ("35%", "Higher conversions", "Payment integration", "payment-gateway-integration"),
-                ("40%", "Faster deliveries", "Delivery management", "delivery-management-system"),
-                ("8K+", "Active students", "Learning platform", "learning-platform-features")]
-    out_html = "".join(f'<a class="outcome" href="/case-studies/{s}/"><span class="n">{n}</span><span class="l">{l}</span><span class="s">{d}</span></a>' for n, l, d, s in outcomes)
+    outcomes = [("2", "Production platforms", "Built and run for The Church of Pentecost", "/case-studies/"),
+                ("7", "Organisational levels", "One reporting system, Global Office to local assembly", "/case-studies/missions-office-enterprise-system/"),
+                ("80+", "API modules", "Church Management System on .NET 9 and Azure", "/case-studies/church-management-system/")]
+    out_html = "".join(f'<a class="outcome" href="{s}"><span class="n">{n}</span><span class="l">{l}</span><span class="s">{d}</span></a>' for n, l, d, s in outcomes)
 
     svc_rows = ""
     for s in SERVICES:
@@ -316,28 +312,34 @@ def home():
   <ul><li>CI/CD pipelines</li><li>Cloud infrastructure</li><li>Monitoring &amp; alerting</li><li>Cloud migration</li></ul>
 </div>"""
 
-    panels = "\n".join(cs_panel(CASE[s]) for s in ["erp-inventory-module", "church-management-system", "clinic-management-enhancement"])
+    panels = "\n".join(cs_panel(CASE[s]) for s in ["church-management-system", "missions-office-enterprise-system"])
 
     ai_areas = [("AI grading, checked by tests", "In CodeGate, hidden tests decide whether code works. AI only scores quality against a written rubric and summarises each answer for a reviewer."),
                 ("Agents behind a permission gate", "Mandate, in development: an AI agent can act on ERP data only through approved actions, and risky ones wait for a person."),
-                ("Automation that needs no model", "Payment reconciliation, GST preparation and appointment reminders run as scheduled, rule-based jobs."),
+                ("Automation that needs no model", "In our client platforms, recurring events and data-completeness checks run as scheduled background jobs. No AI required."),
                 ("A person can always see why", "Where AI makes a judgement, the reasoning is shown and a person can override it.")]
     ai_html = "".join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in ai_areas)
 
-    layers = [("Experience", "Web, mobile and dashboards", ["React", "TypeScript", "Angular", "React Native", "Chart.js"]),
-              ("Applications", "Domain logic and workflows", [".NET 9", "Spring Boot", "Laravel", "Django", "Node.js"]),
-              ("APIs, services & AI", "Contracts between systems", ["REST", "SignalR", "Hangfire", "LLM integration", "Payment and messaging APIs"]),
-              ("Data & enterprise systems", "Records, reporting and ERP", ["SQL Server", "MySQL", "PostgreSQL", "MongoDB", "SAP", "Tally", "Zoho Books"]),
-              ("Cloud & DevOps", "Run, release and observe", ["Azure App Service", "Azure SQL", "Blob Storage", "AWS S3", "Azure DevOps", "GitHub Actions"])]
+    layers = [("Experience", "Web apps and dashboards", ["React 18", "TypeScript", "MUI", "Alpine.js", "Chart.js"]),
+              ("Applications", "Domain logic and workflows", [".NET 9", "ASP.NET Core", "Laravel 12", "PHP 8.2"]),
+              ("APIs, services & AI", "Contracts between systems", ["REST", "SignalR", "Hangfire", "LLM integration"]),
+              ("Data", "Records, reporting and exports", ["SQL Server", "MySQL", "EF Core", "dompdf"]),
+              ("Cloud & DevOps", "Run, release and observe", ["Azure (UK South)", "Azure App Service", "Azure DevOps", "Gated releases"])]
     layer_html = "".join(f'<li class="layer"><div><h3 class="h3">{n}</h3><p class="meta">{sub}</p></div><p class="stack-line">{dot(t)}</p></li>' for n, sub, t in layers)
 
-    inds = "".join(f'<div class="ind rv"><div class="ind-art" aria-hidden="true">{pic("ind-" + IND_ART[n], "", "(min-width:1080px) 360px, (min-width:760px) 45vw, 100vw")}</div><h3 class="h3">{n}</h3><p class="body">{d}</p><a class="more" href="/case-studies/{slugs[0]}/">{E(CASE[slugs[0]]["title"])} <span class="arr" aria-hidden="true">→</span></a></div>' for n, d, slugs in INDUSTRIES)
+    inds = "".join(f'<div class="ind rv"><div class="ind-art" aria-hidden="true">{pic("ind-" + art, "", "(min-width:1080px) 360px, (min-width:760px) 45vw, 100vw")}</div><h3 class="h3">{n}</h3><p class="body">{d}</p>' + (f'<a class="more" href="{href}">{lt} <span class="arr" aria-hidden="true">→</span></a>' if href else '') + '</div>' for n, art, d, href, lt in BUILDS)
 
 
-    fits = [("Your business system has grown around you.", "An ERP, billing or member platform that works, but needs a new module, a faster screen or an upgrade, without a risky rewrite.", "erp-inventory-module", "ERP inventory module"),
-            ("Your tools don't talk to each other.", "Invoices typed into Tally by hand, payments reconciled in spreadsheets, the same customer in three systems.", "accounting-software-integration", "Accounting integration"),
-            ("You need a platform built around how you work.", "Multi-level reporting, member records, bookings or deliveries, where off-the-shelf software forces you into its process.", "missions-office-enterprise-system", "Missions Office reporting")]
-    fit_html = "".join(f'<div class="fit rv"><h3 class="h3">{a}</h3><p class="body">{b}</p><a class="more" href="/case-studies/{s}/">Example: {n} <span class="arr" aria-hidden="true">→</span></a></div>' for a, b, s, n in fits)
+    fits = [("Your records live in spreadsheets and paper.", "Members, customers, stock or bookings tracked in Excel files and registers that nobody fully trusts.", "/case-studies/church-management-system/", "How we replaced paper registers"),
+            ("Your tools don't talk to each other.", "Invoices typed in twice, reports assembled by hand, the same customer in three systems.", "/services/enterprise-integration/", "How we'd connect them"),
+            ("You need reporting people can trust.", "Figures from many branches or teams, each person seeing only their part, with exports that show where numbers came from.", "/case-studies/missions-office-enterprise-system/", "Seven-level reporting we built")]
+    fit_html = "".join(f'<div class="fit rv"><h3 class="h3">{a}</h3><p class="body">{b}</p><a class="more" href="{s}">{n} <span class="arr" aria-hidden="true">→</span></a></div>' for a, b, s, n in fits)
+    whys = [("You work with the builders.", "No account managers or hand-offs. The engineers on your first call design, build and deploy your system."),
+            ("You get our full attention.", "We take on a small number of clients at a time, so your project is never one of fifty."),
+            ("Our work is live.", "Two platforms we built are in production on Azure and we still run them. We'll walk you through how they're built."),
+            ("Start small, decide later.", "Begin with a written assessment or a single module. If it works, we carry on. If not, you haven't committed much.")]
+    why_html = "".join(f'<div class="rv"><h3 class="h3">{a}</h3><p class="body">{b}</p></div>' for a, b in whys)
+    founding_mail = f"mailto:{EMAIL}?subject=" + "Founding%20client%20rates"
     eng = [("A call with an engineer", "30 minutes, free. You describe the system and what a good outcome looks like. You talk to someone who builds, not a salesperson."),
            ("A written assessment", "We look at the existing system, code and data, and send back what we found: what's there, the risks and two or three options."),
            ("A scoped proposal", "Fixed scope, milestones and price for defined work, or a monthly team for ongoing work. You choose."),
@@ -352,7 +354,7 @@ def home():
 
     practices = [("Security", ["Role-based access across production platforms", "Hierarchy-scoped queries: users retrieve only their own data", "Secrets kept out of code"]),
                  ("Reliability", ["Logging, monitoring and alerting", "Backups kept in good order", "Scheduled work handled by background jobs"]),
-                 ("Delivery", ["CI/CD on Azure DevOps and GitHub Actions", "Gated releases to production", "Code review, with tests written alongside code"]),
+                 ("Delivery", ["CI/CD on Azure DevOps", "Gated releases to production", "Code review, with tests written alongside code"]),
                  ("Governance", ["Audit trails on enterprise platforms", "Exports stamped with scope, period and origin", "Access enforced at the data layer, not only the UI"])]
     prac_html = "".join(f'<div class="rv"><h3 class="h3">{t}</h3><ul>{"".join(f"<li>{i}</li>" for i in items)}</ul></div>' for t, items in practices)
 
@@ -371,7 +373,7 @@ def home():
       <span class="label">Software engineering company · Ooty, India</span>
       <h1 class="h1" id="hero-h"><span>We extend, connect</span> <span>and modernize</span> <span class="sig">the systems you run.</span></h1>
       <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
-      <p class="lede">Inventory modules for manufacturers, Tally and Zoho Books integrations for finance teams, booking and reminders for clinics, and reporting platforms on Azure in the UK. Built, deployed and supported after launch.</p>
+      <p class="lede">We designed, built and still run two production platforms for The Church of Pentecost on Azure in the UK. Now we're taking on a small number of new clients.</p>
       <div class="btns">
         <a class="btn btn-p" href="#contact">Talk to an Engineer</a>
         <a class="btn btn-s" href="#work">Explore Our Work</a>
@@ -383,9 +385,9 @@ def home():
 
 <section class="sec" aria-labelledby="proof-h" style="padding-top:0;border-top:0">
   <div class="ct">
-    <h2 class="label" id="proof-h" style="margin-bottom:1.25rem">Outcomes from delivered work</h2>
+    <h2 class="label" id="proof-h" style="margin-bottom:1.25rem">Live in production</h2>
     <div class="outcomes rv">{out_html}</div>
-    <p class="proof-note meta">Figures reported on client engagements. Select one to read the case study.</p>
+    <p class="proof-note meta">From the platforms we built and still run. Select one to read the case study.</p>
   </div>
 </section>
 
@@ -394,6 +396,17 @@ def home():
     {sec_head("Who we work with", "Three situations we're built for.", "Organisations in India and the UK with software that already matters to the business.", "fit-h")}
     <div class="fit-grid">{fit_html}</div>
     <p class="meta" style="margin-top:1.5rem">Not a fit: brochure websites, games, or projects that need to ship in days.</p>
+  </div>
+</section>
+
+<section class="sec" id="why" aria-labelledby="why-h">
+  <div class="ct">
+    {sec_head("Why Altherix", "A small team, <span class='mute'>on purpose.</span>", "We're an early-stage company. Here's what that means for you.", "why-h")}
+    <div class="grid2 why-grid">{why_html}</div>
+    <div class="offer-grid">
+      <div class="offer rv"><span class="label">Founding clients</span><h3 class="h3-lg">Be one of our next five clients.</h3><p class="body">We're building our client list. Our next five clients get founding-client rates, in return for a case study and a reference once the work is live.</p><a class="btn btn-p" href="{founding_mail}">Ask about founding-client rates</a></div>
+      <div class="offer rv"><span class="label">Referrals</span><h3 class="h3-lg">Know someone who needs software built?</h3><p class="body">When someone you refer becomes a client, you both get 5 to 10% off.</p><a class="btn btn-s" href="#contact">Refer someone</a></div>
+    </div>
   </div>
 </section>
 
@@ -406,15 +419,13 @@ def home():
 
 <section class="sec" id="work" aria-labelledby="work-h">
   <div class="ct">
-    {sec_head("Selected work", "What we built, <span class='mute'>and what it changed.</span>", "Systems in production for manufacturers, clinics, retailers, finance teams, educators and a global nonprofit.", "work-h")}
+    {sec_head("Our work", "What we've built, <span class='mute'>and still run.</span>", "Two production platforms for The Church of Pentecost, an international church organisation.", "work-h")}
     <div class="shots-2">
-      {shot("erp-inventory", "Inventory screen: stock on hand with reorder status and a live feed of barcode scans.", "Manufacturing: ERP inventory (illustrative, demo data)", "(min-width:1000px) 570px, 100vw")}
-      {shot("clinic-schedule", "Clinic appointments: a day calendar for four doctors, reminder figures and a signed prescription.", "Healthcare: clinic scheduling (illustrative, demo data)", "(min-width:1000px) 570px, 100vw")}
-      {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Nonprofit: Church Management System (names blurred)", "(min-width:1000px) 570px, 100vw")}
-      {shot("delivery-dispatch", "Live dispatch: a map with an optimised delivery route and a list of agents with status and ETA.", "Logistics: live dispatch (illustrative, demo data)", "(min-width:1000px) 570px, 100vw")}
+      {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Church Management System, overview (names blurred)", "(min-width:1000px) 570px, 100vw")}
+      {shot("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, Vision 2028 and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
     </div>
     <div class="cs-list">{panels}</div>
-    <div class="after"><a class="btn btn-s" href="/case-studies/">All {len(CASES)} case studies</a></div>
+    <div class="after"><a class="btn btn-s" href="/products/">See our own products</a></div>
   </div>
 </section>
 
@@ -446,9 +457,9 @@ def home():
   </div>
 </section>
 
-<section class="sec" id="industries" aria-labelledby="ind-h">
+<section class="sec" id="build" aria-labelledby="ind-h">
   <div class="ct">
-    {sec_head("Industries", "Engineering across complex domains.", "Each of these comes from delivered work.", "ind-h")}
+    {sec_head("What we can build", "Systems for the work <span class='mute'>your business actually does.</span>", "The first we've built and run in production. The others use the same building blocks: records, workflows, integrations and reporting.", "ind-h")}
     <div class="ind-grid">{inds}</div>
   </div>
 </section>
@@ -472,8 +483,8 @@ def home():
     <div class="prose rv">
       <span class="label">About</span>
       <h2 class="h2" id="about-h" style="margin-top:1.25rem">Global engineering. <span class="mute">Rooted in the Nilgiris.</span></h2>
-      <p>Altherix was founded in Ooty, high in the Nilgiris, and works from Coonoor in Tamil Nadu, India. It's an unusual place for an engineering company, and a deliberate one: a small, senior team with room to do careful work, away from the churn of a large delivery centre.</p>
-      <p>The work reaches well beyond the hills. Platforms we built run in production on Azure in the UK for a global organisation, alongside systems for manufacturers, clinics, education, logistics and finance teams in India.</p>
+      <p>Altherix was founded in Ooty, high in the Nilgiris, and works from Coonoor in Tamil Nadu, India. It's an unusual place for an engineering company, and a deliberate one: a small team with room to do careful work, away from the churn of a large delivery centre.</p>
+      <p>The work reaches well beyond the hills. The two platforms we've built so far run in production on Azure in the UK for The Church of Pentecost, an international church organisation. We're now taking on our next clients, in India, the UK and elsewhere.</p>
       <p>One conviction hasn't changed: your existing software is the backbone of your business, and it usually deserves improving before it deserves replacing.</p>
     </div>
     <div style="align-self:end">
@@ -481,8 +492,8 @@ def home():
     <dl class="facts-dl rv">
       <div><dt>Founded</dt><dd>Ooty, the Nilgiris</dd></div>
       <div><dt>Office</dt><dd>Coonoor, Tamil Nadu</dd></div>
-      <div><dt>In production</dt><dd>Azure UK South · India</dd></div>
-      <div><dt>Sectors</dt><dd>Nonprofit, manufacturing, finance, healthcare, education, logistics</dd></div>
+      <div><dt>In production</dt><dd>Azure UK South</dd></div>
+      <div><dt>Products</dt><dd>CodeGate · Mandate (in development)</dd></div>
       <div><dt>Company</dt><dd>Altherix Solutions</dd></div>
     </dl>
     </div>
@@ -517,26 +528,23 @@ def home():
 # ── CASE STUDIES INDEX ───────────────────────────────────────────────────────
 def cases_index():
     path = "case-studies/index.html"
-    fs = ["erp-inventory-module", "church-management-system", "clinic-management-enhancement"]
-    feat = [CASE[s] for s in fs]
-    rest = [c for c in CASES if c["slug"] not in fs]
+    feat = CASES
     html = head(SEO["case-studies"]["seo_title"], SEO["case-studies"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Case Studies", "/case-studies/")])]) + nav("case-studies") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Case Studies", "/case-studies/")])}
   <span class="label">Case studies</span>
-  <h1 class="h1">Production systems and what they changed.</h1>
-  <p class="lede">{len(CASES)} engagements across nonprofit, manufacturing, finance, healthcare, education and logistics.</p>
-  <figure class="hero-art wide" aria-hidden="true">{pic("art-cases", "", lazy=False)}</figure>
+  <h1 class="h1">Our work so far.</h1>
+  <p class="lede">Two production platforms for The Church of Pentecost. We designed, built and deployed both, and we still support them.</p>
 </div></header>
 <section class="sec"><div class="ct">
-  <h2 class="label" style="margin-bottom:1.25rem">Featured engagements</h2>
+  <h2 class="label" style="margin-bottom:1.25rem">Client work</h2>
   <div class="cs-list">{''.join(cs_panel(c) for c in feat)}</div>
 </div></section>
 <section class="sec"><div class="ct">
-  {sec_head("More work", "Focused systems, <span class='mute'>measurable results.</span>", None, "more-h")}
-  <div class="rows">{''.join(cs_row(c) for c in rest)}</div>
+  {sec_head("Our own products", "Built for problems <span class='mute'>we had ourselves.</span>", None, "more-h")}
+  <div class="rows"><a class="row cs-row" href="/products/#codegate"><span class="n">In use<small>Early access</small></span><span><span class="label">Hiring</span><span class="h3" style="display:block">CodeGate</span></span><span class="body">Online coding assessment: hidden tests decide correctness and AI grades quality.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#mandate"><span class="n">Building<small>Early access soon</small></span><span><span class="label">AI governance</span><span class="h3" style="display:block">Mandate</span></span><span class="body">A safe gateway between AI agents and your ERP, databases and in-house systems.</span><span class="arr" aria-hidden="true">→</span></a></div>
 </div></section>
 {contact_section("Discuss a similar problem.", "Tell us about the system you're working with and what a good outcome looks like. An engineer will reply.")}
 </main>
@@ -874,8 +882,8 @@ def seo_files():
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     llms = [f"# Altherix", "",
             "> Altherix Solutions is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). "
-            "It builds custom software, modernizes legacy applications, adds AI and process automation, and integrates ERP, accounting and payment systems "
-            "for businesses in India and the UK.", "",
+            "It builds custom software, modernizes existing applications, adds automation and AI, and integrates business systems. "
+            "Its production work so far is two platforms for The Church of Pentecost, running on Azure in the UK.", "",
             f"Contact: {EMAIL} · {PHONE_DISPLAY} · {LINKEDIN}", "",
             "## Services", ""]
     llms += [f"- [{x['name']}]({SITE}/services/{x['slug']}/): {x['short']}" for x in SERVICES]
@@ -890,9 +898,21 @@ def seo_files():
              f"- [All case studies]({SITE}/case-studies/)", ""]
     write("llms.txt", "\n".join(llms))
 
+REMOVED = ["erp-inventory-module", "payment-gateway-integration", "accounting-software-integration",
+           "clinic-management-enhancement", "learning-platform-features", "delivery-management-system"]
+
+def redirects():
+    """Old case-study URLs that no longer exist: send visitors and crawlers to the case studies page."""
+    for slug in REMOVED:
+        write(f"case-studies/{slug}/index.html", f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Moved | Altherix</title><meta name="robots" content="noindex">
+<link rel="canonical" href="{SITE}/case-studies/"><meta http-equiv="refresh" content="0; url=/case-studies/">
+</head><body><p><a href="/case-studies/">See our case studies</a></p></body></html>
+''')
+
 if __name__ == "__main__":
     home(); cases_index()
     for c in CASES: case_page(c)
     for s in SERVICES: service_page(s)
-    products(); careers(); notfound(); seo_files()
+    products(); careers(); notfound(); redirects(); seo_files()
     print(f"Built {len(PAGES)} pages + 404, sitemap.xml, robots.txt, llms.txt")
