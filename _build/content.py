@@ -36,7 +36,9 @@ FAQ = [
   ("Do you work with clients in the UK and outside India?",
    "Yes. Platforms we built run in production on Azure in the UK for a global organisation, alongside systems for clients in India."),
   ("How does an engagement start?",
-   "With a conversation with an engineer. Email contact@altherix.in or use the contact form to describe your system and the outcome you need. We agree a scope together before any build work begins."),
+   "With a free 30-minute call with an engineer. We then review your existing system and send a written assessment with options, followed by a proposal: fixed scope and price for defined work, or a monthly team for ongoing work. Build work happens in two-week increments you can see and use."),
+  ("Do you take over or improve existing systems?",
+   "Yes, that's most of our work. We extend ERP, billing and member platforms, connect them to accounting and payment systems, and upgrade older .NET, Java and PHP applications in steps rather than rewriting them."),
   ("Where is Altherix based?",
    "Our office is in Coonoor, in the Nilgiris district of Tamil Nadu, India. Altherix was founded in nearby Ooty."),
 ]

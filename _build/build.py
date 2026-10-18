@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "11"  # asset cache-buster
+V = "12"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -279,7 +279,7 @@ def contact_section(heading="Have a difficult software problem?", lede="Whether 
       </div>
       <div><label for="f-msg">What are you working on?</label><textarea id="f-msg" name="message" required aria-describedby="f-hint"></textarea><p class="meta" id="f-hint" style="margin-top:.4rem">The system, the problem, and what a good outcome looks like.</p></div>
       <button class="btn btn-p" type="submit">Talk to an Engineer</button>
-      <p class="meta">This opens your email app with the message addressed to {EMAIL}.</p>
+      <p class="meta">This opens your email app with the message addressed to {EMAIL}. An engineer replies within one working day.</p>
       <p class="form-ok" id="form-ok" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -318,10 +318,10 @@ def home():
 
     panels = "\n".join(cs_panel(CASE[s]) for s in ["erp-inventory-module", "church-management-system", "clinic-management-enhancement"])
 
-    ai_areas = [("AI Integration", "Connect AI capabilities to existing business applications."),
-                ("AI Agents", "Automate multi-step workflows with appropriate human oversight."),
-                ("Intelligent Automation", "Turn repetitive operational processes into adaptive workflows."),
-                ("Enterprise AI", "Build secure, governed AI experiences around business data.")]
+    ai_areas = [("AI grading, checked by tests", "In CodeGate, hidden tests decide whether code works. AI only scores quality against a written rubric and summarises each answer for a reviewer."),
+                ("Agents behind a permission gate", "Mandate, in development: an AI agent can act on ERP data only through approved actions, and risky ones wait for a person."),
+                ("Automation that needs no model", "Payment reconciliation, GST preparation and appointment reminders run as scheduled, rule-based jobs."),
+                ("A person can always see why", "Where AI makes a judgement, the reasoning is shown and a person can override it.")]
     ai_html = "".join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in ai_areas)
 
     layers = [("Experience", "Web, mobile and dashboards", ["React", "TypeScript", "Angular", "React Native", "Chart.js"]),
@@ -333,6 +333,17 @@ def home():
 
     inds = "".join(f'<div class="ind rv"><div class="ind-art" aria-hidden="true">{pic("ind-" + IND_ART[n], "", "(min-width:1080px) 360px, (min-width:760px) 45vw, 100vw")}</div><h3 class="h3">{n}</h3><p class="body">{d}</p><a class="more" href="/case-studies/{slugs[0]}/">{E(CASE[slugs[0]]["title"])} <span class="arr" aria-hidden="true">→</span></a></div>' for n, d, slugs in INDUSTRIES)
 
+
+    fits = [("Your business system has grown around you.", "An ERP, billing or member platform that works, but needs a new module, a faster screen or an upgrade, without a risky rewrite.", "erp-inventory-module", "ERP inventory module"),
+            ("Your tools don't talk to each other.", "Invoices typed into Tally by hand, payments reconciled in spreadsheets, the same customer in three systems.", "accounting-software-integration", "Accounting integration"),
+            ("You need a platform built around how you work.", "Multi-level reporting, member records, bookings or deliveries, where off-the-shelf software forces you into its process.", "missions-office-enterprise-system", "Missions Office reporting")]
+    fit_html = "".join(f'<div class="fit rv"><h3 class="h3">{a}</h3><p class="body">{b}</p><a class="more" href="/case-studies/{s}/">Example: {n} <span class="arr" aria-hidden="true">→</span></a></div>' for a, b, s, n in fits)
+    eng = [("A call with an engineer", "30 minutes, free. You describe the system and what a good outcome looks like. You talk to someone who builds, not a salesperson."),
+           ("A written assessment", "We look at the existing system, code and data, and send back what we found: what's there, the risks and two or three options."),
+           ("A scoped proposal", "Fixed scope, milestones and price for defined work, or a monthly team for ongoing work. You choose."),
+           ("Working software every two weeks", "Each increment is deployed to a staging environment you can use, and reviewed with you before the next one starts."),
+           ("Go live, then stay", "Deployment, monitoring and handover documentation. We keep supporting the system after launch.")]
+    eng_html = "".join(f'<li><span class="idx">0{i+1}</span><span><b>{a}</b>{b}</span></li>' for i, (a, b) in enumerate(eng))
     principles = [("We improve before we replace.", "Existing systems often contain years of business knowledge. We modernize intelligently instead of rewriting everything unnecessarily."),
                   ("Engineers stay close to the problem.", "Architecture, development and delivery remain connected. The people who scope your system build it and support it."),
                   ("Production is the finish line.", "We care about deployment, reliability, observability and real-world operation — not just prototypes."),
@@ -358,9 +369,9 @@ def home():
   <div class="ct">
     <div>
       <span class="label">Software engineering company · Ooty, India</span>
-      <h1 class="h1" id="hero-h"><span>Modern Software.</span><span>Intelligent Systems.</span><span class="sig">Real Business Value.</span></h1>
+      <h1 class="h1" id="hero-h"><span>We extend, connect</span><span>and modernize</span><span class="sig">the systems you run.</span></h1>
       <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
-      <p class="lede">Altherix engineers, modernizes and intelligently automates the software systems businesses depend on.</p>
+      <p class="lede">Inventory modules for manufacturers, Tally and Zoho Books integrations for finance teams, booking and reminders for clinics, and reporting platforms on Azure in the UK. Built, deployed and supported after launch.</p>
       <div class="btns">
         <a class="btn btn-p" href="#contact">Talk to an Engineer</a>
         <a class="btn btn-s" href="#work">Explore Our Work</a>
@@ -375,6 +386,14 @@ def home():
     <h2 class="label" id="proof-h" style="margin-bottom:1.25rem">Outcomes from delivered work</h2>
     <div class="outcomes rv">{out_html}</div>
     <p class="proof-note meta">Figures reported on client engagements. Select one to read the case study.</p>
+  </div>
+</section>
+
+<section class="sec" id="fit" aria-labelledby="fit-h">
+  <div class="ct">
+    {sec_head("Who we work with", "Three situations we're built for.", "Organisations in India and the UK with software that already matters to the business.", "fit-h")}
+    <div class="fit-grid">{fit_html}</div>
+    <p class="meta" style="margin-top:1.5rem">Not a fit: brochure websites, games, or projects that need to ship in days.</p>
   </div>
 </section>
 
@@ -467,6 +486,18 @@ def home():
       <div><dt>Company</dt><dd>Altherix Solutions</dd></div>
     </dl>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="process" aria-labelledby="proc-h">
+  <div class="ct two">
+    <div class="rv">
+      <span class="label">How it works</span>
+      <h2 class="h2" id="proc-h" style="margin-top:1.25rem">From first call <span class="mute">to production.</span></h2>
+      <p class="lede" style="margin-top:1.25rem">What happens after you get in touch, and what you get at each step.</p>
+      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="#contact">Book the first call</a></div>
+    </div>
+    <ol class="steps rv">{eng_html}</ol>
   </div>
 </section>
 

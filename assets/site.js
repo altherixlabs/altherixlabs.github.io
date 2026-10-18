@@ -17,7 +17,7 @@
      don't drag). The architecture list keeps its container reveal so its
      connecting line can draw. */
   ['.outcomes', '.grid2', '.layers', '.steps', '.kv', '.metrics', '.facts-dl', '.cols4',
-   '.ind-grid', '.rows', '.cs-list', '.roles', '.plist', '.arch-flow'].forEach(function (sel) {
+   '.ind-grid', '.rows', '.cs-list', '.roles', '.plist', '.arch-flow', '.fit-grid'].forEach(function (sel) {
     d.querySelectorAll(sel).forEach(function (g) {
       if (g.closest('.page-hero') || g.closest('.hero')) return;
       var kids = [].slice.call(g.children);

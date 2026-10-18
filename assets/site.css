@@ -605,3 +605,9 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 @keyframes flow{from{background-position:-150% 0,0 0}to{background-position:250% 0,0 0}}
 @keyframes flowv{from{background-position:0 -150%,0 0}to{background-position:0 250%,0 0}}
 @media (prefers-reduced-motion:reduce){.arch-flow li::after{animation:none!important}.js .steps li.rv:not(.in)::after{transform:none}.svc-thumb img{transition:none}}
+
+/* Who we work with */
+.fit-grid{display:grid;gap:20px}
+@media (min-width:900px){.fit-grid{grid-template-columns:repeat(3,1fr)}}
+.fit{border:1px solid var(--line-strong);border-radius:var(--r);padding:1.5rem 1.5rem 1.4rem;background:radial-gradient(120% 120% at 0 0,rgba(93,30,166,.18),transparent 60%),var(--bg-raise);display:grid;gap:.75rem;align-content:start}
+.fit .more{font-size:.875rem;margin-top:.25rem}
