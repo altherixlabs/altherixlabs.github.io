@@ -55,9 +55,8 @@ def dot(items):
     return "\u00a0· ".join(E(t).replace(" ", "\u00a0") if len(t) < 18 else E(t) for t in items)
 
 # ── chrome ───────────────────────────────────────────────────────────────────
-NAV = [("Services", "/#services", "services"), ("Solutions", "/#solutions", "solutions"),
-       ("Case Studies", "/case-studies/", "case-studies"), ("Products", "/products/", "products"), ("What we build", "/#build", "industries"),
-       ("About", "/#about", "about"), ("Careers", "/careers.html", "careers")]
+NAV = [("Services", "/#services", "services"), ("Work", "/case-studies/", "case-studies"),
+       ("Products", "/products/", "products"), ("About", "/#about", "about"), ("Careers", "/careers.html", "careers")]
 
 def head(title, desc, path, jsonld=None, og_type="website", noindex=False, og_image="/assets/og.png", og_w=1200, og_h=630):
     u = url_for(path)
@@ -136,12 +135,12 @@ def footer():
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">What we build</h2><ul>{ind}</ul></div>
-      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li></ul></div>
+      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
     <div class="foot-bot meta">
       <span>© <span data-year>2026</span> Altherix Solutions</span>
-      <span>Coonoor, Tamil Nadu, India</span>
+      <span>Coonoor, Tamil Nadu, India · <a href="/privacy/">Privacy policy</a></span>
     </div>
   </div>
 </footer>
@@ -278,7 +277,7 @@ def contact_section(heading="Have a difficult software problem?", lede="Whether 
       </div>
       <div><label for="f-msg">What are you working on?</label><textarea id="f-msg" name="message" required aria-describedby="f-hint"></textarea><p class="meta" id="f-hint" style="margin-top:.4rem">The system, the problem, and what a good outcome looks like.</p></div>
       <button class="btn btn-p" type="submit">Talk to an Engineer</button>
-      <p class="meta">This opens your email app with the message addressed to {EMAIL}. An engineer replies within one working day.</p>
+      <p class="meta">This opens your email app with the message addressed to {EMAIL}. An engineer replies within one working day. <a href="/privacy/">Privacy policy</a>.</p>
       <p class="form-ok" id="form-ok" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -901,6 +900,35 @@ def seo_files():
              f"- [All case studies]({SITE}/case-studies/)", ""]
     write("llms.txt", "\n".join(llms))
 
+# ── PRIVACY ──────────────────────────────────────────────────────────────────
+def privacy():
+    path = "privacy/index.html"
+    def block(x):
+        if isinstance(x, list):
+            return "<ul class=\"plist\">" + "".join(f"<li>{i}</li>" for i in x) + "</ul>"
+        return f"<p>{x}</p>"
+    sid = lambda h: re.sub(r"[^a-z0-9]+", "-", h.lower()).strip("-")
+    secs = "".join(f'<div class="block" id="{sid(h)}"><h2 class="h3-lg">{E(h)}</h2>{"".join(block(x) for x in blocks)}</div>' for h, blocks in PRIVACY)
+    toc = "".join(f'<a href="#{sid(h)}">{E(h)}</a>' for h, _ in PRIVACY)
+    html = head("Data Privacy & Protection Policy | Altherix",
+                "How Altherix collects, processes and protects personal data under GDPR, India's DPDP Act 2023 and the IT Act 2000, and how to exercise your data rights.",
+                path, [ORG, crumbs_ld([("Home", "/"), ("Privacy", "/privacy/")])]) + nav() + f"""
+<main id="main">
+<header class="page-hero"><div class="ct">
+  {crumbs([("Home", "/"), ("Privacy", "")])}
+  <span class="label">Privacy</span>
+  <h1 class="h1">Data Privacy &amp; Protection Policy</h1>
+  <p class="lede">Version {PRIVACY_META['version']} · Effective {PRIVACY_META['effective']}. How we handle personal data for our clients, their users, our team and visitors to this site.</p>
+</div></header>
+<section class="sec"><div class="ct article">
+  <div class="read-progress" aria-hidden="true"></div>
+  <nav class="toc" aria-label="On this page">{toc}</nav>
+  <div class="policy">{secs}</div>
+</div></section>
+</main>
+""" + footer()
+    write(path, html); PAGES.append((path, "0.3"))
+
 REMOVED = ["erp-inventory-module", "payment-gateway-integration", "accounting-software-integration",
            "clinic-management-enhancement", "learning-platform-features", "delivery-management-system"]
 
@@ -917,5 +945,5 @@ if __name__ == "__main__":
     home(); cases_index()
     for c in CASES: case_page(c)
     for s in SERVICES: service_page(s)
-    products(); careers(); notfound(); redirects(); seo_files()
+    products(); careers(); privacy(); notfound(); redirects(); seo_files()
     print(f"Built {len(PAGES)} pages + 404, sitemap.xml, robots.txt, llms.txt")

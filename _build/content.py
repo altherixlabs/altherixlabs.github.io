@@ -287,3 +287,154 @@ BUILDS = [
   ("Field work & delivery", "logistics", "Job dispatch, live status and customer notifications for teams on the move.", None, None),
 ]
 
+
+# ────────────────────────────────────────────────────────────────────────────
+# PRIVACY POLICY. From Altherix's Data Privacy & Protection Policy (v5.0, effective May 2023).
+# Web changes: privacy contact is contact@altherix.in (the only published address),
+# no personal signature, list numbering corrected, and a short "This website" section added.
+# Each section: (heading, [blocks]); a block is a paragraph string or a list of bullet strings.
+# ────────────────────────────────────────────────────────────────────────────
+PRIVACY_META = dict(version="5.0", effective="May 2023")
+PRIVACY = [
+  ("This website", [
+    "altherix.in sets no cookies and loads no analytics, advertising or tracking scripts. Our fonts and images are served from this site.",
+    "The contact form does not send anything to our servers. It opens your own email app with your message addressed to contact@altherix.in, and you decide whether to send it. If you do, we use your message and contact details only to reply and to discuss the work you asked about.",
+  ]),
+  ("1. Introduction", [
+    "Altherix is committed to protecting the privacy and security of personal data and sensitive information entrusted to us by our clients, partners, and service users. This Data Privacy & Protection Policy outlines our principles, practices, and obligations regarding the collection, processing, storage, and protection of personal and confidential data in accordance with applicable data protection regulations including the General Data Protection Regulation (GDPR), the Indian Information Technology Act, 2000, and other relevant data privacy laws.",
+  ]),
+  ("2. Definitions", [[
+    "<b>Personal Data:</b> Any information relating to an identified or identifiable natural person (data subject), directly or indirectly.",
+    "<b>Processing:</b> Any operation performed on personal data such as collection, recording, organization, structuring, storage, adaptation, retrieval, use, disclosure, or erasure.",
+    "<b>Data Controller:</b> The entity that determines the purposes and means of processing personal data (e.g., Altherix's client).",
+    "<b>Data Processor:</b> The entity that processes personal data on behalf of the controller (e.g., Altherix when acting as a service provider).",
+    "<b>Data Subject:</b> The individual to whom personal data relates.",
+    "<b>Breach:</b> Any unauthorized or accidental access, disclosure, loss, alteration, or destruction of personal data.",
+  ]]),
+  ("3. Scope", [
+    "This policy applies to all personal data processed by Altherix in connection with the provision of software development services, system implementation, maintenance, and support. It covers data in any format (electronic, paper, or other) and includes information about employees, contractors, clients, end users, and third parties.",
+  ]),
+  ("4. Data Processing Principles", [
+    "Altherix adheres to the following core principles in all data processing activities:",
+    [
+      "<b>Lawfulness, Fairness &amp; Transparency:</b> Data is processed lawfully, fairly, and transparently with respect to the data subject.",
+      "<b>Purpose Limitation:</b> Data is collected for specified, explicit, and legitimate purposes and not further processed in a manner incompatible with those purposes.",
+      "<b>Data Minimization:</b> Only necessary and relevant personal data is collected and processed.",
+      "<b>Accuracy:</b> Personal data is kept accurate and up-to-date; reasonable steps are taken to erase or correct inaccurate data.",
+      "<b>Storage Limitation:</b> Personal data is kept in a form which permits identification of data subjects for no longer than necessary.",
+      "<b>Integrity &amp; Confidentiality:</b> Personal data is processed securely with appropriate protection against unauthorized access, loss, or damage.",
+      "<b>Accountability:</b> Altherix is responsible for demonstrating compliance with these principles.",
+    ],
+  ]),
+  ("5. Types of Data Collected", [
+    "<b>5.1 Employee &amp; Contractor Data</b>",
+    ["Name, contact information, employment history", "Tax identification numbers, bank details", "Performance records, training history"],
+    "<b>5.2 Client &amp; End-User Data</b>",
+    ["Business contact information", "Transactional and usage data related to services provided", "Communication records (emails, logs)"],
+    "<b>5.3 Third-Party &amp; Sensitive Data</b>",
+    ["Any personal data of third parties included in client data or business documents", "Financial, health, or other sensitive categories processed only with explicit consent and appropriate safeguards"],
+  ]),
+  ("6. Legal Basis for Processing", [
+    "Altherix processes personal data only when we have a lawful basis, including:",
+    [
+      "<b>Contractual Necessity:</b> Data processing required to fulfill contractual obligations",
+      "<b>Legal Obligation:</b> Compliance with laws, regulations, and government requests",
+      "<b>Legitimate Interest:</b> Processing necessary for Altherix's legitimate business operations (security, fraud prevention)",
+      "<b>Consent:</b> Explicit consent from the data subject for specific purposes",
+      "<b>Vital Interest:</b> Protection of life or health in emergency situations",
+    ],
+  ]),
+  ("7. Data Security & Protection Measures", [
+    "Altherix implements comprehensive technical, organizational, and administrative safeguards to protect personal data:",
+    "<b>7.1 Technical Measures</b>",
+    [
+      "<b>Encryption:</b> Sensitive data encrypted in transit (TLS/SSL) and at rest (AES-256)",
+      "<b>Access Control:</b> Role-based access controls (RBAC) limiting data access to authorized personnel",
+      "<b>Firewalls &amp; Intrusion Detection:</b> Network security infrastructure to prevent unauthorized access",
+      "<b>Secure Backups:</b> Regular encrypted backups with secure recovery procedures",
+      "<b>Vulnerability Management:</b> Regular security assessments, penetration testing, and patch management",
+    ],
+    "<b>7.2 Organizational Measures</b>",
+    [
+      "<b>Data Protection Training:</b> All employees receive regular data privacy and security training",
+      "<b>Access Restrictions:</b> Data access restricted to personnel with legitimate business needs",
+      "<b>Confidentiality Agreements:</b> All employees and contractors sign confidentiality agreements",
+      "<b>Incident Response Plan:</b> Procedures to detect, investigate, and remediate security breaches",
+    ],
+    "<b>7.3 Administrative Measures</b>",
+    [
+      "<b>Data Inventory:</b> Comprehensive record of personal data processing activities",
+      "<b>Data Processing Agreements:</b> Formal Data Processing Agreements (DPA) with all processors and third parties",
+      "<b>Privacy Impact Assessments:</b> Conducted for high-risk processing activities",
+      "<b>Audits &amp; Monitoring:</b> Regular audits of data protection practices and compliance",
+    ],
+  ]),
+  ("8. Data Sharing & Third Parties", [
+    "Altherix shares personal data with third parties only:",
+    [
+      "With explicit consent from the data subject or data controller",
+      "When legally required (law enforcement, court orders, regulatory compliance)",
+      "To trusted service providers and processors under written Data Processing Agreements",
+      "In connection with business transactions (M&amp;A, asset sale) with appropriate confidentiality terms",
+      "To protect rights, safety, or legitimate interests of Altherix or third parties",
+    ],
+    "All third-party processors are assessed for data protection capabilities and bound by written agreements specifying their obligations.",
+  ]),
+  ("9. International Data Transfers", [
+    "Where personal data is transferred outside the country of origin, Altherix ensures adequate safeguards:",
+    [
+      "Standard Contractual Clauses (SCCs) for transfers to countries without adequate protection",
+      "Binding Corporate Rules (BCRs) for intra-group transfers",
+      "Adequacy decisions recognized by relevant data protection authorities",
+      "Explicit consent from data subjects where required",
+    ],
+  ]),
+  ("10. Data Subject Rights", [
+    "Data subjects have the following rights, which Altherix respects and facilitates:",
+    [
+      "<b>Right of Access:</b> Request and obtain confirmation of personal data processing and receive a copy",
+      "<b>Right to Rectification:</b> Request correction of inaccurate or incomplete data",
+      "<b>Right to Erasure:</b> Request deletion of personal data (subject to legal retention requirements)",
+      "<b>Right to Restrict Processing:</b> Request limitation of processing for specific purposes",
+      "<b>Right to Data Portability:</b> Request data in structured, machine-readable format",
+      "<b>Right to Object:</b> Object to processing on grounds of legitimate interest or direct marketing",
+      "<b>Right Not to be Subject to Automated Decision-Making:</b> Request human review of automated decisions",
+    ],
+    "Requests to exercise these rights should be directed to our Data Protection Officer (contact details in Section 13). We will respond within 30 days.",
+  ]),
+  ("11. Data Retention & Deletion", [
+    "Altherix retains personal data only for as long as necessary to fulfill the purposes for which it was collected, unless:",
+    ["Required by applicable law or regulation", "Necessary to establish, exercise, or defend legal claims", "Retained for legitimate business purposes with reduced access controls"],
+    "Upon deletion, personal data is securely erased or anonymized such that it cannot be reconstructed.",
+  ]),
+  ("12. Data Breach Notification", [
+    "In the event of a data breach that may compromise the rights or freedoms of data subjects, Altherix will:",
+    [
+      "Promptly notify affected data subjects (without undue delay, where legally required)",
+      "Notify relevant regulatory authorities where legally mandated",
+      "Provide details of the breach, impact assessment, and mitigation measures",
+      "Conduct post-breach investigation and implement corrective actions",
+    ],
+    "Altherix maintains an incident response plan and breach notification procedures aligned with GDPR and other applicable regulations.",
+  ]),
+  ("13. Data Protection Officer", [
+    "Altherix has appointed a Data Protection Officer (DPO) responsible for overseeing compliance with this policy and applicable data protection laws.",
+    "For data privacy inquiries, complaints, or to exercise data subject rights, email <a href=\"mailto:contact@altherix.in?subject=Data%20protection%20request\">contact@altherix.in</a> with the subject &ldquo;Data protection request&rdquo;. Your message goes to the Data Protection Officer.",
+  ]),
+  ("14. Compliance & Audits", [
+    "Altherix complies with all applicable data protection regulations including:",
+    [
+      "General Data Protection Regulation (GDPR): EU/EEA",
+      "Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011: India",
+      "Digital Personal Data Protection Act (DPDPA), 2023: India",
+      "California Consumer Privacy Act (CCPA) and other US state privacy laws",
+    ],
+    "Altherix conducts regular audits and assessments to ensure compliance and maintains comprehensive documentation of all processing activities.",
+  ]),
+  ("15. Policy Updates", [
+    "This policy is reviewed annually and updated as necessary to reflect changes in laws, regulations, and best practices. Any material changes will be communicated to data controllers and stakeholders. Continued use of Altherix services constitutes acceptance of the updated policy.",
+  ]),
+  ("16. Acknowledgment", [
+    "By entering into a service agreement with Altherix, clients acknowledge that they have reviewed and understood this Data Privacy &amp; Protection Policy and agree to be bound by its terms.",
+  ]),
+]
