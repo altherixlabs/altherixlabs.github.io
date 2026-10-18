@@ -17,8 +17,8 @@ BING_SITE_VERIFICATION = "3094D6A701575725433D5DD1A488F48D"
 # Titles 50–60 characters, descriptions 140–160. Visible headings are set in build.py.
 SEO = {
   "home": dict(seo_title="Software Development & Modernization in India | Altherix",
-               seo_desc="Software engineering company in Coonoor, India. Custom software, modernization, AI automation and integration, with platforms live on Azure in the UK.",
-               kw_sub="Software development, modernization and AI automation for businesses in India and the UK."),
+               seo_desc="Software engineering company in India for clients in India, the UK and Europe: custom software, modernization, AI automation and integration.",
+               kw_sub="Software development, modernization and AI automation for businesses in India, the UK and Europe."),
   "case-studies": dict(seo_title="Software Development & Integration Case Studies | Altherix",
                        seo_desc="Production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure."),
   "products": dict(seo_title="Products: CodeGate & Mandate | Altherix",
@@ -32,17 +32,19 @@ FAQ = [
   ("What does Altherix do?",
    "Altherix is a small software engineering company. We build custom web applications and enterprise platforms, modernize existing systems, add automation and AI where it helps, and connect business systems to each other. We also deploy and run what we build."),
   ("Why choose a focused team over a large agency?",
-   "You work directly with the engineers who design, build and run your system, with no account managers or hand-offs. Our platforms run in production on Azure in the UK, including a church management system with 80+ API modules and statistical reporting across seven organisational levels, and we'll walk you through how they're built."),
+   "You work directly with the engineers who design, build and run your system, with no account managers or hand-offs. Our platforms run in production on Azure for clients in the UK and Ghana, including a church management system with 80+ API modules and statistical reporting across seven organisational levels, and we'll walk you through how they're built."),
   ("Which technologies do you work with?",
    "Our production work is in .NET 9 and ASP.NET Core, React and TypeScript, Laravel and PHP, SQL Server and MySQL, on Azure with Azure DevOps pipelines. We choose the stack that suits your system rather than forcing one."),
   ("How does an engagement start?",
    "With a free 30-minute call with an engineer. We then review your existing system and send a written assessment with options, followed by a proposal: fixed scope and price for defined work, or a monthly team for ongoing work. Build work happens in two-week increments you can see and use."),
+  ("How much does it cost, and how quickly can you deliver?",
+   "Our rates are well below those of UK, European and US agencies, and defined work gets a fixed price agreed before we start. You'll have working software within two weeks of starting, followed by a new increment every two weeks."),
   ("Can we start with something small?",
    "Yes, and we recommend it. Start with a written assessment or a single module. If it works for you, we carry on; if not, you haven't committed to a large project."),
   ("Do you offer a referral discount?",
    "Yes. If you refer a client to us, both you and the client you refer get a 5 to 10% discount."),
   ("Where is Altherix based?",
-   "Our office is in Coonoor, in the Nilgiris district of Tamil Nadu, India. Altherix was founded in nearby Ooty. We work with clients remotely, including in the UK."),
+   "Our office is in Coonoor, in the Nilgiris district of Tamil Nadu, India. Altherix was founded in nearby Ooty. We take on projects remotely across India, the UK and Europe."),
 ]
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -103,7 +105,7 @@ CASES = [
     title="Missions Office Enterprise System",
     client="The Church of Pentecost",
     oneliner="Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports.",
-    summary="A reporting and analytics system for the Church of Pentecost's global Missions Office. It consolidates half-year and end-year statistical returns submitted from every level of a seven-tier hierarchy, from the Global Office down to a single local assembly.",
+    summary="A reporting and analytics system for the Church of Pentecost's global Missions Office in Ghana. It consolidates half-year and end-year statistical returns submitted from every level of a seven-tier hierarchy, from the Global Office down to a single local assembly.",
     problem="Half-year and end-year statistical returns had to be consolidated across seven organisational levels, with each administrator seeing only their own branch.",
     solution="Drill-down statistics dashboards, access scoped at query level, a Vision 2028 scorecard and exports stamped with their provenance.",
     challenge=[

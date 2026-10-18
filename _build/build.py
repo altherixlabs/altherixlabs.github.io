@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "13"  # asset cache-buster
+V = "14"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -132,7 +132,7 @@ def footer():
         <a class="brand" href="/"><img src="/assets/mark-96.webp" width="28" height="28" alt="" loading="lazy">ALTHERIX</a>
         <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
         <p class="foot-sub meta">Transforming Software, Amplifying Value.</p>
-        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Platforms in production on Azure in the UK.</p>
+        <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Platforms in production in the UK and Ghana.</p>
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">What we build</h2><ul>{ind}</ul></div>
@@ -337,7 +337,9 @@ def home():
     whys = [("You work with the builders.", "No account managers or hand-offs. The engineers on your first call design, build and deploy your system."),
             ("You get our full attention.", "We take on a small number of clients at a time, so your project is never one of fifty."),
             ("Our work is live.", "The platforms we build run in production on Azure, and we keep running them. We'll walk you through how they're built."),
-            ("Start small, decide later.", "Begin with a written assessment or a single module. If it works, we carry on. If not, you haven't committed much.")]
+            ("Start small, decide later.", "Begin with a written assessment or a single module. If it works, we carry on. If not, you haven't committed much."),
+            ("Competitive pricing.", "Engineering from India at rates well below UK, European and US agencies, to the same production standards. Defined work gets a fixed price, so there are no surprises."),
+            ("Fast delivery.", "Working software in your hands within two weeks of starting, and a new increment every two weeks after that. No months of silence before a demo.")]
     why_html = "".join(f'<div class="rv"><h3 class="h3">{a}</h3><p class="body">{b}</p></div>' for a, b in whys)
     assess_mail = f"mailto:{EMAIL}?subject=" + "System%20assessment"
     eng = [("A call with an engineer", "30 minutes, free. You describe the system and what a good outcome looks like. You talk to someone who builds, not a salesperson."),
@@ -370,10 +372,11 @@ def home():
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="ct">
     <div>
-      <span class="label">Software engineering company · Ooty, India</span>
+      <span class="label">Modern Software · Intelligent Systems · Real Business Value</span>
       <h1 class="h1" id="hero-h"><span>We extend, connect</span> <span>and modernize</span> <span class="sig">the systems you run.</span></h1>
       <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
-      <p class="lede">From membership platforms to reporting across seven organisational levels, we design, build and run software that organisations depend on every day, in production on Azure in the UK.</p>
+      <p class="lede">Custom web platforms, integrations between the tools you already use, and upgrades to software that's holding you back. Designed, built and supported by one engineering team, from first call to production.</p>
+      <ul class="hero-points"><li>Fixed prices, well below UK and European agency rates</li><li>Working software within two weeks of starting</li></ul>
       <div class="btns">
         <a class="btn btn-p" href="#contact">Talk to an Engineer</a>
         <a class="btn btn-s" href="#work">Explore Our Work</a>
@@ -393,9 +396,9 @@ def home():
 
 <section class="sec" id="fit" aria-labelledby="fit-h">
   <div class="ct">
-    {sec_head("Who we work with", "Three situations we're built for.", "Organisations in India and the UK with software that already matters to the business.", "fit-h")}
+    {sec_head("Who we work with", "Three situations we're built for.", "Organisations in India, the UK and Europe with software that already matters to the business.", "fit-h")}
     <div class="fit-grid">{fit_html}</div>
-    <p class="meta" style="margin-top:1.5rem">Not a fit: brochure websites, games, or projects that need to ship in days.</p>
+    <p class="meta" style="margin-top:1.5rem">Not a fit: brochure websites or games.</p>
   </div>
 </section>
 
@@ -419,7 +422,7 @@ def home():
 
 <section class="sec" id="work" aria-labelledby="work-h">
   <div class="ct">
-    {sec_head("Our work", "What we've built, <span class='mute'>and still run.</span>", "Platforms in production for The Church of Pentecost, an international church organisation.", "work-h")}
+    {sec_head("Our work", "What we've built, <span class='mute'>and still run.</span>", "Platforms in production for The Church of Pentecost in the UK and at its Missions Office in Ghana.", "work-h")}
     <div class="shots-2">
       {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Church Management System, overview (names blurred)", "(min-width:1000px) 570px, 100vw")}
       {shot("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, Vision 2028 and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
@@ -484,7 +487,7 @@ def home():
       <span class="label">About</span>
       <h2 class="h2" id="about-h" style="margin-top:1.25rem">Global engineering. <span class="mute">Rooted in the Nilgiris.</span></h2>
       <p>Altherix was founded in Ooty, high in the Nilgiris, and works from Coonoor in Tamil Nadu, India. It's an unusual place for an engineering company, and a deliberate one: a small team with room to do careful work, away from the churn of a large delivery centre.</p>
-      <p>The work reaches well beyond the hills. Platforms we built run in production on Azure in the UK for The Church of Pentecost, an international church organisation, and we take on work from India, the UK and beyond.</p>
+      <p>The work reaches well beyond the hills. Platforms we built run in production on Azure for The Church of Pentecost in the UK and its Missions Office in Ghana. We take on projects across India, the UK and Europe.</p>
       <p>One conviction hasn't changed: your existing software is the backbone of your business, and it usually deserves improving before it deserves replacing.</p>
     </div>
     <div style="align-self:end">
@@ -492,7 +495,7 @@ def home():
     <dl class="facts-dl rv">
       <div><dt>Founded</dt><dd>Ooty, the Nilgiris</dd></div>
       <div><dt>Office</dt><dd>Coonoor, Tamil Nadu</dd></div>
-      <div><dt>In production</dt><dd>Azure UK South</dd></div>
+      <div><dt>In production</dt><dd>UK and Ghana, on Azure</dd></div>
       <div><dt>Products</dt><dd>CodeGate · Mandate (in development)</dd></div>
       <div><dt>Company</dt><dd>Altherix Solutions</dd></div>
     </dl>
@@ -883,7 +886,7 @@ def seo_files():
     llms = [f"# Altherix", "",
             "> Altherix Solutions is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). "
             "It builds custom software, modernizes existing applications, adds automation and AI, and integrates business systems. "
-            "Its production platforms include a church management system and a statistical reporting system for The Church of Pentecost, running on Azure in the UK.", "",
+            "Its production platforms include a church management system and a statistical reporting system for The Church of Pentecost in the UK and Ghana, running on Azure.", "",
             f"Contact: {EMAIL} · {PHONE_DISPLAY} · {LINKEDIN}", "",
             "## Services", ""]
     llms += [f"- [{x['name']}]({SITE}/services/{x['slug']}/): {x['short']}" for x in SERVICES]
