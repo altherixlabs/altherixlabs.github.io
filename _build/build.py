@@ -369,7 +369,7 @@ def home():
   <div class="ct">
     <div>
       <span class="label">Software engineering company · Ooty, India</span>
-      <h1 class="h1" id="hero-h"><span>We extend, connect</span><span>and modernize</span><span class="sig">the systems you run.</span></h1>
+      <h1 class="h1" id="hero-h"><span>We extend, connect</span> <span>and modernize</span> <span class="sig">the systems you run.</span></h1>
       <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
       <p class="lede">Inventory modules for manufacturers, Tally and Zoho Books integrations for finance teams, booking and reminders for clinics, and reporting platforms on Azure in the UK. Built, deployed and supported after launch.</p>
       <div class="btns">
