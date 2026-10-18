@@ -58,10 +58,10 @@
 </div></header>
 <section class="sec"><div class="ct article">
   <div class="read-progress" aria-hidden="true"></div>
-  <nav class="toc" aria-label="On this page"><a href="#summary">Summary</a><a href="#challenge">The challenge</a><a href="#approach">The approach</a><a href="#architecture">Architecture</a><a href="#engineering">Engineering</a><a href="#technology">Technology</a><a href="#results">Results</a><a href="#impact">Impact</a></nav>
+  <nav class="toc" aria-label="On this page"><a href="#summary">Summary</a><a href="#screens">Screens</a><a href="#challenge">The challenge</a><a href="#approach">The approach</a><a href="#architecture">Architecture</a><a href="#engineering">Engineering</a><a href="#technology">Technology</a><a href="#results">Results</a><a href="#impact">Impact</a></nav>
   <div>
     <div class="block" id="summary"><h2 class="h3-lg">Summary</h2><p>A multi-gateway payment integration covering Razorpay, PayU and Paytm, supporting UPI, wallets and EMI, with an admin dashboard and automated reconciliation reports.</p></div>
-    
+    <div class="block" id="screens"><h2 class="h3-lg">Screens</h2><div class="shots-stack"><figure class="shot rv"><div class="shot-frame" aria-hidden="false"><picture><source type="image/webp" srcset="/assets/img/payments-console-800.webp 800w, /assets/img/payments-console-1600.webp 1600w" sizes="(min-width:1000px) 760px, 100vw"><img src="/assets/img/payments-console-1600.jpg" width="1600" height="800" alt="Payments overview: orders, success rate, amount collected and unreconciled count, the split across Razorpay, PayU and Paytm, payment methods, and a reconciliation table." loading="lazy" decoding="async"></picture></div><figcaption class="meta">Gateway split, payment methods and automated reconciliation. Illustrative screen (demo data)</figcaption></figure></div></div>
     <div class="block" id="challenge"><h2 class="h3-lg">The challenge</h2><p>An e-commerce business needed to offer customers more ways to pay and reconcile payments across several providers without doing it by hand.</p></div>
     <div class="block" id="approach"><h2 class="h3-lg">The approach</h2><ul class="plist"><li><b>Integrate once, route many.</b> Razorpay, PayU and Paytm integrated behind a single payment layer.</li><li><b>Offer the methods customers use.</b> UPI, wallets and EMI supported at checkout.</li><li><b>Reconcile automatically.</b> Reconciliation reports generated automatically, with an admin dashboard for operations.</li></ul></div>
     <div class="block" id="architecture"><h2 class="h3-lg">Architecture</h2><dl class="kv"><div><dt>Experience</dt><dd>React checkout and admin dashboard</dd></div><div><dt>Application</dt><dd>Node.js payment services integrating Razorpay, PayU and Paytm</dd></div><div><dt>Data</dt><dd>MongoDB</dd></div></dl></div>
@@ -71,15 +71,15 @@
     <div class="block" id="impact"><h2 class="h3-lg">Impact</h2><p>Conversions rose by 35%, with the integration handling more than 2,000 orders a day.</p><p style="margin-top:1.5rem"><a class="more" href="/services/enterprise-integration/">Related service: Enterprise Integration <span class="arr" aria-hidden="true">→</span></a></p></div>
   </div>
 </div></section>
-<section class="sec"><div class="ct"><div class="sec-hd rv"><div><span class="label">More work</span><h2 class="h2" id="rel-h" style="margin-top:1.25rem">Related case studies</h2></div></div><div class="rows"><a class="row cs-row" href="/case-studies/missions-office-enterprise-system/">
-  <span class="n">7<small>Organisational levels, one reporting system</small></span>
-  <span><span class="label">Non-profit · Enterprise reporting</span><span class="h3" style="display:block">Missions Office Enterprise System</span></span>
-  <span class="body">Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports.</span>
-  <span class="arr" aria-hidden="true">→</span>
-</a><a class="row cs-row" href="/case-studies/accounting-software-integration/">
+<section class="sec"><div class="ct"><div class="sec-hd rv"><div><span class="label">More work</span><h2 class="h2" id="rel-h" style="margin-top:1.25rem">Related case studies</h2></div></div><div class="rows"><a class="row cs-row" href="/case-studies/accounting-software-integration/">
   <span class="n">90%<small>Time saved</small></span>
   <span><span class="label">Financial services · Integration</span><span class="h3" style="display:block">Accounting Software Integration</span></span>
   <span class="body">A REST API bridge between billing and Tally / Zoho Books, with automated invoicing, GST preparation and payment reconciliation.</span>
+  <span class="arr" aria-hidden="true">→</span>
+</a><a class="row cs-row" href="/case-studies/missions-office-enterprise-system/">
+  <span class="n">7<small>Organisational levels, one reporting system</small></span>
+  <span><span class="label">Non-profit · Enterprise reporting</span><span class="h3" style="display:block">Missions Office Enterprise System</span></span>
+  <span class="body">Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports.</span>
   <span class="arr" aria-hidden="true">→</span>
 </a></div></div></section>
 <section class="sec" id="contact" aria-labelledby="contact-h">

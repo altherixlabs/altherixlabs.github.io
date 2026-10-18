@@ -18,14 +18,14 @@ Contact: contact@altherix.in · +91 81529 23515 · https://www.linkedin.com/comp
 
 ## Case studies
 
-- [Church Management System](https://altherix.in/case-studies/church-management-system/): A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance. (80+ api modules in production)
-- [Missions Office Enterprise System](https://altherix.in/case-studies/missions-office-enterprise-system/): Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports. (7 organisational levels, one reporting system)
 - [ERP Inventory Management Module](https://altherix.in/case-studies/erp-inventory-module/): Inventory management inside the ERP — barcode scanning, real-time stock updates and automated reorder alerts. (85% less manual work)
+- [Clinic Management Enhancement](https://altherix.in/case-studies/clinic-management-enhancement/): Appointment booking, prescriptions, SMS and email reminders and telemedicine across four clinics. (70% fewer no-shows)
+- [Church Management System](https://altherix.in/case-studies/church-management-system/): A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance. (80+ api modules in production)
 - [Multi-Gateway Payment Integration](https://altherix.in/case-studies/payment-gateway-integration/): Razorpay, PayU and Paytm behind one integration, with UPI, wallets, EMI, an admin dashboard and automated reconciliation. (35% higher conversions)
 - [Accounting Software Integration](https://altherix.in/case-studies/accounting-software-integration/): A REST API bridge between billing and Tally / Zoho Books, with automated invoicing, GST preparation and payment reconciliation. (90% time saved)
-- [Clinic Management Enhancement](https://altherix.in/case-studies/clinic-management-enhancement/): Appointment booking, prescriptions, SMS and email reminders and telemedicine across four clinics. (70% fewer no-shows)
 - [Learning Platform Features](https://altherix.in/case-studies/learning-platform-features/): Video delivery, quizzes, progress tracking, certificates, Zoom and Razorpay for an ed-tech startup. (8K+ active students)
 - [Delivery Management System](https://altherix.in/case-studies/delivery-management-system/): Real-time tracking, a delivery agent app, route optimisation and customer SMS, integrated with Google Maps. (40% faster deliveries)
+- [Missions Office Enterprise System](https://altherix.in/case-studies/missions-office-enterprise-system/): Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports. (7 organisational levels, one reporting system)
 
 ## Company
 

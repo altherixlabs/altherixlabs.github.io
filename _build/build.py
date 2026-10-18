@@ -202,6 +202,7 @@ def hero_svg():
 IMG = {  # name: (width, height) of the 1600px version
     "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
     "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
+    **{n: (1600, 800) for n in ["erp-inventory", "payments-console", "accounting-bridge", "clinic-schedule", "learning-course", "delivery-dispatch"]},
 }
 
 def pic(name, alt, sizes="(min-width:1240px) 1160px, 100vw", lazy=True, cls=""):
@@ -304,7 +305,7 @@ def home():
   <a class="more" href="/services/enterprise-integration/#cloud" aria-label="Cloud and DevOps: learn more">Learn more <span class="arr" aria-hidden="true">→</span></a>
 </div>"""
 
-    panels = "\n".join(cs_panel(CASE[s]) for s in ["church-management-system", "missions-office-enterprise-system", "erp-inventory-module"])
+    panels = "\n".join(cs_panel(CASE[s]) for s in ["erp-inventory-module", "church-management-system", "clinic-management-enhancement"])
 
     ai_areas = [("AI Integration", "Connect AI capabilities to existing business applications."),
                 ("AI Agents", "Automate multi-step workflows with appropriate human oversight."),
@@ -375,10 +376,12 @@ def home():
 
 <section class="sec" id="work" aria-labelledby="work-h">
   <div class="ct">
-    {sec_head("Selected work", "What we built, <span class='mute'>and what it changed.</span>", "Two production platforms for a global organisation, and a module that removed most of a manufacturer's manual inventory work.", "work-h")}
+    {sec_head("Selected work", "What we built, <span class='mute'>and what it changed.</span>", "Systems in production for manufacturers, clinics, retailers, finance teams, educators and a global nonprofit.", "work-h")}
     <div class="shots-2">
-      {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Church Management System, overview (names blurred)", "(min-width:1000px) 570px, 100vw")}
-      {shot("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, Vision 2028 and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
+      {shot("erp-inventory", "Inventory screen: stock on hand with reorder status and a live feed of barcode scans.", "Manufacturing: ERP inventory (illustrative, demo data)", "(min-width:1000px) 570px, 100vw")}
+      {shot("clinic-schedule", "Clinic appointments: a day calendar for four doctors, reminder figures and a signed prescription.", "Healthcare: clinic scheduling (illustrative, demo data)", "(min-width:1000px) 570px, 100vw")}
+      {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Nonprofit: Church Management System (names blurred)", "(min-width:1000px) 570px, 100vw")}
+      {shot("delivery-dispatch", "Live dispatch: a map with an optimised delivery route and a list of agents with status and ETA.", "Logistics: live dispatch (illustrative, demo data)", "(min-width:1000px) 570px, 100vw")}
     </div>
     <div class="cs-list">{panels}</div>
     <div class="after"><a class="btn btn-s" href="/case-studies/">All {len(CASES)} case studies</a></div>
@@ -472,8 +475,9 @@ def home():
 # ── CASE STUDIES INDEX ───────────────────────────────────────────────────────
 def cases_index():
     path = "case-studies/index.html"
-    feat = [c for c in CASES if c.get("featured")]
-    rest = [c for c in CASES if not c.get("featured")]
+    fs = ["erp-inventory-module", "church-management-system", "clinic-management-enhancement"]
+    feat = [CASE[s] for s in fs]
+    rest = [c for c in CASES if c["slug"] not in fs]
     html = head(SEO["case-studies"]["seo_title"], SEO["case-studies"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Case Studies", "/case-studies/")])]) + nav("case-studies") + f"""
 <main id="main">
@@ -484,7 +488,7 @@ def cases_index():
   <p class="lede">{len(CASES)} engagements across nonprofit, manufacturing, finance, healthcare, education and logistics.</p>
 </div></header>
 <section class="sec"><div class="ct">
-  <h2 class="label" style="margin-bottom:1.25rem">Featured engagement · The Church of Pentecost</h2>
+  <h2 class="label" style="margin-bottom:1.25rem">Featured engagements</h2>
   <div class="cs-list">{''.join(cs_panel(c) for c in feat)}</div>
 </div></section>
 <section class="sec"><div class="ct">

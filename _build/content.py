@@ -135,6 +135,7 @@ CASES = [
   ),
   dict(
     slug="erp-inventory-module",
+    shots=[('erp-inventory', 'Inventory screen: SKUs tracked, movements today, items below reorder level and stock value, a stock-on-hand table with bins and reorder levels, and a live feed of barcode scans.', 'Stock on hand, reorder status and live barcode scans. Illustrative screen (demo data)')],
     seo_desc="Java Spring Boot and MySQL ERP inventory module with barcode scanning, real-time stock and automated reorder alerts: 85% less manual work across 5K+ SKUs.",
     category="Manufacturing · ERP",
     industry="Manufacturing",
@@ -164,6 +165,7 @@ CASES = [
   ),
   dict(
     slug="payment-gateway-integration",
+    shots=[('payments-console', 'Payments overview: orders, success rate, amount collected and unreconciled count, the split across Razorpay, PayU and Paytm, payment methods, and a reconciliation table.', 'Gateway split, payment methods and automated reconciliation. Illustrative screen (demo data)')],
     seo_desc="Razorpay, PayU and Paytm payment gateway integration in Node.js, React and MongoDB with UPI, EMI and auto reconciliation: 35% higher conversions.",
     category="E-commerce · Payments",
     industry="Financial Services",
@@ -193,6 +195,7 @@ CASES = [
   ),
   dict(
     slug="accounting-software-integration",
+    shots=[('accounting-bridge', 'Billing-to-accounting bridge: invoices synced to Tally and Zoho Books, auto-reconciled payments, a sync log, and GSTR-1 preparation with CGST, SGST and IGST totals.', 'Sync log to Tally and Zoho Books, with GSTR-1 preparation. Illustrative screen (demo data)')],
     seo_desc="Django and PostgreSQL REST bridge from billing to Tally and Zoho Books, automating invoices, GST preparation and reconciliation: 90% time saved, 100% accuracy.",
     category="Financial services · Integration",
     industry="Financial Services",
@@ -223,6 +226,7 @@ CASES = [
   ),
   dict(
     slug="clinic-management-enhancement",
+    shots=[('clinic-schedule', 'Clinic appointments: a day calendar for four doctors with confirmed, checked-in, video consult and reminder-sent appointments, reminder and attendance figures, and a signed prescription.', 'Day schedule, reminders and prescriptions. Illustrative screen (demo data)')],
     seo_desc="Angular, Node.js and Twilio clinic management enhancement across four clinics: booking, prescriptions, SMS reminders, telemedicine. 70% fewer no-shows.",
     category="Healthcare · Platform enhancement",
     industry="Healthcare",
@@ -252,6 +256,7 @@ CASES = [
   ),
   dict(
     slug="learning-platform-features",
+    shots=[('learning-course', 'Learning platform course screen: a video lesson, a quiz question with the correct answer marked, course progress by module, and a link to a live Zoom class.', 'Video lesson, quiz and progress tracking. Illustrative screen (demo data)')],
     seo_desc="React and Django learning platform with AWS S3 video, quizzes, certificates, Zoom and Razorpay payments: 8K+ active students and a 92% completion rate.",
     category="Education · Product engineering",
     industry="Education",
@@ -283,6 +288,7 @@ CASES = [
   ),
   dict(
     slug="delivery-management-system",
+    shots=[('delivery-dispatch', 'Live dispatch screen: deliveries today, delivered count, average time per drop and SMS sent, a map with an optimised seven-stop route, and a list of agents with status and ETA.', 'Live map with an optimised route and agent status. Illustrative screen (demo data)')],
     seo_desc="React Native, Node.js and Google Maps delivery management system with real-time tracking, route optimisation and SMS: 40% faster deliveries, 200+ a day.",
     category="Logistics · Mobile & platform",
     industry="Logistics",
@@ -313,6 +319,8 @@ CASES = [
     related_service="software-engineering",
   ),
 ]
+_ORDER = ["erp-inventory-module", "clinic-management-enhancement", "church-management-system", "payment-gateway-integration", "accounting-software-integration", "learning-platform-features", "delivery-management-system", "missions-office-enterprise-system"]
+CASES.sort(key=lambda c: _ORDER.index(c["slug"]))
 CASE = {c["slug"]: c for c in CASES}
 
 # ────────────────────────────────────────────────────────────────────────────
