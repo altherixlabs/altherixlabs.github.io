@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "9"  # asset cache-buster
+V = "10"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -202,14 +202,25 @@ def hero_svg():
 IMG = {  # name: (width, height) of the 1600px version
     "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
     "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
+    "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
+    "art-cases": (1600, 682), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
     **{n: (1600, 800) for n in ["erp-inventory", "payments-console", "accounting-bridge", "clinic-schedule", "learning-course", "delivery-dispatch"]},
 }
 
 def pic(name, alt, sizes="(min-width:1240px) 1160px, 100vw", lazy=True, cls=""):
     w, h = IMG[name]
     load = ' loading="lazy"' if lazy else ''
-    return (f'<picture><source type="image/webp" srcset="/assets/img/{name}-800.webp 800w, /assets/img/{name}-1600.webp 1600w" sizes="{sizes}">'
+    srcset = f"/assets/img/{name}-800.webp 800w, /assets/img/{name}-1600.webp {w}w" if w > 800 else f"/assets/img/{name}-1600.webp {w}w"
+    return (f'<picture><source type="image/webp" srcset="{srcset}" sizes="{sizes}">'
             f'<img src="/assets/img/{name}-1600.jpg" width="{w}" height="{h}" alt="{E(alt)}"{load} decoding="async"{(" class=" + chr(34) + cls + chr(34)) if cls else ""}></picture>')
+
+def art(name, sizes="(min-width:1000px) 560px, 100vw", lazy=False):
+    """Decorative illustration beside a page heading."""
+    return f'<figure class="hero-art" aria-hidden="true">{pic(name, "", sizes, lazy)}</figure>'
+
+SERVICE_ART = {"software-engineering": "art-software", "modernization": "art-modernization", "ai-automation": "art-ai", "enterprise-integration": "art-integration"}
+IND_ART = {"Manufacturing": "manufacturing", "Healthcare": "healthcare", "Financial Services": "finance", "Education": "education", "Logistics": "logistics", "Enterprise / Nonprofit": "global"}
 
 def shot(name, alt, caption=None, sizes="(min-width:1240px) 1160px, 100vw"):
     """A product screenshot in a quiet browser frame."""
@@ -244,7 +255,7 @@ def cs_row(c):
 
 def contact_section(heading="Have a difficult software problem?", lede="Whether you're modernizing a legacy platform, integrating enterprise systems, or figuring out where AI actually fits, start with a conversation with our engineering team."):
     opts = "".join(f"<option>{s['name']}</option>" for s in SERVICES) + "<option>Cloud &amp; DevOps</option><option>Not sure yet</option>"
-    return f"""<section class="sec" id="contact" aria-labelledby="contact-h">
+    return f"""<section class="sec contact-sec" id="contact" aria-labelledby="contact-h">
   <div class="ct two even">
     <div class="rv">
       <span class="label">Contact</span>
@@ -320,7 +331,7 @@ def home():
               ("Cloud & DevOps", "Run, release and observe", ["Azure App Service", "Azure SQL", "Blob Storage", "AWS S3", "Azure DevOps", "GitHub Actions"])]
     layer_html = "".join(f'<li class="layer"><div><h3 class="h3">{n}</h3><p class="meta">{sub}</p></div><p class="stack-line">{dot(t)}</p></li>' for n, sub, t in layers)
 
-    inds = "".join(f'<div class="ind rv"><h3 class="h3">{n}</h3><p class="body">{d}</p><a class="more" href="/case-studies/{slugs[0]}/">{E(CASE[slugs[0]]["title"])} <span class="arr" aria-hidden="true">→</span></a></div>' for n, d, slugs in INDUSTRIES)
+    inds = "".join(f'<div class="ind rv"><div class="ind-art" aria-hidden="true">{pic("ind-" + IND_ART[n], "", "(min-width:1080px) 360px, (min-width:760px) 45vw, 100vw")}</div><h3 class="h3">{n}</h3><p class="body">{d}</p><a class="more" href="/case-studies/{slugs[0]}/">{E(CASE[slugs[0]]["title"])} <span class="arr" aria-hidden="true">→</span></a></div>' for n, d, slugs in INDUSTRIES)
 
     principles = [("We improve before we replace.", "Existing systems often contain years of business knowledge. We modernize intelligently instead of rewriting everything unnecessarily."),
                   ("Engineers stay close to the problem.", "Architecture, development and delivery remain connected. The people who scope your system build it and support it."),
@@ -486,6 +497,7 @@ def cases_index():
   <span class="label">Case studies</span>
   <h1 class="h1">Production systems and what they changed.</h1>
   <p class="lede">{len(CASES)} engagements across nonprofit, manufacturing, finance, healthcare, education and logistics.</p>
+  <figure class="hero-art wide" aria-hidden="true">{pic("art-cases", "", lazy=False)}</figure>
 </div></header>
 <section class="sec"><div class="ct">
   <h2 class="label" style="margin-bottom:1.25rem">Featured engagements</h2>
@@ -518,10 +530,10 @@ def case_page(c):
               {"@context": "https://schema.org", "@type": "Article", "headline": c["title"], "description": c["oneliner"],
                "author": {"@type": "Organization", "name": "Altherix Solutions"},
                "publisher": {"@type": "Organization", "name": "Altherix Solutions", "logo": {"@type": "ImageObject", "url": SITE + "/assets/icon-512.png"}},
-               "image": SITE + "/assets/og.png", "mainEntityOfPage": url_for(path),
+               "image": SITE + f"/assets/og/{c['slug']}.jpg", "mainEntityOfPage": url_for(path),
                "datePublished": published, "dateModified": "__MODIFIED__"}]
     rel = f'<section class="sec"><div class="ct">{sec_head("More work", "Related case studies", None, "rel-h")}<div class="rows">{"".join(cs_row(r) for r in related)}</div></div></section>' if related else ""
-    html = head(f"{c['title']}: Case Study | Altherix", c["seo_desc"], path, jsonld, "article") + nav("case-studies") + f"""
+    html = head(f"{c['title']}: Case Study | Altherix", c["seo_desc"], path, jsonld, "article", og_image=f"/assets/og/{c['slug']}.jpg") + nav("case-studies") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Case Studies", "/case-studies/"), (c['title'], "")])}
@@ -567,16 +579,16 @@ def service_page(s):
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Services", "/#services"), (s["name"], f"/services/{s['slug']}/")]),
               {"@context": "https://schema.org", "@type": "Service", "name": s["name"], "description": s["short"], "provider": {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}, "areaServed": ["IN", "GB"]}]
     h1 = s["h1"].replace("<em>", '<span class="mute">').replace("</em>", "</span>")
-    html = head(s["seo_title"], s["seo_desc"], path, jsonld) + nav("services") + f"""
+    html = head(s["seo_title"], s["seo_desc"], path, jsonld, og_image=f"/assets/og/{s['slug']}.jpg") + nav("services") + f"""
 <main id="main">
-<header class="page-hero"><div class="ct">
+<header class="page-hero"><div class="ct hero-split"><div>
   {crumbs([("Home", "/"), ("Services", "/#services"), (s['name'], "")])}
   <span class="label">{s['name']}</span>
   <h1 class="h1">{h1}</h1>
   <p class="kw-sub">{E(s['kw_sub'])}</p>
   <p class="lede">{E(s['lede'])}</p>
   <div class="btns"><a class="btn btn-p" href="#contact">Talk to an Engineer</a><a class="btn btn-s" href="#work">Relevant work</a></div>
-</div></header>
+</div>{art(SERVICE_ART[s['slug']])}</div></header>
 <section class="sec"><div class="ct two">
   <div class="rv"><span class="label">The problem</span><h2 class="h2" style="margin-top:1.25rem">Why this is harder than it looks.</h2></div>
   <div class="prose rv">{''.join(f'<p>{E(p)}</p>' for p in s['problem'])}</div>
@@ -671,13 +683,13 @@ def careers():
     html = head(SEO["careers"]["seo_title"], SEO["careers"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Careers", "/careers.html")])] + jobs) + nav("careers") + f"""
 <main id="main">
-<header class="page-hero"><div class="ct">
+<header class="page-hero"><div class="ct hero-split"><div>
   {crumbs([("Home", "/"), ("Careers", "")])}
   <span class="label">Careers</span>
   <h1 class="h1">Small team. <span class="mute">Serious systems.</span></h1>
   <p class="lede">Our work goes into production and stays there: enterprise platforms, reporting systems and integrations that organisations depend on every day. If you want ownership rather than a ticket queue, we should talk.</p>
   <div class="btns"><a class="btn btn-p" href="#roles">See open roles</a><a class="more" href="{LINKEDIN}" target="_blank" rel="noopener">Follow Altherix on LinkedIn <span class="arr" aria-hidden="true">→</span></a></div>
-</div></header>
+</div>{art("art-remote")}</div></header>
 
 <section class="sec" id="roles" aria-labelledby="roles-h"><div class="ct">
   {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. Full-time roles are hybrid; internships are fully remote.", "roles-h")}
@@ -753,10 +765,7 @@ def products():
 </div></header>
 
 <section class="sec" id="codegate" aria-labelledby="codegate-h"><div class="ct">
-  <div class="shots-2" style="margin-bottom:clamp(48px,6vw,80px)">
-    {shot("codegate-test", "CodeGate candidate screen: the question and rules on the left, a code editor with the candidate's solution on the right, a countdown timer and a Submit button.", "Candidate view: timed editor with sample tests (demo data)", "(min-width:1000px) 570px, 100vw")}
-    {shot("codegate-admin", "CodeGate admin screen: test status, candidate counts, average score out of 20, an invite form and a ranked candidate list with scores, flags and decisions.", "Admin view: invite, track and rank candidates (demo data)", "(min-width:1000px) 570px, 100vw")}
-  </div>
+  <figure class="product-fig rv" aria-hidden="true">{pic("art-codegate", "")}</figure>
   <div class="two">
     <div class="rv">
       <span class="label">In use · Early access</span>
@@ -767,6 +776,10 @@ def products():
       <p class="meta" style="margin-top:.9rem">Built for our own hiring rounds. JavaScript today, more languages planned.</p>
     </div>
     <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in cg_feats)}</div>
+  </div>
+  <div class="shots-2" style="margin:clamp(48px,6vw,80px) 0 0">
+    {shot("codegate-test", "CodeGate candidate screen: the question and rules on the left, a code editor with the candidate's solution on the right, a countdown timer and a Submit button.", "Candidate view: timed editor with sample tests (demo data)", "(min-width:1000px) 570px, 100vw")}
+    {shot("codegate-admin", "CodeGate admin screen: test status, candidate counts, average score out of 20, an invite form and a ranked candidate list with scores, flags and decisions.", "Admin view: invite, track and rank candidates (demo data)", "(min-width:1000px) 570px, 100vw")}
   </div>
 </div></section>
 
@@ -815,11 +828,11 @@ def products():
 
 def notfound():
     html = head("Page not found | Altherix", "This page doesn't exist.", "404.html", noindex=True) + nav() + """
-<main id="main"><section class="nf page-hero"><div class="ct">
+<main id="main"><section class="nf page-hero"><div class="ct hero-split"><div>
   <span class="label">404</span><h1 class="h1">This page isn't in production.</h1>
   <p class="lede">The link may be old or mistyped.</p>
   <div class="btns"><a class="btn btn-p" href="/">Go to the homepage</a><a class="btn btn-s" href="/case-studies/">View case studies</a></div>
-</div></section></main>
+</div>""" + art("art-404") + """</div></section></main>
 """ + footer()
     write("404.html", html)
 
