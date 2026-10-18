@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "6"  # asset cache-buster
+V = "8"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -176,8 +176,9 @@ def hero_svg():
              ("Cloud", 420, [245, 355])]
     out = [f'<svg viewBox="0 0 {W} {H}" role="img" aria-labelledby="viz-t"><title id="viz-t">System layers: experience, applications, APIs and AI, data, and cloud, connected by data flows.</title>']
     for name, y, xs in tiers:
-        out.append(f'<text class="viz-label" x="0" y="{y+3.5}">{E(name)}</text>')
-        out.append(f'<line class="viz-tier" x1="118" y1="{y}" x2="{W}" y2="{y}"/>')
+        ti = [t[0] for t in tiers].index(name)
+        out.append(f'<g class="viz-row" style="--t:{ti}"><text class="viz-label" x="0" y="{y+3.5}">{E(name)}</text>'
+                   f'<line class="viz-tier" x1="118" y1="{y}" x2="{W}" y2="{y}"/></g>')
     paths = []
     for a in range(len(tiers) - 1):
         _, y1, xs1 = tiers[a]; _, y2, xs2 = tiers[a + 1]
@@ -186,14 +187,14 @@ def hero_svg():
                 if abs(i / max(1, len(xs1) - 1) - j / max(1, len(xs2) - 1)) <= 0.4:
                     my = (y1 + y2) / 2
                     paths.append(f"M{x1} {y1+6} C{x1} {my} {x2} {my} {x2} {y2-6}")
-    out += [f'<path class="viz-line" d="{p}"/>' for p in paths]
-    out += [f'<path class="viz-flow" d="{p}" style="animation-delay:-{(k*1.3)%9:.1f}s"/>' for k, p in enumerate(paths) if k % 3 == 0]
+    out.append('<g class="viz-links">' + "".join(f'<path class="viz-line" d="{p}"/>' for p in paths) + '</g>')
+    out.append('<g class="viz-flows">' + "".join(f'<path class="viz-flow" d="{p}" style="animation-delay:-{(k*1.3)%9:.1f}s"/>' for k, p in enumerate(paths) if k % 3 == 0) + '</g>')
     for ti, (name, y, xs) in enumerate(tiers):
         for i, x in enumerate(xs):
             if ti == 2 and i == 2:
-                out.append(f'<circle class="viz-core" cx="{x}" cy="{y}" r="6"/>')
+                out.append(f'<circle class="viz-core" cx="{x}" cy="{y}" r="6" style="--t:{ti}"/>')
             else:
-                out.append(f'<circle class="viz-node" cx="{x}" cy="{y}" r="5"/>')
+                out.append(f'<circle class="viz-node" cx="{x}" cy="{y}" r="5" style="--t:{ti}"/>')
     out.append("</svg>")
     return "\n".join(out)
 
@@ -325,6 +326,7 @@ def home():
 <main id="main">
 
 <section class="hero" aria-labelledby="hero-h">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="ct">
     <div>
       <span class="label">Software engineering company · Ooty, India</span>
@@ -502,6 +504,7 @@ def case_page(c):
   <dl class="facts">{''.join(f'<div><dt>{k}</dt><dd>{E(v)}</dd></div>' for k, v in facts)}</dl>
 </div></header>
 <section class="sec"><div class="ct article">
+  <div class="read-progress" aria-hidden="true"></div>
   <nav class="toc" aria-label="On this page">{''.join(f'<a href="#{i}">{t}</a>' for i, t in toc)}</nav>
   <div>
     <div class="block" id="summary"><h2 class="h3-lg">Summary</h2><p>{E(c['summary'])}</p></div>

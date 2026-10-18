@@ -12,6 +12,24 @@
      Anything already on screen is shown immediately (no fade, no flash).
      After an in-page jump, the destination appears instantly too —
      only content you scroll into naturally fades up. */
+  /* Lists reveal item by item: move the reveal from the container to its
+     children, and give each child a sequence index (capped so long lists
+     don't drag). The architecture list keeps its container reveal so its
+     connecting line can draw. */
+  ['.outcomes', '.grid2', '.layers', '.steps', '.kv', '.metrics', '.facts-dl', '.cols4',
+   '.ind-grid', '.rows', '.cs-list', '.roles', '.plist'].forEach(function (sel) {
+    d.querySelectorAll(sel).forEach(function (g) {
+      if (g.closest('.page-hero') || g.closest('.hero')) return;
+      var kids = [].slice.call(g.children);
+      if (g.classList.contains('rv')) {
+        if (!g.classList.contains('layers')) g.classList.remove('rv');
+        kids.forEach(function (c) { c.classList.add('rv'); });
+      }
+      kids.filter(function (c) { return c.classList.contains('rv'); })
+          .forEach(function (c, i) { c.style.setProperty('--i', Math.min(i, 6)); });
+    });
+  });
+
   var items = [].slice.call(d.querySelectorAll('.rv'));
   var jumping = !!location.hash, jumpTimer;
   function markJump() {
@@ -45,6 +63,33 @@
   }
   root.classList.remove('no-js');
   root.classList.add('js');
+
+  /* ── Figures count up once when they come into view ── */
+  var figs = [].slice.call(d.querySelectorAll('.outcome .n, .cs-big, .metrics b, .cs-sub b'));
+  if (!reduce && 'IntersectionObserver' in w && w.requestAnimationFrame) {
+    var countUp = function (el) {
+      var text = el.textContent.trim(), m = text.match(/^(\d+)(\D*)$/);
+      if (!m || +m[1] < 2) return;
+      var end = +m[1], start = null, dur = 1100;
+      el.setAttribute('aria-label', text);
+      var step = function (now) {
+        if (start === null) start = now;
+        var p = Math.min(1, (now - start) / dur), e = 1 - Math.pow(2, -10 * p); // ease-out-expo
+        el.textContent = (p < 1 ? Math.round(end * e) : end) + m[2];
+        if (p < 1) w.requestAnimationFrame(step); else el.removeAttribute('aria-label');
+      };
+      el.textContent = '0' + m[2];
+      w.requestAnimationFrame(step);
+    };
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        if (!jumping) countUp(en.target);
+      });
+    }, { threshold: 0.6 });
+    figs.forEach(function (el) { cio.observe(el); });
+  }
 
   /* ── Sticky nav: material appears once you scroll ── */
   var nav = d.querySelector('.nav');
@@ -189,6 +234,58 @@
         fb.hidden = false;
       }, 900);
     });
+  }
+
+  /* ── Footer line draws in when the footer is reached ── */
+  var foot = d.querySelector('.foot');
+  if (foot) {
+    if (reduce || !('IntersectionObserver' in w)) foot.classList.add('in');
+    else {
+      var fio = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { foot.classList.add('in'); fio.disconnect(); } }, { threshold: 0.2 });
+      fio.observe(foot);
+    }
+  }
+
+  /* ── Hero glow follows the pointer (desktop, motion allowed) ── */
+  var hero = d.querySelector('.hero');
+  if (hero && !reduce && w.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    var raf = 0, gx = 0, gy = 0;
+    hero.addEventListener('pointermove', function (e) {
+      var r = hero.getBoundingClientRect();
+      gx = e.clientX - r.left; gy = e.clientY - r.top;
+      if (!raf) raf = w.requestAnimationFrame(function () {
+        hero.style.setProperty('--gx', gx + 'px'); hero.style.setProperty('--gy', gy + 'px'); raf = 0;
+      });
+      hero.classList.add('glow-on');
+    });
+    hero.addEventListener('pointerleave', function () { hero.classList.remove('glow-on'); });
+  }
+
+  /* ── Case studies: reading progress and live table of contents ── */
+  var bar = d.querySelector('.read-progress'), article = d.querySelector('.article');
+  if (bar && article) {
+    var pticking = false;
+    var progress = function () {
+      var r = article.getBoundingClientRect(), total = r.height - w.innerHeight * 0.6;
+      var p = Math.max(0, Math.min(1, -r.top / Math.max(1, total)));
+      bar.style.setProperty('--p', p.toFixed(4)); pticking = false;
+    };
+    w.addEventListener('scroll', function () { if (!pticking) { pticking = true; w.requestAnimationFrame(progress); } }, { passive: true });
+    progress();
+  }
+  var tocLinks = [].slice.call(d.querySelectorAll('.toc a'));
+  if (tocLinks.length && 'IntersectionObserver' in w) {
+    var tio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        tocLinks.forEach(function (a) {
+          var on = a.hash.slice(1) === en.target.id;
+          a.classList.toggle('is-current', on);
+          if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    tocLinks.forEach(function (a) { var t = d.getElementById(a.hash.slice(1)); if (t) tio.observe(t); });
   }
 
   /* ── Year ── */

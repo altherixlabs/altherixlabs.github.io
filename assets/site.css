@@ -27,6 +27,8 @@
   --sec:clamp(80px,10vw,128px);
   --nav-h:72px;
   --ease:cubic-bezier(.2,.7,.2,1);
+  --ease-out:cubic-bezier(.165,.84,.44,1);   /* quart: entrances */
+  --ease-in-out:cubic-bezier(.645,.045,.355,1); /* cubic: on-screen movement */
 }
 
 *,*::before,*::after{box-sizing:border-box}
@@ -359,7 +361,7 @@ a.cs-row .body{font-size:.9375rem}
 .nf{min-height:70svh;display:flex;align-items:center}
 
 /* motion */
-.js .rv{opacity:0;transform:translateY(8px);transition:opacity .35s var(--ease),transform .4s var(--ease)}
+.js .rv{opacity:0;transform:translateY(12px);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out);transition-delay:calc(var(--i,0) * 60ms)}
 .js .rv.in{opacity:1;transform:none}
 .js .rv.instant{transition:none}
 
@@ -409,4 +411,114 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 @media (prefers-contrast:more){
   :root{--line:rgba(246,244,244,.28);--line-strong:rgba(246,244,244,.5);--ink-2:#E4E6EE;--ink-3:#C8CBDA}
   .nav.scrolled{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+
+/* ── Entrance choreography ───────────────────────────────────────
+   Runs once per page load. Header content rises in sequence; the hero
+   diagram assembles tier by tier. Only transform and opacity animate. */
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.hero .label,.hero .h1 span,.hero .kw-sub,.hero .lede,.hero .btns,
+.page-hero .crumbs,.page-hero .label,.page-hero .h1,.page-hero .kw-sub,.page-hero .lede,.page-hero .btns,.page-hero .facts,.page-hero .rows{
+  animation:rise .7s var(--ease-out) both;animation-delay:calc(var(--d,0) * 70ms + 60ms)}
+.hero .label,.page-hero .crumbs{--d:0}
+.hero .h1 span:nth-child(1),.page-hero .label{--d:1}
+.hero .h1 span:nth-child(2),.page-hero .h1{--d:2}
+.hero .h1 span:nth-child(3){--d:3}
+.page-hero .kw-sub{--d:3}
+.hero .kw-sub,.page-hero .lede{--d:4}
+.hero .lede,.page-hero .btns,.page-hero .facts,.page-hero .rows{--d:5}
+.hero .btns{--d:6}
+.hero-viz .viz-row{animation:fade .6s var(--ease-out) both;animation-delay:calc(var(--t) * 90ms + 300ms)}
+.hero-viz .viz-node,.hero-viz .viz-core{transform-box:fill-box;transform-origin:center;animation:pop .5s var(--ease-out) both;animation-delay:calc(var(--t) * 90ms + 420ms)}
+.hero-viz .viz-links{animation:fade .9s var(--ease-out) both;animation-delay:.9s}
+.hero-viz .viz-flows{animation:fade .6s var(--ease-out) both;animation-delay:1.4s}
+
+.js .layers.rv{opacity:1;transform:none}
+
+/* Figures count up when they scroll into view (JS); keep widths steady */
+.outcome .n,.cs-big,.metrics b,.cs-sub b{font-variant-numeric:tabular-nums}
+
+/* Product illustration settles into its frame */
+.js .product-fig.rv img{transform:scale(1.04);transition:transform 1.4s var(--ease-out)}
+.js .product-fig.rv.in img{transform:none}
+
+/* Desktop pointers only: quiet hover on case panels and cards */
+@media (hover:hover) and (pointer:fine){
+  .cs,.role{transition:border-color .2s ease,background-color .2s ease}
+  .cs:hover,.role:hover{border-color:rgba(246,244,244,.3)}
+  a.row{transition:background-color .2s ease}
+  a.row:hover{background-color:rgba(246,244,244,.025)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .js .rv{transition:none;transition-delay:0s}
+  .js .product-fig.rv img{transform:none;transition:none}
+  .cs,.role,a.row{transition:none}
+}
+
+/* ── Second layer ─────────────────────────────────────────────── */
+
+/* Page-to-page transitions (browsers that support cross-document View Transitions).
+   The nav stays put; the page content cross-fades with a small lift. */
+@view-transition{navigation:auto}
+.nav{view-transition-name:site-nav}
+::view-transition-old(root){animation:vt-out .18s var(--ease-out) both}
+::view-transition-new(root){animation:vt-in .32s var(--ease-out) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0;transform:translateY(8px)}}
+
+/* Signature line: one gentle light sweep across the gradient after it lands */
+.hero .h1 .sig{background-size:200% 100%;background-image:linear-gradient(92deg,#B69CFF 0%,#DF3AD2 25%,#FA70A5 50%,#FFE3EE 62%,#FA70A5 76%,#DF3AD2 100%);
+  background-position:100% 0;animation:rise .7s var(--ease-out) both,sweep 1.6s var(--ease-in-out) 1s both;animation-delay:calc(3 * 70ms + 60ms),1.1s}
+@keyframes sweep{from{background-position:100% 0}to{background-position:0 0}}
+
+/* Hero glow follows the pointer on desktop (position set by JS) */
+.hero-glow{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .6s var(--ease-out);
+  background:radial-gradient(420px circle at var(--gx,70%) var(--gy,40%),rgba(154,34,185,.16),transparent 65%)}
+.hero.glow-on .hero-glow{opacity:1}
+
+/* Section labels: a short accent line draws in as the heading appears */
+.sec-hd .label,.two > .rv > .label{display:inline-flex;align-items:center;gap:.6rem}
+.sec-hd .label::before,.two > .rv > .label::before{content:"";width:20px;height:1px;background:var(--grad-text);transform-origin:left;transform:scaleX(1)}
+.js .sec-hd.rv .label::before,.js .two > .rv > .label::before{transform:scaleX(0);transition:transform .7s var(--ease-out) .25s}
+.js .sec-hd.rv.in .label::before,.js .two > .rv.in > .label::before{transform:scaleX(1)}
+
+/* Outcome figures: an accent rule grows under each number as it counts */
+.outcome .n{position:relative;padding-bottom:.55rem}
+.outcome .n::after{content:"";position:absolute;left:0;bottom:0;width:28px;height:2px;background:var(--grad-text);transform-origin:left}
+.js .outcome.rv .n::after{transform:scaleX(0);transition:transform 1s var(--ease-out) calc(var(--i,0) * 60ms + .2s)}
+.js .outcome.rv.in .n::after{transform:scaleX(1)}
+
+/* Case study panels: the metric lands first, then the story */
+.js .cs.rv .cs-metric,.js .cs.rv .cs-body{opacity:0;transform:translateY(10px);transition:opacity .5s var(--ease-out),transform .6s var(--ease-out)}
+.js .cs.rv .cs-body{transition-delay:.12s}
+.js .cs.rv.in .cs-metric,.js .cs.rv.in .cs-body{opacity:1;transform:none}
+
+/* Footer signature line draws across when the footer comes into view */
+.js .foot::before{transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease-out)}
+.js .foot.in::before{transform:scaleX(1)}
+
+/* Primary buttons: a single soft sheen on hover (desktop only) */
+@media (hover:hover) and (pointer:fine){
+  .btn-p{position:relative;overflow:hidden;isolation:isolate}
+  .btn-p::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 35%,rgba(154,34,185,.18) 50%,transparent 65%);transform:translateX(-120%)}
+  .btn-p:hover::after{transform:translateX(120%);transition:transform .7s var(--ease-out)}
+}
+
+/* Case studies: reading progress under the nav, and a live table of contents */
+.read-progress{position:fixed;left:0;right:0;top:var(--nav-h);height:2px;z-index:101;background:var(--grad-text);transform-origin:left;transform:scaleX(var(--p,0));pointer-events:none}
+.toc a{transition:color .2s ease,border-color .25s var(--ease-out)}
+.toc a.is-current{color:var(--ink);border-color:#DF3AD2}
+
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-old(root),::view-transition-new(root){animation:none}
+  .hero .h1 .sig{animation:none;background-position:0 0}
+  .hero-glow{display:none}
+  .js .sec-hd.rv .label::before,.js .two > .rv > .label::before,.js .outcome.rv .n::after,.js .foot::before{transform:none;transition:none}
+  .js .cs.rv .cs-metric,.js .cs.rv .cs-body{opacity:1;transform:none;transition:none}
+  .btn-p::after{display:none}
+  .read-progress{display:none}
+  .toc a{transition:none}
 }
