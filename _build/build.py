@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "5"  # asset cache-buster
+V = "6"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
