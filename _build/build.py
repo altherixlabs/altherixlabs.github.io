@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "8"  # asset cache-buster
+V = "9"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -199,6 +199,22 @@ def hero_svg():
     return "\n".join(out)
 
 # ── components ───────────────────────────────────────────────────────────────
+IMG = {  # name: (width, height) of the 1600px version
+    "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
+    "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
+}
+
+def pic(name, alt, sizes="(min-width:1240px) 1160px, 100vw", lazy=True, cls=""):
+    w, h = IMG[name]
+    load = ' loading="lazy"' if lazy else ''
+    return (f'<picture><source type="image/webp" srcset="/assets/img/{name}-800.webp 800w, /assets/img/{name}-1600.webp 1600w" sizes="{sizes}">'
+            f'<img src="/assets/img/{name}-1600.jpg" width="{w}" height="{h}" alt="{E(alt)}"{load} decoding="async"{(" class=" + chr(34) + cls + chr(34)) if cls else ""}></picture>')
+
+def shot(name, alt, caption=None, sizes="(min-width:1240px) 1160px, 100vw"):
+    """A product screenshot in a quiet browser frame."""
+    cap = f'<figcaption class="meta">{E(caption)}</figcaption>' if caption else ""
+    return f'<figure class="shot rv"><div class="shot-frame" aria-hidden="false">{pic(name, alt, sizes)}</div>{cap}</figure>'
+
 def cs_panel(c):
     h = c["headline"]
     subs = "".join(f"<div><b>{E(v)}</b>{E(l)}</div>" for v, l in c["metrics"][1:3] if v != "Live")
@@ -360,6 +376,10 @@ def home():
 <section class="sec" id="work" aria-labelledby="work-h">
   <div class="ct">
     {sec_head("Selected work", "What we built, <span class='mute'>and what it changed.</span>", "Two production platforms for a global organisation, and a module that removed most of a manufacturer's manual inventory work.", "work-h")}
+    <div class="shots-2">
+      {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Church Management System, overview (names blurred)", "(min-width:1000px) 570px, 100vw")}
+      {shot("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, Vision 2028 and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
+    </div>
     <div class="cs-list">{panels}</div>
     <div class="after"><a class="btn btn-s" href="/case-studies/">All {len(CASES)} case studies</a></div>
   </div>
@@ -423,13 +443,16 @@ def home():
       <p>The work reaches well beyond the hills. Platforms we built run in production on Azure in the UK for a global organisation, alongside systems for manufacturers, clinics, education, logistics and finance teams in India.</p>
       <p>One conviction hasn't changed: your existing software is the backbone of your business, and it usually deserves improving before it deserves replacing.</p>
     </div>
-    <dl class="facts-dl rv" style="align-self:end">
+    <div style="align-self:end">
+    <figure class="photo rv">{pic("office", "The Altherix office building with the Altherix sign at the entrance, set against green hillside.", "(min-width:1000px) 570px, 100vw")}</figure>
+    <dl class="facts-dl rv">
       <div><dt>Founded</dt><dd>Ooty, the Nilgiris</dd></div>
       <div><dt>Office</dt><dd>Coonoor, Tamil Nadu</dd></div>
       <div><dt>In production</dt><dd>Azure UK South · India</dd></div>
       <div><dt>Sectors</dt><dd>Nonprofit, manufacturing, finance, healthcare, education, logistics</dd></div>
       <div><dt>Company</dt><dd>Altherix Solutions</dd></div>
     </dl>
+    </div>
   </div>
 </section>
 
@@ -477,7 +500,7 @@ def cases_index():
 def case_page(c):
     path = f"case-studies/{c['slug']}/index.html"
     svc = SERVICE[c["related_service"]]
-    toc = [("summary", "Summary"), ("challenge", "The challenge"), ("approach", "The approach"), ("architecture", "Architecture"),
+    toc = [("summary", "Summary")] + ([("screens", "Screens")] if c.get("shots") else []) + [("challenge", "The challenge"), ("approach", "The approach"), ("architecture", "Architecture"),
            ("engineering", "Engineering"), ("technology", "Technology"), ("results", "Results"), ("impact", "Impact")]
     others = [x for x in CASES if x["slug"] != c["slug"]]
     close = [x for x in others if x["industry"] == c["industry"] or x["related_service"] == c["related_service"]]
@@ -508,6 +531,7 @@ def case_page(c):
   <nav class="toc" aria-label="On this page">{''.join(f'<a href="#{i}">{t}</a>' for i, t in toc)}</nav>
   <div>
     <div class="block" id="summary"><h2 class="h3-lg">Summary</h2><p>{E(c['summary'])}</p></div>
+    {('<div class="block" id="screens"><h2 class="h3-lg">Screens</h2><div class="shots-stack">' + "".join(shot(n, a, cap, "(min-width:1000px) 760px, 100vw") for n, a, cap in c["shots"]) + '</div></div>') if c.get("shots") else ""}
     <div class="block" id="challenge"><h2 class="h3-lg">The challenge</h2>{''.join(f'<p>{E(p)}</p>' for p in c['challenge'])}</div>
     <div class="block" id="approach"><h2 class="h3-lg">The approach</h2><ul class="plist">{''.join(f'<li><b>{E(a)}.</b> {E(b)}</li>' for a, b in c['approach'])}</ul></div>
     <div class="block" id="architecture"><h2 class="h3-lg">Architecture</h2><dl class="kv">{''.join(f'<div><dt>{E(a)}</dt><dd>{E(b)}</dd></div>' for a, b in c['architecture'])}</dl></div>
@@ -659,6 +683,7 @@ def careers():
 
 <section class="sec"><div class="ct">
   {sec_head("Working here", "What the work is actually like.", None, "why-h")}
+  <figure class="photo rv" style="margin-bottom:clamp(40px,5vw,64px)">{pic("office", "The Altherix office in the Nilgiris, with the Altherix sign at the entrance.")}</figure>
   <div class="grid2">{''.join(f'<div class="rv"><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in why)}</div>
 </div></section>
 
@@ -724,6 +749,10 @@ def products():
 </div></header>
 
 <section class="sec" id="codegate" aria-labelledby="codegate-h"><div class="ct">
+  <div class="shots-2" style="margin-bottom:clamp(48px,6vw,80px)">
+    {shot("codegate-test", "CodeGate candidate screen: the question and rules on the left, a code editor with the candidate's solution on the right, a countdown timer and a Submit button.", "Candidate view: timed editor with sample tests (demo data)", "(min-width:1000px) 570px, 100vw")}
+    {shot("codegate-admin", "CodeGate admin screen: test status, candidate counts, average score out of 20, an invite form and a ranked candidate list with scores, flags and decisions.", "Admin view: invite, track and rank candidates (demo data)", "(min-width:1000px) 570px, 100vw")}
+  </div>
   <div class="two">
     <div class="rv">
       <span class="label">In use · Early access</span>

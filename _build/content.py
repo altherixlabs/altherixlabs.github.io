@@ -47,6 +47,8 @@ FAQ = [
 CASES = [
   dict(
     slug="church-management-system",
+    shots=[("cms-overview", "Church Management System overview screen: transfer approvals, totals for members, groups and events, and a membership summary by age group and gender.", "Overview: approvals, totals and membership summary (member names blurred)"),
+           ("cms-leaders", "Church Management System leaders dashboard: headline figures for members, souls won, officers, home cells and more, with period comparison and area performance.", "Leaders dashboard: headline figures against the previous period")],
     seo_desc=".NET 9, React and SQL Server church management platform on Azure, with live check-in over SignalR and Hangfire jobs: 80+ API modules in production.",
     featured=True,
     category="Non-profit · Enterprise platform",
@@ -89,6 +91,7 @@ CASES = [
   ),
   dict(
     slug="missions-office-enterprise-system",
+    shots=[("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry and children, estates, Vision 2028 and data completeness.", "Statistics dashboard: drill-down by administration, period comparison and exports")],
     seo_desc="Laravel 12 and MySQL reporting system on Azure App Service: statistical returns across a seven-level hierarchy, six dashboard modules and audited exports.",
     featured=True,
     category="Non-profit · Enterprise reporting",

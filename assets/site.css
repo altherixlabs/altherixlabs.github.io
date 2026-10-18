@@ -522,3 +522,26 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
   .read-progress{display:none}
   .toc a{transition:none}
 }
+
+/* ── Product screenshots and photos ───────────────────────────── */
+.shots-2{display:grid;gap:20px;margin-bottom:clamp(32px,4vw,48px)}
+@media (min-width:1000px){.shots-2{grid-template-columns:1fr 1fr;align-items:start}}
+.shots-stack{display:grid;gap:28px}
+.shot{margin:0}
+.shot-frame{position:relative;border:1px solid var(--line-strong);border-radius:var(--r);overflow:hidden;background:#0a1446;padding-top:26px}
+.shot-frame::before{content:"";position:absolute;left:12px;top:9px;width:44px;height:8px;
+  background:radial-gradient(circle at 4px 4px,rgba(246,244,244,.25) 3.5px,transparent 4px) 0 0/16px 8px repeat-x}
+.shot-frame img{display:block;width:100%;height:auto;background:#fff}
+.shot figcaption{margin-top:.75rem}
+.photo{margin:0 0 1.5rem;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.photo img{display:block;width:100%;height:auto}
+/* screenshots settle in as they reveal */
+.js .shot.rv .shot-frame img,.js .photo.rv img{transform:scale(1.03);transition:transform 1.2s var(--ease-out)}
+.js .shot.rv.in .shot-frame img,.js .photo.rv.in img{transform:none}
+@media (hover:hover) and (pointer:fine){
+  .shot-frame{transition:border-color .2s ease}
+  .shot:hover .shot-frame{border-color:rgba(246,244,244,.32)}
+}
+@media (prefers-reduced-motion:reduce){
+  .js .shot.rv .shot-frame img,.js .photo.rv img{transform:none;transition:none}
+}
