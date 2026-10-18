@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "10"  # asset cache-buster
+V = "11"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
     "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cases": (1600, 682), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    "art-cases": (1600, 682), "art-cloud": (972, 881), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
     **{n: (1600, 800) for n in ["erp-inventory", "payments-console", "accounting-bridge", "clinic-schedule", "learning-course", "delivery-dispatch"]},
 }
@@ -305,15 +305,15 @@ def home():
     for s in SERVICES:
         svc_rows += f"""<div class="row svc-row rv">
   <span class="idx">{s['n']}</span>
-  <div><h3 class="h3-lg">{s['name']}</h3><p class="body">{E(s['short'])}</p><p class="stack-line">{dot(s['tech'][:6])}</p></div>
+  <a class="svc-thumb" href="/services/{s['slug']}/" tabindex="-1" aria-hidden="true">{pic(SERVICE_ART[s['slug']], "", "(min-width:960px) 220px, 100vw")}</a>
+  <div><h3 class="h3-lg">{s['name']}</h3><p class="body">{E(s['short'])}</p><p class="stack-line">{dot(s['tech'][:6])}</p><a class="more" href="/services/{s['slug']}/" aria-label="{s['name']}: learn more">Learn more <span class="arr" aria-hidden="true">→</span></a></div>
   <ul>{''.join(f'<li>{E(x)}</li>' for x in s['list'])}</ul>
-  <a class="more" href="/services/{s['slug']}/" aria-label="{s['name']}: learn more">Learn more <span class="arr" aria-hidden="true">→</span></a>
 </div>"""
     svc_rows += """<div class="row svc-row rv">
   <span class="idx">05</span>
-  <div><h3 class="h3-lg">Cloud &amp; DevOps</h3><p class="body">Part of every engagement, and available on its own: pipelines, hardened infrastructure and monitoring that catches problems before your users do.</p><p class="stack-line">Azure · Azure DevOps · GitHub Actions · AWS S3</p></div>
+  <a class="svc-thumb" href="/services/enterprise-integration/#cloud" tabindex="-1" aria-hidden="true">""" + pic("art-cloud", "", "(min-width:960px) 220px, 100vw") + """</a>
+  <div><h3 class="h3-lg">Cloud &amp; DevOps</h3><p class="body">Part of every engagement, and available on its own: pipelines, hardened infrastructure and monitoring that catches problems before your users do.</p><p class="stack-line">Azure · Azure DevOps · GitHub Actions · AWS S3</p><a class="more" href="/services/enterprise-integration/#cloud" aria-label="Cloud and DevOps: learn more">Learn more <span class="arr" aria-hidden="true">→</span></a></div>
   <ul><li>CI/CD pipelines</li><li>Cloud infrastructure</li><li>Monitoring &amp; alerting</li><li>Cloud migration</li></ul>
-  <a class="more" href="/services/enterprise-integration/#cloud" aria-label="Cloud and DevOps: learn more">Learn more <span class="arr" aria-hidden="true">→</span></a>
 </div>"""
 
     panels = "\n".join(cs_panel(CASE[s]) for s in ["erp-inventory-module", "church-management-system", "clinic-management-enhancement"])
@@ -412,7 +412,7 @@ def home():
       </dl>
       <p style="margin-top:2rem"><a class="more" href="/services/ai-automation/">How we approach AI <span class="arr" aria-hidden="true">→</span></a></p>
     </div>
-    <div class="grid2 rv" style="align-self:start">{ai_html}</div>
+    <div style="align-self:start"><figure class="hero-art rv" aria-hidden="true" style="margin-bottom:clamp(28px,3vw,40px)">{pic("art-ai", "", "(min-width:1000px) 560px, 100vw")}</figure><div class="grid2 rv">{ai_html}</div></div>
   </div>
 </section>
 
@@ -516,8 +516,8 @@ def cases_index():
 def case_page(c):
     path = f"case-studies/{c['slug']}/index.html"
     svc = SERVICE[c["related_service"]]
-    toc = [("summary", "Summary")] + ([("screens", "Screens")] if c.get("shots") else []) + [("challenge", "The challenge"), ("approach", "The approach"), ("architecture", "Architecture"),
-           ("engineering", "Engineering"), ("technology", "Technology"), ("results", "Results"), ("impact", "Impact")]
+    toc = [("summary", "Summary"), ("results", "Results")] + ([("screens", "Screens")] if c.get("shots") else []) + [("challenge", "The challenge"), ("approach", "The approach"), ("architecture", "Architecture"),
+           ("engineering", "Engineering"), ("technology", "Technology"), ("impact", "Impact")]
     others = [x for x in CASES if x["slug"] != c["slug"]]
     close = [x for x in others if x["industry"] == c["industry"] or x["related_service"] == c["related_service"]]
     related = (close + [x for x in others if x not in close])[:2]
@@ -547,13 +547,13 @@ def case_page(c):
   <nav class="toc" aria-label="On this page">{''.join(f'<a href="#{i}">{t}</a>' for i, t in toc)}</nav>
   <div>
     <div class="block" id="summary"><h2 class="h3-lg">Summary</h2><p>{E(c['summary'])}</p></div>
+    <div class="block" id="results"><h2 class="h3-lg">Results</h2><div class="results-band metrics rv">{''.join(f'<div><b>{E(v)}</b><span>{E(l)}</span></div>' for v, l in c['metrics'])}</div></div>
     {('<div class="block" id="screens"><h2 class="h3-lg">Screens</h2><div class="shots-stack">' + "".join(shot(n, a, cap, "(min-width:1000px) 760px, 100vw") for n, a, cap in c["shots"]) + '</div></div>') if c.get("shots") else ""}
     <div class="block" id="challenge"><h2 class="h3-lg">The challenge</h2>{''.join(f'<p>{E(p)}</p>' for p in c['challenge'])}</div>
     <div class="block" id="approach"><h2 class="h3-lg">The approach</h2><ul class="plist">{''.join(f'<li><b>{E(a)}.</b> {E(b)}</li>' for a, b in c['approach'])}</ul></div>
-    <div class="block" id="architecture"><h2 class="h3-lg">Architecture</h2><dl class="kv">{''.join(f'<div><dt>{E(a)}</dt><dd>{E(b)}</dd></div>' for a, b in c['architecture'])}</dl></div>
+    <div class="block" id="architecture"><h2 class="h3-lg">Architecture</h2><ol class="arch-flow rv" aria-label="Architecture, in order of data flow">{''.join(f'<li><span class="arch-n">{E(a)}</span><span class="arch-d">{E(b)}</span></li>' for a, b in c['architecture'])}</ol></div>
     <div class="block" id="engineering"><h2 class="h3-lg">Engineering</h2><dl class="kv">{''.join(f'<div><dt>{E(a)}</dt><dd>{E(b[0].upper() + b[1:])}.</dd></div>' for a, b in c['engineering'])}</dl></div>
     <div class="block" id="technology"><h2 class="h3-lg">Technology</h2><p class="stack-line" style="font-size:.875rem">{dot(c['tech'])}</p></div>
-    <div class="block" id="results"><h2 class="h3-lg">Results</h2><span class="label">Key metrics</span><div class="metrics" style="margin-top:.75rem">{''.join(f'<div><b>{E(v)}</b><span>{E(l)}</span></div>' for v, l in c['metrics'])}</div></div>
     <div class="block" id="impact"><h2 class="h3-lg">Impact</h2><p>{E(c['impact'])}</p><p style="margin-top:1.5rem"><a class="more" href="/services/{svc['slug']}/">Related service: {svc['name']} <span class="arr" aria-hidden="true">→</span></a></p></div>
   </div>
 </div></section>
