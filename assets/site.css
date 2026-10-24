@@ -641,3 +641,9 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 /* Nav: links and CTA sit on the right */
 .nav nav[aria-label="Main"]{margin-left:auto}
 .nav-cta{margin-left:1rem}
+
+/* Closed roles */
+.role-tag.closed{color:var(--ink-3);border-color:var(--line)}
+.role.is-closed .h3,.role.is-closed .role-facts{color:var(--ink-3)}
+.role-closed{margin-top:1.75rem;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--r);color:var(--ink-2)}
+.role-closed a{color:var(--ink)}

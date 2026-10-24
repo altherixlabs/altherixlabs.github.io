@@ -663,12 +663,6 @@ def careers():
         return f'mailto:{EMAIL}?subject={quote(subject)}&amp;body={quote(body)}'
     std_body = "Hello Altherix team,\n\nI'd like to apply for the {r} role.\n\nA little about me:\n\n\nLinks (GitHub / portfolio / LinkedIn):\n\n\nMy CV is attached.\n\nThank you,"
     roles = [
-      dict(t="Full Stack Development Intern", tag="New", facts="Fully remote · 2 or 3 months · Stipend · Paid 3-day onsite in Ooty",
-           about="A fully remote internship of two or three months, with a stipend. You'll work on real client projects from week one, with a senior engineer as your mentor. Our team is based in Coonoor, near Ooty, and interns join us for a paid three-day onsite in Ooty.",
-           do=["Ship features into a live codebase under close review", "Write tests and documentation alongside your code", "Learn how professional delivery runs, from estimate to release"],
-           want=["Fluency in at least one language: C#, Java, PHP, Python or JavaScript", "Something you've built that you can walk us through, however small", "Preferred: BSc or BCA with a Computer Science major"],
-           nice=None, how=f"Send your CV and a link to your work to {EMAIL} with the subject “Full Stack Internship”.",
-           href=apply("Full Stack Internship", "Hello Altherix team,\n\nI'd like to apply for the Full Stack Development Internship.\n\nA little about me:\n\n\nLink to my work:\n\n\nMy CV is attached.\n\nThank you,"), open=True),
       dict(t="Senior Full-Stack Engineer, .NET & React", facts="Ooty · Hybrid · Full time · 5+ years",
            about="You'll lead delivery on enterprise platforms built with ASP.NET Core and React: designing the data model, building the API, shaping the front end, and taking it through to an Azure deployment. This is our most senior individual-contributor track.",
            do=["Design and build REST APIs with ASP.NET Core and Entity Framework Core", "Build front ends in React and TypeScript with a considered component architecture", "Model relational schemas and write queries that stay fast as data grows", "Work directly with clients to turn ambiguous requirements into a shippable scope", "Review other engineers' work and raise the standard of the codebase"],
@@ -686,20 +680,26 @@ def careers():
            do=["Build and maintain CI/CD pipelines across Azure DevOps and GitHub Actions", "Provision and harden cloud infrastructure, primarily on Azure", "Set up monitoring, logging and alerting for production workloads", "Lead migrations from on-premise or shared hosting into the cloud", "Keep secrets, backups and access controls in good order"],
            want=["Three or more years in a DevOps, platform or SRE role", "Hands-on Azure experience; AWS or GCP also considered", "Comfortable scripting in Bash, PowerShell or Python", "Containers and infrastructure-as-code in day-to-day use"],
            nice=None, href=apply("Application: Cloud & DevOps Engineer", std_body.format(r="Cloud & DevOps Engineer"))),
+      dict(t="Full Stack Development Intern", tag="Closed", closed=True, facts="Fully remote · 2 or 3 months · Stipend · Paid 3-day onsite in Ooty",
+           about="A fully remote internship of two or three months, with a stipend. You'll work on real client projects from week one, with a senior engineer as your mentor. Our team is based in Coonoor, near Ooty, and interns join us for a paid three-day onsite in Ooty.",
+           do=["Ship features into a live codebase under close review", "Write tests and documentation alongside your code", "Learn how professional delivery runs, from estimate to release"],
+           want=["Fluency in at least one language: C#, Java, PHP, Python or JavaScript", "Something you've built that you can walk us through, however small", "Preferred: BSc or BCA with a Computer Science major"],
+           nice=None, how=f"Send your CV and a link to your work to {EMAIL} with the subject “Full Stack Internship”.",
+           href=apply("Full Stack Internship", "Hello Altherix team,\n\nI'd like to apply for the Full Stack Development Internship.\n\nA little about me:\n\n\nLink to my work:\n\n\nMy CV is attached.\n\nThank you,")),
     ]
     def ul(x): return "<ul>" + "".join(f"<li>{E(i)}</li>" for i in x) + "</ul>"
     rhtml = ""
     for r in roles:
-        tag = f'<span class="role-tag">{r["tag"]}</span>' if r.get("tag") else ""
-        rhtml += f"""<details class="role"{' open' if r.get('open') else ''}>
+        tag = f'<span class="role-tag{" closed" if r.get("closed") else ""}">{r["tag"]}</span>' if r.get("tag") else ""
+        rhtml += f"""<details class="role{' is-closed' if r.get('closed') else ''}"{' open' if r.get('open') else ''}>
   <summary><div><h3 class="h3">{E(r['t'])}{tag}</h3><p class="role-facts">{E(r['facts'])}</p></div><span class="role-chev" aria-hidden="true">+</span></summary>
   <div class="role-body">
     <span class="label">About the role</span><p>{E(r['about'])}</p>
     <span class="label">What you'll do</span>{ul(r['do'])}
     <span class="label">What we're looking for</span>{ul(r['want'])}
     {'<span class="label">Nice to have</span>' + ul(r['nice']) if r.get('nice') else ''}
-    {'<span class="label">How to apply</span><p>' + E(r['how']) + '</p>' if r.get('how') else ''}
-    <a class="btn btn-p" href="{r['href']}">Apply for this role</a>
+    {'<span class="label">How to apply</span><p>' + E(r['how']) + '</p>' if r.get('how') and not r.get('closed') else ''}
+    {f'<p class="role-closed">Applications for this internship are closed. <a href="{LINKEDIN}" target="_blank" rel="noopener">Follow Altherix on LinkedIn</a> to hear when the next intake opens.</p>' if r.get('closed') else f'<a class="btn btn-p" href="{r["href"]}">Apply for this role</a>'}
   </div>
 </details>"""
     why = [("You own the whole problem", "Engineers here talk to clients, shape the solution, build it and see it through to deployment."),
@@ -710,17 +710,12 @@ def careers():
              ("Intro call", "Thirty minutes with an engineer: your background, our work, and whether the fit makes sense both ways."),
              ("Technical conversation", "We work through a realistic problem together and discuss code you've written. No whiteboard puzzles, no unpaid take-home projects."),
              ("Offer", "A final conversation on scope, expectations and compensation, then a written offer.")]
-    bene = [("Paid intern onsite", "Interns spend three paid days with the team in Ooty."),
-            ("Hybrid working", "Full-time roles split between our Nilgiris office and home, arranged around delivery."),
+    bene = [("Hybrid working", "Full-time roles split between our Nilgiris office and home, arranged around delivery."),
             ("Learning budget", "An annual allowance for certifications, courses and conferences, and time to use it."),
             ("Health cover", "Medical insurance for you and your immediate family."),
             ("Client-facing work", "You're in the room where decisions are made."),
             ("Honest estimates", "We push back on unrealistic dates. Crunch is a planning failure, not a culture.")]
-    jobs = [{"@context": "https://schema.org", "@type": "JobPosting", "title": "Full Stack Development Intern",
-             "description": roles[0]["about"], "employmentType": "INTERN", "datePosted": "2026-09-30",
-             "hiringOrganization": {"@type": "Organization", "name": "Altherix Solutions", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
-             "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
-             "educationRequirements": "BSc / BCA with a Computer Science major preferred"}]
+    jobs = []  # The internship is closed; closed roles must not be advertised as JobPosting.
     html = head(SEO["careers"]["seo_title"], SEO["careers"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Careers", "/careers.html")])] + jobs) + nav("careers") + f"""
 <main id="main">
@@ -733,7 +728,7 @@ def careers():
 </div>{art("art-remote")}</div></header>
 
 <section class="sec" id="roles" aria-labelledby="roles-h"><div class="ct">
-  {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. Full-time roles are hybrid; internships are fully remote.", "roles-h")}
+  {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. Full-time roles are hybrid.", "roles-h")}
   <div class="roles">{rhtml}</div>
   <p class="body" style="margin-top:2rem">Nothing quite fits? Write to <a href="mailto:{EMAIL}">{EMAIL}</a> and tell us what you'd want to work on.</p>
 </div></section>
@@ -896,7 +891,7 @@ def seo_files():
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
     llms += ["", "## Company", "",
              f"- [About and contact]({SITE}/#about)",
-             f"- [Careers]({SITE}/careers.html): Remote Full Stack Development internship and full-time engineering roles.",
+             f"- [Careers]({SITE}/careers.html): Full-time engineering roles. The Full Stack Development internship is closed.",
              f"- [All case studies]({SITE}/case-studies/)", ""]
     write("llms.txt", "\n".join(llms))
 
