@@ -663,12 +663,19 @@ def careers():
         return f'mailto:{EMAIL}?subject={quote(subject)}&amp;body={quote(body)}'
     std_body = "Hello Altherix team,\n\nI'd like to apply for the {r} role.\n\nA little about me:\n\n\nLinks (GitHub / portfolio / LinkedIn):\n\n\nMy CV is attached.\n\nThank you,"
     roles = [
-      dict(t="Full Stack Development Intern", tag="Applications open", featured=True, anchor="internship", facts="Fully remote · 2 or 3 months · ₹10,000 a month stipend · Paid 3-day onsite in Ooty",
+      dict(t="Full Stack Development Intern", tag="Actively hiring", featured=True, anchor="internship", facts="Fully remote · 2 or 3 months · ₹10,000 a month stipend · Paid 3-day onsite in Ooty",
            about="A fully remote internship of two or three months, with a stipend of ₹10,000 a month. You'll work on real client projects from week one, with a senior engineer as your mentor. Our team is based in Coonoor, near Ooty, and interns join us for a paid three-day onsite in Ooty.",
            do=["Ship features into a live codebase under close review", "Write tests and documentation alongside your code", "Learn how professional delivery runs, from estimate to release"],
            want=["Fluency in at least one language: C#, Java, PHP, Python or JavaScript", "Something you've built that you can walk us through, however small", "Preferred: BSc or BCA with a Computer Science major"],
            nice=None, how=f"Send your CV and a link to your work to {EMAIL} with the subject “Full Stack Internship”.",
            href=apply("Full Stack Internship", "Hello Altherix team,\n\nI'd like to apply for the Full Stack Development Internship.\n\nA little about me:\n\n\nLink to my work:\n\n\nMy CV is attached.\n\nThank you,"), open=True),
+      dict(t="HR Intern, Talent Acquisition & Operations", tag="Actively hiring", featured=True, anchor="hr-internship", facts="Fully remote · 2 months · ₹10,000 a month stipend · BMS, BBA and MBA students welcome",
+           about="A fully remote, two-month internship in our people team, with a stipend of ₹10,000 a month. You'll help us find and hire engineers and keep HR operations running smoothly for a growing technology company.",
+           do=["Source candidates for engineering and internship roles, and screen CVs", "Schedule interviews and run candidates through our hiring process, including CodeGate tests", "Keep candidate records, offer letters and onboarding paperwork in order", "Support everyday HR operations: documentation, attendance and employee queries"],
+           want=["Interest in talent acquisition and HR, ideally in a technology company", "Clear written and spoken English, and a professional manner with candidates", "Organised, reliable and comfortable with spreadsheets and email", "BMS, BBA and MBA students are welcome, as are graduates in HR or a related field"],
+           nice=["Some familiarity with tech roles and the skills they need", "Experience with LinkedIn Recruiter, Naukri or other job portals"],
+           how=f"Send your CV to {EMAIL} with the subject “HR Internship”.",
+           href=apply("HR Internship", "Hello Altherix team,\n\nI'd like to apply for the HR Intern (Talent Acquisition & Operations) role.\n\nA little about me:\n\n\nMy CV is attached.\n\nThank you,")),
       dict(t="Senior Full-Stack Engineer, .NET & React", facts="Ooty · Hybrid · Full time · 5+ years",
            about="You'll lead delivery on enterprise platforms built with ASP.NET Core and React: designing the data model, building the API, shaping the front end, and taking it through to an Azure deployment. This is our most senior individual-contributor track.",
            do=["Design and build REST APIs with ASP.NET Core and Entity Framework Core", "Build front ends in React and TypeScript with a considered component architecture", "Model relational schemas and write queries that stay fast as data grows", "Work directly with clients to turn ambiguous requirements into a shippable scope", "Review other engineers' work and raise the standard of the codebase"],
@@ -709,7 +716,7 @@ def careers():
     steps = [("HR screening call", "A short call with our HR team about your background, your availability and what you're hoping to learn."),
              ("Online coding test on CodeGate", "A timed coding test on CodeGate, our own assessment platform. You solve real problems in the browser; hidden tests check that your code works."),
              ("Technical discussion with our developers", "We talk through your test answers and something you've built. No whiteboard puzzles.")]
-    bene = [("₹10,000 a month for interns", "Every intern is paid a stipend of ₹10,000 a month, plus three paid days with the team in Ooty."),
+    bene = [("₹10,000 a month for interns", "Every intern is paid a stipend of ₹10,000 a month. Full Stack interns also spend three paid days with the team in Ooty."),
             ("Hybrid working", "Full-time roles split between our Nilgiris office and home, arranged around delivery."),
             ("Learning budget", "An annual allowance for certifications, courses and conferences, and time to use it."),
             ("Health cover", "Medical insurance for you and your immediate family."),
@@ -720,7 +727,13 @@ def careers():
              "hiringOrganization": {"@type": "Organization", "name": "Altherix Solutions", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
              "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
              "baseSalary": {"@type": "MonetaryAmount", "currency": "INR", "value": {"@type": "QuantitativeValue", "value": 10000, "unitText": "MONTH"}},
-             "educationRequirements": "BSc / BCA with a Computer Science major preferred"}]
+             "educationRequirements": "BSc / BCA with a Computer Science major preferred"},
+            {"@context": "https://schema.org", "@type": "JobPosting", "title": "HR Intern, Talent Acquisition & Operations",
+             "description": roles[1]["about"], "employmentType": "INTERN", "datePosted": "2026-10-28",
+             "hiringOrganization": {"@type": "Organization", "name": "Altherix Solutions", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
+             "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
+             "baseSalary": {"@type": "MonetaryAmount", "currency": "INR", "value": {"@type": "QuantitativeValue", "value": 10000, "unitText": "MONTH"}},
+             "educationRequirements": "BMS, BBA or MBA students welcome"}]
     html = head(SEO["careers"]["seo_title"], SEO["careers"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Careers", "/careers.html")])] + jobs) + nav("careers") + f"""
 <main id="main">
