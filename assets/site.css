@@ -647,3 +647,21 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 .role.is-closed .h3,.role.is-closed .role-facts{color:var(--ink-3)}
 .role-closed{margin-top:1.75rem;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--r);color:var(--ink-2)}
 .role-closed a{color:var(--ink)}
+
+/* Hiring highlights */
+.hire-dot{width:8px;height:8px;border-radius:50%;background:#3ddc97;box-shadow:0 0 0 0 rgba(61,220,151,.6);flex:none;animation:hirepulse 2s infinite}
+@keyframes hirepulse{0%{box-shadow:0 0 0 0 rgba(61,220,151,.55)}70%{box-shadow:0 0 0 8px rgba(61,220,151,0)}100%{box-shadow:0 0 0 0 rgba(61,220,151,0)}}
+.hire-pill{display:flex;width:fit-content;align-items:center;gap:.55rem;margin-bottom:1.25rem;padding:.4rem .85rem;border-radius:999px;font-size:.875rem;font-weight:500;color:var(--ink);text-decoration:none;
+  background:linear-gradient(var(--bg-raise),var(--bg-raise)) padding-box,var(--grad-text) border-box;border:1px solid transparent}
+.hire-pill:hover .arr{transform:translateX(2px)}
+.hire-pill .arr{transition:transform .2s var(--ease)}
+.hire-callout{display:flex;align-items:center;gap:.9rem;margin-top:1.75rem;padding:1rem 1.2rem;border-radius:var(--r);text-decoration:none;color:var(--ink);max-width:560px;
+  background:linear-gradient(var(--bg-raise),var(--bg-raise)) padding-box,var(--grad-text) border-box;border:1px solid transparent}
+.hire-callout b{display:block;font-weight:600}
+.hire-callout span span{display:block;font-size:.9rem;color:var(--ink-2);margin-top:.15rem}
+.hire-callout .arr{margin-left:auto;font-size:1.1rem}
+.role.is-featured{background:radial-gradient(120% 140% at 0 0,rgba(93,30,166,.3),transparent 60%) padding-box,linear-gradient(var(--bg-raise),var(--bg-raise)) padding-box,var(--grad-text) border-box;border:1px solid transparent}
+.role-tag.open{color:#0b2a1d;background:#3ddc97;border-color:#3ddc97}
+.js .hero .hire-pill{animation:rise .7s var(--ease-out) both;animation-delay:0ms}
+.page-hero .hire-callout{animation:rise .7s var(--ease-out) both;animation-delay:calc(4 * 70ms + 60ms)}
+@media (prefers-reduced-motion:reduce){.hire-dot{animation:none}.js .hero .hire-pill,.page-hero .hire-callout{animation:none}}

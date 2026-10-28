@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "14"  # asset cache-buster
+V = "15"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -371,6 +371,7 @@ def home():
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="ct">
     <div>
+      <a class="hire-pill" href="/careers.html#internship"><span class="hire-dot" aria-hidden="true"></span>We're hiring interns · ₹10,000 a month <span class="arr" aria-hidden="true">→</span></a>
       <span class="label">Modern Software · Intelligent Systems · Real Business Value</span>
       <h1 class="h1" id="hero-h"><span>We extend, connect</span> <span>and modernize</span> <span class="sig">the systems you run.</span></h1>
       <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
@@ -663,6 +664,12 @@ def careers():
         return f'mailto:{EMAIL}?subject={quote(subject)}&amp;body={quote(body)}'
     std_body = "Hello Altherix team,\n\nI'd like to apply for the {r} role.\n\nA little about me:\n\n\nLinks (GitHub / portfolio / LinkedIn):\n\n\nMy CV is attached.\n\nThank you,"
     roles = [
+      dict(t="Full Stack Development Intern", tag="Applications open", featured=True, anchor="internship", facts="Fully remote · 2 or 3 months · ₹10,000 a month stipend · Paid 3-day onsite in Ooty",
+           about="A fully remote internship of two or three months, with a stipend of ₹10,000 a month. You'll work on real client projects from week one, with a senior engineer as your mentor. Our team is based in Coonoor, near Ooty, and interns join us for a paid three-day onsite in Ooty.",
+           do=["Ship features into a live codebase under close review", "Write tests and documentation alongside your code", "Learn how professional delivery runs, from estimate to release"],
+           want=["Fluency in at least one language: C#, Java, PHP, Python or JavaScript", "Something you've built that you can walk us through, however small", "Preferred: BSc or BCA with a Computer Science major"],
+           nice=None, how=f"Send your CV and a link to your work to {EMAIL} with the subject “Full Stack Internship”.",
+           href=apply("Full Stack Internship", "Hello Altherix team,\n\nI'd like to apply for the Full Stack Development Internship.\n\nA little about me:\n\n\nLink to my work:\n\n\nMy CV is attached.\n\nThank you,"), open=True),
       dict(t="Senior Full-Stack Engineer, .NET & React", facts="Ooty · Hybrid · Full time · 5+ years",
            about="You'll lead delivery on enterprise platforms built with ASP.NET Core and React: designing the data model, building the API, shaping the front end, and taking it through to an Azure deployment. This is our most senior individual-contributor track.",
            do=["Design and build REST APIs with ASP.NET Core and Entity Framework Core", "Build front ends in React and TypeScript with a considered component architecture", "Model relational schemas and write queries that stay fast as data grows", "Work directly with clients to turn ambiguous requirements into a shippable scope", "Review other engineers' work and raise the standard of the codebase"],
@@ -680,18 +687,12 @@ def careers():
            do=["Build and maintain CI/CD pipelines across Azure DevOps and GitHub Actions", "Provision and harden cloud infrastructure, primarily on Azure", "Set up monitoring, logging and alerting for production workloads", "Lead migrations from on-premise or shared hosting into the cloud", "Keep secrets, backups and access controls in good order"],
            want=["Three or more years in a DevOps, platform or SRE role", "Hands-on Azure experience; AWS or GCP also considered", "Comfortable scripting in Bash, PowerShell or Python", "Containers and infrastructure-as-code in day-to-day use"],
            nice=None, href=apply("Application: Cloud & DevOps Engineer", std_body.format(r="Cloud & DevOps Engineer"))),
-      dict(t="Full Stack Development Intern", tag="Closed", closed=True, facts="Fully remote · 2 or 3 months · Stipend · Paid 3-day onsite in Ooty",
-           about="A fully remote internship of two or three months, with a stipend. You'll work on real client projects from week one, with a senior engineer as your mentor. Our team is based in Coonoor, near Ooty, and interns join us for a paid three-day onsite in Ooty.",
-           do=["Ship features into a live codebase under close review", "Write tests and documentation alongside your code", "Learn how professional delivery runs, from estimate to release"],
-           want=["Fluency in at least one language: C#, Java, PHP, Python or JavaScript", "Something you've built that you can walk us through, however small", "Preferred: BSc or BCA with a Computer Science major"],
-           nice=None, how=f"Send your CV and a link to your work to {EMAIL} with the subject “Full Stack Internship”.",
-           href=apply("Full Stack Internship", "Hello Altherix team,\n\nI'd like to apply for the Full Stack Development Internship.\n\nA little about me:\n\n\nLink to my work:\n\n\nMy CV is attached.\n\nThank you,")),
     ]
     def ul(x): return "<ul>" + "".join(f"<li>{E(i)}</li>" for i in x) + "</ul>"
     rhtml = ""
     for r in roles:
-        tag = f'<span class="role-tag{" closed" if r.get("closed") else ""}">{r["tag"]}</span>' if r.get("tag") else ""
-        rhtml += f"""<details class="role{' is-closed' if r.get('closed') else ''}"{' open' if r.get('open') else ''}>
+        tag = f'<span class="role-tag{" closed" if r.get("closed") else ""}{" open" if r.get("featured") else ""}">{r["tag"]}</span>' if r.get("tag") else ""
+        rhtml += f"""<details class="role{' is-closed' if r.get('closed') else ''}{' is-featured' if r.get('featured') else ''}"{(' id="' + r['anchor'] + '"') if r.get('anchor') else ''}{' open' if r.get('open') else ''}>
   <summary><div><h3 class="h3">{E(r['t'])}{tag}</h3><p class="role-facts">{E(r['facts'])}</p></div><span class="role-chev" aria-hidden="true">+</span></summary>
   <div class="role-body">
     <span class="label">About the role</span><p>{E(r['about'])}</p>
@@ -706,16 +707,21 @@ def careers():
            ("Real systems, real users", "The platforms we build run production workloads for organisations that depend on them."),
            ("Breadth by design", "Consulting means variety: .NET one quarter, Laravel the next, an Azure migration after that."),
            ("Senior people to learn from", "A deliberately small team with deep enterprise and architecture experience. Reviews are thorough; mentoring is direct.")]
-    steps = [("Application", "Send your CV and a few lines about what you've built. We read every one and reply within a week."),
-             ("Intro call", "Thirty minutes with an engineer: your background, our work, and whether the fit makes sense both ways."),
-             ("Technical conversation", "We work through a realistic problem together and discuss code you've written. No whiteboard puzzles, no unpaid take-home projects."),
-             ("Offer", "A final conversation on scope, expectations and compensation, then a written offer.")]
-    bene = [("Hybrid working", "Full-time roles split between our Nilgiris office and home, arranged around delivery."),
+    steps = [("HR screening call", "A short call with our HR team about your background, your availability and what you're hoping to learn."),
+             ("Online coding test on CodeGate", "A timed coding test on CodeGate, our own assessment platform. You solve real problems in the browser; hidden tests check that your code works."),
+             ("Technical discussion with our developers", "We talk through your test answers and something you've built. No whiteboard puzzles.")]
+    bene = [("₹10,000 a month for interns", "Every intern is paid a stipend of ₹10,000 a month, plus three paid days with the team in Ooty."),
+            ("Hybrid working", "Full-time roles split between our Nilgiris office and home, arranged around delivery."),
             ("Learning budget", "An annual allowance for certifications, courses and conferences, and time to use it."),
             ("Health cover", "Medical insurance for you and your immediate family."),
             ("Client-facing work", "You're in the room where decisions are made."),
             ("Honest estimates", "We push back on unrealistic dates. Crunch is a planning failure, not a culture.")]
-    jobs = []  # The internship is closed; closed roles must not be advertised as JobPosting.
+    jobs = [{"@context": "https://schema.org", "@type": "JobPosting", "title": "Full Stack Development Intern",
+             "description": roles[0]["about"], "employmentType": "INTERN", "datePosted": "2026-10-28",
+             "hiringOrganization": {"@type": "Organization", "name": "Altherix Solutions", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
+             "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
+             "baseSalary": {"@type": "MonetaryAmount", "currency": "INR", "value": {"@type": "QuantitativeValue", "value": 10000, "unitText": "MONTH"}},
+             "educationRequirements": "BSc / BCA with a Computer Science major preferred"}]
     html = head(SEO["careers"]["seo_title"], SEO["careers"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Careers", "/careers.html")])] + jobs) + nav("careers") + f"""
 <main id="main">
@@ -724,11 +730,12 @@ def careers():
   <span class="label">Careers</span>
   <h1 class="h1">Small team. <span class="mute">Serious systems.</span></h1>
   <p class="lede">Our work goes into production and stays there: enterprise platforms, reporting systems and integrations that organisations depend on every day. If you want ownership rather than a ticket queue, we should talk.</p>
-  <div class="btns"><a class="btn btn-p" href="#roles">See open roles</a><a class="more" href="{LINKEDIN}" target="_blank" rel="noopener">Follow Altherix on LinkedIn <span class="arr" aria-hidden="true">→</span></a></div>
+  <a class="hire-callout" href="#internship"><span class="hire-dot" aria-hidden="true"></span><span><b>Now hiring: Full Stack Development Interns</b><span>Fully remote · ₹10,000 a month stipend · Paid 3-day onsite in Ooty</span></span><span class="arr" aria-hidden="true">→</span></a>
+  <div class="btns"><a class="btn btn-p" href="#internship">Apply for the internship</a><a class="btn btn-s" href="#roles">All open roles</a></div>
 </div>{art("art-remote")}</div></header>
 
 <section class="sec" id="roles" aria-labelledby="roles-h"><div class="ct">
-  {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. Full-time roles are hybrid.", "roles-h")}
+  {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. Internships are fully remote; full-time roles are hybrid.", "roles-h")}
   <div class="roles">{rhtml}</div>
   <p class="body" style="margin-top:2rem">Nothing quite fits? Write to <a href="mailto:{EMAIL}">{EMAIL}</a> and tell us what you'd want to work on.</p>
 </div></section>
@@ -740,7 +747,7 @@ def careers():
 </div></section>
 
 <section class="sec"><div class="ct two">
-  <div class="rv"><span class="label">How we hire</span><h2 class="h2" style="margin-top:1.25rem">Four steps. <span class="mute">No trick questions.</span></h2><p class="lede" style="margin-top:1.25rem">Usually two to three weeks, and you'll hear from us at every stage.</p></div>
+  <div class="rv"><span class="label">How it works</span><h2 class="h2" style="margin-top:1.25rem">Three steps. <span class="mute">No trick questions.</span></h2><p class="lede" style="margin-top:1.25rem">You'll hear from us at every stage. <a class="more" href="/products/#codegate">See how CodeGate works <span class="arr" aria-hidden="true">→</span></a></p></div>
   <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(steps))}</ol>
 </div></section>
 
@@ -891,7 +898,7 @@ def seo_files():
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
     llms += ["", "## Company", "",
              f"- [About and contact]({SITE}/#about)",
-             f"- [Careers]({SITE}/careers.html): Full-time engineering roles. The Full Stack Development internship is closed.",
+             f"- [Careers]({SITE}/careers.html): Remote Full Stack Development internship (₹10,000 a month stipend, applications open) and full-time engineering roles.",
              f"- [All case studies]({SITE}/case-studies/)", ""]
     write("llms.txt", "\n".join(llms))
 
