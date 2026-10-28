@@ -371,7 +371,6 @@ def home():
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="ct">
     <div>
-      <a class="hire-pill" href="/careers.html#internship"><span class="hire-dot" aria-hidden="true"></span>We're hiring interns · ₹10,000 a month <span class="arr" aria-hidden="true">→</span></a>
       <span class="label">Modern Software · Intelligent Systems · Real Business Value</span>
       <h1 class="h1" id="hero-h"><span>We extend, connect</span> <span>and modernize</span> <span class="sig">the systems you run.</span></h1>
       <p class="kw-sub">{E(SEO["home"]["kw_sub"])}</p>
