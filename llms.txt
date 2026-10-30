@@ -1,6 +1,6 @@
 # Altherix
 
-> Altherix Solutions is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). It builds custom software, modernizes existing applications, adds automation and AI, and integrates business systems. Its production platforms include a church management system and a statistical reporting system for The Church of Pentecost in the UK and Ghana, running on Azure.
+> Altherix (Altherix Codecraft (OPC) Private Limited) is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). It builds custom software, modernizes existing applications, adds automation and AI, and integrates business systems. Its production platforms include a church management system and a statistical reporting system for The Church of Pentecost in the UK and Ghana, running on Azure.
 
 Contact: contact@altherix.in · +91 81529 23515 · https://www.linkedin.com/company/altherix
 

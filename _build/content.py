@@ -7,7 +7,12 @@ EMAIL = "contact@altherix.in"
 PHONE_DISPLAY = "+91 81529 23515"
 PHONE_TEL = "+918152923515"
 LINKEDIN = "https://www.linkedin.com/company/altherix"
-ADDRESS = ["1247 N1, LN Gardens, Stanley Park", "Ottupattarai, Coonoor", "Nilgiris, Tamil Nadu 643105"]
+ADDRESS = ["D No 5/1247-N1, Stanely Park", "Ottupattarai, Coonoor", "Nilgiris, Tamil Nadu 643105"]  # spelling as on the MCA record
+
+# Legal entity. Shown in the footer, About, privacy policy and structured data.
+LEGAL_NAME = "Altherix Codecraft (OPC) Private Limited"
+BRAND = "Altherix"
+CIN = "U62011TZ2026OPC041408"  # Corporate Identity Number from the Certificate of Incorporation. Leave empty to omit.
 
 # Search Console / Bing Webmaster verification codes. Paste the content value only; leave empty to omit the tag.
 GOOGLE_SITE_VERIFICATION = ""
@@ -296,6 +301,9 @@ BUILDS = [
 # ────────────────────────────────────────────────────────────────────────────
 PRIVACY_META = dict(version="5.0", effective="May 2023")
 PRIVACY = [
+  ("Who we are", [
+    "Altherix is a brand of Altherix Codecraft (OPC) Private Limited, a One Person Company incorporated in India (CIN U62011TZ2026OPC041408), registered office D No 5/1247-N1, Stanely Park, Ottupattarai, Coonoor, Nilgiris, Tamil Nadu 643105. In this policy, \"Altherix\", \"we\" and \"us\" mean that company.",
+  ]),
   ("This website", [
     "altherix.in sets no cookies and loads no analytics, advertising or tracking scripts. Our fonts and images are served from this site.",
     "The contact form does not send anything to our servers. It opens your own email app with your message addressed to contact@altherix.in, and you decide whether to send it. If you do, we use your message and contact details only to reply and to discuss the work you asked about.",

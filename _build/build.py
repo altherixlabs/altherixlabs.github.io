@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "16"  # asset cache-buster
+V = "17"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -132,6 +132,7 @@ def footer():
         <p class="foot-tag">Modern Software.<br>Intelligent Systems.<br>Real Business Value.</p>
         <p class="foot-sub meta">Transforming Software, Amplifying Value.</p>
         <p class="foot-sub meta">Coonoor, Tamil Nadu, India. Platforms in production in the UK and Ghana.</p>
+        <p class="foot-sub meta">Altherix is a brand of {LEGAL_NAME}, a One Person Company.</p>
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">What we build</h2><ul>{ind}</ul></div>
@@ -139,8 +140,8 @@ def footer():
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
     <div class="foot-bot meta">
-      <span>© <span data-year>2026</span> Altherix Solutions</span>
-      <span>Coonoor, Tamil Nadu, India · <a href="/privacy/">Privacy policy</a></span>
+      <span>© <span data-year>2026</span> {LEGAL_NAME}{(" · CIN " + CIN) if CIN else ""}</span>
+      <span>Registered office: {", ".join(ADDRESS)} · <a href="/privacy/">Privacy policy</a></span>
     </div>
   </div>
 </footer>
@@ -149,11 +150,11 @@ def footer():
 """
 
 ORG = {
-  "@context": "https://schema.org", "@type": ["Organization", "ProfessionalService"], "name": "Altherix Solutions",
-  "alternateName": "Altherix", "url": SITE + "/", "logo": SITE + "/assets/icon-512.png",
+  "@context": "https://schema.org", "@type": ["Organization", "ProfessionalService"], "name": "Altherix",
+  "legalName": LEGAL_NAME, "identifier": {"@type": "PropertyValue", "propertyID": "CIN", "value": CIN}, "url": SITE + "/", "logo": SITE + "/assets/icon-512.png",
   "slogan": "Transforming Software, Amplifying Value.",
   "email": EMAIL, "telephone": "+91-8152923515", "sameAs": [LINKEDIN], "areaServed": ["IN", "GB"],
-  "address": {"@type": "PostalAddress", "streetAddress": "1247 N1, LN Gardens, Stanley Park, Ottupattarai",
+  "address": {"@type": "PostalAddress", "streetAddress": "D No 5/1247-N1, Stanely Park, Ottupattarai",
               "addressLocality": "Coonoor", "addressRegion": "Tamil Nadu", "postalCode": "643105", "addressCountry": "IN"},
 }
 
@@ -263,7 +264,7 @@ def contact_section(heading="Have a difficult software problem?", lede="Whether 
         <div><dt>Email</dt><dd><a href="mailto:{EMAIL}">{EMAIL}</a></dd></div>
         <div><dt>Phone</dt><dd><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></dd></div>
         <div><dt>LinkedIn</dt><dd><a href="{LINKEDIN}" target="_blank" rel="noopener">linkedin.com/company/altherix</a></dd></div>
-        <div><dt>Office</dt><dd>{'<br>'.join(ADDRESS)}</dd></div>
+        <div><dt>Registered office</dt><dd>{'<br>'.join(ADDRESS)}</dd></div>
       </dl>
     </div>
     <form class="form rv" id="contact-form" novalidate aria-label="Contact form">
@@ -496,7 +497,7 @@ def home():
       <div><dt>Office</dt><dd>Coonoor, Tamil Nadu</dd></div>
       <div><dt>In production</dt><dd>UK and Ghana, on Azure</dd></div>
       <div><dt>Products</dt><dd>CodeGate · Mandate (in development)</dd></div>
-      <div><dt>Company</dt><dd>Altherix Solutions</dd></div>
+      <div><dt>Company</dt><dd>{LEGAL_NAME}</dd></div>
     </dl>
     </div>
   </div>
@@ -587,8 +588,8 @@ def case_page(c):
     if c.get("featured"): facts.append(("Status", "Live in production"))
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Case Studies", "/case-studies/"), (c["title"], f"/case-studies/{c['slug']}/")]),
               {"@context": "https://schema.org", "@type": "Article", "headline": c["title"], "description": c["oneliner"],
-               "author": {"@type": "Organization", "name": "Altherix Solutions"},
-               "publisher": {"@type": "Organization", "name": "Altherix Solutions", "logo": {"@type": "ImageObject", "url": SITE + "/assets/icon-512.png"}},
+               "author": {"@type": "Organization", "name": "Altherix"},
+               "publisher": {"@type": "Organization", "name": "Altherix", "logo": {"@type": "ImageObject", "url": SITE + "/assets/icon-512.png"}},
                "image": SITE + f"/assets/og/{c['slug']}.jpg", "mainEntityOfPage": url_for(path),
                "datePublished": published, "dateModified": "__MODIFIED__"}]
     rel = f'<section class="sec"><div class="ct">{sec_head("More work", "Related case studies", None, "rel-h")}<div class="rows">{"".join(cs_row(r) for r in related)}</div></div></section>' if related else ""
@@ -636,7 +637,7 @@ def service_page(s):
         cl = s["cloud"]
         cloud = f'<section class="sec" id="cloud"><div class="ct two"><div class="rv"><span class="label">Also</span><h2 class="h2" style="margin-top:1.25rem">{cl["title"]}</h2><p class="lede" style="margin-top:1.25rem">{E(cl["text"])}</p></div><ul class="plist rv" style="align-self:start">{"".join(f"<li>{E(x)}</li>" for x in cl["list"])}</ul></div></section>'
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Services", "/#services"), (s["name"], f"/services/{s['slug']}/")]),
-              {"@context": "https://schema.org", "@type": "Service", "name": s["name"], "description": s["short"], "provider": {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}, "areaServed": ["IN", "GB"]}]
+              {"@context": "https://schema.org", "@type": "Service", "name": s["name"], "description": s["short"], "provider": {"@type": "Organization", "name": "Altherix", "url": SITE + "/"}, "areaServed": ["IN", "GB"]}]
     h1 = s["h1"].replace("<em>", '<span class="mute">').replace("</em>", "</span>")
     html = head(s["seo_title"], s["seo_desc"], path, jsonld, og_image=f"/assets/og/{s['slug']}.jpg") + nav("services") + f"""
 <main id="main">
@@ -742,13 +743,13 @@ def careers():
             ("Honest estimates", "We push back on unrealistic dates. Crunch is a planning failure, not a culture.")]
     jobs = [{"@context": "https://schema.org", "@type": "JobPosting", "title": "Full Stack Development Intern",
              "description": roles[0]["about"], "employmentType": "INTERN", "datePosted": "2026-10-28",
-             "hiringOrganization": {"@type": "Organization", "name": "Altherix Solutions", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
+             "hiringOrganization": {"@type": "Organization", "name": "Altherix", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
              "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
              "baseSalary": {"@type": "MonetaryAmount", "currency": "INR", "value": {"@type": "QuantitativeValue", "value": 10000, "unitText": "MONTH"}},
              "educationRequirements": "BSc / BCA with a Computer Science major preferred"},
             {"@context": "https://schema.org", "@type": "JobPosting", "title": "HR Intern, Talent Acquisition & Operations",
              "description": roles[1]["about"], "employmentType": "INTERN", "datePosted": "2026-10-28",
-             "hiringOrganization": {"@type": "Organization", "name": "Altherix Solutions", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
+             "hiringOrganization": {"@type": "Organization", "name": "Altherix", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
              "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
              "baseSalary": {"@type": "MonetaryAmount", "currency": "INR", "value": {"@type": "QuantitativeValue", "value": 10000, "unitText": "MONTH"}},
              "educationRequirements": "BMS, BBA or MBA students welcome"}]
@@ -817,7 +818,7 @@ def products():
     flow = [("An AI agent asks", "An assistant wants to read a record or take an action in one of your systems."),
             ("Mandate checks", "Is this user allowed? Does this action need approval? The request is logged either way."),
             ("Your system responds", "Only permitted, approved actions reach the system. Everything else stops at Mandate.")]
-    pub = {"@type": "Organization", "name": "Altherix Solutions", "url": SITE + "/"}
+    pub = {"@type": "Organization", "name": "Altherix", "url": SITE + "/"}
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Products", "/products/")]),
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CodeGate by Altherix", "url": SITE + "/products/#codegate",
                "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
@@ -915,7 +916,7 @@ def seo_files():
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n')
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
     llms = [f"# Altherix", "",
-            "> Altherix Solutions is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). "
+            "> Altherix (Altherix Codecraft (OPC) Private Limited) is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). "
             "It builds custom software, modernizes existing applications, adds automation and AI, and integrates business systems. "
             "Its production platforms include a church management system and a statistical reporting system for The Church of Pentecost in the UK and Ghana, running on Azure.", "",
             f"Contact: {EMAIL} · {PHONE_DISPLAY} · {LINKEDIN}", "",
