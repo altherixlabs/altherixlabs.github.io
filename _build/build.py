@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "15"  # asset cache-buster
+V = "16"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -202,7 +202,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
     "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    "art-cloud": (972, 881), "johnson": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -505,14 +505,17 @@ def home():
 <section class="sec" id="csr" aria-labelledby="csr-h">
   <div class="ct two">
     <div class="rv">
-      <span class="label">CSR</span>
-      <h2 class="h2" id="csr-h" style="margin-top:1.25rem">The Johnson Initiative. <span class="mute">Giving back, in his name.</span></h2>
-      <p class="lede" style="margin-top:1.25rem">Altherix's CSR unit, named in memory of Johnson, father of our Director and CTO. It puts the skills we use every day to work for the community around us in the Nilgiris.</p>
-      <p class="meta" style="margin-top:1.25rem">We're starting small and growing it carefully. Schools, colleges and nonprofits can reach us at <a href="mailto:{EMAIL}?subject=The%20Johnson%20Initiative">{EMAIL}</a>.</p>
+      <span class="label">Corporate social responsibility</span>
+      <h2 class="h2" id="csr-h" style="margin-top:1.25rem">The Johnson Initiative.</h2>
+      <p class="lede" style="margin-top:1.25rem">Our CSR unit puts the skills we use every day to work for the community around us in the Nilgiris.</p>
+      <figure class="dedication">{pic("johnson", "Portrait of Victor Johnson Sundaram, in whose memory The Johnson Initiative is named.", "96px")}<figcaption><span class="dedication-k">Named in memory of</span><span class="dedication-n">Victor Johnson Sundaram</span><span class="dedication-r">Father of our Director and CTO</span></figcaption></figure>
     </div>
-    <div class="grid2 rv" style="align-self:start">
-      <div><h3 class="h3">Johnson Scholars</h3><p class="body">Free coding training for students from the Nilgiris, assessed on CodeGate. The strongest are offered a paid Altherix internship.</p></div>
-      <div><h3 class="h3">Pro bono software</h3><p class="body">Each year we build or fix a system for a nonprofit, school or clinic, free of charge.</p></div>
+    <div class="rv" style="align-self:start">
+      <ol class="csr-list">
+        <li><span class="idx">01</span><div><h3 class="h3">Johnson Scholars</h3><p class="body">Free coding training for students from the Nilgiris, assessed on CodeGate. The strongest are offered a paid Altherix internship.</p></div></li>
+        <li><span class="idx">02</span><div><h3 class="h3">Pro bono software</h3><p class="body">Each year we build or fix a system for a nonprofit, school or clinic, free of charge.</p></div></li>
+      </ol>
+      <p class="meta" style="margin-top:1.5rem">Schools, colleges and nonprofits can reach us at <a href="mailto:{EMAIL}?subject=The%20Johnson%20Initiative">{EMAIL}</a>.</p>
     </div>
   </div>
 </section>
