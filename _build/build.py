@@ -135,7 +135,7 @@ def footer():
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">What we build</h2><ul>{ind}</ul></div>
-      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#contact">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
+      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#csr">The Johnson Initiative</a></li><li><a href="/#contact">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
     <div class="foot-bot meta">
@@ -466,9 +466,9 @@ def home():
   </div>
 </section>
 
-<section class="sec" id="why" aria-labelledby="why-h">
+<section class="sec" id="principles" aria-labelledby="pr-h">
   <div class="ct">
-    {sec_head("Why Altherix", "Why teams work with Altherix.", None, "why-h")}
+    {sec_head("Principles", "Why teams work with Altherix.", None, "pr-h")}
     <div class="rows">{pr_html}</div>
   </div>
 </section>
@@ -498,6 +498,21 @@ def home():
       <div><dt>Products</dt><dd>CodeGate · Mandate (in development)</dd></div>
       <div><dt>Company</dt><dd>Altherix Solutions</dd></div>
     </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="csr" aria-labelledby="csr-h">
+  <div class="ct two">
+    <div class="rv">
+      <span class="label">CSR</span>
+      <h2 class="h2" id="csr-h" style="margin-top:1.25rem">The Johnson Initiative. <span class="mute">Giving back, in his name.</span></h2>
+      <p class="lede" style="margin-top:1.25rem">Altherix's CSR unit, named in memory of Johnson, father of our Director and CTO. It puts the skills we use every day to work for the community around us in the Nilgiris.</p>
+      <p class="meta" style="margin-top:1.25rem">We're starting small and growing it carefully. Schools, colleges and nonprofits can reach us at <a href="mailto:{EMAIL}?subject=The%20Johnson%20Initiative">{EMAIL}</a>.</p>
+    </div>
+    <div class="grid2 rv" style="align-self:start">
+      <div><h3 class="h3">Johnson Scholars</h3><p class="body">Free coding training for students from the Nilgiris, assessed on CodeGate. The strongest are offered a paid Altherix internship.</p></div>
+      <div><h3 class="h3">Pro bono software</h3><p class="body">Each year we build or fix a system for a nonprofit, school or clinic, free of charge.</p></div>
     </div>
   </div>
 </section>
