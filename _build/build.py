@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
     "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "johnson": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    "art-cloud": (972, 881), "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -509,7 +509,7 @@ def home():
       <span class="label">Corporate social responsibility</span>
       <h2 class="h2" id="csr-h" style="margin-top:1.25rem">The Johnson Initiative.</h2>
       <p class="lede" style="margin-top:1.25rem">Our CSR unit puts the skills we use every day to work for the community around us in the Nilgiris.</p>
-      <figure class="dedication">{pic("johnson", "Portrait of Victor Johnson Sundaram, in whose memory The Johnson Initiative is named.", "96px")}<figcaption><span class="dedication-k">Named in memory of</span><span class="dedication-n">Victor Johnson Sundaram</span><span class="dedication-r">Father of our Director and CTO</span></figcaption></figure>
+      <figure class="dedication">{pic("johnson-suit", "Portrait of Victor Johnson Sundaram, in whose memory The Johnson Initiative is named.", "96px")}<figcaption><span class="dedication-k">Named in memory of</span><span class="dedication-n">Victor Johnson Sundaram</span><span class="dedication-r">Father of our Director and CTO</span></figcaption></figure>
     </div>
     <div class="rv" style="align-self:start">
       <ol class="csr-list">
