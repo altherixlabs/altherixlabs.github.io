@@ -669,7 +669,7 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 /* The Johnson Initiative */
 .dedication{display:flex;align-items:center;gap:1.1rem;margin:2.25rem 0 0;padding-top:1.5rem;border-top:1px solid var(--line)}
 .dedication picture{flex:none}
-.dedication img{display:block;width:80px;height:100px;object-fit:cover;object-position:50% 25%;border-radius:6px;filter:grayscale(1) contrast(1.1) brightness(.95)}
+.dedication img{display:block;width:80px;height:100px;object-fit:cover;object-position:50% 18%;border-radius:6px;filter:grayscale(1) contrast(1.05)}
 .dedication figcaption{display:grid;gap:.2rem}
 .dedication-k{font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
 .dedication-n{font-size:1.125rem;font-weight:600;color:var(--ink)}
