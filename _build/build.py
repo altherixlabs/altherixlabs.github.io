@@ -200,8 +200,8 @@ def hero_svg():
 
 # ── components ───────────────────────────────────────────────────────────────
 IMG = {  # name: (width, height) of the 1600px version
-    "office-v2": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
-    "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
+    "office-v2": (1600, 859), "cms-overview-v2": (1600, 909), "cms-leaders-v2": (1600, 767),
+    "missions-dashboard-v2": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
     "art-cloud": (972, 881), "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
@@ -220,6 +220,9 @@ def art(name, sizes="(min-width:1000px) 560px, 100vw", lazy=False):
 
 SERVICE_ART = {"software-engineering": "art-software", "modernization": "art-modernization", "ai-automation": "art-ai", "enterprise-integration": "art-integration"}
 
+
+def proj_rows():
+    return "".join(f'<div class="row proj-row rv"><div class="proj-thumb" aria-hidden="true">{pic(p["art"], "", "(min-width:960px) 220px, 100vw")}</div><div><span class="label">{E(p["label"])}</span><h3 class="h3-lg" style="margin-top:.6rem">{E(p["title"])}</h3><p class="meta">{E(p["client"])}</p></div><p class="body">{E(p["body"])}</p></div>' for p in PROJECTS)
 
 def shot(name, alt, caption=None, sizes="(min-width:1240px) 1160px, 100vw"):
     """A product screenshot in a quiet browser frame."""
@@ -294,7 +297,7 @@ def home():
     path = "index.html"
     outcomes = [("80+", "API modules", "Church Management System on .NET 9 and Azure", "/case-studies/church-management-system/"),
                 ("7", "Organisational levels", "One reporting system, Global Office to local assembly", "/case-studies/missions-office-enterprise-system/"),
-                ("6", "Dashboard modules", "Statistics, Vision 2028 scorecard and data completeness", "/case-studies/missions-office-enterprise-system/")]
+                ("6", "Dashboard modules", "Statistics, strategic-plan scorecard and data completeness", "/case-studies/missions-office-enterprise-system/")]
     out_html = "".join(f'<a class="outcome" href="{s}"><span class="n">{n}</span><span class="l">{l}</span><span class="s">{d}</span></a>' for n, l, d, s in outcomes)
 
     svc_rows = ""
@@ -422,12 +425,14 @@ def home():
 
 <section class="sec" id="work" aria-labelledby="work-h">
   <div class="ct">
-    {sec_head("Our work", "What we've built, <span class='mute'>and still run.</span>", "Platforms in production for The Church of Pentecost in the UK and at its Missions Office in Ghana.", "work-h")}
+    {sec_head("Our work", "What we've built.", "Platforms for an international church organisation in the UK and Ghana, an ERP implementation for a German health brand, and an operations platform for a hotel group.", "work-h")}
     <div class="shots-2">
-      {shot("cms-overview", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Church Management System, overview (names blurred)", "(min-width:1000px) 570px, 100vw")}
-      {shot("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, Vision 2028 and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
+      {shot("cms-overview-v2", "Church Management System overview screen: transfer approvals, member, group and event totals, and a membership summary by age group.", "Church Management System, overview (names and logo blurred)", "(min-width:1000px) 570px, 100vw")}
+      {shot("missions-dashboard-v2", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, strategic plan and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
     </div>
     <div class="cs-list">{panels}</div>
+    <h3 class="label" style="margin:clamp(40px,5vw,64px) 0 1rem">Also delivered</h3>
+    <div class="rows">{proj_rows()}</div>
     <div class="after"><a class="btn btn-s" href="/products/">See our own products</a></div>
   </div>
 </section>
@@ -487,7 +492,7 @@ def home():
       <span class="label">About</span>
       <h2 class="h2" id="about-h" style="margin-top:1.25rem">Global engineering. <span class="mute">Rooted in the Nilgiris.</span></h2>
       <p>Altherix was founded in Ooty, high in the Nilgiris, and works from Coonoor in Tamil Nadu, India. It's an unusual place for an engineering company, and a deliberate one: a small team with room to do careful work, away from the churn of a large delivery centre.</p>
-      <p>The work reaches well beyond the hills. Platforms we built run in production on Azure for The Church of Pentecost in the UK and its Missions Office in Ghana. We take on projects across India, the UK and Europe.</p>
+      <p>The work reaches well beyond the hills. Platforms we built run in production on Azure in the UK and Ghana. We take on projects across India, the UK and Europe.</p>
       <p>One conviction hasn't changed: your existing software is the backbone of your business, and it usually deserves improving before it deserves replacing.</p>
     </div>
     <div style="align-self:end">
@@ -557,11 +562,15 @@ def cases_index():
   {crumbs([("Home", "/"), ("Case Studies", "/case-studies/")])}
   <span class="label">Case studies</span>
   <h1 class="h1">Selected work.</h1>
-  <p class="lede">Production platforms we designed, built and deployed for The Church of Pentecost, and continue to support.</p>
+  <p class="lede">Production platforms we designed, built and deployed for an international church organisation, and continue to support.</p>
 </div></header>
 <section class="sec"><div class="ct">
   <h2 class="label" style="margin-bottom:1.25rem">Client work</h2>
   <div class="cs-list">{''.join(cs_panel(c) for c in feat)}</div>
+</div></section>
+<section class="sec"><div class="ct">
+  {sec_head("Also delivered", "ERP and operations platforms.", None, "also-h")}
+  <div class="rows">{proj_rows()}</div>
 </div></section>
 <section class="sec"><div class="ct">
   {sec_head("Our own products", "Built for problems <span class='mute'>we had ourselves.</span>", None, "more-h")}
@@ -916,7 +925,7 @@ def seo_files():
     llms = [f"# Altherix", "",
             "> Altherix (Altherix Codecraft (OPC) Private Limited) is a software engineering company in Coonoor, Tamil Nadu, India (founded in Ooty, the Nilgiris). "
             "It builds custom software, modernizes existing applications, adds automation and AI, and integrates business systems. "
-            "Its production platforms include a church management system and a statistical reporting system for The Church of Pentecost in the UK and Ghana, running on Azure.", "",
+            "Its production platforms include a church management system and a statistical reporting system for an international church organisation in the UK and Ghana, running on Azure.", "",
             f"Contact: {EMAIL} · {PHONE_DISPLAY} · {LINKEDIN}", "",
             "## Services", ""]
     llms += [f"- [{x['name']}]({SITE}/services/{x['slug']}/): {x['short']}" for x in SERVICES]

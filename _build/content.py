@@ -25,7 +25,7 @@ SEO = {
                seo_desc="Software engineering company in India for clients in India, the UK and Europe: custom software, modernization, AI automation and integration.",
                kw_sub="Software development, modernization and AI automation for businesses in India, the UK and Europe."),
   "case-studies": dict(seo_title="Software Development & Integration Case Studies | Altherix",
-                       seo_desc="Production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure."),
+                       seo_desc="Platforms built by Altherix: a .NET 9 church management system and a Laravel reporting system on Azure, plus ERP and hotel operations projects."),
   "products": dict(seo_title="Products: CodeGate & Mandate | Altherix",
                    seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. Mandate is a safe gateway between AI agents and your ERP, SQL and in-house systems."),
   "careers": dict(seo_title="Remote Full Stack & HR Internships, ₹10,000 | Altherix",
@@ -58,16 +58,16 @@ FAQ = [
 CASES = [
   dict(
     slug="church-management-system",
-    shots=[("cms-overview", "Church Management System overview screen: transfer approvals, totals for members, groups and events, and a membership summary by age group and gender.", "Overview: approvals, totals and membership summary (member names blurred)"),
-           ("cms-leaders", "Church Management System leaders dashboard: headline figures for members, souls won, officers, home cells and more, with period comparison and area performance.", "Leaders dashboard: headline figures against the previous period")],
+    shots=[("cms-overview-v2", "Church Management System overview screen: transfer approvals, totals for members, groups and events, and a membership summary by age group and gender.", "Overview: approvals, totals and membership summary (names and logo blurred)"),
+           ("cms-leaders-v2", "Church Management System leaders dashboard: headline figures for members, souls won, officers, home cells and more, with period comparison and area performance.", "Leaders dashboard: headline figures against the previous period")],
     seo_desc=".NET 9, React and SQL Server church management platform on Azure, with live check-in over SignalR and Hangfire jobs: 80+ API modules in production.",
     featured=True,
     category="Non-profit · Enterprise platform",
     industry="Enterprise / Nonprofit",
     title="Church Management System",
-    client="The Church of Pentecost",
+    client="International church organisation",
     oneliner="A congregation management platform replacing spreadsheets and paper registers with one record of every member, group, event and attendance.",
-    summary="For The Church of Pentecost, Altherix designed, built and deployed a full congregation management platform. It replaced spreadsheets and paper registers with a single record of every member, group, event and attendance across the organisation's assemblies, and runs in production on Azure.",
+    summary="For an international church organisation, Altherix designed, built and deployed a full congregation management platform. It replaced spreadsheets and paper registers with a single record of every member, group, event and attendance across the organisation's assemblies, and runs in production on Azure.",
     problem="Member records, groups, events and attendance lived in spreadsheets and paper registers spread across assemblies.",
     solution="One platform for the member lifecycle, recurring events, real-time check-in, inter-assembly transfers and leadership analytics.",
     challenge=[
@@ -102,17 +102,17 @@ CASES = [
   ),
   dict(
     slug="missions-office-enterprise-system",
-    shots=[("missions-dashboard", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry and children, estates, Vision 2028 and data completeness.", "Statistics dashboard: drill-down by administration, period comparison and exports")],
+    shots=[("missions-dashboard-v2", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry and children, estates, strategic plan and data completeness.", "Statistics dashboard: drill-down by administration, period comparison and exports")],
     seo_desc="Laravel 12 and MySQL reporting system on Azure App Service: statistical returns across a seven-level hierarchy, six dashboard modules and audited exports.",
     featured=True,
     category="Non-profit · Enterprise reporting",
     industry="Enterprise / Nonprofit",
     title="Missions Office Enterprise System",
-    client="The Church of Pentecost",
+    client="International church organisation",
     oneliner="Global statistical reporting consolidated across a seven-tier organisational hierarchy, with drill-down dashboards and audited exports.",
-    summary="A reporting and analytics system for the Church of Pentecost's global Missions Office in Ghana. It consolidates half-year and end-year statistical returns submitted from every level of a seven-tier hierarchy, from the Global Office down to a single local assembly.",
+    summary="A reporting and analytics system for the global Missions Office of an international church organisation, based in Ghana. It consolidates half-year and end-year statistical returns submitted from every level of a seven-tier hierarchy, from the Global Office down to a single local assembly.",
     problem="Half-year and end-year statistical returns had to be consolidated across seven organisational levels, with each administrator seeing only their own branch.",
-    solution="Drill-down statistics dashboards, access scoped at query level, a Vision 2028 scorecard and exports stamped with their provenance.",
+    solution="Drill-down statistics dashboards, access scoped at query level, a strategic-plan scorecard and exports stamped with their provenance.",
     challenge=[
       "Statistical returns arrive from every level of a seven-tier hierarchy: Global Office → Regional Missions Office → Regional Committee → Nation → Area → District → Local Assembly.",
       "Leadership needed to read the same figures from the top of the organisation down to one assembly, while every administrator must only ever see the branch they are responsible for.",
@@ -120,7 +120,7 @@ CASES = [
     approach=[
       ("Scope at the query, not the screen", "Access is enforced at query level, so an administrator can only ever retrieve their own branch of the hierarchy."),
       ("One model, many altitudes", "Membership, evangelism, attendance, ministry and estates dashboards, each with drill-down from global to a single assembly."),
-      ("Measure against the plan", "A configurable Vision 2028 scorecard with indicators, targets and pace-adjusted progress tracking."),
+      ("Measure against the plan", "A configurable strategic-plan scorecard with indicators, targets and pace-adjusted progress tracking."),
       ("Know what's missing", "Data-completeness tracking shows which assemblies have submitted for a period and lists those outstanding."),
     ],
     architecture=[
@@ -134,7 +134,7 @@ CASES = [
       ("Seven-level hierarchy", "Global Office → Regional Missions Office → Regional Committee → Nation → Area → District → Local Assembly"),
       ("Statistics dashboards", "membership, evangelism, attendance, ministry and estates, each with drill-down"),
       ("Scoped access", "enforced at query level"),
-      ("Vision 2028 scorecard", "configurable indicators and targets with pace-adjusted progress"),
+      ("Strategic-plan scorecard", "configurable indicators and targets with pace-adjusted progress"),
       ("Exports & provenance", "CSV and PDF exports stamped with scope, period and generation trail"),
       ("Data completeness", "tracks which assemblies have submitted and which are outstanding"),
     ],
@@ -445,4 +445,18 @@ PRIVACY = [
   ("16. Acknowledgment", [
     "By entering into a service agreement with Altherix, clients acknowledge that they have reviewed and understood this Data Privacy &amp; Protection Policy and agree to be bound by its terms.",
   ]),
+]
+
+
+# ────────────────────────────────────────────────────────────────────────────
+# OTHER DELIVERED PROJECTS (delivered by the founder before incorporation, under Altherix).
+# Only facts the owner has stated. No figures, stack or dates until confirmed.
+# ────────────────────────────────────────────────────────────────────────────
+PROJECTS = [
+  dict(client="German health and wellbeing brand", art="art-integration", label="ERP · Microsoft Dynamics 365 Business Central",
+       title="ERP implementation",
+       body="Implementation of Microsoft Dynamics 365 Business Central as the company's ERP."),
+  dict(client="Hotel group", art="art-software", label="Hospitality · Operations platform",
+       title="Hotel and restaurant management platform",
+       body="One platform covering restaurant management, hotel booking management, and employee records and payroll."),
 ]

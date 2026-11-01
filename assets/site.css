@@ -679,3 +679,8 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 .csr-list .idx{padding-top:.3rem}
 .csr-list .body{margin-top:.4rem}
 .csr-list+.meta a{color:var(--ink)}
+
+/* Also-delivered project rows */
+@media (min-width:960px){.proj-row{grid-template-columns:220px minmax(0,1fr) minmax(0,1fr);align-items:center}}
+.proj-thumb{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;max-width:520px}
+.proj-thumb img{display:block;width:100%;height:100%;object-fit:cover}
