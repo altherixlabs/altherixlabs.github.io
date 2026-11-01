@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office-v2": (1600, 859), "cms-overview-v2": (1600, 909), "cms-leaders-v2": (1600, 767),
     "missions-dashboard-v2": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -222,7 +222,7 @@ SERVICE_ART = {"software-engineering": "art-software", "modernization": "art-mod
 
 
 def proj_rows():
-    return "".join(f'<div class="row proj-row rv"><div class="proj-thumb" aria-hidden="true">{pic(p["art"], "", "(min-width:960px) 220px, 100vw")}</div><div><span class="label">{E(p["label"])}</span><h3 class="h3-lg" style="margin-top:.6rem">{E(p["title"])}</h3><p class="meta">{E(p["client"])}</p></div><p class="body">{E(p["body"])}</p></div>' for p in PROJECTS)
+    return "".join(f'<div class="row proj-row rv"><div class="proj-thumb{' is-shot' if p.get('shot_alt') else ''}"{'' if p.get('shot_alt') else ' aria-hidden="true"'}>{pic(p["art"], p.get("shot_alt", ""), "(min-width:960px) 220px, 100vw")}</div><div><span class="label">{E(p["label"])}</span><h3 class="h3-lg" style="margin-top:.6rem">{E(p["title"])}</h3><p class="meta">{E(p["client"])}</p></div><p class="body">{E(p["body"])}{('<span class="meta proj-note">' + E(p["note"]) + '</span>') if p.get("note") else ""}</p></div>' for p in PROJECTS)
 
 def shot(name, alt, caption=None, sizes="(min-width:1240px) 1160px, 100vw"):
     """A product screenshot in a quiet browser frame."""

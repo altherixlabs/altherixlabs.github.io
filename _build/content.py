@@ -453,10 +453,10 @@ PRIVACY = [
 # Only facts the owner has stated. No figures, stack or dates until confirmed.
 # ────────────────────────────────────────────────────────────────────────────
 PROJECTS = [
-  dict(client="German health and wellbeing brand", art="art-integration", label="ERP · Microsoft Dynamics 365 Business Central",
+  dict(client="German health and wellbeing brand", art="bc-erp", shot_alt="Microsoft Dynamics 365 Business Central role centre with sales, purchasing and payment tiles, shown with Microsoft's demo data.", label="ERP · Microsoft Dynamics 365 Business Central",
        title="ERP implementation",
-       body="Implementation of Microsoft Dynamics 365 Business Central as the company's ERP."),
-  dict(client="Hotel group", art="art-software", label="Hospitality · Operations platform",
+       body="Implementation of Microsoft Dynamics 365 Business Central as the company's ERP.", note="Screenshot: Business Central with Microsoft's demo data; client data is not shown."),
+  dict(client="Hotel group", art="hotel-ops", shot_alt="Hotel management dashboard: rooms to sell, occupancy, dirty and clean vacant rooms, expected arrivals and departures, with menus for rooms, guests, pricing, reservations, front office, point of sale, night audit, housekeeping and security.", label="Hospitality · Operations platform",
        title="Hotel and restaurant management platform",
        body="One platform covering restaurant management, hotel booking management, and employee records and payroll."),
 ]

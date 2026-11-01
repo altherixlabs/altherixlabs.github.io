@@ -684,3 +684,6 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 @media (min-width:960px){.proj-row{grid-template-columns:220px minmax(0,1fr) minmax(0,1fr);align-items:center}}
 .proj-thumb{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;max-width:520px}
 .proj-thumb img{display:block;width:100%;height:100%;object-fit:cover}
+.proj-thumb.is-shot{background:#fff}
+.proj-thumb.is-shot img{object-fit:cover;object-position:0 0}
+.proj-note{display:block;margin-top:.6rem;font-size:.8125rem}
