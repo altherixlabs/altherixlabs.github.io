@@ -240,7 +240,7 @@ def cs_panel(c):
     <div class="cs-sub">{subs}</div>
   </div>
   <div class="cs-body">
-    <div><span class="label">{E(c['category'])}</span><h3 class="h3-lg" style="margin-top:.6rem">{E(c['title'])}</h3>{client}</div>
+    <div><span class="label">{E(c['category'])}</span>{'<span class="recent-tag">Most recent</span>' if c.get("featured") else ""}<h3 class="h3-lg" style="margin-top:.6rem">{E(c['title'])}</h3>{client}</div>
     <div class="cs-ps"><div><span class="label">Problem</span><p>{E(c['problem'])}</p></div><div><span class="label">Solution</span><p>{E(c['solution'])}</p></div></div>
     <p class="stack-line">{dot(c['tech'][:8])}</p>
     <div class="cs-foot">{status}<a class="more" href="/case-studies/{c['slug']}/">Read the case study <span class="arr" aria-hidden="true">→</span></a></div>
@@ -431,7 +431,7 @@ def home():
       {shot("missions-dashboard-v2", "Missions Office statistics dashboard: reporting period selector, drill-down by administration, CSV and PDF export, and tabs for membership, evangelism, attendance, ministry, estates, strategic plan and data completeness.", "Missions Office Enterprise System, statistics dashboard", "(min-width:1000px) 570px, 100vw")}
     </div>
     <div class="cs-list">{panels}</div>
-    <h3 class="label" style="margin:clamp(40px,5vw,64px) 0 1rem">Also delivered</h3>
+    <h3 class="label" style="margin:clamp(40px,5vw,64px) 0 1rem">Earlier projects</h3>
     <div class="rows">{proj_rows()}</div>
     <div class="after"><a class="btn btn-s" href="/products/">See our own products</a></div>
   </div>
@@ -569,7 +569,7 @@ def cases_index():
   <div class="cs-list">{''.join(cs_panel(c) for c in feat)}</div>
 </div></section>
 <section class="sec"><div class="ct">
-  {sec_head("Also delivered", "ERP and operations platforms.", None, "also-h")}
+  {sec_head("Earlier projects", "ERP and operations platforms.", None, "also-h")}
   <div class="rows">{proj_rows()}</div>
 </div></section>
 <section class="sec"><div class="ct">
