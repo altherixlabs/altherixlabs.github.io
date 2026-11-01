@@ -28,8 +28,8 @@ SEO = {
                        seo_desc="Production platforms built and run by Altherix for The Church of Pentecost: a .NET 9 church management system and a Laravel reporting system on Azure."),
   "products": dict(seo_title="Products: CodeGate & Mandate | Altherix",
                    seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. Mandate is a safe gateway between AI agents and your ERP, SQL and in-house systems."),
-  "careers": dict(seo_title="Remote Full Stack Internship, ₹10,000 Stipend | Altherix",
-                  seo_desc="Now hiring: remote Full Stack Development interns, 2 or 3 months, ₹10,000 a month stipend and a paid 3-day onsite in Ooty. Plus full-time engineering roles."),
+  "careers": dict(seo_title="Remote Full Stack & HR Internships, ₹10,000 | Altherix",
+                  seo_desc="Now hiring remote interns in Full Stack Development and HR (Talent Acquisition & Operations), ₹10,000 a month stipend. Apply online in minutes."),
 }
 
 # Home page FAQ — shown on the page and as FAQPage structured data. Keep answers factual.

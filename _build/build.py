@@ -200,7 +200,7 @@ def hero_svg():
 
 # ── components ───────────────────────────────────────────────────────────────
 IMG = {  # name: (width, height) of the 1600px version
-    "office": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
+    "office-v2": (1600, 859), "cms-overview": (1600, 909), "cms-leaders": (1600, 767),
     "missions-dashboard": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
     "art-cloud": (972, 881), "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
@@ -491,7 +491,7 @@ def home():
       <p>One conviction hasn't changed: your existing software is the backbone of your business, and it usually deserves improving before it deserves replacing.</p>
     </div>
     <div style="align-self:end">
-    <figure class="photo rv">{pic("office", "The Altherix office building with the Altherix sign at the entrance, set against green hillside.", "(min-width:1000px) 570px, 100vw")}</figure>
+    <figure class="photo rv">{pic("office-v2", "The Altherix office in the Nilgiris: a white two-storey building with a tiled porch and the Altherix sign at the gate, beside a tea garden.", "(min-width:1000px) 570px, 100vw")}</figure>
     <dl class="facts-dl rv">
       <div><dt>Founded</dt><dd>Ooty, the Nilgiris</dd></div>
       <div><dt>Office</dt><dd>Coonoor, Tamil Nadu</dd></div>
@@ -695,19 +695,19 @@ def careers():
            nice=["Some familiarity with tech roles and the skills they need", "Experience with LinkedIn Recruiter, Naukri or other job portals"],
            how="Apply online using the form linked below. Have your CV ready.",
            href="https://hrms.altherix.in/apply/?role=hr-intern"),
-      dict(t="Senior Full-Stack Engineer, .NET & React", facts="Ooty · Hybrid · Full time · 5+ years",
+      dict(t="Senior Full-Stack Engineer, .NET & React", hidden=True, facts="Ooty · Hybrid · Full time · 5+ years",
            about="You'll lead delivery on enterprise platforms built with ASP.NET Core and React: designing the data model, building the API, shaping the front end, and taking it through to an Azure deployment. This is our most senior individual-contributor track.",
            do=["Design and build REST APIs with ASP.NET Core and Entity Framework Core", "Build front ends in React and TypeScript with a considered component architecture", "Model relational schemas and write queries that stay fast as data grows", "Work directly with clients to turn ambiguous requirements into a shippable scope", "Review other engineers' work and raise the standard of the codebase"],
            want=["Five or more years building and shipping production web applications", "Strong C# and .NET, with real Entity Framework and SQL Server experience", "Confident in React, TypeScript and modern front-end tooling", "Comfortable owning a deployment: CI/CD pipelines, cloud hosting, diagnosing production issues", "Clear written and spoken communication; you'll be in front of clients"],
            nice=["Azure services: App Service, SQL, Blob Storage, DevOps pipelines", "Background jobs and real-time messaging (Hangfire, SignalR or equivalents)", "Experience modernising a legacy codebase without a rewrite"],
            href=apply("Application: Senior Full-Stack Engineer (.NET & React)", std_body.format(r="Senior Full-Stack Engineer"))),
-      dict(t="Full-Stack Engineer, PHP & Laravel", facts="Ooty · Hybrid · Full time · 2–5 years",
+      dict(t="Full-Stack Engineer, PHP & Laravel", hidden=True, facts="Ooty · Hybrid · Full time · 2–5 years",
            about="We build reporting and operational platforms on Laravel for clients who need a lot of domain logic handled correctly. You'll work across the stack: schema, application logic, and the dashboards people look at every day.",
            do=["Build features across Laravel applications: migrations, models, services, controllers and Blade views", "Write aggregation and reporting logic where correctness genuinely matters", "Build interactive dashboards and data visualisations for non-technical users", "Implement role-based access control and audit trails", "Write tests that give us confidence to deploy on a Friday"],
            want=["Two or more years with PHP and a modern framework, ideally Laravel", "Solid relational database skills: you can read a slow query and fix it", "Working knowledge of JavaScript and at least one front-end approach", "Care about data accuracy and edge cases, not just the happy path"],
            nice=["Charting libraries, PDF and spreadsheet generation", "Experience with multi-tenant or hierarchical permission models"],
            href=apply("Application: Full-Stack Engineer (PHP & Laravel)", std_body.format(r="Full-Stack Engineer (Laravel)"))),
-      dict(t="Cloud & DevOps Engineer", facts="Ooty · Hybrid · Full time · 3+ years",
+      dict(t="Cloud & DevOps Engineer", hidden=True, facts="Ooty · Hybrid · Full time · 3+ years",
            about="You'll own how our clients' systems get built, released and observed: pipelines, environments, cost, and the alerting that tells us something is wrong before the client does.",
            do=["Build and maintain CI/CD pipelines across Azure DevOps and GitHub Actions", "Provision and harden cloud infrastructure, primarily on Azure", "Set up monitoring, logging and alerting for production workloads", "Lead migrations from on-premise or shared hosting into the cloud", "Keep secrets, backups and access controls in good order"],
            want=["Three or more years in a DevOps, platform or SRE role", "Hands-on Azure experience; AWS or GCP also considered", "Comfortable scripting in Bash, PowerShell or Python", "Containers and infrastructure-as-code in day-to-day use"],
@@ -715,7 +715,7 @@ def careers():
     ]
     def ul(x): return "<ul>" + "".join(f"<li>{E(i)}</li>" for i in x) + "</ul>"
     rhtml = ""
-    for r in roles:
+    for r in [r for r in roles if not r.get('hidden')]:  # hidden: closed roles kept for reopening later
         tag = f'<span class="role-tag{" closed" if r.get("closed") else ""}{" open" if r.get("featured") else ""}">{r["tag"]}</span>' if r.get("tag") else ""
         rhtml += f"""<details class="role{' is-closed' if r.get('closed') else ''}{' is-featured' if r.get('featured') else ''}"{(' id="' + r['anchor'] + '"') if r.get('anchor') else ''}{' open' if r.get('open') else ''}>
   <summary><div><h3 class="h3">{E(r['t'])}{tag}</h3><p class="role-facts">{E(r['facts'])}</p></div><span class="role-chev" aria-hidden="true">+</span></summary>
@@ -736,9 +736,7 @@ def careers():
              ("Online coding test on CodeGate", "A timed coding test on CodeGate, our own assessment platform. You solve real problems in the browser; hidden tests check that your code works."),
              ("Technical discussion with our developers", "We talk through your test answers and something you've built. No whiteboard puzzles.")]
     bene = [("₹10,000 a month for interns", "Every intern is paid a stipend of ₹10,000 a month. Full Stack interns also spend three paid days with the team in Ooty."),
-            ("Hybrid working", "Full-time roles split between our Nilgiris office and home, arranged around delivery."),
-            ("Learning budget", "An annual allowance for certifications, courses and conferences, and time to use it."),
-            ("Health cover", "Medical insurance for you and your immediate family."),
+            ("Fully remote", "Work from anywhere in India, with a senior engineer or our HR lead as your mentor."),
             ("Client-facing work", "You're in the room where decisions are made."),
             ("Honest estimates", "We push back on unrealistic dates. Crunch is a planning failure, not a culture.")]
     jobs = [{"@context": "https://schema.org", "@type": "JobPosting", "title": "Full Stack Development Intern",
@@ -766,14 +764,14 @@ def careers():
 </div>{art("art-remote")}</div></header>
 
 <section class="sec" id="roles" aria-labelledby="roles-h"><div class="ct">
-  {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. Internships are fully remote; full-time roles are hybrid.", "roles-h")}
+  {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. Both internships are fully remote.", "roles-h")}
   <div class="roles">{rhtml}</div>
   <p class="body" style="margin-top:2rem">Nothing quite fits? Write to <a href="mailto:{EMAIL}">{EMAIL}</a> and tell us what you'd want to work on.</p>
 </div></section>
 
 <section class="sec"><div class="ct">
   {sec_head("Working here", "What the work is actually like.", None, "why-h")}
-  <figure class="photo rv" style="margin-bottom:clamp(40px,5vw,64px)">{pic("office", "The Altherix office in the Nilgiris, with the Altherix sign at the entrance.")}</figure>
+  <figure class="photo rv" style="margin-bottom:clamp(40px,5vw,64px)">{pic("office-v2", "The Altherix office in the Nilgiris, with the Altherix sign at the entrance.")}</figure>
   <div class="grid2">{''.join(f'<div class="rv"><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in why)}</div>
 </div></section>
 
@@ -929,7 +927,7 @@ def seo_files():
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
     llms += ["", "## Company", "",
              f"- [About and contact]({SITE}/#about)",
-             f"- [Careers]({SITE}/careers.html): Remote Full Stack Development internship (₹10,000 a month stipend, applications open) and full-time engineering roles.",
+             f"- [Careers]({SITE}/careers.html): Remote Full Stack Development and HR internships (₹10,000 a month stipend, applications open).",
              f"- [All case studies]({SITE}/case-studies/)", ""]
     write("llms.txt", "\n".join(llms))
 
