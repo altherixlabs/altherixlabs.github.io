@@ -28,8 +28,8 @@ SEO = {
                        seo_desc="Platforms built by Altherix: a .NET 9 church management system and a Laravel reporting system on Azure, plus ERP and hotel operations projects."),
   "products": dict(seo_title="Products: CodeGate & Mandate | Altherix",
                    seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. Mandate is a safe gateway between AI agents and your ERP, SQL and in-house systems."),
-  "careers": dict(seo_title="Remote HR Internship, ₹10,000 Stipend | Altherix",
-                  seo_desc="Now hiring remote HR interns in Talent Acquisition & Operations: 2 months, ₹10,000 a month stipend. BMS, BBA and MBA students welcome. Apply online."),
+  "careers": dict(seo_title="Careers at Altherix | Software Engineering in the Nilgiris",
+                  seo_desc="Careers at Altherix, a software engineering company in Coonoor, near Ooty. No open roles right now; follow us on LinkedIn for the next internship intake."),
 }
 
 # Home page FAQ — shown on the page and as FAQPage structured data. Keep answers factual.

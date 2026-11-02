@@ -691,7 +691,7 @@ def careers():
         return f'mailto:{EMAIL}?subject={quote(subject)}&amp;body={quote(body)}'
     std_body = "Hello Altherix team,\n\nI'd like to apply for the {r} role.\n\nA little about me:\n\n\nLinks (GitHub / portfolio / LinkedIn):\n\n\nMy CV is attached.\n\nThank you,"
     roles = [
-      dict(t="HR Intern, Talent Acquisition & Operations", tag="Actively hiring", featured=True, anchor="hr-internship", facts="Fully remote · 2 months · ₹10,000 a month stipend · BMS, BBA and MBA students welcome",
+      dict(t="HR Intern, Talent Acquisition & Operations", tag="Closed", closed=True, anchor="hr-internship", facts="Fully remote · 2 months · ₹10,000 a month stipend · BMS, BBA and MBA students welcome",
            about="A fully remote, two-month internship in our people team, with a stipend of ₹10,000 a month. You'll help us find and hire engineers and keep HR operations running smoothly for a growing technology company.",
            do=["Source candidates for engineering and internship roles, and screen CVs", "Schedule interviews and run candidates through our hiring process, including CodeGate tests", "Keep candidate records, offer letters and onboarding paperwork in order", "Support everyday HR operations: documentation, attendance and employee queries"],
            want=["Interest in talent acquisition and HR, ideally in a technology company", "Clear written and spoken English, and a professional manner with candidates", "Organised, reliable and comfortable with spreadsheets and email", "BMS, BBA and MBA students are welcome, as are graduates in HR or a related field"],
@@ -748,13 +748,7 @@ def careers():
             ("Fully remote", "Work from anywhere in India, with a senior engineer or our HR lead as your mentor."),
             ("Client-facing work", "You're in the room where decisions are made."),
             ("Honest estimates", "We push back on unrealistic dates. Crunch is a planning failure, not a culture.")]
-    jobs = [
-            {"@context": "https://schema.org", "@type": "JobPosting", "title": "HR Intern, Talent Acquisition & Operations",
-             "description": roles[0]["about"], "employmentType": "INTERN", "datePosted": "2026-10-28",
-             "hiringOrganization": {"@type": "Organization", "name": "Altherix", "sameAs": LINKEDIN, "logo": SITE + "/assets/icon-512.png"},
-             "jobLocationType": "TELECOMMUTE", "applicantLocationRequirements": {"@type": "Country", "name": "India"},
-             "baseSalary": {"@type": "MonetaryAmount", "currency": "INR", "value": {"@type": "QuantitativeValue", "value": 10000, "unitText": "MONTH"}},
-             "educationRequirements": "BMS, BBA or MBA students welcome"}]
+    jobs = []  # No open roles; closed roles must not be advertised as JobPosting.
     html = head(SEO["careers"]["seo_title"], SEO["careers"]["seo_desc"], path,
                 [ORG, crumbs_ld([("Home", "/"), ("Careers", "/careers.html")])] + jobs) + nav("careers") + f"""
 <main id="main">
@@ -763,12 +757,12 @@ def careers():
   <span class="label">Careers</span>
   <h1 class="h1">Small team. <span class="mute">Serious systems.</span></h1>
   <p class="lede">Our work goes into production and stays there: enterprise platforms, reporting systems and integrations that organisations depend on every day. If you want ownership rather than a ticket queue, we should talk.</p>
-  <a class="hire-callout" href="#hr-internship"><span class="hire-dot" aria-hidden="true"></span><span><b>Now hiring: HR Interns, Talent Acquisition &amp; Operations</b><span>Fully remote · 2 months · ₹10,000 a month stipend</span></span><span class="arr" aria-hidden="true">→</span></a>
-  <div class="btns"><a class="btn btn-p" href="#hr-internship">Apply for the internship</a><a class="btn btn-s" href="#roles">All open roles</a></div>
+  <p class="meta" style="margin-top:1.5rem">We have no open roles right now. New openings are announced on LinkedIn.</p>
+  <div class="btns"><a class="btn btn-p" href="{LINKEDIN}" target="_blank" rel="noopener">Follow Altherix on LinkedIn</a><a class="btn btn-s" href="#roles">Recent roles</a></div>
 </div>{art("art-remote")}</div></header>
 
 <section class="sec" id="roles" aria-labelledby="roles-h"><div class="ct">
-  {sec_head("Open roles", "Where we're hiring.", "Our team is based in Coonoor, near Ooty. The HR internship is fully remote.", "roles-h")}
+  {sec_head("Roles", "Recent openings.", "We have no open roles right now. Follow Altherix on LinkedIn to hear when the next intake opens.", "roles-h")}
   <div class="roles">{rhtml}</div>
   <p class="body" style="margin-top:2rem">Nothing quite fits? Write to <a href="mailto:{EMAIL}">{EMAIL}</a> and tell us what you'd want to work on.</p>
 </div></section>
@@ -931,7 +925,7 @@ def seo_files():
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
     llms += ["", "## Company", "",
              f"- [About and contact]({SITE}/#about)",
-             f"- [Careers]({SITE}/careers.html): Remote HR internship in Talent Acquisition & Operations (₹10,000 a month stipend, applications open). The Full Stack Development internship is closed.",
+             f"- [Careers]({SITE}/careers.html): No open roles at present; Full Stack Development and HR internships are closed. Openings are announced on LinkedIn.",
              f"- [All case studies]({SITE}/case-studies/)", ""]
     write("llms.txt", "\n".join(llms))
 
