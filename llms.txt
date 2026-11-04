@@ -14,6 +14,7 @@ Contact: contact@altherix.in · +91 81529 23515 · https://www.linkedin.com/comp
 ## Products
 
 - [CodeGate](https://altherix.in/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.
+- [HRMS](https://altherix.in/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.
 - [Mandate](https://altherix.in/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.
 
 ## Case studies

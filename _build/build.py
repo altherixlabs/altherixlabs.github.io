@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office-v2": (1600, 859), "cms-overview-v2": (1600, 909), "cms-leaders-v2": (1600, 767),
     "missions-dashboard-v2": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -501,7 +501,7 @@ def home():
       <div><dt>Founded</dt><dd>Ooty, the Nilgiris</dd></div>
       <div><dt>Office</dt><dd>Coonoor, Tamil Nadu</dd></div>
       <div><dt>In production</dt><dd>UK and Ghana, on Azure</dd></div>
-      <div><dt>Products</dt><dd>CodeGate · Mandate (in development)</dd></div>
+      <div><dt>Products</dt><dd>CodeGate · HRMS · Mandate (in development)</dd></div>
       <div><dt>Company</dt><dd>{LEGAL_NAME}</dd></div>
     </dl>
     </div>
@@ -574,7 +574,7 @@ def cases_index():
 </div></section>
 <section class="sec"><div class="ct">
   {sec_head("Our own products", "Built for problems <span class='mute'>we had ourselves.</span>", None, "more-h")}
-  <div class="rows"><a class="row cs-row" href="/products/#codegate"><span class="n">In use<small>Early access</small></span><span><span class="label">Hiring</span><span class="h3" style="display:block">CodeGate</span></span><span class="body">Online coding assessment: hidden tests decide correctness and AI grades quality.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#mandate"><span class="n">Building<small>Early access soon</small></span><span><span class="label">AI governance</span><span class="h3" style="display:block">Mandate</span></span><span class="body">A safe gateway between AI agents and your ERP, databases and in-house systems.</span><span class="arr" aria-hidden="true">→</span></a></div>
+  <div class="rows"><a class="row cs-row" href="/products/#codegate"><span class="n">In use<small>Early access</small></span><span><span class="label">Hiring</span><span class="h3" style="display:block">CodeGate</span></span><span class="body">Online coding assessment: hidden tests decide correctness and AI grades quality.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#hrms"><span class="n">In use<small>Early access</small></span><span><span class="label">People operations</span><span class="h3" style="display:block">HRMS</span></span><span class="body">People, leave, time and payroll for small Indian teams, in one place.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#mandate"><span class="n">Building<small>Early access soon</small></span><span><span class="label">AI governance</span><span class="h3" style="display:block">Mandate</span></span><span class="body">A safe gateway between AI agents and your ERP, databases and in-house systems.</span><span class="arr" aria-hidden="true">→</span></a></div>
 </div></section>
 {contact_section("Discuss a similar problem.", "Tell us about the system you're working with and what a good outcome looks like. An engineer will reply.")}
 </main>
@@ -807,6 +807,15 @@ def products():
                ("Test", "Candidates solve real-world problems in a browser code editor, with sample tests they can run."),
                ("Grade", "One click runs the hidden tests and AI-grades every answer."),
                ("Shortlist", "Rank candidates by score, review the flags, and use the generated questions on a short follow-up call.")]
+    hr_mail = mail("HRMS", "Hello Altherix team,\n\nI'd like to know more about HRMS.\n\nCompany:\nTeam size:\nWhat you use today:\n\nThank you,")
+    hr_feats = [("Attendance and leave", "Clock in and out, with approvals through the reporting line. Leave accrues monthly from each person's real start date, under a policy you can edit, with your own holiday calendar."),
+                ("Time and tasks", "Create projects, assign tasks and log time against them. Interns see only the projects they're assigned to."),
+                ("Payroll and payslips", "Salary components for each person, TDS from editable income-tax slabs for both regimes, and Professional Tax by half-year. Employees can download a payslip once the month is marked paid."),
+                ("Hiring", "A public application form with resume upload and a screen for your recruiters. Schedule CodeGate coding tests and see the scores come back on the application.")]
+    hr_flow = [("Add your team", "Add people, managers and start dates. Staff sign in with their Google Workspace account."),
+               ("Run the day to day", "People clock in, apply for leave and log time, and managers approve."),
+               ("Run payroll", "Review the calculated TDS and Professional Tax, and adjust them if you need to."),
+               ("Publish payslips", "Mark the month paid. Payslips become available to each employee.")]
     feats = [("Works with what you run", "ERP, SQL databases and in-house applications, made usable by AI agents."),
              ("Your permissions, not new ones", "Agents see only what their user is allowed to see."),
              ("A person approves risky actions", "Writing data, sending documents or moving money waits for approval."),
@@ -819,9 +828,13 @@ def products():
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CodeGate by Altherix", "url": SITE + "/products/#codegate",
                "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                "description": "An online coding assessment that ranks candidates on the code they write, using hidden tests and AI grading.", "publisher": pub},
+              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "HRMS by Altherix", "url": SITE + "/products/#hrms",
+               "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
+               "description": "A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll.", "publisher": pub},
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix", "url": SITE + "/products/#mandate",
                "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.", "publisher": pub}]
     index = [("codegate", "CodeGate", "In use · Early access", "Rank candidates on the code they write, using hidden tests and AI grading."),
+             ("hrms", "HRMS", "In use · Early access", "People, leave, time and payroll for small Indian teams, in one place."),
              ("mandate", "Mandate", "In development", "A safe way to connect AI agents to the systems your business already runs on.")]
     index_html = "".join(f'<a class="row cs-row" href="#{a}"><span class="label">{st}</span><span class="h3" style="display:block">{n} <span class="mute">by Altherix</span></span><span class="body">{d}</span><span class="arr" aria-hidden="true">↓</span></a>' for a, n, st, d in index)
     html = head(SEO["products"]["seo_title"], SEO["products"]["seo_desc"], path, jsonld) + nav("products") + f"""
@@ -861,6 +874,35 @@ def products():
     <p class="meta" style="margin-top:1rem">Correctness comes only from hidden tests. AI scores the other six points against a written rubric.</p>
   </div>
   <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(cg_flow))}</ol>
+</div></section>
+
+<section class="sec" id="hrms" aria-labelledby="hrms-h"><div class="ct">
+  <div class="two">
+    <div class="rv">
+      <span class="label">In use · Early access</span>
+      <h2 class="h2" id="hrms-h" style="margin-top:1.25rem">HRMS <span class="mute">by Altherix</span></h2>
+      <p class="statement">Run your people operations from one place, not five spreadsheets.</p>
+      <p class="lede" style="margin-top:1.25rem">HRMS is a lightweight HR system for small companies in India. It covers employee records, attendance, leave, timesheets, tasks, hiring and payroll, with each person seeing only what their role allows.</p>
+      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="{hr_mail}">Ask about HRMS</a></div>
+      <p class="meta" style="margin-top:.9rem">Built for and run on our own team. Designed for small teams in India.</p>
+    </div>
+    <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in hr_feats)}</div>
+  </div>
+  <div class="shots-2" style="margin:clamp(48px,6vw,80px) 0 0">
+    {shot("hrms-dashboard", "HRMS dashboard: today's clock-in, leave balances, timesheet status, upcoming holidays, pending approvals, team attendance, headcount and DPDP consent status.", "Dashboard (personal details blurred)", "(min-width:1000px) 570px, 100vw")}
+    {shot("hrms-payslip", "HRMS payslip: earnings and deductions table with Professional Tax and income tax, net pay and tax regime, with a Download PDF button.", "Payslip (personal and salary details blurred)", "(min-width:1000px) 570px, 100vw")}
+    {shot("hrms-attendance", "HRMS attendance: today's clock-in and clock-out, a request-regularisation form, and a monthly attendance table with mode and status.", "Attendance and regularisation (personal details blurred)", "(min-width:1000px) 570px, 100vw")}
+    {shot("hrms-tasks", "HRMS tasks board with To do, In progress, Blocked and Done columns, priorities, due dates and assignees.", "Tasks board (names and projects blurred)", "(min-width:1000px) 570px, 100vw")}
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="hrms-how-h"><div class="ct two">
+  <div class="rv">
+    <span class="label">How it works</span>
+    <h2 class="h2" id="hrms-how-h" style="margin-top:1.25rem">From joining to payslip. <span class="mute">One system, one login.</span></h2>
+    <p class="meta" style="margin-top:1.5rem">PAN, bank details and salaries are encrypted, and every view of them is logged. Built with India&rsquo;s DPDP Act in mind: consent notices, and retention rules for exited staff and closed applications.</p>
+  </div>
+  <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(hr_flow))}</ol>
 </div></section>
 
 <section class="sec" id="mandate" aria-labelledby="mandate-h"><div class="ct">
@@ -920,6 +962,7 @@ def seo_files():
     llms += [f"- [{x['name']}]({SITE}/services/{x['slug']}/): {x['short']}" for x in SERVICES]
     llms += ["", "## Products", "",
              f"- [CodeGate]({SITE}/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.",
+             f"- [HRMS]({SITE}/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.",
              f"- [Mandate]({SITE}/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.",
              "", "## Case studies", ""]
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
