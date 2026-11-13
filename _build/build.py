@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office-v2": (1600, 859), "cms-overview-v2": (1600, 909), "cms-leaders-v2": (1600, 767),
     "missions-dashboard-v2": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900), "lumen-operator": (1600, 891), "lumen-editor": (1600, 891), "lumen-themes": (1600, 891), "lumen-output": (1600, 868),
+    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900), "lumen-operator": (1600, 891), "lumen-editor": (1600, 891), "lumen-themes": (1600, 891), "lumen-output": (1600, 868), "lumen-bible-operator": (1600, 891), "lumen-bible-output": (1600, 868), "lumen-hindi-output": (1600, 868),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -794,18 +794,21 @@ def careers():
 # ── PRODUCTS ─────────────────────────────────────────────────────────────────
 # ── LUMEN (shared by products and downloads) ────────────────────────────────
 LUMEN_FEATS = [
+    ("Bibles in your language", "Import any Bible from wordproject.org: Tamil, Hindi, English and many more. Type a reference such as John 3:16, or the book name in your own language, and show it verse by verse with the reference on screen."),
     ("Songs in seconds", "Paste lyrics from anywhere and each verse becomes a slide. Website clutter is removed for you. Search every title and lyric instantly."),
     ("Built for the live moment", "A service list for today, a preview of what comes next, and Space, arrow keys or a presentation clicker to move on. A reused chorus is never duplicated."),
     ("Looks right on any screen", "Themes with colour, gradient, image or looping video backgrounds. Text shrinks to fit and stays sharp from 1080p to 4K."),
     ("Calm when things go wrong", "Black screen, clear text and logo at a keypress. If the projector cable is pulled, the output moves to a window instead of crashing."),
     ("Your songs stay yours", "Everything lives on your computer: no account, no internet, no tracking. Back up the whole library to one file and restore it anywhere."),
     ("Bring your library", "Import plain text files in bulk, and export to text or JSON whenever you like."),
+    ("Hindi and Indian languages", "Hindi lyrics display in a bundled Devanagari font on every computer, search works on whole Hindi and Tamil words, and Hindi section tags like [पद 1] and [कोरस] are understood."),
 ]
 LUMEN_FLOW = [
     ("Add your songs", "Type them, paste them from a website, or import a folder of text files. Tag verses and choruses if you like, and set the order they're sung in."),
     ("Build today's service", "Add songs to the service list and drag them into order. It's saved, so a restart mid-service loses nothing."),
     ("Choose the look", "Pick a theme for the church, or a different one per song, with your own background image or looping video."),
     ("Run it live", "Space, the arrow keys or a presentation clicker move through each song in sung order, then on to the next song."),
+    ("Read the Bible", "Type a reference, or search for a word. Add passages to the service list next to the songs, then show them verse by verse with the same keys."),
     ("Handle the moment", "B blanks the screen, C clears the words but keeps the background, L shows your logo, and Esc clears everything."),
 ]
 LUMEN_SHOT_ALT = ("Altherix Lumen operator window: a song library and today's service list on the left, the slides of the "
@@ -813,7 +816,7 @@ LUMEN_SHOT_ALT = ("Altherix Lumen operator window: a song library and today's se
 LUMEN_LD = {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Altherix Lumen", "url": SITE + "/downloads/",
             "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS 12 or later, Windows 10 or 11 (64-bit)",
             "softwareVersion": LUMEN["version"], "downloadUrl": SITE + "/downloads/",
-            "description": "Offline lyrics projection for churches: song library, service list, themes and second-screen output.",
+            "description": "Offline lyrics and Bible projection for churches: song library, Bibles in many languages, service list, themes and second-screen output.",
             "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR", "description": "Free trial"},
             "publisher": {"@type": "Organization", "name": "Altherix", "url": SITE + "/"}}
 
@@ -859,7 +862,7 @@ def downloads():
   {crumbs([("Home", "/"), ("Downloads", "")])}
   <span class="label">Downloads · Early access</span>
   <h1 class="h1">Download Altherix Lumen.</h1>
-  <p class="lede">Lyrics projection for churches. Build today's service, then put every song on the screen slide by slide. It's free to try, and needs no internet or account.</p>
+  <p class="lede">Lyrics and Bible projection for churches. Build today's service, then put every song and reading on the screen slide by slide. It's free to try, and needs no internet or account.</p>
   <div class="dl-grid">{cards_html}</div>
   <p class="meta dl-mobile" hidden>Lumen is a desktop app for Mac and Windows computers. Open this page on the computer connected to your projector.</p>
   <p class="meta" style="margin-top:1.5rem">Version {LUMEN["version"]} · released {LUMEN["released"]} · <a class="more" href="{rel}">All releases and SHA-256 checksums</a> · <a class="more" href="/downloads/lumen-license.txt">Licence agreement</a></p>
@@ -887,7 +890,12 @@ def downloads():
 <section class="sec" aria-labelledby="feat-h"><div class="ct">
   {sec_head("What's inside", "Made for the person <span class='mute'>at the back of the room.</span>", None, "feat-h")}
   <div class="grid2" style="margin-top:2.5rem">{''.join(f'<div class="rv"><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS)}</div>
-  <div style="margin-top:clamp(48px,6vw,80px)">{shot("lumen-operator", LUMEN_SHOT_ALT, "Operator view: library, service list, slides, preview and live (demo songs)")}</div>
+  <div class="shots-2" style="margin-top:clamp(48px,6vw,80px)">
+    {shot("lumen-operator", LUMEN_SHOT_ALT, "Running a service: songs, preview and live", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-bible-operator", "Lumen Bible tab with John 3 open in Tamil, verses 16 to 18 selected, and the passage in the service list.", "Bibles in your language: references, search and verse-by-verse projection", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-bible-output", "John 3:16 in Tamil projected on a warm background with the reference at the bottom.", "A Bible verse on the projector", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-hindi-output", "A Hindi chorus projected in large white Devanagari text on a warm background.", "Hindi lyrics in the bundled Devanagari font", "(min-width:1000px) 570px, 100vw")}
+  </div>
 </div></section>
 
 <section class="sec"><div class="ct cta-end rv">
@@ -1020,7 +1028,7 @@ def products():
       <span class="label">Early access · Download</span>
       <h2 class="h2" id="lumen-h" style="margin-top:1.25rem">Lumen <span class="mute">by Altherix</span></h2>
       <p class="statement">The words on the screen, exactly when the congregation needs them.</p>
-      <p class="lede" style="margin-top:1.25rem">Lumen is lyrics projection software for churches. Build today's service from your song library, then move through each song slide by slide on a projector or TV. It runs on macOS and Windows, and works fully offline: no account, no internet, no subscription server.</p>
+      <p class="lede" style="margin-top:1.25rem">Lumen is lyrics and Bible projection software for churches. Build today's service from your songs and Bible readings, then move through it slide by slide on a projector or TV. It runs on macOS and Windows, and works fully offline: no account, no internet, no subscription server.</p>
       <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="/downloads/">Download Lumen</a><a class="btn btn-s" href="{lumen_mail}">Ask about licences</a></div>
       <p class="meta" style="margin-top:.9rem">Free to try with every feature. A licence removes the small “Unlicensed” mark.</p>
     </div>
@@ -1029,6 +1037,8 @@ def products():
   <div class="shots-2" style="margin:clamp(48px,6vw,80px) 0 0">
     {shot("lumen-operator", LUMEN_SHOT_ALT, "Operator view: today's service, slides by section, preview and live (demo songs)", "(min-width:1000px) 570px, 100vw")}
     {shot("lumen-output", "The projected screen: two lines of lyrics in large white text on a warm sunrise background, with the song title, copyright and CCLI number in small text at the bottom.", "What the congregation sees: theme with an image background and a copyright footer", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-bible-operator", "Lumen Bible tab: a Tamil Bible open at John chapter 3 with verses 16 to 18 selected, verse 16 live and verse 18 in preview, and the passage in the service list between two songs.", "Bibles: type a reference, select verses, and add them to the service", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-bible-output", "The projected screen: John 3:16 in Tamil in large white text on a warm background, with the reference and the Bible's name in small text at the bottom.", "A Bible verse on the projector, with its reference", "(min-width:1000px) 570px, 100vw")}
     {shot("lumen-editor", "Lumen song editor: song details on the left, lyrics pasted from a website in the middle, and the four slides it made on the right, with a note that website text was removed.", "Paste lyrics from a website: each stanza becomes a slide and clutter is removed", "(min-width:1000px) 570px, 100vw")}
     {shot("lumen-themes", "Lumen theme editor: a list of themes, a large live preview, and settings for background image, darkening, font, size, alignment, margins and shadow.", "Theme editor: colour, gradient, image or video backgrounds and full text styling", "(min-width:1000px) 570px, 100vw")}
   </div>
@@ -1102,7 +1112,7 @@ def seo_files():
     llms += ["", "## Products", "",
              f"- [CodeGate]({SITE}/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.",
              f"- [HRMS]({SITE}/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.",
-             f"- [Lumen]({SITE}/downloads/): Offline lyrics projection for churches, for macOS and Windows. Song library with search, service list, themes with image and video backgrounds, second-screen output. Free trial download; licences from Altherix. Early access.",
+             f"- [Lumen]({SITE}/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Free trial download; licences from Altherix. Early access.",
              f"- [Mandate]({SITE}/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.",
              "", "## Case studies", ""]
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]

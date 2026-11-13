@@ -27,9 +27,9 @@ SEO = {
   "case-studies": dict(seo_title="Software Development & Integration Case Studies | Altherix",
                        seo_desc="Platforms built by Altherix: a .NET 9 church management system and a Laravel reporting system on Azure, plus ERP and hotel operations projects."),
   "products": dict(seo_title="Products: CodeGate, HRMS, Lumen & Mandate | Altherix",
-                   seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. HRMS runs people, leave, time and payroll for small Indian teams. Lumen projects song lyrics in church, fully offline. Mandate is a safe gateway between AI agents and your business systems."),
+                   seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. HRMS runs people, leave, time and payroll for small Indian teams. Lumen projects song lyrics and Bible verses in church, fully offline. Mandate is a safe gateway between AI agents and your business systems."),
   "downloads": dict(seo_title="Download Altherix Lumen for macOS and Windows | Altherix",
-                    seo_desc="Download Altherix Lumen, offline lyrics projection for churches. Free trial for macOS (Apple silicon and Intel) and Windows 10/11. No internet or account needed."),
+                    seo_desc="Download Altherix Lumen, offline lyrics and Bible projection for churches. Free trial for macOS (Apple silicon and Intel) and Windows 10/11. No internet or account needed."),
   "careers": dict(seo_title="Careers at Altherix | Software Engineering in the Nilgiris",
                   seo_desc="Careers at Altherix, a software engineering company in Coonoor, near Ooty. No open roles right now; follow us on LinkedIn for the next internship intake."),
 }
@@ -301,7 +301,7 @@ BUILDS = [
 # no personal signature, list numbering corrected, and a short "This website" section added.
 # Each section: (heading, [blocks]); a block is a paragraph string or a list of bullet strings.
 # ────────────────────────────────────────────────────────────────────────────
-PRIVACY_META = dict(version="5.0", effective="May 2023")
+PRIVACY_META = dict(version="5.1", effective="November 2026")
 PRIVACY = [
   ("Who we are", [
     "Altherix is a brand of Altherix Codecraft (OPC) Private Limited, a One Person Company incorporated in India (CIN U62011TZ2026OPC041408), registered office D No 5/1247-N1, Stanely Park, Ottupattarai, Coonoor, Nilgiris, Tamil Nadu 643105. In this policy, \"Altherix\", \"we\" and \"us\" mean that company.",
@@ -309,6 +309,13 @@ PRIVACY = [
   ("This website", [
     "altherix.in sets no cookies and loads no analytics, advertising or tracking scripts. Our fonts and images are served from this site.",
     "The contact form does not send anything to our servers. It opens your own email app with your message addressed to contact@altherix.in, and you decide whether to send it. If you do, we use your message and contact details only to reply and to discuss the work you asked about.",
+  ]),
+  ("Altherix Lumen (desktop app)", [
+    "Altherix Lumen runs entirely on your own computer. Songs, Bibles you import, themes, background images and videos, service lists and settings are stored only in Lumen's library folder on that computer. They are never sent to Altherix or anyone else.",
+    "Lumen makes no network connections. It contains no analytics, telemetry, advertising or crash reporting, and it does not check for updates online.",
+    "Licence keys are verified on your computer, offline. A licence key contains the licensee name (and an email address, if you gave one) that Altherix records when issuing it. We keep those details, and any emails you send us about Lumen, under this policy.",
+    "If you install Lumen from the Microsoft Store, Microsoft handles the download and installation under its own privacy statement.",
+    "Bibles and song lyrics you import are your content. You are responsible for having the right to use them.",
   ]),
   ("1. Introduction", [
     "Altherix is committed to protecting the privacy and security of personal data and sensitive information entrusted to us by our clients, partners, and service users. This Data Privacy & Protection Policy outlines our principles, practices, and obligations regarding the collection, processing, storage, and protection of personal and confidential data in accordance with applicable data protection regulations including the General Data Protection Regulation (GDPR), the Indian Information Technology Act, 2000, and other relevant data privacy laws.",
@@ -468,9 +475,9 @@ PROJECTS = [
 # Installers live in the public releases repo; "latest" links always serve the newest version,
 # so only the version text below changes when a new release is published.
 LUMEN = dict(
-    version="1.0.0",
+    version="1.1.0",
     released="13 November 2026",
     releases="https://github.com/altherixlabs/lumen-releases/releases",
-    mac=dict(file="Altherix-Lumen-mac-universal.dmg", size="231 MB"),
-    win=dict(file="Altherix-Lumen-win-x64-setup.exe", size="125 MB"),
+    mac=dict(file="Altherix-Lumen-mac-universal.dmg", size="253 MB"),
+    win=dict(file="Altherix-Lumen-win-x64-setup.exe", size="147 MB"),
 )
