@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office-v2": (1600, 859), "cms-overview-v2": (1600, 909), "cms-leaders-v2": (1600, 767),
     "missions-dashboard-v2": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900), "lumen-operator": (1600, 891),
+    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900), "lumen-operator": (1600, 891), "lumen-editor": (1600, 891), "lumen-themes": (1600, 891), "lumen-output": (1600, 868),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -801,6 +801,13 @@ LUMEN_FEATS = [
     ("Your songs stay yours", "Everything lives on your computer: no account, no internet, no tracking. Back up the whole library to one file and restore it anywhere."),
     ("Bring your library", "Import plain text files in bulk, and export to text or JSON whenever you like."),
 ]
+LUMEN_FLOW = [
+    ("Add your songs", "Type them, paste them from a website, or import a folder of text files. Tag verses and choruses if you like, and set the order they're sung in."),
+    ("Build today's service", "Add songs to the service list and drag them into order. It's saved, so a restart mid-service loses nothing."),
+    ("Choose the look", "Pick a theme for the church, or a different one per song, with your own background image or looping video."),
+    ("Run it live", "Space, the arrow keys or a presentation clicker move through each song in sung order, then on to the next song."),
+    ("Handle the moment", "B blanks the screen, C clears the words but keeps the background, L shows your logo, and Esc clears everything."),
+]
 LUMEN_SHOT_ALT = ("Altherix Lumen operator window: a song library and today's service list on the left, the slides of the "
                   "selected song grouped by verse and chorus in the middle, and the preview and live screens on the right.")
 LUMEN_LD = {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Altherix Lumen", "url": SITE + "/downloads/",
@@ -901,6 +908,7 @@ def products():
                ("Test", "Candidates solve real-world problems in a browser code editor, with sample tests they can run."),
                ("Grade", "One click runs the hidden tests and AI-grades every answer."),
                ("Shortlist", "Rank candidates by score, review the flags, and use the generated questions on a short follow-up call.")]
+    lumen_mail = mail("Altherix Lumen licence", "Hello Altherix team,\n\nWe'd like to know more about Altherix Lumen licences.\n\nChurch or organisation:\nCity and country:\nNumber of computers:\n\nThank you,")
     hr_mail = mail("HRMS", "Hello Altherix team,\n\nI'd like to know more about HRMS.\n\nCompany:\nTeam size:\nWhat you use today:\n\nThank you,")
     hr_feats = [("Attendance and leave", "Clock in and out, with approvals through the reporting line. Leave accrues monthly from each person's real start date, under a policy you can edit, with your own holiday calendar."),
                 ("Time and tasks", "Create projects, assign tasks and log time against them. Interns see only the projects they're assigned to."),
@@ -1007,13 +1015,28 @@ def products():
       <span class="label">Early access · Download</span>
       <h2 class="h2" id="lumen-h" style="margin-top:1.25rem">Lumen <span class="mute">by Altherix</span></h2>
       <p class="statement">The words on the screen, exactly when the congregation needs them.</p>
-      <p class="lede" style="margin-top:1.25rem">Lumen is lyrics projection software for churches. Build the song list for the service, then move through each song slide by slide on a projector or TV. It runs on macOS and Windows and needs no internet connection.</p>
-      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="/downloads/">Download Lumen</a></div>
-      <p class="meta" style="margin-top:.9rem">Free to try. Licences from Altherix.</p>
+      <p class="lede" style="margin-top:1.25rem">Lumen is lyrics projection software for churches. Build today's service from your song library, then move through each song slide by slide on a projector or TV. It runs on macOS and Windows, and works fully offline: no account, no internet, no subscription server.</p>
+      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="/downloads/">Download Lumen</a><a class="btn btn-s" href="{lumen_mail}">Ask about licences</a></div>
+      <p class="meta" style="margin-top:.9rem">Free to try with every feature. A licence removes the small “Unlicensed” mark.</p>
     </div>
     <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS[:4])}</div>
   </div>
-  <div style="margin:clamp(48px,6vw,80px) 0 0">{shot("lumen-operator", LUMEN_SHOT_ALT, "Operator view: library, service list, slides, preview and live (demo songs)")}</div>
+  <div class="shots-2" style="margin:clamp(48px,6vw,80px) 0 0">
+    {shot("lumen-operator", LUMEN_SHOT_ALT, "Operator view: today's service, slides by section, preview and live (demo songs)", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-output", "The projected screen: two lines of lyrics in large white text on a warm sunrise background, with the song title, copyright and CCLI number in small text at the bottom.", "What the congregation sees: theme with an image background and a copyright footer", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-editor", "Lumen song editor: song details on the left, lyrics pasted from a website in the middle, and the four slides it made on the right, with a note that website text was removed.", "Paste lyrics from a website: each stanza becomes a slide and clutter is removed", "(min-width:1000px) 570px, 100vw")}
+    {shot("lumen-themes", "Lumen theme editor: a list of themes, a large live preview, and settings for background image, darkening, font, size, alignment, margins and shadow.", "Theme editor: colour, gradient, image or video backgrounds and full text styling", "(min-width:1000px) 570px, 100vw")}
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="lumen-how-h"><div class="ct two">
+  <div class="rv">
+    <span class="label">How a Sunday works</span>
+    <h2 class="h2" id="lumen-how-h" style="margin-top:1.25rem">Plan it on Saturday. <span class="mute">Press Space on Sunday.</span></h2>
+    <div class="grid2" style="margin-top:2rem">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS[4:])}</div>
+    <p class="meta" style="margin-top:1.5rem">Songs, themes and media stay on your computer. Lumen makes no network connections and collects no data. You are responsible for your own song copyright licence, such as CCLI; Lumen shows the CCLI number in the footer.</p>
+  </div>
+  <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(LUMEN_FLOW))}</ol>
 </div></section>
 
 <section class="sec" id="mandate" aria-labelledby="mandate-h"><div class="ct">
