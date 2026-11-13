@@ -56,7 +56,7 @@ def dot(items):
 
 # ── chrome ───────────────────────────────────────────────────────────────────
 NAV = [("Services", "/#services", "services"), ("Work", "/case-studies/", "case-studies"),
-       ("Products", "/products/", "products"), ("About", "/#about", "about"), ("Careers", "/careers.html", "careers")]
+       ("Products", "/products/", "products"), ("Downloads", "/downloads/", "downloads"), ("About", "/#about", "about"), ("Careers", "/careers.html", "careers")]
 
 def head(title, desc, path, jsonld=None, og_type="website", noindex=False, og_image="/assets/og.png", og_w=1200, og_h=630):
     u = url_for(path)
@@ -848,7 +848,7 @@ def downloads():
             ("Display", "A projector, TV or second monitor for the congregation. Lumen also runs on a single screen."),
             ("Internet", "Not needed, ever. Lumen works fully offline and sends nothing anywhere.")]
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Downloads", "/downloads/")]), LUMEN_LD]
-    html = head(SEO["downloads"]["seo_title"], SEO["downloads"]["seo_desc"], path, jsonld) + nav() + f"""
+    html = head(SEO["downloads"]["seo_title"], SEO["downloads"]["seo_desc"], path, jsonld) + nav("downloads") + f"""
 <main id="main">
 <header class="page-hero"><div class="ct">
   {crumbs([("Home", "/"), ("Downloads", "")])}
