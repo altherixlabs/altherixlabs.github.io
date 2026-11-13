@@ -836,12 +836,16 @@ def downloads():
       <a class="btn btn-p" href="{u}" download>{cta}</a>
       <p class="meta">{info}</p>
     </div>""" for k, n, u, cta, info, req in cards)
-    mac_steps = [("Open the downloaded file", "Drag <strong>Altherix Lumen</strong> into the Applications folder, then open it from there."),
-                 ("If macOS says it can't verify the app", "Click <strong>Done</strong>. Open <strong>System Settings → Privacy &amp; Security</strong>, scroll down and click <strong>Open Anyway</strong> next to Altherix Lumen, then confirm."),
-                 ("That's it", "macOS remembers your choice, so Lumen opens normally from then on.")]
-    win_steps = [("Run the installer", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>."),
-                 ("If “Windows protected your PC” appears", "Click <strong>More info</strong>, then <strong>Run anyway</strong>."),
-                 ("Finish the setup", "Accept the licence agreement and choose where to install. Uninstalling later never deletes your songs.")]
+    help_mail = (f"mailto:{EMAIL}?subject={quote('Help installing Altherix Lumen')}&amp;body=" +
+                 quote("Hello Altherix team,\n\nI need help installing Altherix Lumen.\n\nComputer (Mac or Windows, and version):\nMessage I see:\n\nThank you,"))
+    mac_steps = [("Install", "Open the downloaded <strong>.dmg</strong> and drag <strong>Altherix Lumen</strong> into the Applications folder. Then open it from Applications."),
+                 ("“Apple could not verify ‘Altherix Lumen’…”", "This message is expected the first time. Click <strong>Done</strong>, not Move to Trash."),
+                 ("Allow it once", "Open <strong>System Settings → Privacy &amp; Security</strong> and scroll to the bottom. Next to <em>“Altherix Lumen” was blocked</em>, click <strong>Open Anyway</strong>, then confirm with your password or Touch ID."),
+                 ("That's it", "Lumen now opens normally on this Mac. A new version may ask once more after you install it.")]
+    win_steps = [("Install", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>."),
+                 ("“Windows protected your PC”", "Click <strong>More info</strong>, then <strong>Run anyway</strong>. Accept the licence agreement and finish the setup."),
+                 ("“Smart App Control blocked an app…”", f"Some new Windows 11 PCs have Smart App Control switched on, which blocks new apps without offering Run anyway. <a href=\"{help_mail}\">Email us</a> and we'll help you get set up. Please don't switch Smart App Control off just for Lumen: Windows can't turn it back on without a reset."),
+                 ("Your songs are safe", "Uninstalling or reinstalling Lumen never deletes your song library.")]
     steps = lambda xs: "".join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(xs))
     reqs = [("macOS", "12 Monterey or later, Apple silicon or Intel"),
             ("Windows", "10 or 11, 64-bit"),
@@ -861,7 +865,7 @@ def downloads():
 </div></header>
 
 <section class="sec" aria-labelledby="install-h"><div class="ct">
-  {sec_head("Installing", "Two warnings, <span class='mute'>once.</span>", "This early-access version isn't code-signed yet, so macOS and Windows ask you to confirm that you trust it the first time you open it. Signed installers are on the way and will skip these steps.", "install-h")}
+  {sec_head("Installing", "A one-time check, <span class='mute'>then you're set.</span>", "Lumen is a new app from a small team, so macOS and Windows don't recognise it yet and ask you to confirm the first time you open it. These are the exact messages you'll see and what to do.", "install-h")}
   <div class="two" style="margin-top:2.5rem">
     <div class="rv"><h3 class="h3-lg">On a Mac</h3><ol class="steps" style="margin-top:1rem">{steps(mac_steps)}</ol></div>
     <div class="rv"><h3 class="h3-lg">On Windows</h3><ol class="steps" style="margin-top:1rem">{steps(win_steps)}</ol></div>
@@ -874,7 +878,7 @@ def downloads():
     <h2 class="h2" id="licence-h" style="margin-top:1.25rem">Every feature, from the first minute. <span class="mute">No time limit.</span></h2>
     <p class="lede" style="margin-top:1.25rem">Without a licence, Lumen shows a small “Unlicensed” mark in the corner of the projected screen. When you're ready, we'll send your church a licence key. Paste it into <b>Settings → License</b> and the mark disappears. Activation works offline too.</p>
     <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="{lic_mail}">Request a licence</a></div>
-    <p class="meta" style="margin-top:.9rem">Or email {EMAIL} with the subject “Altherix Lumen licence”.</p>
+    <p class="meta" style="margin-top:.9rem">Or email {EMAIL} with the subject “Altherix Lumen licence”. Stuck installing? <a class="more" href="{help_mail}">We'll help</a>.</p>
   </div>
   <dl class="kv rv" style="align-self:start">{''.join(f'<div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in reqs)}</dl>
 </div></section>
