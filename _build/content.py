@@ -26,8 +26,10 @@ SEO = {
                kw_sub="Software development, modernization and AI automation for businesses in India, the UK and Europe."),
   "case-studies": dict(seo_title="Software Development & Integration Case Studies | Altherix",
                        seo_desc="Platforms built by Altherix: a .NET 9 church management system and a Laravel reporting system on Azure, plus ERP and hotel operations projects."),
-  "products": dict(seo_title="Products: CodeGate, HRMS & Mandate | Altherix",
-                   seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. HRMS runs people, leave, time and payroll for small Indian teams. Mandate is a safe gateway between AI agents and your business systems."),
+  "products": dict(seo_title="Products: CodeGate, HRMS, Lumen & Mandate | Altherix",
+                   seo_desc="CodeGate ranks developer candidates with hidden tests and AI grading. HRMS runs people, leave, time and payroll for small Indian teams. Lumen projects song lyrics in church, fully offline. Mandate is a safe gateway between AI agents and your business systems."),
+  "downloads": dict(seo_title="Download Altherix Lumen for macOS and Windows | Altherix",
+                    seo_desc="Download Altherix Lumen, offline lyrics projection for churches. Free trial for macOS (Apple silicon and Intel) and Windows 10/11. No internet or account needed."),
   "careers": dict(seo_title="Careers at Altherix | Software Engineering in the Nilgiris",
                   seo_desc="Careers at Altherix, a software engineering company in Coonoor, near Ooty. No open roles right now; follow us on LinkedIn for the next internship intake."),
 }
@@ -460,3 +462,15 @@ PROJECTS = [
        title="Hotel and restaurant management platform",
        body="One platform covering restaurant management, hotel booking management, and employee records and payroll."),
 ]
+
+
+# ── LUMEN DOWNLOADS ──────────────────────────────────────────────────────────
+# Installers live in the public releases repo; "latest" links always serve the newest version,
+# so only the version text below changes when a new release is published.
+LUMEN = dict(
+    version="1.0.0",
+    released="13 November 2026",
+    releases="https://github.com/altherixlabs/lumen-releases/releases",
+    mac=dict(file="Altherix-Lumen-mac-universal.dmg", size="231 MB"),
+    win=dict(file="Altherix-Lumen-win-x64-setup.exe", size="125 MB"),
+)

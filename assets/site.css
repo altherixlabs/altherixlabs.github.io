@@ -688,3 +688,11 @@ a.row:active,a.outcome:active,.role summary:active,.more:active,.foot li a:activ
 .proj-thumb.is-shot img{object-fit:cover;object-position:0 0}
 .proj-note{display:block;margin-top:.6rem;font-size:.8125rem}
 .recent-tag{display:inline-block;margin-left:.75rem;font-size:.6875rem;font-weight:600;letter-spacing:.02em;padding:.12rem .55rem;border-radius:999px;color:#0b2a1d;background:#3ddc97;vertical-align:.1em}
+
+/* Downloads */
+.dl-grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:2.5rem}
+.dl-card{display:flex;flex-direction:column;align-items:flex-start;gap:.9rem;padding:clamp(24px,3vw,32px);border:1px solid var(--line);border-radius:var(--r-sm)}
+.dl-card .btn{margin-top:.5rem}
+.dl-card.is-you{border-color:var(--line-strong)}
+.dl-you{display:none;font-size:.8125rem;font-weight:600;color:#3ccf95}
+.dl-card.is-you .dl-you{display:inline-flex}

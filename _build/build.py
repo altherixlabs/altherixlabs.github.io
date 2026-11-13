@@ -10,7 +10,7 @@ from content import *  # noqa
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = []
-V = "18"  # asset cache-buster
+V = "19"  # asset cache-buster
 
 def write(path, html):
     full = os.path.join(ROOT, path)
@@ -136,7 +136,7 @@ def footer():
       </div>
       <div><h2 class="label">Services</h2><ul>{svc}</ul></div>
       <div><h2 class="label">What we build</h2><ul>{ind}</ul></div>
-      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#csr">The Johnson Initiative</a></li><li><a href="/#contact">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
+      <div><h2 class="label">Company</h2><ul><li><a href="/#about">About</a></li><li><a href="/case-studies/">Case Studies</a></li><li><a href="/products/">Products</a></li><li><a href="/downloads/">Downloads</a></li><li><a href="/careers.html">Careers</a></li><li><a href="/#csr">The Johnson Initiative</a></li><li><a href="/#contact">Contact</a></li><li><a href="/privacy/">Privacy policy</a></li></ul></div>
       <div><h2 class="label">Contact</h2><ul><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="tel:{PHONE_TEL}">{PHONE_DISPLAY}</a></li><li><a href="{LINKEDIN}" rel="noopener" target="_blank">LinkedIn</a></li></ul></div>
     </div>
     <div class="foot-bot meta">
@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office-v2": (1600, 859), "cms-overview-v2": (1600, 909), "cms-leaders-v2": (1600, 767),
     "missions-dashboard-v2": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900),
+    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900), "lumen-operator": (1600, 891),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -792,6 +792,100 @@ def careers():
     write(path, html); PAGES.append((path, "0.7"))
 
 # ── PRODUCTS ─────────────────────────────────────────────────────────────────
+# ── LUMEN (shared by products and downloads) ────────────────────────────────
+LUMEN_FEATS = [
+    ("Songs in seconds", "Paste lyrics from anywhere and each verse becomes a slide. Website clutter is removed for you. Search every title and lyric instantly."),
+    ("Built for the live moment", "A service list for today, a preview of what comes next, and Space, arrow keys or a presentation clicker to move on. A reused chorus is never duplicated."),
+    ("Looks right on any screen", "Themes with colour, gradient, image or looping video backgrounds. Text shrinks to fit and stays sharp from 1080p to 4K."),
+    ("Calm when things go wrong", "Black screen, clear text and logo at a keypress. If the projector cable is pulled, the output moves to a window instead of crashing."),
+    ("Your songs stay yours", "Everything lives on your computer: no account, no internet, no tracking. Back up the whole library to one file and restore it anywhere."),
+    ("Bring your library", "Import plain text files in bulk, and export to text or JSON whenever you like."),
+]
+LUMEN_SHOT_ALT = ("Altherix Lumen operator window: a song library and today's service list on the left, the slides of the "
+                  "selected song grouped by verse and chorus in the middle, and the preview and live screens on the right.")
+LUMEN_LD = {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Altherix Lumen", "url": SITE + "/downloads/",
+            "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS 12 or later, Windows 10 or 11 (64-bit)",
+            "softwareVersion": LUMEN["version"], "downloadUrl": SITE + "/downloads/",
+            "description": "Offline lyrics projection for churches: song library, service list, themes and second-screen output.",
+            "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR", "description": "Free trial"},
+            "publisher": {"@type": "Organization", "name": "Altherix", "url": SITE + "/"}}
+
+def downloads():
+    path = "downloads/index.html"
+    rel = LUMEN["releases"]
+    url = lambda f: f"{rel}/latest/download/{f}"
+    lic_mail = (f"mailto:{EMAIL}?subject={quote('Altherix Lumen licence')}&amp;body=" +
+                quote("Hello Altherix team,\n\nWe'd like a licence for Altherix Lumen.\n\nChurch or organisation:\nCity and country:\nNumber of computers:\n\nThank you,"))
+    cards = [
+        ("mac", "macOS", url(LUMEN["mac"]["file"]), "Download for macOS",
+         f"Universal: Apple silicon and Intel · .dmg · {LUMEN['mac']['size']}", "macOS 12 Monterey or later"),
+        ("win", "Windows", url(LUMEN["win"]["file"]), "Download for Windows",
+         f"64-bit installer · .exe · {LUMEN['win']['size']}", "Windows 10 or 11, 64-bit"),
+    ]
+    cards_html = "".join(f"""<div class="dl-card rv" data-os="{k}">
+      <span class="dl-you">Recommended for this computer</span>
+      <h2 class="h3-lg">{n}</h2>
+      <p class="meta">{req}</p>
+      <a class="btn btn-p" href="{u}" download>{cta}</a>
+      <p class="meta">{info}</p>
+    </div>""" for k, n, u, cta, info, req in cards)
+    mac_steps = [("Open the downloaded file", "Drag <strong>Altherix Lumen</strong> into the Applications folder, then open it from there."),
+                 ("If macOS says it can't verify the app", "Click <strong>Done</strong>. Open <strong>System Settings → Privacy &amp; Security</strong>, scroll down and click <strong>Open Anyway</strong> next to Altherix Lumen, then confirm."),
+                 ("That's it", "macOS remembers your choice, so Lumen opens normally from then on.")]
+    win_steps = [("Run the installer", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>."),
+                 ("If “Windows protected your PC” appears", "Click <strong>More info</strong>, then <strong>Run anyway</strong>."),
+                 ("Finish the setup", "Accept the licence agreement and choose where to install. Uninstalling later never deletes your songs.")]
+    steps = lambda xs: "".join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(xs))
+    reqs = [("macOS", "12 Monterey or later, Apple silicon or Intel"),
+            ("Windows", "10 or 11, 64-bit"),
+            ("Display", "A projector, TV or second monitor for the congregation. Lumen also runs on a single screen."),
+            ("Internet", "Not needed, ever. Lumen works fully offline and sends nothing anywhere.")]
+    jsonld = [ORG, crumbs_ld([("Home", "/"), ("Downloads", "/downloads/")]), LUMEN_LD]
+    html = head(SEO["downloads"]["seo_title"], SEO["downloads"]["seo_desc"], path, jsonld) + nav() + f"""
+<main id="main">
+<header class="page-hero"><div class="ct">
+  {crumbs([("Home", "/"), ("Downloads", "")])}
+  <span class="label">Downloads · Early access</span>
+  <h1 class="h1">Download Altherix Lumen.</h1>
+  <p class="lede">Lyrics projection for churches. Build today's service, then put every song on the screen slide by slide. It's free to try, and needs no internet or account.</p>
+  <div class="dl-grid">{cards_html}</div>
+  <p class="meta dl-mobile" hidden>Lumen is a desktop app for Mac and Windows computers. Open this page on the computer connected to your projector.</p>
+  <p class="meta" style="margin-top:1.5rem">Version {LUMEN["version"]} · released {LUMEN["released"]} · <a class="more" href="{rel}">All releases and SHA-256 checksums</a> · <a class="more" href="/downloads/lumen-license.txt">Licence agreement</a></p>
+</div></header>
+
+<section class="sec" aria-labelledby="install-h"><div class="ct">
+  {sec_head("Installing", "Two warnings, <span class='mute'>once.</span>", "This early-access version isn't code-signed yet, so macOS and Windows ask you to confirm that you trust it the first time you open it. Signed installers are on the way and will skip these steps.", "install-h")}
+  <div class="two" style="margin-top:2.5rem">
+    <div class="rv"><h3 class="h3-lg">On a Mac</h3><ol class="steps" style="margin-top:1rem">{steps(mac_steps)}</ol></div>
+    <div class="rv"><h3 class="h3-lg">On Windows</h3><ol class="steps" style="margin-top:1rem">{steps(win_steps)}</ol></div>
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="licence-h"><div class="ct two">
+  <div class="rv">
+    <span class="label">Try it, then license it</span>
+    <h2 class="h2" id="licence-h" style="margin-top:1.25rem">Every feature, from the first minute. <span class="mute">No time limit.</span></h2>
+    <p class="lede" style="margin-top:1.25rem">Without a licence, Lumen shows a small “Unlicensed” mark in the corner of the projected screen. When you're ready, we'll send your church a licence key. Paste it into <b>Settings → License</b> and the mark disappears. Activation works offline too.</p>
+    <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="{lic_mail}">Request a licence</a></div>
+    <p class="meta" style="margin-top:.9rem">Or email {EMAIL} with the subject “Altherix Lumen licence”.</p>
+  </div>
+  <dl class="kv rv" style="align-self:start">{''.join(f'<div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in reqs)}</dl>
+</div></section>
+
+<section class="sec" aria-labelledby="feat-h"><div class="ct">
+  {sec_head("What's inside", "Made for the person <span class='mute'>at the back of the room.</span>", None, "feat-h")}
+  <div class="grid2" style="margin-top:2.5rem">{''.join(f'<div class="rv"><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS)}</div>
+  <div style="margin-top:clamp(48px,6vw,80px)">{shot("lumen-operator", LUMEN_SHOT_ALT, "Operator view: library, service list, slides, preview and live (demo songs)")}</div>
+</div></section>
+
+<section class="sec"><div class="ct cta-end rv">
+  <div><h2 class="h2">Questions before you install?</h2><p class="lede">Ask about licences, setup for your church, or moving songs over from another program. An engineer will reply.</p></div>
+  <div class="btns"><a class="btn btn-p" href="{lic_mail}">Contact us</a><a class="btn btn-s" href="/products/#lumen">About Lumen</a></div>
+</div></section>
+</main>
+""" + footer()
+    write(path, html); PAGES.append((path, "0.8"))
+
 def products():
     path = "products/index.html"
     def mail(subject, body):
@@ -831,10 +925,12 @@ def products():
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "HRMS by Altherix", "url": SITE + "/products/#hrms",
                "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                "description": "A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll.", "publisher": pub},
+              LUMEN_LD,
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix", "url": SITE + "/products/#mandate",
                "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.", "publisher": pub}]
     index = [("codegate", "CodeGate", "In use · Early access", "Rank candidates on the code they write, using hidden tests and AI grading."),
              ("hrms", "HRMS", "In use · Early access", "People, leave, time and payroll for small Indian teams, in one place."),
+             ("lumen", "Lumen", "Early access · Download", "Project song lyrics in church, slide by slide, on any screen. Fully offline."),
              ("mandate", "Mandate", "In development", "A safe way to connect AI agents to the systems your business already runs on.")]
     index_html = "".join(f'<a class="row cs-row" href="#{a}"><span class="label">{st}</span><span class="h3" style="display:block">{n} <span class="mute">by Altherix</span></span><span class="body">{d}</span><span class="arr" aria-hidden="true">↓</span></a>' for a, n, st, d in index)
     html = head(SEO["products"]["seo_title"], SEO["products"]["seo_desc"], path, jsonld) + nav("products") + f"""
@@ -905,6 +1001,21 @@ def products():
   <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(hr_flow))}</ol>
 </div></section>
 
+<section class="sec" id="lumen" aria-labelledby="lumen-h"><div class="ct">
+  <div class="two">
+    <div class="rv">
+      <span class="label">Early access · Download</span>
+      <h2 class="h2" id="lumen-h" style="margin-top:1.25rem">Lumen <span class="mute">by Altherix</span></h2>
+      <p class="statement">The words on the screen, exactly when the congregation needs them.</p>
+      <p class="lede" style="margin-top:1.25rem">Lumen is lyrics projection software for churches. Build the song list for the service, then move through each song slide by slide on a projector or TV. It runs on macOS and Windows and needs no internet connection.</p>
+      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="/downloads/">Download Lumen</a></div>
+      <p class="meta" style="margin-top:.9rem">Free to try. Licences from Altherix.</p>
+    </div>
+    <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS[:4])}</div>
+  </div>
+  <div style="margin:clamp(48px,6vw,80px) 0 0">{shot("lumen-operator", LUMEN_SHOT_ALT, "Operator view: library, service list, slides, preview and live (demo songs)")}</div>
+</div></section>
+
 <section class="sec" id="mandate" aria-labelledby="mandate-h"><div class="ct">
   <figure class="product-fig rv">
     <picture>
@@ -932,7 +1043,7 @@ def products():
 
 <section class="sec"><div class="ct cta-end rv">
   <div><h2 class="h2">Want to use one of these early?</h2><p class="lede">Tell us which product you're interested in and what you'd use it for. An engineer will reply.</p></div>
-  <div class="btns"><a class="btn btn-p" href="{cg_mail}">Try CodeGate</a><a class="btn btn-s" href="{mailto}">Mandate early access</a></div>
+  <div class="btns"><a class="btn btn-p" href="{cg_mail}">Try CodeGate</a><a class="btn btn-s" href="/downloads/">Download Lumen</a><a class="btn btn-s" href="{mailto}">Mandate early access</a></div>
 </div></section>
 </main>
 """ + footer()
@@ -963,6 +1074,7 @@ def seo_files():
     llms += ["", "## Products", "",
              f"- [CodeGate]({SITE}/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.",
              f"- [HRMS]({SITE}/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.",
+             f"- [Lumen]({SITE}/downloads/): Offline lyrics projection for churches, for macOS and Windows. Song library with search, service list, themes with image and video backgrounds, second-screen output. Free trial download; licences from Altherix. Early access.",
              f"- [Mandate]({SITE}/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.",
              "", "## Case studies", ""]
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
@@ -1017,5 +1129,5 @@ if __name__ == "__main__":
     home(); cases_index()
     for c in CASES: case_page(c)
     for s in SERVICES: service_page(s)
-    products(); careers(); privacy(); notfound(); redirects(); seo_files()
+    products(); downloads(); careers(); privacy(); notfound(); redirects(); seo_files()
     print(f"Built {len(PAGES)} pages + 404, sitemap.xml, robots.txt, llms.txt")

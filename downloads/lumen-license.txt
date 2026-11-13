@@ -1,0 +1,100 @@
+ALTHERIX LUMEN — END USER LICENSE AGREEMENT
+
+Copyright © 2026 Altherix. All rights reserved.
+
+PLEASE READ THIS AGREEMENT CAREFULLY. BY INSTALLING, COPYING OR USING ALTHERIX LUMEN ("THE
+SOFTWARE") YOU AGREE TO BE BOUND BY THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT INSTALL OR USE
+THE SOFTWARE.
+
+1. PARTIES AND DEFINITIONS
+   "Altherix", "we" and "us" mean Altherix, the publisher of the Software. "You" means the
+   individual or organisation (for example a church, ministry or school) that installs or uses
+   the Software. "License Key" means the license file or key issued by Altherix to You. "Trial"
+   means use of the Software without a valid License Key.
+
+2. GRANT OF LICENSE
+   Subject to this Agreement and to payment of any applicable fees, Altherix grants You a
+   non-exclusive, non-transferable, non-sublicensable licence to install and use the Software on
+   computers owned or controlled by You, for Your own worship services, events and internal
+   purposes, within the scope (number of sites, computers or term) stated in Your License Key or
+   order. A License Key with an expiry date is valid until that date.
+
+3. TRIAL USE
+   You may use the Software as a Trial to evaluate it. In Trial mode the projected output displays
+   an "Unlicensed" notice. Trial use is provided as is, may be limited or ended by Altherix at any
+   time, and does not include support.
+
+4. RESTRICTIONS
+   You must not, and must not allow others to:
+   (a) copy, sell, rent, lease, lend, distribute, publish or sublicense the Software or any
+       License Key, except as expressly allowed in this Agreement;
+   (b) share, publish or transfer a License Key outside Your organisation, or use one License Key
+       beyond the scope it was issued for;
+   (c) remove, alter or hide any licensing notice, watermark, copyright or trademark notice;
+   (d) circumvent, disable or interfere with the license verification or any technical protection
+       of the Software, or create or use unauthorised License Keys;
+   (e) reverse engineer, decompile or disassemble the Software, except to the extent that
+       applicable law expressly permits this despite this restriction;
+   (f) modify the Software or create derivative works of it;
+   (g) use the Software in breach of any law, or to display content You do not have the right
+       to display.
+
+5. YOUR CONTENT AND LICENSING OF SONG LYRICS
+   Songs, lyrics, images, videos and other content You enter or import ("Your Content") remain
+   Yours or Your licensors'. The Software stores Your Content only on Your computer and does not
+   send it to Altherix or anyone else. You are solely responsible for holding any licences needed
+   to store, display and project Your Content, including copyright licences for song lyrics (for
+   example a CCLI or similar church copyright licence) and for media files.
+
+6. OWNERSHIP
+   The Software is licensed, not sold. Altherix and its licensors retain all right, title and
+   interest in the Software, including all intellectual property rights. "Altherix", "Altherix
+   Lumen" and the Altherix logo are trademarks of Altherix. No rights are granted other than those
+   expressly stated in this Agreement.
+
+7. THIRD-PARTY COMPONENTS
+   The Software includes open-source components and fonts that are licensed under their own terms,
+   listed in the THIRD_PARTY_NOTICES file supplied with the Software and shown in the
+   application's About window. Those terms govern the respective components only.
+
+8. PRIVACY
+   The Software works fully offline. It does not collect, transmit or sell personal data, and it
+   contains no analytics or telemetry. License verification happens on Your computer.
+
+9. UPDATES AND SUPPORT
+   Altherix may, but is not obliged to, provide updates, upgrades or support. Any update provided
+   is part of the Software and subject to this Agreement unless it comes with its own terms.
+
+10. DISCLAIMER OF WARRANTIES
+   TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE",
+   WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT AND UNINTERRUPTED OR
+   ERROR-FREE OPERATION. YOU ARE RESPONSIBLE FOR KEEPING BACKUPS OF YOUR CONTENT.
+
+11. LIMITATION OF LIABILITY
+   TO THE MAXIMUM EXTENT PERMITTED BY LAW, ALTHERIX SHALL NOT BE LIABLE FOR ANY INDIRECT,
+   INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF DATA, PROFITS,
+   REVENUE OR GOODWILL, ARISING OUT OF OR RELATED TO THE SOFTWARE OR THIS AGREEMENT, HOWEVER
+   CAUSED. ALTHERIX'S TOTAL LIABILITY UNDER THIS AGREEMENT SHALL NOT EXCEED THE AMOUNT YOU PAID
+   FOR THE LICENCE IN THE TWELVE (12) MONTHS BEFORE THE EVENT GIVING RISE TO THE CLAIM. NOTHING IN
+   THIS AGREEMENT LIMITS LIABILITY THAT CANNOT BE LIMITED UNDER APPLICABLE LAW.
+
+12. TERMINATION
+   This Agreement is effective until terminated. It terminates automatically if You breach it,
+   and a License Key with an expiry date ends on that date. On termination You must stop using the
+   Software and delete all copies, except that You may keep and export Your Content. Sections 4 to
+   7 and 10 to 14 survive termination.
+
+13. GOVERNING LAW AND DISPUTES
+   This Agreement is governed by the laws of India, without regard to conflict-of-law rules. The
+   courts having jurisdiction over Altherix's principal place of business in India have exclusive
+   jurisdiction over any dispute arising from this Agreement, except that Altherix may seek
+   injunctive relief in any competent court.
+
+14. GENERAL
+   This Agreement, together with any order or License Key terms, is the entire agreement between
+   You and Altherix about the Software. If any provision is held unenforceable, the rest remains
+   in effect. Failure to enforce a provision is not a waiver. You may not assign this Agreement
+   without Altherix's written consent.
+
+Contact: Altherix — https://altherix.in

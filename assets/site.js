@@ -288,6 +288,18 @@
     tocLinks.forEach(function (a) { var t = d.getElementById(a.hash.slice(1)); if (t) tio.observe(t); });
   }
 
+  /* ── Downloads: highlight the installer for this computer ── */
+  var dlCards = d.querySelectorAll('.dl-card[data-os]');
+  if (dlCards.length) {
+    var plat = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '').toLowerCase();
+    var ua = navigator.userAgent.toLowerCase();
+    var mobile = /iphone|ipad|ipod|android/.test(ua) || (navigator.maxTouchPoints > 1 && /mac/.test(plat));
+    var os = mobile ? '' : /mac/.test(plat) ? 'mac' : /win/.test(plat) ? 'win' : '';
+    dlCards.forEach(function (c) { if (c.getAttribute('data-os') === os) c.classList.add('is-you'); });
+    var note = d.querySelector('.dl-mobile');
+    if (note && mobile) note.hidden = false;
+  }
+
   /* ── Year ── */
   d.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
