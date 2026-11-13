@@ -880,7 +880,7 @@ def downloads():
   <div class="rv">
     <span class="label">Try it, then license it</span>
     <h2 class="h2" id="licence-h" style="margin-top:1.25rem">Every feature, from the first minute. <span class="mute">No time limit.</span></h2>
-    <p class="lede" style="margin-top:1.25rem">Without a licence, Lumen shows a small “Unlicensed” mark in the corner of the projected screen. When you're ready, we'll send your church a licence key. Paste it into <b>Settings → License</b> and the mark disappears. Activation works offline too.</p>
+    <p class="lede" style="margin-top:1.25rem">Without a licence, every feature works, but the projected screen shows a large “Unlicensed” watermark across the middle. When you're ready, we'll send your church a licence key. Paste it into <b>Settings → License</b> and the watermark disappears. Activation works offline too.</p>
     <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="{lic_mail}">Request a licence</a></div>
     <p class="meta" style="margin-top:.9rem">Or email {EMAIL} with the subject “Altherix Lumen licence”. Stuck installing? <a class="more" href="{help_mail}">We'll help</a>.</p>
   </div>
@@ -1030,7 +1030,7 @@ def products():
       <p class="statement">The words on the screen, exactly when the congregation needs them.</p>
       <p class="lede" style="margin-top:1.25rem">Lumen is lyrics and Bible projection software for churches. Build today's service from your songs and Bible readings, then move through it slide by slide on a projector or TV. It runs on macOS and Windows, and works fully offline: no account, no internet, no subscription server.</p>
       <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="/downloads/">Download Lumen</a><a class="btn btn-s" href="{lumen_mail}">Ask about licences</a></div>
-      <p class="meta" style="margin-top:.9rem">Free to try with every feature. A licence removes the small “Unlicensed” mark.</p>
+      <p class="meta" style="margin-top:.9rem">Free to try with every feature. A licence removes the large “Unlicensed” watermark from the projector.</p>
     </div>
     <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS[:4])}</div>
   </div>
