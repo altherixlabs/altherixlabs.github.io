@@ -844,7 +844,8 @@ def downloads():
                  ("That's it", "Lumen now opens normally on this Mac. A new version may ask once more after you install it.")]
     win_steps = [("Install", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>."),
                  ("“Windows protected your PC”", "Click <strong>More info</strong>, then <strong>Run anyway</strong>. Accept the licence agreement and finish the setup."),
-                 ("“Smart App Control blocked an app…”", f"Some new Windows 11 PCs have Smart App Control switched on, which blocks new apps without offering Run anyway. <a href=\"{help_mail}\">Email us</a> and we'll help you get set up. Please don't switch Smart App Control off just for Lumen: Windows can't turn it back on without a reset."),
+                 ("“Smart App Control blocked an app that may be unsafe”", "If the message offers only <strong>Okay</strong> and <strong>Get apps from the Store</strong>, Smart App Control is switched on. It's common on new Windows 11 PCs, and it blocks apps from small publishers it doesn't recognise yet, with no Run anyway option. Right-click → Properties → Unblock doesn't help."),
+                 ("Get past Smart App Control", f"<a href=\"{help_mail}\">Email us</a> and we'll help you get set up. If you manage this computer yourself, you can switch it off: open <strong>Windows Security → App &amp; browser control → Smart App Control settings</strong>, choose <strong>Off</strong>, then run the installer again and use <strong>More info → Run anyway</strong>. Be aware that Windows can't switch Smart App Control back on without resetting the PC."),
                  ("Your songs are safe", "Uninstalling or reinstalling Lumen never deletes your song library.")]
     steps = lambda xs: "".join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(xs))
     reqs = [("macOS", "12 Monterey or later, Apple silicon or Intel"),
