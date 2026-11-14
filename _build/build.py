@@ -829,8 +829,8 @@ def downloads():
     cards = [
         ("mac", "macOS", f'<a class="btn btn-p" href="{url(LUMEN["mac"]["file"])}" download>Download for macOS</a>',
          f"Universal: Apple silicon and Intel · .dmg · {LUMEN['mac']['size']}", "macOS 12 Monterey or later"),
-        ("win", "Windows", f'<a class="btn btn-p" href="{LUMEN["store"]}" target="_blank" rel="noopener">Get it from Microsoft Store</a>',
-         f'Installs with no security warnings and updates automatically. Or <a class="more" href="{url(LUMEN["win"]["file"])}" download>download the .exe installer</a> ({LUMEN["win"]["size"]}).',
+        ("win", "Windows", f'<div style="display:flex;flex-wrap:wrap;gap:.75rem"><a class="btn btn-p" href="{url(LUMEN["win"]["file"])}" download>Download for Windows</a><a class="btn btn-s" href="{LUMEN["store"]}" target="_blank" rel="noopener">Get it from Microsoft Store</a></div>',
+         f'Download: always the newest version · .exe · {LUMEN["win"]["size"]}. Microsoft Store: no security warnings and automatic updates, but new versions reach it a few days later.',
          "Windows 10 or 11, 64-bit"),
     ]
     cards_html = "".join(f"""<div class="dl-card rv" data-os="{k}">
@@ -846,9 +846,9 @@ def downloads():
                  ("“Apple could not verify ‘Altherix Lumen’…”", "This message is expected the first time. Click <strong>Done</strong>, not Move to Trash."),
                  ("Allow it once", "Open <strong>System Settings → Privacy &amp; Security</strong> and scroll to the bottom. Next to <em>“Altherix Lumen” was blocked</em>, click <strong>Open Anyway</strong>, then confirm with your password or Touch ID."),
                  ("That's it", "Lumen now opens normally on this Mac. A new version may ask once more after you install it.")]
-    win_steps = [("Easiest: the Microsoft Store", f"Click <strong>Get it from Microsoft Store</strong>, then <strong>Get</strong> or <strong>Install</strong>. There are no warnings to click through, Smart App Control doesn't block it, and Windows keeps Lumen up to date. <a class=\"more\" href=\"{LUMEN['store']}\" target=\"_blank\" rel=\"noopener\">Open in the Store</a>"),
-                 ("Using the .exe instead?", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>. If you see <em>“Windows protected your PC”</em>, click <strong>More info</strong>, then <strong>Run anyway</strong>, and finish the setup."),
+    win_steps = [("Install", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>. If you see <em>“Windows protected your PC”</em>, click <strong>More info</strong>, then <strong>Run anyway</strong>, and finish the setup."),
                  ("“Smart App Control blocked an app that may be unsafe”", f"Smart App Control is on, so the .exe can't run on this PC. Install from the <a href=\"{LUMEN['store']}\" target=\"_blank\" rel=\"noopener\">Microsoft Store</a> instead: it works with Smart App Control on. Stuck? <a href=\"{help_mail}\">Email us</a>."),
+                 ("Or use the Microsoft Store", f"Click <strong>Get it from Microsoft Store</strong>, then <strong>Get</strong>. There are no warnings to click through, and Windows keeps Lumen up to date. New versions reach the Store a few days after the direct download."),
                  ("Your songs are safe", "Uninstalling or reinstalling Lumen never deletes your song library.")]
     steps = lambda xs: "".join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(xs))
     reqs = [("macOS", "12 Monterey or later, Apple silicon or Intel"),
@@ -869,7 +869,7 @@ def downloads():
 </div></header>
 
 <section class="sec" aria-labelledby="install-h"><div class="ct">
-  {sec_head("Installing", "A one-time check, <span class='mute'>then you're set.</span>", "On Windows, the Microsoft Store version installs like any other app. macOS, and the Windows .exe, don't recognise Lumen yet because it's a new app from a small team, so they ask you to confirm the first time. These are the exact messages you'll see and what to do.", "install-h")}
+  {sec_head("Installing", "A one-time check, <span class='mute'>then you're set.</span>", "Lumen is a new app from a small team, so macOS and Windows don't recognise it yet and ask you to confirm the first time you open it. These are the exact messages you'll see and what to do. The Microsoft Store version skips this on Windows.", "install-h")}
   <div class="two" style="margin-top:2.5rem">
     <div class="rv"><h3 class="h3-lg">On a Mac</h3><ol class="steps" style="margin-top:1rem">{steps(mac_steps)}</ol></div>
     <div class="rv"><h3 class="h3-lg">On Windows</h3><ol class="steps" style="margin-top:1rem">{steps(win_steps)}</ol></div>
