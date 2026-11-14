@@ -203,7 +203,7 @@ IMG = {  # name: (width, height) of the 1600px version
     "office-v2": (1600, 859), "cms-overview-v2": (1600, 909), "cms-leaders-v2": (1600, 767),
     "missions-dashboard-v2": (1600, 470), "codegate-test": (1600, 955), "codegate-admin": (1600, 955),
     "art-software": (1111, 941), "art-modernization": (1600, 901), "art-ai": (1600, 901), "art-integration": (1600, 901),
-    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900), "lumen-operator": (1600, 891), "lumen-editor": (1600, 891), "lumen-themes": (1600, 891), "lumen-output": (1600, 868), "lumen-bible-operator": (1600, 891), "lumen-bible-output": (1600, 868), "lumen-hindi-output": (1600, 868),
+    "art-cloud": (972, 881), "bc-erp": (1060, 596), "hotel-ops": (700, 338), **{f"hrms-{n}": (1600, 870) for n in ["dashboard", "attendance", "payslip", "tasks"]}, "johnson-suit": (800, 1000), "art-codegate": (1600, 901), "art-remote": (1600, 900), "art-404": (1600, 900), "lumen-operator": (1600, 891), "lumen-editor": (1600, 891), "lumen-themes": (1600, 891), "lumen-output": (1600, 868), "lumen-bible-operator": (1600, 891), "lumen-bible-output": (1600, 868), "lumen-hindi-output": (1600, 868), **{f"acms-{n}": (1568, 764) for n in ["dashboard", "finance", "attendance", "visitors"]}, "acms-timeline": (1546, 764),
     **{f"ind-{n}": (500, 500) for n in ["manufacturing", "healthcare", "finance", "education", "logistics", "global"]},
 }
 
@@ -501,7 +501,7 @@ def home():
       <div><dt>Founded</dt><dd>Ooty, the Nilgiris</dd></div>
       <div><dt>Office</dt><dd>Coonoor, Tamil Nadu</dd></div>
       <div><dt>In production</dt><dd>UK and Ghana, on Azure</dd></div>
-      <div><dt>Products</dt><dd>CodeGate · HRMS · Mandate (in development)</dd></div>
+      <div><dt>Products</dt><dd>CodeGate · HRMS · CMS · Lumen · Mandate (in development)</dd></div>
       <div><dt>Company</dt><dd>{LEGAL_NAME}</dd></div>
     </dl>
     </div>
@@ -574,7 +574,7 @@ def cases_index():
 </div></section>
 <section class="sec"><div class="ct">
   {sec_head("Our own products", "Built for problems <span class='mute'>we had ourselves.</span>", None, "more-h")}
-  <div class="rows"><a class="row cs-row" href="/products/#codegate"><span class="n">In use<small>Early access</small></span><span><span class="label">Hiring</span><span class="h3" style="display:block">CodeGate</span></span><span class="body">Online coding assessment: hidden tests decide correctness and AI grades quality.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#hrms"><span class="n">In use<small>Early access</small></span><span><span class="label">People operations</span><span class="h3" style="display:block">HRMS</span></span><span class="body">People, leave, time and payroll for small Indian teams, in one place.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#mandate"><span class="n">Building<small>Early access soon</small></span><span><span class="label">AI governance</span><span class="h3" style="display:block">Mandate</span></span><span class="body">A safe gateway between AI agents and your ERP, databases and in-house systems.</span><span class="arr" aria-hidden="true">→</span></a></div>
+  <div class="rows"><a class="row cs-row" href="/products/#codegate"><span class="n">In use<small>Early access</small></span><span><span class="label">Hiring</span><span class="h3" style="display:block">CodeGate</span></span><span class="body">Online coding assessment: hidden tests decide correctness and AI grades quality.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#hrms"><span class="n">In use<small>Early access</small></span><span><span class="label">People operations</span><span class="h3" style="display:block">HRMS</span></span><span class="body">People, leave, time and payroll for small Indian teams, in one place.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#cms"><span class="n">In use<small>Early access</small></span><span><span class="label">Church management</span><span class="h3" style="display:block">CMS</span></span><span class="body">Members, visitors, giving and attendance for one church or many, in one place.</span><span class="arr" aria-hidden="true">→</span></a><a class="row cs-row" href="/products/#mandate"><span class="n">Building<small>Early access soon</small></span><span><span class="label">AI governance</span><span class="h3" style="display:block">Mandate</span></span><span class="body">A safe gateway between AI agents and your ERP, databases and in-house systems.</span><span class="arr" aria-hidden="true">→</span></a></div>
 </div></section>
 {contact_section("Discuss a similar problem.", "Tell us about the system you're working with and what a good outcome looks like. An engineer will reply.")}
 </main>
@@ -921,6 +921,15 @@ def products():
                ("Test", "Candidates solve real-world problems in a browser code editor, with sample tests they can run."),
                ("Grade", "One click runs the hidden tests and AI-grades every answer."),
                ("Shortlist", "Rank candidates by score, review the flags, and use the generated questions on a short follow-up call.")]
+    cms_mail = mail("Altherix CMS", "Hello Altherix team,\n\nWe'd like to know more about Altherix CMS.\n\nChurch or organisation:\nCity and country:\nNumber of churches or campuses:\nApproximate number of members:\n\nThank you,")
+    cms_feats = [("Members and families", "Every member with their household, groups, baptism and marriage dates. Record a birth or a death in one step, and see each person's story on a timeline, from their first visit onwards."),
+                 ("Every visitor followed up", "Pastors assign each new visitor to someone who calls them and logs how it went. Returning visitors are recognised by phone number, and Make a member keeps their history."),
+                 ("Attendance on a phone", "Ushers tick names from their phone during the service and add visitors as they arrive. Weekly services repeat by themselves, so there's nothing to set up each week."),
+                 ("Giving you can trust", "Tithes, offerings and other contributions, each in the church's own currency. Mistakes are voided with a reason, never deleted, and the finance dashboard compares this year with last.")]
+    cms_flow = [("Set up your churches", "Add one church, or a main church with campuses and branches below it. Each sees its own data; a role at the top sees everything below."),
+                ("Give people roles", "Pastor, IT Admin, Finance Admin, Event Admin, Usher or Church Representative. Everyone signs in with Google and sees only what their role allows."),
+                ("Run Sunday", "Ushers mark attendance and add visitors. Finance records the offerings. The pastor's dashboard updates as it happens."),
+                ("Care for people", "The pastoral care list shows who hasn't attended for a few weeks, which visitors still need a call, and which follow-ups are due.")]
     lumen_mail = mail("Altherix Lumen licence", "Hello Altherix team,\n\nWe'd like to know more about Altherix Lumen licences.\n\nChurch or organisation:\nCity and country:\nNumber of computers:\n\nThank you,")
     hr_mail = mail("HRMS", "Hello Altherix team,\n\nI'd like to know more about HRMS.\n\nCompany:\nTeam size:\nWhat you use today:\n\nThank you,")
     hr_feats = [("Attendance and leave", "Clock in and out, with approvals through the reporting line. Leave accrues monthly from each person's real start date, under a policy you can edit, with your own holiday calendar."),
@@ -946,11 +955,15 @@ def products():
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "HRMS by Altherix", "url": SITE + "/products/#hrms",
                "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                "description": "A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll.", "publisher": pub},
+              {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Altherix CMS", "url": SITE + "/products/#cms",
+               "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
+               "description": "Church management software for one church or many: members and households, visitor follow-up, attendance, giving and pastoral care, with role-based access.", "publisher": pub},
               LUMEN_LD,
               {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mandate by Altherix", "url": SITE + "/products/#mandate",
                "applicationCategory": "BusinessApplication", "description": "A safe way to connect AI agents to the systems your business already runs on.", "publisher": pub}]
     index = [("codegate", "CodeGate", "In use · Early access", "Rank candidates on the code they write, using hidden tests and AI grading."),
              ("hrms", "HRMS", "In use · Early access", "People, leave, time and payroll for small Indian teams, in one place."),
+             ("cms", "CMS", "In use · Early access", "Members, visitors, giving and attendance for one church or many, in one place."),
              ("lumen", "Lumen", "Early access · Download", "Project song lyrics in church, slide by slide, on any screen. Fully offline."),
              ("mandate", "Mandate", "In development", "A safe way to connect AI agents to the systems your business already runs on.")]
     index_html = "".join(f'<a class="row cs-row" href="#{a}"><span class="label">{st}</span><span class="h3" style="display:block">{n} <span class="mute">by Altherix</span></span><span class="body">{d}</span><span class="arr" aria-hidden="true">↓</span></a>' for a, n, st, d in index)
@@ -1020,6 +1033,38 @@ def products():
     <p class="meta" style="margin-top:1.5rem">PAN, bank details and salaries are encrypted, and every view of them is logged. Built with India&rsquo;s DPDP Act in mind: consent notices, and retention rules for exited staff and closed applications.</p>
   </div>
   <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(hr_flow))}</ol>
+</div></section>
+
+<section class="sec" id="cms" aria-labelledby="cms-h"><div class="ct">
+  <div class="two">
+    <div class="rv">
+      <span class="label">In use · Early access</span>
+      <h2 class="h2" id="cms-h" style="margin-top:1.25rem">CMS <span class="mute">by Altherix</span></h2>
+      <p class="statement">Know your church: every member, visitor, service and offering in one place.</p>
+      <p class="lede" style="margin-top:1.25rem">Altherix CMS is church management software for one church or many. It keeps members and families, visitors, events, attendance and giving together, makes sure every visitor gets a call, and gives pastors a clear picture of how the church is doing.</p>
+      <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="{cms_mail}">Ask about CMS</a></div>
+      <p class="meta" style="margin-top:.9rem">Runs in the browser on any computer or phone. Churches side by side, or a main church with campuses below it.</p>
+    </div>
+    <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in cms_feats)}</div>
+  </div>
+  <div style="margin:clamp(48px,6vw,80px) 0 20px">
+    {shot("acms-dashboard", "Altherix CMS pastor dashboard for a demo church: a pastoral care banner, totals for active members, weekly attendance, new members, visitors, births, deaths, ministry groups and this month's giving, and charts of attendance over 12 weeks and new members over 12 months.", "Pastor dashboard: the church at a glance (demo church)")}
+  </div>
+  <div class="shots-2">
+    {shot("acms-visitors", "Altherix CMS visitors page: cards for visitors waiting to be contacted, with visit counts, returning and wants-contact tags, prayer requests, the person assigned to follow up, the last call outcome, and buttons to log a call or make them a member.", "Visitor follow-up: assign, call and log the outcome (demo data, phone numbers hidden)", "(min-width:1000px) 570px, 100vw")}
+    {shot("acms-attendance", "Altherix CMS attendance for Sunday Worship: 65 of 91 members and 8 visitors present, a name search, and a grid of names to tick, with returning visitors tagged.", "Attendance: ushers tick names, visitors included (demo data)", "(min-width:1000px) 570px, 100vw")}
+    {shot("acms-timeline", "Altherix CMS member timeline: services attended, last attended, four visits before joining and member since, then a dated list from first visit and follow-up calls to becoming a member.", "Member timeline: from first visit to member (demo data)", "(min-width:1000px) 570px, 100vw")}
+    {shot("acms-finance", "Altherix CMS finance overview: year-to-date giving against last year, this month, monthly average and tithes, a chart of tithes, offerings and other giving by month, this year against last, tithe participation and payment methods.", "Finance dashboard: this year against last (demo data)", "(min-width:1000px) 570px, 100vw")}
+  </div>
+</div></section>
+
+<section class="sec" aria-labelledby="cms-how-h"><div class="ct two">
+  <div class="rv">
+    <span class="label">How it works</span>
+    <h2 class="h2" id="cms-how-h" style="margin-top:1.25rem">One church or many. <span class="mute">Everyone sees only their part.</span></h2>
+    <p class="meta" style="margin-top:1.5rem">Pastoral notes are for pastors only. Ushers see names, not contact details. Removing someone's role locks them out at once, profile pictures stay in private storage, and the audit log records which fields changed without storing the values.</p>
+  </div>
+  <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(cms_flow))}</ol>
 </div></section>
 
 <section class="sec" id="lumen" aria-labelledby="lumen-h"><div class="ct">
@@ -1112,6 +1157,7 @@ def seo_files():
     llms += ["", "## Products", "",
              f"- [CodeGate]({SITE}/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.",
              f"- [HRMS]({SITE}/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.",
+             f"- [CMS]({SITE}/products/#cms): Church management software for one church or many: members and households, visitor follow-up with call logs, attendance marked on a phone, tithes and offerings, pastor and finance dashboards, pastoral care, and role-based access with Google sign-in. In use, early access.",
              f"- [Lumen]({SITE}/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Free trial download, also on the Microsoft Store ({LUMEN['store']}); licences from Altherix. Early access.",
              f"- [Mandate]({SITE}/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.",
              "", "## Case studies", ""]
