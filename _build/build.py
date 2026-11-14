@@ -827,28 +827,28 @@ def downloads():
     lic_mail = (f"mailto:{EMAIL}?subject={quote('Altherix Lumen licence')}&amp;body=" +
                 quote("Hello Altherix team,\n\nWe'd like a licence for Altherix Lumen.\n\nChurch or organisation:\nCity and country:\nNumber of computers:\n\nThank you,"))
     cards = [
-        ("mac", "macOS", url(LUMEN["mac"]["file"]), "Download for macOS",
+        ("mac", "macOS", f'<a class="btn btn-p" href="{url(LUMEN["mac"]["file"])}" download>Download for macOS</a>',
          f"Universal: Apple silicon and Intel · .dmg · {LUMEN['mac']['size']}", "macOS 12 Monterey or later"),
-        ("win", "Windows", url(LUMEN["win"]["file"]), "Download for Windows",
-         f"64-bit installer · .exe · {LUMEN['win']['size']}", "Windows 10 or 11, 64-bit"),
+        ("win", "Windows", f'<a class="btn btn-p" href="{LUMEN["store"]}" target="_blank" rel="noopener">Get it from Microsoft Store</a>',
+         f'Installs with no security warnings and updates automatically. Or <a class="more" href="{url(LUMEN["win"]["file"])}" download>download the .exe installer</a> ({LUMEN["win"]["size"]}).',
+         "Windows 10 or 11, 64-bit"),
     ]
     cards_html = "".join(f"""<div class="dl-card rv" data-os="{k}">
       <span class="dl-you">Recommended for this computer</span>
       <h2 class="h3-lg">{n}</h2>
       <p class="meta">{req}</p>
-      <a class="btn btn-p" href="{u}" download>{cta}</a>
+      {btn}
       <p class="meta">{info}</p>
-    </div>""" for k, n, u, cta, info, req in cards)
+    </div>""" for k, n, btn, info, req in cards)
     help_mail = (f"mailto:{EMAIL}?subject={quote('Help installing Altherix Lumen')}&amp;body=" +
                  quote("Hello Altherix team,\n\nI need help installing Altherix Lumen.\n\nComputer (Mac or Windows, and version):\nMessage I see:\n\nThank you,"))
     mac_steps = [("Install", "Open the downloaded <strong>.dmg</strong> and drag <strong>Altherix Lumen</strong> into the Applications folder. Then open it from Applications."),
                  ("“Apple could not verify ‘Altherix Lumen’…”", "This message is expected the first time. Click <strong>Done</strong>, not Move to Trash."),
                  ("Allow it once", "Open <strong>System Settings → Privacy &amp; Security</strong> and scroll to the bottom. Next to <em>“Altherix Lumen” was blocked</em>, click <strong>Open Anyway</strong>, then confirm with your password or Touch ID."),
                  ("That's it", "Lumen now opens normally on this Mac. A new version may ask once more after you install it.")]
-    win_steps = [("Install", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>."),
-                 ("“Windows protected your PC”", "Click <strong>More info</strong>, then <strong>Run anyway</strong>. Accept the licence agreement and finish the setup."),
-                 ("“Smart App Control blocked an app that may be unsafe”", "If the message offers only <strong>Okay</strong> and <strong>Get apps from the Store</strong>, Smart App Control is switched on. It's common on new Windows 11 PCs, and it blocks apps from small publishers it doesn't recognise yet, with no Run anyway option. Right-click → Properties → Unblock doesn't help."),
-                 ("Get past Smart App Control", f"<a href=\"{help_mail}\">Email us</a> and we'll help you get set up. If you manage this computer yourself, you can switch it off: open <strong>Windows Security → App &amp; browser control → Smart App Control settings</strong>, choose <strong>Off</strong>, then run the installer again and use <strong>More info → Run anyway</strong>. Be aware that Windows can't switch Smart App Control back on without resetting the PC."),
+    win_steps = [("Easiest: the Microsoft Store", f"Click <strong>Get it from Microsoft Store</strong>, then <strong>Get</strong> or <strong>Install</strong>. There are no warnings to click through, Smart App Control doesn't block it, and Windows keeps Lumen up to date. <a class=\"more\" href=\"{LUMEN['store']}\" target=\"_blank\" rel=\"noopener\">Open in the Store</a>"),
+                 ("Using the .exe instead?", "Open the downloaded <strong>Altherix-Lumen…setup.exe</strong>. If you see <em>“Windows protected your PC”</em>, click <strong>More info</strong>, then <strong>Run anyway</strong>, and finish the setup."),
+                 ("“Smart App Control blocked an app that may be unsafe”", f"Smart App Control is on, so the .exe can't run on this PC. Install from the <a href=\"{LUMEN['store']}\" target=\"_blank\" rel=\"noopener\">Microsoft Store</a> instead: it works with Smart App Control on. Stuck? <a href=\"{help_mail}\">Email us</a>."),
                  ("Your songs are safe", "Uninstalling or reinstalling Lumen never deletes your song library.")]
     steps = lambda xs: "".join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(xs))
     reqs = [("macOS", "12 Monterey or later, Apple silicon or Intel"),
@@ -869,7 +869,7 @@ def downloads():
 </div></header>
 
 <section class="sec" aria-labelledby="install-h"><div class="ct">
-  {sec_head("Installing", "A one-time check, <span class='mute'>then you're set.</span>", "Lumen is a new app from a small team, so macOS and Windows don't recognise it yet and ask you to confirm the first time you open it. These are the exact messages you'll see and what to do.", "install-h")}
+  {sec_head("Installing", "A one-time check, <span class='mute'>then you're set.</span>", "On Windows, the Microsoft Store version installs like any other app. macOS, and the Windows .exe, don't recognise Lumen yet because it's a new app from a small team, so they ask you to confirm the first time. These are the exact messages you'll see and what to do.", "install-h")}
   <div class="two" style="margin-top:2.5rem">
     <div class="rv"><h3 class="h3-lg">On a Mac</h3><ol class="steps" style="margin-top:1rem">{steps(mac_steps)}</ol></div>
     <div class="rv"><h3 class="h3-lg">On Windows</h3><ol class="steps" style="margin-top:1rem">{steps(win_steps)}</ol></div>
@@ -1030,7 +1030,7 @@ def products():
       <p class="statement">The words on the screen, exactly when the congregation needs them.</p>
       <p class="lede" style="margin-top:1.25rem">Lumen is lyrics and Bible projection software for churches. Build today's service from your songs and Bible readings, then move through it slide by slide on a projector or TV. It runs on macOS and Windows, and works fully offline: no account, no internet, no subscription server.</p>
       <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="/downloads/">Download Lumen</a><a class="btn btn-s" href="{lumen_mail}">Ask about licences</a></div>
-      <p class="meta" style="margin-top:.9rem">Free to try with every feature. A licence removes the large “Unlicensed” watermark from the projector.</p>
+      <p class="meta" style="margin-top:.9rem">Free to try with every feature. A licence removes the large “Unlicensed” watermark from the projector. On Windows, Lumen is also on the <a class="more" href="{LUMEN['store']}" target="_blank" rel="noopener">Microsoft Store</a>.</p>
     </div>
     <div class="grid2 rv" style="align-self:start">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS[:4])}</div>
   </div>
@@ -1112,7 +1112,7 @@ def seo_files():
     llms += ["", "## Products", "",
              f"- [CodeGate]({SITE}/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.",
              f"- [HRMS]({SITE}/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.",
-             f"- [Lumen]({SITE}/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Free trial download; licences from Altherix. Early access.",
+             f"- [Lumen]({SITE}/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Free trial download, also on the Microsoft Store ({LUMEN['store']}); licences from Altherix. Early access.",
              f"- [Mandate]({SITE}/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.",
              "", "## Case studies", ""]
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]

@@ -15,7 +15,7 @@ Contact: contact@altherix.in · +91 81529 23515 · https://www.linkedin.com/comp
 
 - [CodeGate](https://altherix.in/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.
 - [HRMS](https://altherix.in/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.
-- [Lumen](https://altherix.in/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Free trial download; licences from Altherix. Early access.
+- [Lumen](https://altherix.in/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Free trial download, also on the Microsoft Store (https://apps.microsoft.com/detail/9NDN29ZXL32X); licences from Altherix. Early access.
 - [Mandate](https://altherix.in/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.
 
 ## Case studies

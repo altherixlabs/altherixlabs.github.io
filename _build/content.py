@@ -480,4 +480,5 @@ LUMEN = dict(
     releases="https://github.com/altherixlabs/lumen-releases/releases",
     mac=dict(file="Altherix-Lumen-mac-universal.dmg", size="253 MB"),
     win=dict(file="Altherix-Lumen-win-x64-setup.exe", size="147 MB"),
+    store="https://apps.microsoft.com/detail/9NDN29ZXL32X",
 )
