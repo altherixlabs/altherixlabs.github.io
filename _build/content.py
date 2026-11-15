@@ -478,7 +478,7 @@ PROJECTS = [
 # Installers live in the public releases repo; "latest" links always serve the newest version,
 # so only the version text below changes when a new release is published.
 LUMEN = dict(
-    version="1.2.0",
+    version="1.3.0",
     released="15 November 2026",
     releases="https://github.com/altherixlabs/lumen-releases/releases",
     mac=dict(file="Altherix-Lumen-mac-universal.dmg", size="234 MB"),
