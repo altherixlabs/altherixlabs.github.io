@@ -802,6 +802,7 @@ LUMEN_FEATS = [
     ("Backed up with your licence", "With a licence, every song is backed up online as you add it. Activate the same licence on a new computer and your songs come back. No account, no tracking, and you can switch it off. You can also back up the whole library to one file."),
     ("Bring your library", "Import plain text files in bulk, and export to text or JSON whenever you like."),
     ("Two languages on one screen", "Dual Language songs show every slide in two languages, such as Hindi with Hinglish or Tamil with English. Paste both or combine two songs you already have, and switch to either language with one click during the service."),
+    ("Lyrics on your live stream", "Streaming to YouTube, Facebook or Instagram with OBS? Lumen puts the words on the stream as a lower third over your cameras, or as the full projector picture, and can switch OBS scenes for you when a song or Bible passage comes up."),
     ("Hindi and Indian languages", "Hindi lyrics display in a bundled Devanagari font on every computer, search works on whole Hindi and Tamil words, and Hindi section tags like [पद 1] and [कोरस] are understood."),
 ]
 LUMEN_FLOW = [

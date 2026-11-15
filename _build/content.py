@@ -301,7 +301,7 @@ BUILDS = [
 # no personal signature, list numbering corrected, and a short "This website" section added.
 # Each section: (heading, [blocks]); a block is a paragraph string or a list of bullet strings.
 # ────────────────────────────────────────────────────────────────────────────
-PRIVACY_META = dict(version="5.2", effective="November 2026")
+PRIVACY_META = dict(version="5.3", effective="November 2026")
 PRIVACY = [
   ("Who we are", [
     "Altherix is a brand of Altherix Codecraft (OPC) Private Limited, a One Person Company incorporated in India (CIN U62011TZ2026OPC041408), registered office D No 5/1247-N1, Stanely Park, Ottupattarai, Coonoor, Nilgiris, Tamil Nadu 643105. In this policy, \"Altherix\", \"we\" and \"us\" mean that company.",
@@ -316,7 +316,8 @@ PRIVACY = [
     "The backup is stored with Cloudflare, Inc., who provide our servers, and is used only to give it back to copies of Lumen activated with the same licence. We do not read, share or sell it. We keep the latest copy from each computer and up to 10 earlier copies. Anyone holding your licence key can restore the backup, so keep the key private.",
     "You can switch cloud backup off in <b>Settings → Cloud backup of songs</b>. <b>Delete cloud backup</b> there erases every copy for your licence straight away. You can also email contact@altherix.in to have it deleted.",
     "<b>Update checks (version 1.4.0 and later, copies downloaded from altherix.in).</b> About once a day, Lumen asks GitHub, Inc., where our installers are published, whether a newer version exists, and downloads it if so. The request carries only what any download does, such as your IP address and a generic browser identifier; GitHub handles it under its own privacy statement. No songs, licence details or computer identifiers are sent. You can switch this off in <b>Settings → Updates</b>. Copies from the Microsoft Store or the Mac App Store are updated by those stores instead.",
-    "Apart from cloud backup and update checks, Lumen makes no network connections. It contains no analytics, telemetry, advertising or crash reporting.",
+    "<b>Live stream for OBS (version 1.5.0 and later, off by default).</b> When you switch it on in <b>Settings → Live stream (OBS)</b>, Lumen runs a small web server on your computer so that OBS can show the lyrics on your stream. It serves only what is on screen, to links that contain a secret key, and only on your computer unless you allow a separate streaming computer on your network. If you let Lumen switch OBS scenes, it connects to OBS on your computer or network, and your OBS password is stored encrypted on your computer. Nothing is sent to Altherix.",
+    "Apart from cloud backup and update checks, Lumen makes no connections to the internet. It contains no analytics, telemetry, advertising or crash reporting.",
     "Licence keys are verified on your computer, offline. A licence key contains the licensee name (and an email address, if you gave one) that Altherix records when issuing it. We keep those details, and any emails you send us about Lumen, under this policy.",
     "If you install Lumen from the Microsoft Store, Microsoft handles the download and installation under its own privacy statement.",
     "Bibles and song lyrics you import are your content. You are responsible for having the right to use them.",
@@ -479,7 +480,7 @@ PROJECTS = [
 # Installers live in the public releases repo; "latest" links always serve the newest version,
 # so only the version text below changes when a new release is published.
 LUMEN = dict(
-    version="1.4.0",
+    version="1.5.0",
     released="15 November 2026",
     releases="https://github.com/altherixlabs/lumen-releases/releases",
     mac=dict(file="Altherix-Lumen-mac-universal.dmg", size="234 MB"),
