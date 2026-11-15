@@ -831,7 +831,7 @@ def downloads():
         ("mac", "macOS", f'<a class="btn btn-p" href="{url(LUMEN["mac"]["file"])}" download>Download for macOS</a>',
          f"Universal: Apple silicon and Intel · .dmg · {LUMEN['mac']['size']}", "macOS 12 Monterey or later"),
         ("win", "Windows", f'<div style="display:flex;flex-wrap:wrap;gap:.75rem"><a class="btn btn-p" href="{url(LUMEN["win"]["file"])}" download>Download for Windows</a><a class="btn btn-s" href="{LUMEN["store"]}" target="_blank" rel="noopener">Get it from Microsoft Store</a></div>',
-         f'Download: always the newest version · .exe · {LUMEN["win"]["size"]}. Microsoft Store: no security warnings and automatic updates, but new versions reach it a few days later.',
+         f'Download: always the newest version, and it updates itself from version 1.4.0 · .exe · {LUMEN["win"]["size"]}. Microsoft Store: no security warnings, but new versions reach it a few days later.',
          "Windows 10 or 11, 64-bit"),
     ]
     cards_html = "".join(f"""<div class="dl-card rv" data-os="{k}">
