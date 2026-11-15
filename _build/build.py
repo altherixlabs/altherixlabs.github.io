@@ -799,7 +799,7 @@ LUMEN_FEATS = [
     ("Built for the live moment", "A service list for today, a preview of what comes next, and Space, arrow keys or a presentation clicker to move on. A reused chorus is never duplicated."),
     ("Looks right on any screen", "Themes with colour, gradient, image or looping video backgrounds. Text shrinks to fit and stays sharp from 1080p to 4K."),
     ("Calm when things go wrong", "Black screen, clear text and logo at a keypress. If the projector cable is pulled, the output moves to a window instead of crashing."),
-    ("Your songs stay yours", "Everything lives on your computer: no account, no internet, no tracking. Back up the whole library to one file and restore it anywhere."),
+    ("Backed up with your licence", "With a licence, every song is backed up online as you add it. Activate the same licence on a new computer and your songs come back. No account, no tracking, and you can switch it off. You can also back up the whole library to one file."),
     ("Bring your library", "Import plain text files in bulk, and export to text or JSON whenever you like."),
     ("Hindi and Indian languages", "Hindi lyrics display in a bundled Devanagari font on every computer, search works on whole Hindi and Tamil words, and Hindi section tags like [पद 1] and [कोरस] are understood."),
 ]
@@ -854,7 +854,7 @@ def downloads():
     reqs = [("macOS", "12 Monterey or later, Apple silicon or Intel"),
             ("Windows", "10 or 11, 64-bit"),
             ("Display", "A projector, TV or second monitor for the congregation. Lumen also runs on a single screen."),
-            ("Internet", "Not needed, ever. Lumen works fully offline and sends nothing anywhere.")]
+            ("Internet", "Not needed to project. Licensed copies back up their songs online when connected.")]
     jsonld = [ORG, crumbs_ld([("Home", "/"), ("Downloads", "/downloads/")]), LUMEN_LD]
     html = head(SEO["downloads"]["seo_title"], SEO["downloads"]["seo_desc"], path, jsonld) + nav("downloads") + f"""
 <main id="main">
@@ -862,7 +862,7 @@ def downloads():
   {crumbs([("Home", "/"), ("Downloads", "")])}
   <span class="label">Downloads · Early access</span>
   <h1 class="h1">Download Altherix Lumen.</h1>
-  <p class="lede">Lyrics and Bible projection for churches. Build today's service, then put every song and reading on the screen slide by slide. It's free to try, and needs no internet or account.</p>
+  <p class="lede">Lyrics and Bible projection for churches. Build today's service, then put every song and reading on the screen slide by slide. It's free to try, needs no account, and projects without an internet connection.</p>
   <div class="dl-grid">{cards_html}</div>
   <p class="meta dl-mobile" hidden>Lumen is a desktop app for Mac and Windows computers. Open this page on the computer connected to your projector.</p>
   <p class="meta" style="margin-top:1.5rem">Version {LUMEN["version"]} · released {LUMEN["released"]} · <a class="more" href="{rel}">All releases and SHA-256 checksums</a> · <a class="more" href="/downloads/lumen-license.txt">Licence agreement</a></p>
@@ -964,7 +964,7 @@ def products():
     index = [("codegate", "CodeGate", "In use · Early access", "Rank candidates on the code they write, using hidden tests and AI grading."),
              ("hrms", "HRMS", "In use · Early access", "People, leave, time and payroll for small Indian teams, in one place."),
              ("cms", "CMS", "In use · Early access", "Members, visitors, giving and attendance for one church or many, in one place."),
-             ("lumen", "Lumen", "Early access · Download", "Project song lyrics in church, slide by slide, on any screen. Fully offline."),
+             ("lumen", "Lumen", "Early access · Download", "Project song lyrics in church, slide by slide, on any screen. Works offline."),
              ("mandate", "Mandate", "In development", "A safe way to connect AI agents to the systems your business already runs on.")]
     index_html = "".join(f'<a class="row cs-row" href="#{a}"><span class="label">{st}</span><span class="h3" style="display:block">{n} <span class="mute">by Altherix</span></span><span class="body">{d}</span><span class="arr" aria-hidden="true">↓</span></a>' for a, n, st, d in index)
     html = head(SEO["products"]["seo_title"], SEO["products"]["seo_desc"], path, jsonld) + nav("products") + f"""
@@ -1073,7 +1073,7 @@ def products():
       <span class="label">Early access · Download</span>
       <h2 class="h2" id="lumen-h" style="margin-top:1.25rem">Lumen <span class="mute">by Altherix</span></h2>
       <p class="statement">The words on the screen, exactly when the congregation needs them.</p>
-      <p class="lede" style="margin-top:1.25rem">Lumen is lyrics and Bible projection software for churches. Build today's service from your songs and Bible readings, then move through it slide by slide on a projector or TV. It runs on macOS and Windows, and works fully offline: no account, no internet, no subscription server.</p>
+      <p class="lede" style="margin-top:1.25rem">Lumen is lyrics and Bible projection software for churches. Build today's service from your songs and Bible readings, then move through it slide by slide on a projector or TV. It runs on macOS and Windows and projects fully offline, with no account. Licensed copies back up their songs online, so a new computer gets them back.</p>
       <div class="btns" style="margin-top:2rem"><a class="btn btn-p" href="/downloads/">Download Lumen</a><a class="btn btn-s" href="{lumen_mail}">Ask about licences</a></div>
       <p class="meta" style="margin-top:.9rem">Free to try with every feature. A licence removes the large “Unlicensed” watermark from the projector. On Windows, Lumen is also on the <a class="more" href="{LUMEN['store']}" target="_blank" rel="noopener">Microsoft Store</a>.</p>
     </div>
@@ -1094,7 +1094,7 @@ def products():
     <span class="label">How a Sunday works</span>
     <h2 class="h2" id="lumen-how-h" style="margin-top:1.25rem">Plan it on Saturday. <span class="mute">Press Space on Sunday.</span></h2>
     <div class="grid2" style="margin-top:2rem">{''.join(f'<div><h3 class="h3">{t}</h3><p class="body">{d}</p></div>' for t, d in LUMEN_FEATS[4:])}</div>
-    <p class="meta" style="margin-top:1.5rem">Songs, themes and media stay on your computer. Lumen makes no network connections and collects no data. You are responsible for your own song copyright licence, such as CCLI; Lumen shows the CCLI number in the footer.</p>
+    <p class="meta" style="margin-top:1.5rem">Bibles, themes and media stay on your computer. With a licence, Lumen backs up your songs to Altherix so you can restore them on another computer, and you can switch this off in Settings. It collects no analytics or tracking data. You are responsible for your own song copyright licence, such as CCLI; Lumen shows the CCLI number in the footer.</p>
   </div>
   <ol class="steps rv">{''.join(f'<li><span class="idx">0{i+1}</span><span><b>{t}</b>{d}</span></li>' for i, (t, d) in enumerate(LUMEN_FLOW))}</ol>
 </div></section>
@@ -1158,7 +1158,7 @@ def seo_files():
              f"- [CodeGate]({SITE}/products/#codegate): Online coding assessment. Candidates solve problems in a timed browser editor; hidden tests decide correctness and AI grades edge cases, code quality and efficiency. In use, early access.",
              f"- [HRMS]({SITE}/products/#hrms): A lightweight HR system for small companies in India: employee records, attendance, leave, timesheets, tasks, hiring and payroll. In use, early access.",
              f"- [CMS]({SITE}/products/#cms): Church management software for one church or many: members and households, visitor follow-up with call logs, attendance marked on a phone, tithes and offerings, pastor and finance dashboards, pastoral care, and role-based access with Google sign-in. In use, early access.",
-             f"- [Lumen]({SITE}/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Free trial download, also on the Microsoft Store ({LUMEN['store']}); licences from Altherix. Early access.",
+             f"- [Lumen]({SITE}/downloads/): Offline lyrics and Bible projection for churches, for macOS and Windows. Song library with search, Bibles imported from wordproject.org in any language with references and word search, Hindi and Tamil support, service list, themes with image and video backgrounds, second-screen output. Licensed copies back up their songs online and restore them on a new computer. Free trial download, also on the Microsoft Store ({LUMEN['store']}); licences from Altherix. Early access.",
              f"- [Mandate]({SITE}/products/#mandate): A safe gateway between AI agents and business systems such as ERP, SQL databases and in-house apps, with permissions, approvals and an audit log. In development.",
              "", "## Case studies", ""]
     llms += [f"- [{x['title']}]({SITE}/case-studies/{x['slug']}/): {x['oneliner']} ({x['headline'][0]} {x['headline'][1].lower()})" for x in CASES]
